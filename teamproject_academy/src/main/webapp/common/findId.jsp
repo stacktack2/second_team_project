@@ -28,7 +28,7 @@
                                     <div class="card-body">
                                         <div class="small mb-3 text-muted">
                                         	<span class="block">* 이름과 생년월일과 연락처를 모두 입력한 다음버튼을 눌러주세요</span>
-                                        	<span class="block">* 생년월일은 6글자로 입력해주세요 (ex 19990101)</span>
+                                        	<span class="block">* 생년월일은 8글자로 입력해주세요 (ex 19990101)</span>
                                        		<span class="block">* 연락처는 -와 공백없이 입력해주세요(ex 01011111111)</span>
                                        </div>
                                         <form>
@@ -43,6 +43,14 @@
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="inputPhone" placeholder="연락처" />
                                                 <label for="inputPhone">연락처</label>
+                                            </div>
+											<div class="form-check d-sm-inline-block">
+                                                <input class="form-check-input" type="radio" value="학생" name="uesrType"/>
+                                                <label class="form-check-label" for="userType">학생</label>
+                                            </div>
+                                            <div class="form-check d-sm-inline-block">
+                                                <input class="form-check-input" type="radio" value="교수" name="uesrType"/>
+                                                <label class="form-check-label" for="userType">교수</label>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="btn btn-primary findIdBtn" href="#">다음</a>

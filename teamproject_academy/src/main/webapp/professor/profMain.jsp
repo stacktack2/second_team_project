@@ -94,7 +94,7 @@
                                 공지사항
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+                                <table class="datatable-table">
                                     <thead>
                                         <tr>
                                             <th>번호</th>
