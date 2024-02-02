@@ -27,13 +27,13 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">로그인</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <form name="frm" action="index.do" method="post">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputId" type="text" placeholder="아이디" />
+                                                <input class="form-control" id="id" type="text" placeholder="아이디" />
                                                 <label for="inputId">아이디</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="비밀번호" />
+                                                <input class="form-control" id="pw" type="password" placeholder="비밀번호" />
                                                 <label for="inputPassword">비밀번호</label>
                                             </div>
                                             <div class="form-check mb-3">
@@ -42,7 +42,7 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                
-                                                <a class="btn btn-primary loginBtn" href="#">로그인</a>
+                                                <button class="btn btn-primary loginBtn">로그인</button>
                                             </div>
                                         </form>
                                     </div>
