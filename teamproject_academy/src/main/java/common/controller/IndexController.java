@@ -37,13 +37,17 @@ public class IndexController {
 		
 		
 	}
-	
+
+//	index GET접근
 	public void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/common/index.jsp");
 		rd.forward(request, response);
 	}
+//	index POST접근
 	public void Postindex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/common/index.jsp");
 		rd.forward(request, response);
