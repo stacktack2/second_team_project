@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
-<link href="css/styles.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/resources/common/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 <style>
 	.bg-primary{
-		background-image:url("./img/univ1.jpg");
+		background-image:url("<%=request.getContextPath()%>/resources/common/img/univ1.jpg");
 		background-size: cover;
 	}
 	.block{display:block;}
@@ -56,8 +56,8 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3 d-flex align-items-center">
-                                        <div class="small findId mx-auto"><a href="index.jsp">로그인</a></div>
-                                        <div class="small findPw mx-auto"><a href="findPw.jsp">비밀번호 찾기</a></div>
+                                        <div class="small findId mx-auto"><a href="index.do">로그인</a></div>
+                                        <div class="small findPw mx-auto"><a href="findPw.do">비밀번호 찾기</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -76,6 +76,6 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/common/js/scripts.js"></script>
     </body>
 </html>

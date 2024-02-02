@@ -13,4 +13,10 @@ public class MainController {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/admMain.jsp");
 		rd.forward(request, response);
 	}
+	
+	public void doPostAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/admMain.jsp");
+		rd.forward(request, response);
+	}
 }

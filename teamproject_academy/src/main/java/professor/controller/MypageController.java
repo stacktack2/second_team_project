@@ -17,7 +17,13 @@ public class MypageController {
 	}
 	
 	
+	public void doPostAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/mypage/myInfoModify.jsp");
+		rd.forward(request, response);
+		
+	}
 		
 		
 	
