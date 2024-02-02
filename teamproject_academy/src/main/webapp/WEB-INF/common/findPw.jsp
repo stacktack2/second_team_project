@@ -33,6 +33,12 @@
                                        		<span class="block">* 인증수단 정보를 입력한 뒤 다음 버튼을 누르면 해당 이메일로 인증번호가 발송됩니다</span>
                                        </div>
                                         <form>
+                                        	<div class="datatable-dropdown mb-3">
+               									<select class="datatable-selector">
+               										<option value="학생">학생</option>
+               										<option value="교수">교수</option>
+               									</select>
+									        </div>
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="inputId" type="text" placeholder="아이디" />
                                                 <label for="inputId">아이디</label>
@@ -49,12 +55,22 @@
                                                 <input class="form-control" id="inputPhone" placeholder="연락처" />
                                                 <label for="inputPhone">연락처</label>
                                             </div>
-                                            <div class="form-floating mb-3">
+                                            <div class="form-floating mb-3 col-md-8 d-inline-block">
                                                 <input class="form-control" id="inputEmail" placeholder="이메일" />
                                                 <label for="inputEmail">이메일</label>
                                             </div>
+                                            <div class="form-floating d-inline-block">
+                                            	<input class="btn btn-outline-secondary2" type="button" value="인증하기" />
+                                            </div>
+                                            <div class="form-floating mb-3 col-md-8 d-inline-block">
+                                                <input class="form-control" id="inputCode" placeholder="인증코드" />
+                                                <label for="inputCode">인증코드</label>
+                                            </div>
+                                            <div class="form-floating d-inline-block">
+                                            	<input class="btn btn-outline-success" type="button" value="인증확인" />
+                                            </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="btn btn-primary findIdBtn" href="#">다음</a>
+                                                <a class="btn btn-primary mx-auto" href="#">비밀번호 찾기</a>
                                             </div>
                                         </form>
                                     </div>
@@ -79,5 +95,5 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-    </body>>
+    </body>
 </html>
