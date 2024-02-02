@@ -19,20 +19,40 @@ public class CourseController {
 		}
 		
 	}
-	
+	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String threeUri = threeUriParam.split("\\.")[0];
+
+		if(threeUri.equals("couList")) {
+			PostcouList(request,response);
+		}else if(threeUri.equals("courriculum")) {
+			Postcourriculum(request,response);			
+		}
+		
+	}
 	public void couList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/course/couList.jsp");
 		rd.forward(request, response);
 		
 		
 	}
-	
+	public void PostcouList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/course/couList.jsp");
+		rd.forward(request, response);
+		
+		
+	}
 	public void courriculum(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/course/courriculum.jsp");
 		rd.forward(request, response);
 		
 		
 	}
-	
+	public void Postcourriculum(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/course/courriculum.jsp");
+		rd.forward(request, response);
+		
+		
+	}
 	
 }

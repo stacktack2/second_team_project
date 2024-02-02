@@ -13,4 +13,9 @@ public class MypageController {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/mypage/myInfoModify.jsp");
 		rd.forward(request, response);
 	}
+	public void doPostAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/mypage/myInfoModify.jsp");
+		rd.forward(request, response);
+	}
 }

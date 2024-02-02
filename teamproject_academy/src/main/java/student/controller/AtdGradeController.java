@@ -21,27 +21,54 @@ public class AtdGradeController {
 		}
 		
 	}
-	
+	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String threeUri = threeUriParam.split("\\.")[0];
+
+		if(threeUri.equals("attendcheckList")) {
+			PostattendcheckList(request,response);
+		}else if(threeUri.equals("attendcheckView")) {
+			PostattendcheckView(request,response);			
+		}else if(threeUri.equals("cgradeCheck")) {
+			PostcgradeCheck(request,response);			
+		}
+		
+	}
 	public void attendcheckList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/atdGrade/attendcheckList.jsp");
 		rd.forward(request, response);
 		
 		
 	}
-	
+	public void PostattendcheckList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/atdGrade/attendcheckList.jsp");
+		rd.forward(request, response);
+		
+		
+	}
 	public void attendcheckView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/atdGrade/attendcheckView.jsp");
 		rd.forward(request, response);
 		
 		
 	}
-	
+	public void PostattendcheckView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/atdGrade/attendcheckView.jsp");
+		rd.forward(request, response);
+		
+		
+	}
 	public void cgradeCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/atdGrade/cgradeCheck.jsp");
 		rd.forward(request, response);
 		
 		
 	}
-	
+	public void PostcgradeCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/atdGrade/cgradeCheck.jsp");
+		rd.forward(request, response);
+		
+		
+	}
 	
 }
