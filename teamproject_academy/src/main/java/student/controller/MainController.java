@@ -13,4 +13,9 @@ public class MainController {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/stuMain.jsp");
 		rd.forward(request, response);
 	}
+	public void doPostAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/stuMain.jsp");
+		rd.forward(request, response);
+	}
 }

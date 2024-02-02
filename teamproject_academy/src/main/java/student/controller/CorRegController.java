@@ -19,20 +19,40 @@ public class CorRegController {
 		}
 		
 	}
-	
+	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String threeUri = threeUriParam.split("\\.")[0];
+
+		if(threeUri.equals("cAppCheck")) {
+			PostcAppCheck(request,response);
+		}else if(threeUri.equals("corReg")) {
+			PostcorReg(request,response);			
+		}
+		
+	}
 	public void cAppCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/corReg/cAppCheck.jsp");
 		rd.forward(request, response);
 		
 		
 	}
-	
+	public void PostcAppCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/corReg/cAppCheck.jsp");
+		rd.forward(request, response);
+		
+		
+	}
 	public void corReg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/corReg/corReg.jsp");
 		rd.forward(request, response);
 		
 		
 	}
-	
+	public void PostcorReg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/corReg/corReg.jsp");
+		rd.forward(request, response);
+		
+		
+	}
 	
 }
