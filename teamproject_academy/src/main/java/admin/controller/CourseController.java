@@ -1,5 +1,71 @@
 package admin.controller;
 
-public class CourseController {
+import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class CourseController {
+	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String threeUri = threeUriParam.split("\\.")[0];
+
+		if(threeUri.equals("courMgList")) {
+			courMgList(request,response);
+		}else if(threeUri.equals("courseRegAdd")) {
+			courseRegAdd(request,response);			
+		}else if(threeUri.equals("courseRegList")) {
+			courseRegList(request,response);			
+		}else if(threeUri.equals("curriculum")) {
+			curriculum(request,response);			
+		}else if(threeUri.equals("curriculumAdd")) {
+			curriculumAdd(request,response);			
+		}else if(threeUri.equals("curriculumModify")) {
+			curriculumModify(request,response);			
+		}
+		
+	}
+	
+	public void courMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/course/courMgList.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	
+	public void courseRegAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/course/courseRegAdd.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	
+	public void courseRegList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/course/courseRegList.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	
+	public void curriculum(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/course/curriculum.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	
+	public void curriculumAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/course/curriculumAdd.jsp");
+		rd.forward(request, response);
+		
+		
+		
+	}public void curriculumModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/course/curriculumModify.jsp");
+		rd.forward(request, response);
+		
+	
+	}
 }
