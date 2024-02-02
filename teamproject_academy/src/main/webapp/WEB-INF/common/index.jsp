@@ -2,19 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ page import="vo.*" %>
 <%@ page import="java.sql.*" %>
-<%
-
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<link href="css/styles.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/resources/common/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 <style>
 	.bg-primary{
-		background-image:url("./img/univ1.jpg");
+		background-image:url("<%=request.getContextPath()%>/resources/common/img/univ1.jpg");
 		background-size: cover;
 	}
 	.loginBtn{margin-left:42%;}
@@ -32,7 +29,7 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">로그인</h3></div>
                                     <div class="card-body">
-                                        <form name="frm" action="index.do" method="post">
+                                        <form name="frm" action="index.do" method="get">
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="id" type="text" placeholder="아이디" />
                                                 <label for="inputId">아이디</label>
@@ -51,8 +48,8 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3 d-flex align-items-center justify-content-between">
-                                        <div class="small findId"><a href="findId.jsp">아이디 찾기</a></div>
-                                        <div class="small findPw"><a href="findPw.jsp">비밀번호 찾기</a></div>
+                                        <div class="small findId"><a href="findId.do">아이디 찾기</a></div>
+                                        <div class="small findPw"><a href="findPw.do">비밀번호 찾기</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -72,6 +69,6 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/common/js/scripts.js"></script>
     </body>
 </html>
