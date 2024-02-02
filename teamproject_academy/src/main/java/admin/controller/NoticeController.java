@@ -23,7 +23,29 @@ public class NoticeController {
 		}
 	}
 	
+	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String threeUri = threeUriParam.split("\\.")[0];
+
+		if(threeUri.equals("noticeList")) {
+			PostnoticeList(request,response);
+		}else if(threeUri.equals("noticeModify")) {
+			PostnoticeModify(request,response);			
+		}else if(threeUri.equals("noticeView")) {
+			PostnoticeView(request,response);			
+		}else if(threeUri.equals("noticeWrite")) {
+			PostnoticeWrite(request,response);			
+		}
+	}
+	
 	public void noticeList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeList.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	
+	public void PostnoticeList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeList.jsp");
 		rd.forward(request, response);
 		
@@ -36,8 +58,19 @@ public class NoticeController {
 		
 		
 	}
-	
+	public void PostnoticeModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeModify.jsp");
+		rd.forward(request, response);
+		
+		
+	}
 	public void noticeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeView.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	public void PostnoticeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeView.jsp");
 		rd.forward(request, response);
 		
@@ -50,6 +83,11 @@ public class NoticeController {
 		
 		
 	}
-	
+	public void PostnoticeWrite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeWrite.jsp");
+		rd.forward(request, response);
+		
+		
+	}
 	
 }

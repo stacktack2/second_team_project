@@ -19,15 +19,36 @@ public class NoticeController {
 		}
 		
 	}
-	
+	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String threeUri = threeUriParam.split("\\.")[0];
+
+		if(threeUri.equals("noticeList")) {
+			PostnoticeList(request,response);
+		}else if(threeUri.equals("noticeView")) {
+			PostnoticeView(request,response);			
+		}
+		
+	}
 	public void noticeList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/notice/noticeList.jsp");
 		rd.forward(request, response);
 		
 		
 	}
-	
+	public void PostnoticeList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/notice/noticeList.jsp");
+		rd.forward(request, response);
+		
+		
+	}
 	public void noticeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/notice/noticeView.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	public void PostnoticeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/notice/noticeView.jsp");
 		rd.forward(request, response);
 		

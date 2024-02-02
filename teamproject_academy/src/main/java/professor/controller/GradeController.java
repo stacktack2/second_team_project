@@ -19,15 +19,36 @@ public class GradeController {
 		}
 		
 	}
-	
+	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String threeUri = threeUriParam.split("\\.")[0];
+
+		if(threeUri.equals("gradeMgList")) {
+			PostgradeMgList(request,response);
+		}else if(threeUri.equals("gradeMgView")) {
+			PostgradeMgView(request,response);			
+		}
+		
+	}
 	public void gradeMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/grade/gradeMgList.jsp");
 		rd.forward(request, response);
 		
 		
 	}
-	
+	public void PostgradeMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/grade/gradeMgList.jsp");
+		rd.forward(request, response);
+		
+		
+	}
 	public void gradeMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/grade/gradeMgView.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	public void PostgradeMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/grade/gradeMgView.jsp");
 		rd.forward(request, response);
 		
