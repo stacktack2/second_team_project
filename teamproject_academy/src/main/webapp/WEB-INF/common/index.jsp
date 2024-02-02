@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="vo.*" %>
+<%@ page import="java.sql.*" %>
+<%
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +46,6 @@
                                                 <label class="form-check-label" for="inputRememberId">아이디 기억하기</label>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                               
                                                 <button class="btn btn-primary loginBtn">로그인</button>
                                             </div>
                                         </form>
