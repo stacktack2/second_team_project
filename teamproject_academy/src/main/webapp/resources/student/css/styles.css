@@ -90,6 +90,21 @@
     scroll-behavior: smooth;
   }
 }
+/*학생*/
+	.disNone{display:none;}
+	.white{border-color: white !important;}
+	.grey{border-color: grey !important; background-color:grey !important;}
+	button.grey:hover{border-color: grey !important; background-color:lightgrey !important; color:grey !important;}
+	.inline{display:inline-block !important;}
+	.right{float:right !important; margin-right:10px;}
+	.wauto{width:auto !important;}
+	.viewtable > tbody > tr:hover > *{--bs-table-accent-bg:none !important;}
+	.mright{margin-right: 10px !important; margin-top:10px;}
+	.sschecktable> tbody > tr > th{width:10% !important;}
+	.bold{font-weight:bold !important;}
+	.blue{color:blue !important;}
+	.center, .checktable td{text-align:center !important;}
+	.timetable tr>td{height:8vh !important;}
 
 body {
   margin: 0;
@@ -1751,7 +1766,7 @@ progress {
   width: 100%;
   margin-bottom: 1rem;
   color: var(--bs-table-color);
-  vertical-align: top;
+  vertical-align: middle;
   border-color: var(--bs-table-border-color);
 }
 .table > :not(caption) > * > *, .datatable-table > :not(caption) > * > * {
@@ -11162,14 +11177,21 @@ body {
 .datatable-table > tfoot > tr > th,
 .datatable-table > thead > tr > td,
 .datatable-table > thead > tr > th {
-  vertical-align: top;
+  vertical-align: middle;
   padding: 0.5rem 0.5rem;
 }
 
 .datatable-table > thead > tr > th {
   vertical-align: bottom;
-  text-align: left;
+  text-align: center;
   border-bottom: none;
+  background-color:#ccc;
+}
+.datatable-table > tbody > tr > th {
+  vertical-align: bottom;
+  text-align: center;
+  border-bottom: none;
+  background-color:#ccc;
 }
 
 .datatable-table > tfoot > tr > th {
