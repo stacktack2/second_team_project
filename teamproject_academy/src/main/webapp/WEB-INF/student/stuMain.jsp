@@ -8,12 +8,13 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="<%=request.getContextPath() %>/resources/student/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
 </head>
 <body class="sb-nav-fixed">
     	<!-- 상단 nav 바 -->
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!--로고자리-->
-            <a class="navbar-brand ps-3" href="index.html">이젠대학교</a>
+            <a class="navbar-brand ps-3" href="<%=request.getContextPath() %>/student/stuMain.do">이젠대학교</a>
             <!--좌측 nav바 토글(클릭시 없어졌다 있어졌다) -->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- 우측상단 사용자 메뉴-->
@@ -36,21 +37,21 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                              <div class="sb-sidenav-menu-heading">학적/수강관리</div>
-                              <a class="nav-link" href="#">학적사항 조회</a>
-                              <a class="nav-link" href="#">휴복학 신청</a>
-                              <a class="nav-link" href="#">교과목 조회</a>
-                              <a class="nav-link" href="#">수강시간표 조회</a>
+                              <a class="nav-link" href="<%=request.getContextPath() %>/student/acdCourse/sscheck.do">학적사항 조회</a>
+                              <a class="nav-link" href="<%=request.getContextPath() %>/student/acdCourse/absenseApp.do">휴복학 신청</a>
+                              <a class="nav-link" href="<%=request.getContextPath() %>/student/acdCourse/subcheck.do">교과목 조회</a>
+                              <a class="nav-link" href="<%=request.getContextPath() %>/student/acdCourse/scheduleCheck.do">수강시간표 조회</a>
                               
                               <div class="sb-sidenav-menu-heading">출석/성적관리</div>
-                              <a class="nav-link" href="#">출결확인</a>
-                              <a class="nav-link" href="#">성적조회</a>
+                              <a class="nav-link" href="<%=request.getContextPath() %>/student/atdGrade/attendcheckList.do">출결확인</a>
+                              <a class="nav-link" href="<%=request.getContextPath() %>/student/atdGrade/cgradeCheck.do">성적조회</a>
                               
                               <div class="sb-sidenav-menu-heading">수강신청</div>
-                              <a class="nav-link" href="#">수강신청</a>
-                              <a class="nav-link" href="#">수강신청 현황조회</a>
+                              <a class="nav-link" href="<%=request.getContextPath() %>/student/corReg/corReg.do">수강신청</a>
+                              <a class="nav-link" href="<%=request.getContextPath() %>/student/corReg/cAppCheck.do">수강신청 현황조회</a>
                               
                               <div class="sb-sidenav-menu-heading">마이페이지</div>
-                              <a class="nav-link" href="#">비밀번호 변경</a>
+                              <a class="nav-link" href="<%=request.getContextPath() %>/student/mypage/myInfoModify.do">비밀번호 변경</a>
                          </div>
                       </div>
                  </nav>
@@ -69,25 +70,54 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 수강과목
+                                <a href="acdCourse/subcheck.do" class="nav-link right bold">&#43; </a>
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+                                <table class="datatable-table">
                                     <thead>
                                         <tr>
                                             <th>번호</th>
-                                            <th>제목</th>
-                                            <th>작성자</th>
-                                            <th>조회수</th>
-                                            <th>작성일</th>
+                                            <th>과목명</th>
+                                            <th>교수명</th>
+                                            <th>시간표</th>
+                                            <th>강의실</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
+                                            <td>1</td>
+                                            <td><a href="acdCourse/curriculum.do">물리화학</a></td>
+                                            <td>윤도연</td>
+                                            <td>월 2교시</td>
+                                            <td>상 101</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><a href="acdCourse/curriculum.do">물리화학</a></td>
+                                            <td>윤도연</td>
+                                            <td>월 2교시</td>
+                                            <td>상 101</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><a href="acdCourse/curriculum.do">물리화학</a></td>
+                                            <td>윤도연</td>
+                                            <td>월 2교시</td>
+                                            <td>상 101</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><a href="acdCourse/curriculum.do">물리화학</a></td>
+                                            <td>윤도연</td>
+                                            <td>월 2교시</td>
+                                            <td>상 101</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><a href="acdCourse/curriculum.do">물리화학</a></td>
+                                            <td>윤도연</td>
+                                            <td>월 2교시</td>
+                                            <td>상 101</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -96,60 +126,48 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 공지사항
+                                <a href="notice/noticeList.do" class="nav-link right bold">&#43; </a>
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+                                <table class="datatable-table">
                                     <thead>
                                         <tr>
                                             <th>번호</th>
                                             <th>제목</th>
-                                            <th>작성자</th>
-                                            <th>조회수</th>
                                             <th>작성일</th>
+                                            <th>조회수</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
+                                            <td>1</td>
+                                            <td><a href="notice/noticeView.do">공지사항 제목</a></td>
                                             <td>2011/04/25</td>
+                                            <td>10</td>
                                         </tr>
                                         <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
+                                            <td>1</td>
+                                            <td><a href="notice/noticeView.do">공지사항 제목</a></td>
+                                            <td>2011/04/25</td>
+                                            <td>10</td>
                                         </tr>
                                         <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
+                                            <td>1</td>
+                                            <td><a href="notice/noticeView.do">공지사항 제목</a></td>
+                                            <td>2011/04/25</td>
+                                            <td>10</td>
                                         </tr>
                                         <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
+                                            <td>1</td>
+                                            <td><a href="notice/noticeView.do">공지사항 제목</a></td>
+                                            <td>2011/04/25</td>
+                                            <td>10</td>
                                         </tr>
                                         <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                            <td>61</td>
-                                            <td>2012/12/02</td>
+                                            <td>1</td>
+                                            <td><a href="notice/noticeView.do">공지사항 제목</a></td>
+                                            <td>2011/04/25</td>
+                                            <td>10</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -161,11 +179,6 @@
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; 이젠대학교 2023</div>
-                            <!-- <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div> -->
                         </div>
                     </div>
                 </footer>
