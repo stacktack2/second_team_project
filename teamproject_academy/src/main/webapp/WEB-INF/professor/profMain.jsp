@@ -48,7 +48,7 @@
 						<a class="nav-link" href="<%=request.getContextPath()%>/professor/attend/attendMgList.do">출석관리</a>
 
 						<div class="sb-sidenav-menu-heading">성적관리</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/professor/course/couList.do">성적관리</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/professor/grade/gradeMgList.do">성적관리</a>
 
 
 						<div class="sb-sidenav-menu-heading">교수정보</div>

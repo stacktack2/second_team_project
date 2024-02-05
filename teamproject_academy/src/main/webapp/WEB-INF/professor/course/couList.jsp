@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>교수 메인페이지</title>
+<title>교수과목 조회</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -47,7 +47,7 @@
 						<a class="nav-link" href="<%=request.getContextPath()%>/professor/attend/attendMgList.do">출석관리</a>
 
 						<div class="sb-sidenav-menu-heading">성적관리</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/professor/course/couList.do">성적관리</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/professor/grade/gradeMgList.do">성적관리</a>
 
 
 						<div class="sb-sidenav-menu-heading">교수정보</div>
@@ -121,7 +121,7 @@
 											</tr>
 											<tr>
 												<td>3</td>
-												<td><a href=course/curriculum.do">물리화학</a></td>
+												<td><a href="curriculum.do">물리화학</a></td>
 												<td>2022년</td>
 												<td>1학기</td>
 												<td>상 101</td>
