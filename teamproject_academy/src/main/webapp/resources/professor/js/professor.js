@@ -14,8 +14,8 @@ document.getElementsByName("attendday").values = year+"/"+month+"/"+date;
   $('input[name="attendday"]').daterangepicker({
     singleDatePicker: true,
     showDropdowns: true,
-    minYear: 2020,
-    maxYear: parseInt(moment().format('YYYY'),10),
+    minYear: year-10,
+    maxYear: year+10,
     locale: {
       format: 'YYYY/M/DD'
     }
