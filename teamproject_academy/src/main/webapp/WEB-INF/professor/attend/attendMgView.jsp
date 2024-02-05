@@ -8,6 +8,13 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body class="sb-nav-fixed">
 	<!-- 상단 nav 바 -->
@@ -75,10 +82,7 @@
 									<!-- 검색- 날짜 api 활용 -->
 									<div class="right">
 										<form action="noticeList.do" method="get" class="datatable-search inline">
-											<select class="datatable-selector">
-												<option value="1" selected>제목</option>
-												<option value="2">내용</option>
-											</select>
+											<input type="text" name="attendday" />
 											<button class="btn btn-primary inline grey">검색</button>
 										</form>
 									</div>
@@ -150,6 +154,8 @@
 		
 	</div>
 	<!-- 좌측 nav 바~푸터까지 END -->
+	<script src="<%=request.getContextPath()%>/resources/professor/js/professor.js"></script>
+	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/resources/share/js/scripts.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
