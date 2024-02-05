@@ -14,8 +14,8 @@ public class CourseController {
 
 		if(threeUri.equals("couList")) {
 			couList(request,response);
-		}else if(threeUri.equals("courriculum")) {
-			courriculum(request,response);			
+		}else if(threeUri.equals("curriculum")) {
+			curriculum(request,response);			
 		}
 		
 	}
@@ -42,8 +42,8 @@ public class CourseController {
 		
 		
 	}
-	public void courriculum(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/course/courriculum.jsp");
+	public void curriculum(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/course/curriculum.jsp");
 		rd.forward(request, response);
 		
 		

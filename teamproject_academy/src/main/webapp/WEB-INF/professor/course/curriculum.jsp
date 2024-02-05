@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>교수 메인페이지</title>
+<title>강의계획서 조회</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -59,146 +59,76 @@
 				</div>
 			</nav>
 		</div>
-		
-		
-		<!-- 메인페이지 -->
+
+
+		<!-- 메인페이지 START -->
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">공지사항</h1>
+					<h1 class="mt-4">강의계획서 조회</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href="noticeList.do">공지사항</a></li>
-						<li class="breadcrumb-item active">공지사항 목록페이지</li>
+						<li class="breadcrumb-item">교과목 조회</li>
+						<li class="breadcrumb-item active">강의계획서 조회</li>
 					</ol>
 
 					<div class="card mb-4 white">
-						<div class="card-header disNone">공지사항</div>
+						<div class="card-header disNone">강의계획서 조회</div>
 						<div class="card-body">
 							<div
 								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-								<!-- 테이블 탑 -->
-								<div class="datatable-top">
-									<!-- 셀렉트 -->
-									<div class="datatable-dropdown">
-										<label> <select class="datatable-selector">
-												<option value="1" selected>최신순</option>
-												<option value="2">인기순</option>
-										</select>
-										</label>
-									</div>
-									<!-- 검색 -->
-									<div class="right">
-										<select class="datatable-selector">
-											<option value="1" selected>제목</option>
-											<option value="2">내용</option>
-										</select>
-										<form action="noticeList.do" method="get" class="datatable-search inline">
-											<input class="datatable-input inline wauto" placeholder="검색어를 입력하세요" type="search"
-												title="Search within table" aria-controls="datatablesSimple">
-											<button class="btn btn-primary inline grey">검색</button>
-										</form>
-									</div>
-								</div>
-								<!-- 테이블 컨테이너 -->
+								<div class=""></div>
 								<div class="datatable-container">
+									<div class="datatable-top">
+										<button class="btn btn-primary grey right mright">뒤로가기</button>
+									</div>
 									<!-- 테이블 -->
-									<table class="datatable-table">
-										<thead>
-											<tr>
-												<th>번호</th>
-												<th>제목</th>
-												<th>작성일</th>
-												<th>조회수</th>
-											</tr>
-										</thead>
+									<table class="datatable-table viewtable sschecktable">
 										<tbody>
 											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
+												<th>교과목명</th>
+												<td colspan="3"></td>
+												<th>년도/학기</th>
+												<td></td>
 											</tr>
 											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
+												<th>강의시간(강의실)</th>
+												<td></td>
+												<th>학점/시간</th>
+												<td></td>
+												<th>이수구분</th>
+												<td></td>
 											</tr>
 											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
+												<th>담당교수</th>
+												<td></td>
+												<th>연락처</th>
+												<td></td>
+												<th>이메일</th>
+												<td></td>
 											</tr>
 											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
+												<th>장애학생 지원</th>
+												<td colspan="5">장애학생 수강 시, 학습 지원(장애학생지원실에 등록된 학생의 요청 시
+													지정 좌석 제공 등)</td>
 											</tr>
 											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
+												<th>교과목 개요</th>
+												<td colspan="5">ㅇㅇㅇ의 기초부분을 공부하여, ㅇㅇㅇ에 대한 이해를 돕는다.</td>
 											</tr>
 											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
+												<th style="vertical-align: middle">학습목표 및 학습방법</th>
+												<td colspan="5">ㅇㅇㅇ를 정의하고, 이들의 구조 및 성질을 이해하고, ㅇㅇㅇ의 성질등을
+													파악하여 ㅇㅇㅇ의 현황, 응용실태 및 향후 연구개발 방향을 논의한다. 수강 후 ㅇㅇㅇ의 이해를 통하여
+													ㅇㅇㅇ업계의 취업시 업무 추진 능력을 배양하고, 진학 및 연속 연구 수행시 ㅇㅇㅇ에 관련된 학문을 깊이있게
+													추진할 수 있는 소양을 닦는다.</td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
-							<!-- 테이블 바텀 -->
-							<div class="datatable-bottom">
-								<!-- 페이징 -->
-								<nav class="datatable-pagination">
-									<ul class="datatable-pagination-list">
-										<li
-											class="datatable-pagination-list-item datatable-hidden datatable-disabled">
-											<a data-page="1" class="datatable-pagination-list-item-link">‹</a>
-										</li>
-										<li class="datatable-pagination-list-item datatable-active">
-											<a data-page="1" class="datatable-pagination-list-item-link">1</a>
-										</li>
-										<li class="datatable-pagination-list-item"><a
-											data-page="2" class="datatable-pagination-list-item-link">2</a>
-										</li>
-										<li class="datatable-pagination-list-item"><a
-											data-page="2" class="datatable-pagination-list-item-link">›</a>
-										</li>
-									</ul>
-								</nav>
-							</div>
 						</div>
 					</div>
+
 				</div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">
