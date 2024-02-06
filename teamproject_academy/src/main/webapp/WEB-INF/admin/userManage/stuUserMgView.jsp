@@ -60,82 +60,86 @@
             <div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">학생 사용자 관리</h1>
+					<h1 class="mt-4">학생 사용자 정보</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item">사용자 관리</li>
 						<li class="breadcrumb-item active">학생 관리</li>
 					</ol>
 
 					<div class="card mb-4 white">
-						
+						<div class="card-header disNone">학생 정보 조회</div>
 						<div class="card-body">
-							<div
-								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-								<!-- 테이블 탑 -->
-								<div class="datatable-top">
-									<!-- 검색 -->
-									<div class="right">
-										<form action="stuUserMgList.do" method="post"
-											class="datatable-search inline">
-											<input class="datatable-input inline wauto"
-												placeholder="이름을 입력하세요" type="search"
-												title="Search within table" aria-controls="datatablesSimple">
-											<button class="btn btn-primary inline grey">검색</button>
-										</form>
-									</div>
-								</div>
-								<!-- 테이블 컨테이너 -->
+							<div class="card mb-4">
+								<div class="card-body">사진</div>
+							</div>
+							<div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 								<div class="datatable-container">
-									<!-- 테이블 -->
-									<table class="datatable-table">
-										<thead>
-											<tr>
-												<th><input type="checkbox" name="" id=""></th>
-												<th>학생번호</th>
-												<th>이름</th>
-												<th>학적상태</th>
-												<th>연락처</th>
-												<th>이메일</th>
-											</tr>
-										</thead>
+									<table class="datatable-table viewtable sschecktable">
 										<tbody>
 											<tr>
-												<td style="text-align: center">
-													<input type="checkbox" name="" id="">
-												</td>
-												<td>1</td>
-												<td><a href="stuUserMgView.do">홍길동</a></td>
-												<td>재학</td>
-												<td>010-1111-1111</td>
-												<td>ezen@gmail.com</td>
+												<th>학번</th>
+												<td></td>
+												<th>성명</th>
+												<td></td>
+												<th>주민번호</th>
+												<td></td>
+											</tr>
+											<tr>
+												<th>생년월일</th>
+												<td></td>
+												<th>성별</th>
+												<td></td>
+												<th>학적상태</th>
+												<td></td>
+											</tr>
+											<tr>
+												<th>대학</th>
+												<td></td>
+												<th>학부</th>
+												<td></td>
+												<th>전공</th>
+												<td></td>
+											</tr>
+											<tr>
+												<th>학년</th>
+												<td></td>
+												<th>학과석차</th>
+												<td></td>
+												<th>입학일자</th>
+												<td></td>
+											</tr>
+											<tr>
+												<th>제적일자</th>
+												<td></td>
+												<th>수료일자</th>
+												<td></td>
+												<th>졸업일자</th>
+												<td></td>
+											</tr>
+											<tr>
+												<th>E-mail</th>
+												<td></td>
+												<th>휴대전화번호</th>
+												<td></td>
+												<th>집전화번호</th>
+												<td></td>
+											</tr>
+											<tr>
+												<th>주소</th>
+												<td colspan="3"></td>
+												<th>우편번호</th>
+												<td></td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
 							<!-- 테이블 바텀 -->
-							<div class="datatable-bottom">
-							<button class="btn btn-primary inline grey" type="button">삭제</button>
-								<!-- 페이징 -->
-								<nav class="datatable-pagination d-inline-block">
-									<ul class="datatable-pagination-list">
-										<li class="datatable-pagination-list-item datatable-hidden datatable-disabled">
-											<a data-page="1" class="datatable-pagination-list-item-link">‹</a>
-										</li>
-										<li class="datatable-pagination-list-item datatable-active">
-											<a data-page="1" class="datatable-pagination-list-item-link">1</a>
-										</li>
-										<li class="datatable-pagination-list-item">
-											<a data-page="2" class="datatable-pagination-list-item-link">2</a>
-										</li>
-										<li class="datatable-pagination-list-item">
-											<a data-page="2" class="datatable-pagination-list-item-link">›</a>
-										</li>
-									</ul>
-								</nav>
-								<div class="datatable-bottom ms-auto">
-									<a href="stuUserAdd.do" class="btn btn-primary grey right mright">사용자 추가</a>
-								</div>
+							<div class="datatable-bottom ms-auto d-inline-block">
+								<a href="stuUserInfoModify.do" class="btn btn-primary grey right mright">수정</a>
+							</div>
+							<div class="datatable-bottom ms-auto d-inline-block">
+								<a href="stuUserMgList.do" class="btn btn-primary grey right mright">목록</a>
 							</div>
 						</div>
 					</div>

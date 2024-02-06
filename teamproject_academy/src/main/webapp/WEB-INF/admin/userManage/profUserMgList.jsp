@@ -63,7 +63,7 @@
 					<h1 class="mt-4">교수 사용자 관리</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item">사용자 관리</li>
-						<li class="breadcrumb-item active">교수 관리 페이지</li>
+						<li class="breadcrumb-item active">교수 관리</li>
 					</ol>
 
 					<div class="card mb-4 white">
@@ -105,7 +105,7 @@
 													<input type="checkbox" name="" id="">
 												</td>
 												<td>1</td>
-												<td><a href="profUserInfoModify.do">홍길동</a></td>
+												<td><a href="profUserMgView.do">홍길동</a></td>
 												<td>재학</td>
 												<td>s501</td>
 												<td>010-1111-1111</td>
@@ -135,7 +135,9 @@
 										</li>
 									</ul>
 								</nav>
-							<button class="btn btn-primary inline grey" type="button">사용자 추가</button>
+							<div class="datatable-bottom ms-auto">
+									<a href="profUserAdd.do" class="btn btn-primary grey right mright">사용자 추가</a>
+							</div>
 							</div>
 						</div>
 					</div>

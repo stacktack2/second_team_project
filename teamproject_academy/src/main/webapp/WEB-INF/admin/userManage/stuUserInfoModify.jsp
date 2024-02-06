@@ -60,10 +60,10 @@
             <div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">학생 사용자 정보</h1>
+					<h1 class="mt-4">학생 사용자 정보 수정</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item">사용자 관리</li>
-						<li class="breadcrumb-item active">학생 관리 페이지</li>
+						<li class="breadcrumb-item active">학생 관리</li>
 					</ol>
 
 					<div class="card mb-4 white">
@@ -72,6 +72,7 @@
 							<div class="card mb-4">
 								<div class="card-body">사진</div>
 							</div>
+						<button class="btn btn-primary inline grey" type="button">사진 변경</button>
 							<div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 								<div class="datatable-container">
 									<table class="datatable-table viewtable sschecktable">
@@ -135,9 +136,8 @@
 								</div>
 							</div>
 							<!-- 테이블 바텀 -->
-							<div class="datatable-bottom">
-								<button class="btn btn-primary inline grey" type="button">수정</button>
-								<button class="btn btn-primary inline grey" type="button">저장</button>
+							<div class="datatable-bottom ms-auto">
+									<a href="stuUserMgView.do" class="btn btn-primary grey right mright">저장</a>
 							</div>
 						</div>
 					</div>

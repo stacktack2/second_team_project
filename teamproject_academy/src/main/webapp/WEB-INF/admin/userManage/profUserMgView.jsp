@@ -60,24 +60,26 @@
             <div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">학생 사용자 정보</h1>
+					<h1 class="mt-4">교수 사용자 정보</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item">사용자 관리</li>
-						<li class="breadcrumb-item active">학생 관리 페이지</li>
+						<li class="breadcrumb-item active">교수 관리</li>
 					</ol>
 
 					<div class="card mb-4 white">
-						<div class="card-header disNone">학생 정보 조회</div>
+						<div class="card-header disNone">교수 정보 조회</div>
 						<div class="card-body">
 							<div class="card mb-4">
 								<div class="card-body">사진</div>
 							</div>
-							<div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+							<div
+								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 								<div class="datatable-container">
+									<!-- 테이블 -->
 									<table class="datatable-table viewtable sschecktable">
 										<tbody>
 											<tr>
-												<th>학번</th>
+												<th>교번</th>
 												<td></td>
 												<th>성명</th>
 												<td></td>
@@ -89,7 +91,7 @@
 												<td></td>
 												<th>성별</th>
 												<td></td>
-												<th>학적상태</th>
+												<th>직급</th>
 												<td></td>
 											</tr>
 											<tr>
@@ -101,19 +103,11 @@
 												<td></td>
 											</tr>
 											<tr>
-												<th>학년</th>
+												<th>학위</th>
 												<td></td>
-												<th>학과석차</th>
+												<th>연구실</th>
 												<td></td>
-												<th>입학일자</th>
-												<td></td>
-											</tr>
-											<tr>
-												<th>제적일자</th>
-												<td></td>
-												<th>수료일자</th>
-												<td></td>
-												<th>졸업일자</th>
+												<th>임용일자</th>
 												<td></td>
 											</tr>
 											<tr>
@@ -129,15 +123,19 @@
 												<td colspan="3"></td>
 												<th>우편번호</th>
 												<td></td>
+
 											</tr>
+
 										</tbody>
 									</table>
 								</div>
 							</div>
 							<!-- 테이블 바텀 -->
-							<div class="datatable-bottom">
-								<button class="btn btn-primary inline grey" type="button">수정</button>
-								<button class="btn btn-primary inline grey" type="button">저장</button>
+							<div class="datatable-bottom ms-auto d-inline-block">
+								<a href="profUserInfoModify.do" class="btn btn-primary grey right mright">수정</a>
+							</div>
+							<div class="datatable-bottom ms-auto d-inline-block">
+								<a href="profUserMgList.do" class="btn btn-primary grey right mright">목록</a>
 							</div>
 						</div>
 					</div>

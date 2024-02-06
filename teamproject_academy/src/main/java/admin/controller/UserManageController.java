@@ -12,8 +12,10 @@ public class UserManageController {
 		
 		String threeUri = threeUriParam.split("\\.")[0];
 
-		if(threeUri.equals("userAdd")) {
-			userAdd(request,response);
+		if(threeUri.equals("stuUserAdd")) {
+			stuUserAdd(request,response);
+		}else if(threeUri.equals("profUserAdd")) {
+			profUserAdd(request,response);
 		}else if(threeUri.equals("stuUserInfoModify")) {
 			stuUserInfoModify(request,response);			
 		}else if(threeUri.equals("profUserInfoModify")) {
@@ -22,8 +24,10 @@ public class UserManageController {
 			stuUserMgList(request,response);			
 		}else if(threeUri.equals("profUserMgList")) {
 			profUserMgList(request,response);			
-		}else if(threeUri.equals("userMgView")) {
-			userMgView(request,response);			
+		}else if(threeUri.equals("stuUserMgView")) {
+			stuUserMgView(request,response);			
+		}else if(threeUri.equals("profUserMgView")) {
+			profUserMgView(request,response);			
 		}
 	}
 	
@@ -31,8 +35,10 @@ public class UserManageController {
 		
 		String threeUri = threeUriParam.split("\\.")[0];
 
-		if(threeUri.equals("userAdd")) {
-			PostuserAdd(request,response);
+		if(threeUri.equals("stuUserAdd")) {
+			PoststuUserAdd(request,response);
+		}else if(threeUri.equals("profUserAdd")) {
+			PostprofUserAdd(request,response);			
 		}else if(threeUri.equals("stuUserInfoModify")) {
 			PoststuUserInfoModify(request,response);			
 		}else if(threeUri.equals("profUserInfoModify")) {
@@ -41,20 +47,36 @@ public class UserManageController {
 			PoststuUserMgList(request,response);			
 		}else if(threeUri.equals("profUserMgList")) {
 			PostprofUserMgList(request,response);			
-		}else if(threeUri.equals("userMgView")) {
-			PostuserMgView(request,response);			
+		}else if(threeUri.equals("stuUserMgView")) {
+			PoststuUserMgView(request,response);			
+		}else if(threeUri.equals("profUserMgView")) {
+			PostprofUserMgView(request,response);			
 		}
 	}
 	
-	public void userAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/userAdd.jsp");
+	public void stuUserAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserAdd.jsp");
 		rd.forward(request, response);
 		
 		
 	}
 	
-	public void PostuserAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/userAdd.jsp");
+	public void PoststuUserAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserAdd.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	
+	public void profUserAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserAdd.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	
+	public void PostprofUserAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserAdd.jsp");
 		rd.forward(request, response);
 		
 		
@@ -108,14 +130,27 @@ public class UserManageController {
 		
 		
 	}
-	public void userMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/userMgView.jsp");
+	public void stuUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserMgView.jsp");
 		rd.forward(request, response);
 		
 		
 	}
-	public void PostuserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/userMgView.jsp");
+	public void PoststuUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserMgView.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	
+	public void profUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	public void PostprofUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
 		rd.forward(request, response);
 		
 		
