@@ -44,7 +44,7 @@
                               
                               <div class="sb-sidenav-menu-heading">학생 정보</div>
                               <a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/gradeMgList.do">학생 성적 관리</a>
-                              <a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/attendMglist.do">학생 출결 관리</a>
+                              <a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/attendMgList.do">학생 출결 관리</a>
                               <a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/absenseMgList.do">학생 휴복학 관리</a>
                               
                               <div class="sb-sidenav-menu-heading">강의 관리</div>
