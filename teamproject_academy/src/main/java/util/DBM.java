@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class DBM<V> {
+public class DBM {
 	
 	// [필드] *동시성 문제 주의 : 클라이언트에 의존할 수 있는 필드 or 싱글톤 객체를 사용하는 메소드가 있으면 동시성 문제가 발생한다.
 	private String url = "jdbc:mysql://localhost:3306/board";
@@ -20,7 +20,6 @@ public class DBM<V> {
 	private PreparedStatement psmt = null;
 	private ResultSet rs = null;
 	
-	private V voType = null;
 	
 	// [생성자]
 	public DBM() {}
@@ -82,15 +81,41 @@ public class DBM<V> {
 		return result;
 	}
 	
-	public ResultSet select(){
+	public void select(){
 		try {
 			 rs = psmt.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public boolean next() {
+		try {
+			return rs.next();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public int getInt(String column) {
+		try {
+			return rs.getInt(column);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public String getString(String column) {
+		try {
+			return rs.getString(column);
+		} catch (SQLException e) {
+			e.printStackTrace();
 			return null;
 		}
-		return rs;
 	}
+	
 	
 	public boolean close() {
 		try {
