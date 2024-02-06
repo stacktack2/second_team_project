@@ -33,34 +33,34 @@
 
 	<!-- 좌측 nav 바 -->
 	<div id="layoutSidenav">
-		<div id="layoutSidenav_nav">
-			<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-				<div class="sb-sidenav-menu">
-					<div class="nav">
-						<div class="sb-sidenav-menu-heading">공지사항</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/notice/noticeList.do">공지사항 관리</a>
-						<div class="sb-sidenav-menu-heading">사용자 관리</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/stuUserMgList.do">학생 관리</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/profUserMgList.do">교수 관리</a>
-						
-						<div class="sb-sidenav-menu-heading">학생 정보</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/gradeMgList.do">학생 성적 관리</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/attendMglist.do">학생 출결 관리</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/absenseMgList.do">학생 휴복학 관리</a>
-						
-						<div class="sb-sidenav-menu-heading">강의 관리</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courMgList.do">강의 관리</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courseRegList.do">수강신청 열기/닫기</a>
-						</div>
-				</div>
-			</nav>
-		</div>
+			<div id="layoutSidenav_nav">
+				<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+					<div class="sb-sidenav-menu">
+						<div class="nav">
+							<div class="sb-sidenav-menu-heading">공지사항</div>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/notice/noticeList.do">공지사항 관리</a>
+							<div class="sb-sidenav-menu-heading">사용자 관리</div>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/stuUserMgList.do">학생 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/profUserMgList.do">교수 관리</a>
+							
+							<div class="sb-sidenav-menu-heading">학생 정보</div>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/gradeMgList.do">학생 성적 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/attendMgList.do">학생 출결 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/absenseMgList.do">학생 휴복학 관리</a>
+							
+							<div class="sb-sidenav-menu-heading">강의 관리</div>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courMgList.do">강의 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courseRegList.do">수강신청 열기/닫기</a>
+							</div>
+					</div>
+				</nav>
+			</div>
 
 		<!-- 메인페이지 -->
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">공지사항</h1>
+					<h1 class="mt-4">공지사항 목록</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item"><a href="noticeList.do">공지사항</a></li>
 						<li class="breadcrumb-item active">공지사항 목록페이지</li>
@@ -176,7 +176,7 @@
 							<!-- 테이블 바텀 -->
 							<div class="datatable-bottom">
 								<!-- 페이징 -->
-								<nav class="datatable-pagination">
+								<nav class="datatable-pagination offset-5-5 mt-2">
 									<ul class="datatable-pagination-list">
 										<li class="datatable-pagination-list-item datatable-hidden datatable-disabled">
 											<a data-page="1" class="datatable-pagination-list-item-link">‹</a>
@@ -192,6 +192,9 @@
 										</li>
 									</ul>
 								</nav>
+								<div class="datatable-bottom ms-auto">
+									<a href="noticeWrite.do" class="btn btn-primary grey right mright">글쓰기</a>
+								</div>
 							</div>
 						</div>
 					</div>

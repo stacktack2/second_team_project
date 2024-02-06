@@ -44,7 +44,7 @@
 							
 							<div class="sb-sidenav-menu-heading">학생 정보</div>
 							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/gradeMgList.do">학생 성적 관리</a>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/attendMglist.do">학생 출결 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/attendMgList.do">학생 출결 관리</a>
 							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/absenseMgList.do">학생 휴복학 관리</a>
 							
 							<div class="sb-sidenav-menu-heading">강의 관리</div>
@@ -67,7 +67,7 @@
 
                         <div class="card mb-4">
 						<div class="card-header">
-							공지사항 <a href="admin/notice/noticeList.do" class="nav-link right bold">&#43;
+							공지사항 <a href="<%=request.getContextPath()%>/admin/notice/noticeList.do" class="nav-link right bold">&#43;
 							</a>
 						</div>
 						<div class="card-body">

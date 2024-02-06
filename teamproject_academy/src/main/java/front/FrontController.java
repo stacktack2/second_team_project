@@ -78,8 +78,8 @@ public class FrontController extends HttpServlet {
 				if(uriTwo.equals("course")) {
 					CourseController acc = new CourseController();
 					acc.doAction(uriThree, request, response);
-				}else if(uriTwo.equals("noitce")) {
-					NoticeController anc = new NoticeController();
+				}else if(uriTwo.equals("notice")) {
+					admin.controller.NoticeController anc = new admin.controller.NoticeController();
 					anc.doAction(uriThree, request, response);
 				}else if(uriTwo.equals("stuInfo")) {
 					StuInfoController asc = new StuInfoController();

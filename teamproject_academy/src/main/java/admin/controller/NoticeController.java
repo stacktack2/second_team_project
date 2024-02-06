@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class NoticeController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String threeUri = threeUriParam.split("\\.")[0];
 
 		if(threeUri.equals("noticeList")) {

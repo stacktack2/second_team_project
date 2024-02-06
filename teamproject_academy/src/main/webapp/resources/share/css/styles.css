@@ -819,8 +819,16 @@ progress {
   margin-left: 33.33333333%;
 }
 
+.offset-4-1 {
+  margin-left: 39%;
+}
+
 .offset-5 {
   margin-left: 41.66666667%;
+}
+
+.offset-5-5 {
+  margin-left: 45%;
 }
 
 .offset-6 {
@@ -845,6 +853,10 @@ progress {
 
 .offset-11 {
   margin-left: 91.66666667%;
+}
+
+.offset-12 {
+  margin-left: 91%;
 }
 
 .g-0,
@@ -2012,6 +2024,24 @@ progress {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.datatable-textarea {
+  display: block;
+  width: 100%;
+  font-weight: 400;
+  line-height: 1.5;
+  resize: none;
+  height: 15rem;
   color: #212529;
   background-color: #fff;
   background-clip: padding-box;
