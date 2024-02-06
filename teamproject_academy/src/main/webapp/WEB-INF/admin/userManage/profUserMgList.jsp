@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 메인페이지</title>
+<title>교수 관리 페이지</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -58,78 +58,97 @@
             
             <!-- 메인페이지 -->
             <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">메인 페이지</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">관리자 메인페이지</li>
-                        </ol>
+			<main>
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">교수 사용자 관리</h1>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item">사용자 관리</li>
+						<li class="breadcrumb-item active">교수 관리 페이지</li>
+					</ol>
 
-                        <div class="card mb-4">
-						<div class="card-header">
-							공지사항 <a href="admin/notice/noticeList.do" class="nav-link right bold">&#43;
-							</a>
-						</div>
+					<div class="card mb-4 white">
+						
 						<div class="card-body">
-							<table class="datatable-table">
-								<thead>
-									<tr>
-										<th>번호</th>
-										<th>제목</th>
-										<th>작성일</th>
-										<th>조회수</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView.do">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView.do">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView.do">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView.do">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView.do">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
-								</tbody>
-							</table>
+							<div
+								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+								<!-- 테이블 탑 -->
+								<div class="datatable-top">
+									<!-- 검색 -->
+									<div class="right">
+										<form action="stuUserMgList.do" method="post"
+											class="datatable-search inline">
+											<input class="datatable-input inline wauto"
+												placeholder="이름을 입력하세요" type="search"
+												title="Search within table" aria-controls="datatablesSimple">
+											<button class="btn btn-primary inline grey">검색</button>
+										</form>
+									</div>
+								</div>
+								<!-- 테이블 컨테이너 -->
+								<div class="datatable-container">
+									<!-- 테이블 -->
+									<table class="datatable-table">
+										<thead>
+											<tr>
+												<th><input type="checkbox" name="" id=""></th>
+												<th>교수번호</th>
+												<th>이름</th>
+												<th>직급</th>
+												<th>연구실</th>
+												<th>연락처</th>
+												<th>이메일</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td style="text-align: center">
+													<input type="checkbox" name="" id="">
+												</td>
+												<td>1</td>
+												<td><a href="profUserInfoModify.do">홍길동</a></td>
+												<td>재학</td>
+												<td>s501</td>
+												<td>010-1111-1111</td>
+												<td>ezen@gmail.com</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- 테이블 바텀 -->
+							<div class="datatable-bottom">
+							<button class="btn btn-primary inline grey" type="button">삭제</button>
+								<!-- 페이징 -->
+								<nav class="datatable-pagination d-inline-block">
+									<ul class="datatable-pagination-list">
+										<li class="datatable-pagination-list-item datatable-hidden datatable-disabled">
+											<a data-page="1" class="datatable-pagination-list-item-link">‹</a>
+										</li>
+										<li class="datatable-pagination-list-item datatable-active">
+											<a data-page="1" class="datatable-pagination-list-item-link">1</a>
+										</li>
+										<li class="datatable-pagination-list-item">
+											<a data-page="2" class="datatable-pagination-list-item-link">2</a>
+										</li>
+										<li class="datatable-pagination-list-item">
+											<a data-page="2" class="datatable-pagination-list-item-link">›</a>
+										</li>
+									</ul>
+								</nav>
+							<button class="btn btn-primary inline grey" type="button">사용자 추가</button>
+							</div>
 						</div>
 					</div>
-                    </div>
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-<!--                             <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div> -->
-                        </div>
-                    </div>
-                </footer>
-            </div>
+				</div>
+			</main>
+			<footer class="py-4 bg-light mt-auto">
+				<div class="container-fluid px-4">
+					<div class="d-flex align-items-center justify-content-between small">
+						<div class="text-muted">Copyright &copy; 이젠대학교 2023</div>
+					</div>
+				</div>
+			</footer>
+		</div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="<%=request.getContextPath()%>/resources/share/js/scripts.js"></script>
