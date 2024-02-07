@@ -11,6 +11,17 @@ import java.util.Map;
 
 public class DBM {
 	
+	// [싱글톤]
+	private DBM() {}
+	
+	private static DBM dbm = new DBM();
+	
+	public static DBM getInstance() {
+		return dbm;
+	}
+	
+	
+	
 	// [필드] *동시성 문제 주의 : 클라이언트에 의존할 수 있는 필드 or 싱글톤 객체를 사용하는 메소드가 있으면 동시성 문제가 발생한다.
 	private String url = "jdbc:mysql://localhost:3306/board";
 	private String user = "tester";
@@ -21,8 +32,9 @@ public class DBM {
 	private ResultSet rs = null;
 	
 	
-	// [생성자]
-	public DBM() {}
+	
+	
+	
 	// [게터세터]
 	public String getUrl() {return url;}
 	public void setUrl(String url) {this.url = url;}
