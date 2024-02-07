@@ -9,6 +9,8 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!-- DB 접속정보 서블릿 -->
   <servlet>
         <servlet-name>dbcpInit</servlet-name>
         <servlet-class>util.DBCPInit</servlet-class>
