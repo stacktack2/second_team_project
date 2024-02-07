@@ -117,7 +117,7 @@
 							<div class="datatable-bottom">
 							<button class="btn btn-primary inline grey" type="button">삭제</button>
 								<!-- 페이징 -->
-								<nav class="datatable-pagination d-inline-block">
+								<nav class="datatable-pagination d-inline-block offset-5">
 									<ul class="datatable-pagination-list">
 										<li class="datatable-pagination-list-item datatable-hidden datatable-disabled">
 											<a data-page="1" class="datatable-pagination-list-item-link">‹</a>
