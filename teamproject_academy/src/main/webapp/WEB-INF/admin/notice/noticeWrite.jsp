@@ -7,7 +7,12 @@
 <title>공지사항 작성페이지</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/resources/student/css/summernote/summernote-lite.css" rel="stylesheet" >
+
+<script src="<%=request.getContextPath() %>/resources/student/js/jquery-3.7.1.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<script src="<%=request.getContextPath() %>/resources/student/js/summernote/summernote-lite.js"></script>
+<script src="<%=request.getContextPath() %>/resources/student/js/summernote/lang/summernote-ko-KR.js"></script>
 </head>
 <body class="sb-nav-fixed">
 	<!-- 상단 nav 바 -->
@@ -89,15 +94,18 @@
 												<th>조회수</th>
 												<td>0</td>
 											</tr>
-											<tr>
+											<!-- <tr>
 												<td colspan="6" style="height: 500px;">본문내용입니다</td>
 											</tr>
 											<tr>
 												<th>첨부파일</th>
 												<td colspan="5"></td>
-											</tr>
+											</tr> -->
 										</tbody>
 									</table>
+								<form method="post">
+									<textarea id="summernote" name="content"></textarea>
+								</form>
 								</div>
 								<div class="datatable-bottom">
 									<a href="noticeList.do" class="btn btn-primary grey right mright">저장</a>
@@ -117,6 +125,12 @@
 			</footer>
 		</div>
 	</div>
+	<script>
+		$('#summernote').summernote({
+			height: 400,
+			lang: "ko-KR"
+		});
+	</script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="<%=request.getContextPath()%>/resources/share/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
