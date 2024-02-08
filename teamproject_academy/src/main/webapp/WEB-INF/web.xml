@@ -22,22 +22,22 @@
             <param-name>jdbcUrl</param-name>
             <param-value>
             <!-- DB 연결 url 작성부분 -->
-                jdbc:mysql://localhost:3306/board?characterEncoding=UTF-8&amp;useSSL=false
+                jdbc:mysql://localhost:3306/ezenuniv?characterEncoding=UTF-8&amp;useSSL=false
             </param-value>
         </init-param>
         <init-param>
         <!-- DB 연결 user 작성부분 -->
             <param-name>dbUser</param-name>
-            <param-value>tester</param-value>
+            <param-value>dteam</param-value>
         </init-param>
         <init-param>
          <!-- DB 연결 password 작성부분 -->
             <param-name>dbPassword</param-name>
-            <param-value>1234</param-value>
+            <param-value>ezen</param-value>
         </init-param>
         <init-param>
             <param-name>poolName</param-name>
-            <param-value>board</param-value>
+            <param-value>ezenuniv</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>

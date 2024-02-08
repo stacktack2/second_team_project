@@ -20,7 +20,7 @@ public class DBM {
 	}
 	
 	
-	// [필드] *동시성 문제 주의 : 클라이언트에 의존할 수 있는 필드 or 싱글톤 객체를 사용하는 메소드가 있으면 동시성 문제가 발생한다. 해결방법- 스레드로컬에 필드넣기
+//	[필드] *동시성 문제 주의 : 클라이언트에 의존할 수 있는 필드 or 싱글톤 객체를 사용하는 메소드가 있으면 동시성 문제가 발생한다. 해결방법- 스레드로컬에 필드넣기
 //	private Connection conn=null;
 //	private PreparedStatement psmt = null;
 //	private ResultSet rs = null;
@@ -45,7 +45,7 @@ public class DBM {
 		localorderCount.set(1);
 		try {
 			//정적 블록에 커넥션 객체를 생성하면 닫힌 후 사용할 수 없음.  -> 커넥션 풀 적용하기 완료
-			Connection conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:board");
+			Connection conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:ezenuniv");
 			localConnection.set(conn); 
 			
 			PreparedStatement psmt = conn.prepareStatement(sql);
