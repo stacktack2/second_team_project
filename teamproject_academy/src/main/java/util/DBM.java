@@ -7,9 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBM {
-	 
-
-
+	
 	// [싱글톤]
 	private DBM() {}
 	
@@ -139,6 +137,7 @@ public class DBM {
 		localConnection.remove();
 		localPreparedStatement.remove();
 		localResultSet.remove();
+		localorderCount.remove();
 		//스레드 변수로 인한 메모리 누수 방지
 		return true;
 	}
