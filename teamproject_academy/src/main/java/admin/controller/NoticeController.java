@@ -46,9 +46,7 @@ public class NoticeController {
 		NoticeDAO noticeDAO = new NoticeDAO();
 		List<BoardVO> noticeList = noticeDAO.selectAll();
 		
-//		request.setAttribute("noticeList", noticeList);
-		
-		
+		request.setAttribute("noticeList", noticeList);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeList.jsp");
 		rd.forward(request, response);

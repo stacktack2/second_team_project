@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="vo.BoardVO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,61 +112,7 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
-											<tr>
-												<td>1</td>
+												<td>${noticeList.bno}</td>
 												<td><a href="noticeView.do">공지사항 제목</a></td>
 												<td>2011/04/25</td>
 												<td>10</td>

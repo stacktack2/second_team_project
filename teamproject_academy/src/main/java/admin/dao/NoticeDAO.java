@@ -22,7 +22,6 @@ public class NoticeDAO {
 			board.setBrdate(dbm.getString("brdate"));
 			board.setBhit(dbm.getInt("bhit"));
 			
-			System.out.println(dbm.getInt("bhit"));
 		}
 		
 		dbm.close();
