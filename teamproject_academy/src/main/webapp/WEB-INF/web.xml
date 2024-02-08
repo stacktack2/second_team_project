@@ -42,4 +42,14 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+	<!-- xss 공격 방지 필터링 부분 -->
+	<filter>
+	    <filter-name>XSS</filter-name>
+	    <filter-class>util.CrossScriptingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>XSS</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 </web-app>
