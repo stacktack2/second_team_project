@@ -69,7 +69,7 @@ public class DBCPInit extends HttpServlet {
         // connection pool 생성
         GenericObjectPool<PoolableConnection> connectionPool =
                 new GenericObjectPool<>(poolableConnectionFactory,poolConfig);
- 
+        poolableConnectionFactory.setPool(connectionPool);
         try {
         	// 커넥션 풀을 제공하는 jdbc 드라이버 등록
             Class.forName("org.apache.commons.dbcp2.PoolingDriver");

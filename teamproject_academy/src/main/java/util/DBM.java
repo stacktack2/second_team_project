@@ -127,9 +127,10 @@ public class DBM {
 	
 	public boolean close() {
 		try {
-			if(localConnection.get() != null) localConnection.get().close();
-			if(localPreparedStatement.get() != null) localPreparedStatement.get().close();
 			if(localResultSet.get() != null) localResultSet.get().close();
+			if(localPreparedStatement.get() != null) localPreparedStatement.get().close();
+			if(localConnection.get() != null) localConnection.get().close();
+			
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 			return false;
