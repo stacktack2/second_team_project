@@ -5,12 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class DBM {
-	
+	 
+
+
 	// [싱글톤]
 	private DBM() {}
 	
@@ -21,38 +20,37 @@ public class DBM {
 	}
 	
 	
-	
-	// [필드] *동시성 문제 주의 : 클라이언트에 의존할 수 있는 필드 or 싱글톤 객체를 사용하는 메소드가 있으면 동시성 문제가 발생한다.
-	private String url = "jdbc:mysql://localhost:3306/board";
-	private String user = "tester";
-	private String pass = "1234";
-	
-	private Connection conn=null;
-	private PreparedStatement psmt = null;
-	private ResultSet rs = null;
-	
-	
-	
-	
-	
-	// [게터세터]
-	public String getUrl() {return url;}
-	public void setUrl(String url) {this.url = url;}
-	public String getUser() {return user;}
-	public void setUser(String user) {this.user = user;}
-	public String getPass() {return pass;}
-	public void setPass(String pass) {this.pass = pass;}
-
-
+	// [필드] *동시성 문제 주의 : 클라이언트에 의존할 수 있는 필드 or 싱글톤 객체를 사용하는 메소드가 있으면 동시성 문제가 발생한다. 해결방법- 스레드로컬에 필드넣기
+//	private Connection conn=null;
+//	private PreparedStatement psmt = null;
+//	private ResultSet rs = null;
 	// 내부 카운터 : psmt 숫자++
-	private int orderCount = 1; 
+//  private int orderCount = 1; 
+	
+	//스레드 로컬을 사용한다.
+	private static ThreadLocal<Connection> localConnection 
+    = new ThreadLocal<Connection>(); 
+	private static ThreadLocal<PreparedStatement> localPreparedStatement
+    = new ThreadLocal<PreparedStatement>();
+	private static ThreadLocal<ResultSet> localResultSet 
+    = new ThreadLocal<ResultSet>();
+	private static ThreadLocal<Integer> localorderCount
+    = new ThreadLocal<Integer>();
+	
+	
+	
+	
 	
 	public DBM prepare(String sql) {
-		orderCount =1;
+		localorderCount.set(1);
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection(url,user,pass);
-			psmt = conn.prepareStatement(sql);
+			//정적 블록에 커넥션 객체를 생성하면 닫힌 후 사용할 수 없음.  -> 커넥션 풀 적용하기 완료
+			Connection conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:board");
+			localConnection.set(conn); 
+			
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			localPreparedStatement.set(psmt);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -62,29 +60,29 @@ public class DBM {
 	
 	public DBM setString(String value) {
 		try {
-			psmt.setString(orderCount, value);
+			localPreparedStatement.get().setString(localorderCount.get(), value);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		orderCount++;
+		localorderCount.set(localorderCount.get()+1);
 		return this;
 	}
 	public DBM setInt(int value) {
 		try {
-			psmt.setInt(orderCount, value);
+			localPreparedStatement.get().setInt(localorderCount.get(), value);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		orderCount++;
+		localorderCount.set(localorderCount.get()+1);
 		return this;
 	}
 	
 	public int update() {
 		int result = 0;
 		try {
-			result = psmt.executeUpdate();
+			result = localPreparedStatement.get().executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -95,7 +93,7 @@ public class DBM {
 	
 	public void select(){
 		try {
-			 rs = psmt.executeQuery();
+			localResultSet.set(localPreparedStatement.get().executeQuery());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -103,7 +101,7 @@ public class DBM {
 	
 	public boolean next() {
 		try {
-			return rs.next();
+			return localResultSet.get().next();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -112,7 +110,7 @@ public class DBM {
 	
 	public int getInt(String column) {
 		try {
-			return rs.getInt(column);
+			return localResultSet.get().getInt(column);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
@@ -121,7 +119,7 @@ public class DBM {
 	
 	public String getString(String column) {
 		try {
-			return rs.getString(column);
+			return localResultSet.get().getString(column);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -131,13 +129,17 @@ public class DBM {
 	
 	public boolean close() {
 		try {
-			if(conn != null) conn.close();
-			if(psmt != null) psmt.close();
-			if(rs != null) rs.close();
+			if(localConnection.get() != null) localConnection.get().close();
+			if(localPreparedStatement.get() != null) localPreparedStatement.get().close();
+			if(localResultSet.get() != null) localResultSet.get().close();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 			return false;
 		}
+		localConnection.remove();
+		localPreparedStatement.remove();
+		localResultSet.remove();
+		//스레드 변수로 인한 메모리 누수 방지
 		return true;
 	}
 	

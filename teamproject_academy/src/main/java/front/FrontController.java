@@ -25,7 +25,7 @@ import student.controller.CorRegController;
 /**
  * Servlet implementation class FrontController
  */
-@WebServlet({ "/common", "/student/*", "/professor/*", "/admin/*", "/common/index"})
+@WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	
 	//.do로 들어왔을때 => 이 서블릿 페이지 노출
@@ -46,98 +46,104 @@ public class FrontController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String command = request.getRequestURI().substring(request.getContextPath().length());
-		System.out.println(command);
-		
-		String[] uris = command.split("/");
-//		System.out.println(uris[0]);
-//		System.out.println(uris[1]);
-//		System.out.println(uris[2]);
-		
-		
-		
-//		String command = request.getRequestURI().substring(request.getContextPath().length()+1);
-////		command 예시 => admin/course/courMgList.do - admin/admMain.do - asdf.do - adsfasd/asdfasdf.do
+//		String command = request.getRequestURI().substring(request.getContextPath().length());
+//		System.out.println(command);
 //		
 //		String[] uris = command.split("/");
+//		System.out.println(uris[1]);
+//		System.out.println(uris[2]);
+//		String uriOne = uris[1];
+//		String uriTwo = uris[2];
 //		
-//		if(uris.length == 2) {
-//			
-//			String uriOne = uris[0];
-//			String uriTwo = uris[1];
-//			if(uriOne.equals("admin")) {
-//				MainController amc = new MainController();
-//				amc.doAction(request,response);
-//			}else if(uriOne.equals("common")){
-//				IndexController ic = new IndexController();
-//				ic.doAction(uriTwo, request, response);
-//			}else if(uriOne.equals("professor")){
-//				professor.controller.MainController pmc = new professor.controller.MainController();
-//				pmc.doAction(request, response);
-//			}else if(uriOne.equals("student")){
-//				student.controller.MainController smc = new student.controller.MainController();
-//				smc.doAction(request, response);
-//			}
-//			
-//		}else if(uris.length == 3) {
-//			
-//			String uriOne = uris[0];
-//			String uriTwo = uris[1];
-//			String uriThree = uris[2];
-//			if(uriOne.equals("admin")) {
-//				if(uriTwo.equals("course")) {
-//					CourseController acc = new CourseController();
-//					acc.doAction(uriThree, request, response);
-//				}else if(uriTwo.equals("notice")) {
-//					admin.controller.NoticeController anc = new admin.controller.NoticeController();
-//					anc.doAction(uriThree, request, response);
-//				}else if(uriTwo.equals("stuInfo")) {
-//					StuInfoController asc = new StuInfoController();
-//					asc.doAction(uriThree, request, response);
-//				}else if(uriTwo.equals("userManage")) {
-//					UserManageController auc = new UserManageController();
-//					auc.doAction(uriThree, request, response);
-//				}	
-//			}else if(uriOne.equals("professor")) {
-//				if(uriTwo.equals("attend")) {
-//					AttendController pac = new AttendController();
-//					pac.doAction(uriThree, request, response);
-//				}else if(uriTwo.equals("course")) {
-//					professor.controller.CourseController pcc = new professor.controller.CourseController();
-//					pcc.doAction(uriThree, request, response);
-//				}else if(uriTwo.equals("grade")) {
-//					GradeController pgc = new GradeController();
-//					pgc.doAction(uriThree, request, response);
-//				}else if(uriTwo.equals("mypage")) {
-//					MypageController pmc = new MypageController();
-//					pmc.doAction(request, response);
-//				}else if(uriTwo.equals("notice")) {
-//					professor.controller.NoticeController pnc = new professor.controller.NoticeController();
-//					pnc.doAction(uriThree, request, response);
-//				}else if(uriTwo.equals("profInfo")) {
-//					ProfInfoController ppc = new ProfInfoController();
-//					ppc.doAction(request, response);
-//				}
-//			}else if(uriOne.equals("student")) {
-//				if(uriTwo.equals("acdCourse")) {
-//					AcdCourseController sac = new AcdCourseController();
-//					sac.doAction(uriThree, request, response);
-//				}else if(uriTwo.equals("atdGrade")) {
-//					AtdGradeController sac = new AtdGradeController();
-//					sac.doAction(uriThree, request, response);
-//				}else if(uriTwo.equals("corReg")) {
-//					CorRegController scc = new CorRegController();
-//					scc.doAction(uriThree, request, response);
-//				}else if(uriTwo.equals("mypage")) {
-//					student.controller.MypageController smc = new student.controller.MypageController();
-//					smc.doAction(request, response);
-//				}else if(uriTwo.equals("notice")) {
-//					student.controller.NoticeController snc = new student.controller.NoticeController();
-//					snc.doAction(uriThree, request, response);
-//				}
-//			}
-//			
+//		if(uriOne == "common") {
+//			IndexController ic = new IndexController();
+//			ic.doAction(uriTwo, request, response);
 //		}
+		
+		
+		
+		String command = request.getRequestURI().substring(request.getContextPath().length()+1);
+//		command 예시 => admin/course/courMgList.do - admin/admMain.do - asdf.do - adsfasd/asdfasdf.do
+		
+		String[] uris = command.split("/");
+		
+		if(uris.length == 2) {
+			
+			String uriOne = uris[0];
+			String uriTwo = uris[1];
+			if(uriOne.equals("admin")) {
+				MainController amc = new MainController();
+				amc.doAction(request,response);
+			}else if(uriOne.equals("common")){
+				IndexController ic = new IndexController();
+				ic.doAction(uriTwo, request, response);
+			}else if(uriOne.equals("professor")){
+				professor.controller.MainController pmc = new professor.controller.MainController();
+				pmc.doAction(request, response);
+			}else if(uriOne.equals("student")){
+				student.controller.MainController smc = new student.controller.MainController();
+				smc.doAction(request, response);
+			}
+			
+		}else if(uris.length == 3) {
+			
+			String uriOne = uris[0];
+			String uriTwo = uris[1];
+			String uriThree = uris[2];
+			if(uriOne.equals("admin")) {
+				if(uriTwo.equals("course")) {
+					CourseController acc = new CourseController();
+					acc.doAction(uriThree, request, response);
+				}else if(uriTwo.equals("notice")) {
+					admin.controller.NoticeController anc = new admin.controller.NoticeController();
+					anc.doAction(uriThree, request, response);
+				}else if(uriTwo.equals("stuInfo")) {
+					StuInfoController asc = new StuInfoController();
+					asc.doAction(uriThree, request, response);
+				}else if(uriTwo.equals("userManage")) {
+					UserManageController auc = new UserManageController();
+					auc.doAction(uriThree, request, response);
+				}	
+			}else if(uriOne.equals("professor")) {
+				if(uriTwo.equals("attend")) {
+					AttendController pac = new AttendController();
+					pac.doAction(uriThree, request, response);
+				}else if(uriTwo.equals("course")) {
+					professor.controller.CourseController pcc = new professor.controller.CourseController();
+					pcc.doAction(uriThree, request, response);
+				}else if(uriTwo.equals("grade")) {
+					GradeController pgc = new GradeController();
+					pgc.doAction(uriThree, request, response);
+				}else if(uriTwo.equals("mypage")) {
+					MypageController pmc = new MypageController();
+					pmc.doAction(request, response);
+				}else if(uriTwo.equals("notice")) {
+					professor.controller.NoticeController pnc = new professor.controller.NoticeController();
+					pnc.doAction(uriThree, request, response);
+				}else if(uriTwo.equals("profInfo")) {
+					ProfInfoController ppc = new ProfInfoController();
+					ppc.doAction(request, response);
+				}
+			}else if(uriOne.equals("student")) {
+				if(uriTwo.equals("acdCourse")) {
+					AcdCourseController sac = new AcdCourseController();
+					sac.doAction(uriThree, request, response);
+				}else if(uriTwo.equals("atdGrade")) {
+					AtdGradeController sac = new AtdGradeController();
+					sac.doAction(uriThree, request, response);
+				}else if(uriTwo.equals("corReg")) {
+					CorRegController scc = new CorRegController();
+					scc.doAction(uriThree, request, response);
+				}else if(uriTwo.equals("mypage")) {
+					student.controller.MypageController smc = new student.controller.MypageController();
+					smc.doAction(request, response);
+				}else if(uriTwo.equals("notice")) {
+					student.controller.NoticeController snc = new student.controller.NoticeController();
+					snc.doAction(uriThree, request, response);
+				}
+			}
+			
+		}
 		
 		
 		
@@ -160,88 +166,88 @@ public class FrontController extends HttpServlet {
 		
 		doGet(request, response);
 		
-//		String command = request.getRequestURI().substring(request.getContextPath().length()+1);
-////		command 예시 => admin/course/courMgList.do - admin/admMain.do - asdf.do - adsfasd/asdfasdf.do
-//		
-//		String[] uris = command.split("/");
-//		
-//		if(uris.length == 2) {
-//			
-//			String uriOne = uris[0];
-//			String uriTwo = uris[1];
-//			if(uriOne.equals("admin")) {
-//				MainController amc = new MainController();
-//				amc.doPostAction(request,response);
-//			}else if(uriOne.equals("common")){
-//				IndexController ic = new IndexController();
-//				ic.doPostAction(uriTwo, request, response);
-//			}else if(uriOne.equals("professor")){
-//				professor.controller.MainController pmc = new professor.controller.MainController();
-//				pmc.doPostAction(request, response);
-//			}else if(uriOne.equals("student")){
-//				student.controller.MainController smc = new student.controller.MainController();
-//				smc.doPostAction(request, response);
-//			}
-//			
-//		}else if(uris.length == 3) {
-//			
-//			String uriOne = uris[0];
-//			String uriTwo = uris[1];
-//			String uriThree = uris[2];
-//			if(uriOne.equals("admin")) {
-//				if(uriTwo.equals("course")) {
-//					CourseController acc = new CourseController();
-//					acc.doPostAction(uriThree, request, response);
-//				}else if(uriTwo.equals("noitce")) {
-//					NoticeController anc = new NoticeController();
-//					anc.doPostAction(uriThree, request, response);
-//				}else if(uriTwo.equals("stuInfo")) {
-//					StuInfoController asc = new StuInfoController();
-//					asc.doPostAction(uriThree, request, response);
-//				}else if(uriTwo.equals("userManage")) {
-//					UserManageController auc = new UserManageController();
-//					auc.doPostAction(uriThree, request, response);
-//				}	
-//			}else if(uriOne.equals("professor")) {
-//				if(uriTwo.equals("attend")) {
-//					AttendController pac = new AttendController();
-//					pac.doPostAction(uriThree, request, response);
-//				}else if(uriTwo.equals("course")) {
-//					professor.controller.CourseController pcc = new professor.controller.CourseController();
-//					pcc.doPostAction(uriThree, request, response);
-//				}else if(uriTwo.equals("grade")) {
-//					GradeController pgc = new GradeController();
-//					pgc.doPostAction(uriThree, request, response);
-//				}else if(uriTwo.equals("mypage")) {
-//					MypageController pmc = new MypageController();
-//					pmc.doPostAction(request, response);
-//				}else if(uriTwo.equals("notice")) {
-//					professor.controller.NoticeController pnc = new professor.controller.NoticeController();
-//					pnc.doPostAction(uriThree, request, response);
-//				}else if(uriTwo.equals("profInfo")) {
-//					ProfInfoController ppc = new ProfInfoController();
-//					ppc.doPostAction(request, response);
-//				}
-//			}else if(uriOne.equals("student")) {
-//				if(uriTwo.equals("acdCourse")) {
-//					AcdCourseController sac = new AcdCourseController();
-//					sac.doPostAction(uriThree, request, response);
-//				}else if(uriTwo.equals("atdGrade")) {
-//					AtdGradeController sac = new AtdGradeController();
-//					sac.doPostAction(uriThree, request, response);
-//				}else if(uriTwo.equals("corReg")) {
-//					CorRegController scc = new CorRegController();
-//					scc.doPostAction(uriThree, request, response);
-//				}else if(uriTwo.equals("mypage")) {
-//					student.controller.MypageController smc = new student.controller.MypageController();
-//					smc.doPostAction(request, response);
-//				}else if(uriTwo.equals("notice")) {
-//					student.controller.NoticeController snc = new student.controller.NoticeController();
-//					snc.doPostAction(uriThree, request, response);
-//				}
-//			}
-//			
-//		}
+		String command = request.getRequestURI().substring(request.getContextPath().length()+1);
+//		command 예시 => admin/course/courMgList.do - admin/admMain.do - asdf.do - adsfasd/asdfasdf.do
+		
+		String[] uris = command.split("/");
+		
+		if(uris.length == 2) {
+			
+			String uriOne = uris[0];
+			String uriTwo = uris[1];
+			if(uriOne.equals("admin")) {
+				MainController amc = new MainController();
+				amc.doPostAction(request,response);
+			}else if(uriOne.equals("common")){
+				IndexController ic = new IndexController();
+				ic.doPostAction(uriTwo, request, response);
+			}else if(uriOne.equals("professor")){
+				professor.controller.MainController pmc = new professor.controller.MainController();
+				pmc.doPostAction(request, response);
+			}else if(uriOne.equals("student")){
+				student.controller.MainController smc = new student.controller.MainController();
+				smc.doPostAction(request, response);
+			}
+			
+		}else if(uris.length == 3) {
+			
+			String uriOne = uris[0];
+			String uriTwo = uris[1];
+			String uriThree = uris[2];
+			if(uriOne.equals("admin")) {
+				if(uriTwo.equals("course")) {
+					CourseController acc = new CourseController();
+					acc.doPostAction(uriThree, request, response);
+				}else if(uriTwo.equals("noitce")) {
+					NoticeController anc = new NoticeController();
+					anc.doPostAction(uriThree, request, response);
+				}else if(uriTwo.equals("stuInfo")) {
+					StuInfoController asc = new StuInfoController();
+					asc.doPostAction(uriThree, request, response);
+				}else if(uriTwo.equals("userManage")) {
+					UserManageController auc = new UserManageController();
+					auc.doPostAction(uriThree, request, response);
+				}	
+			}else if(uriOne.equals("professor")) {
+				if(uriTwo.equals("attend")) {
+					AttendController pac = new AttendController();
+					pac.doPostAction(uriThree, request, response);
+				}else if(uriTwo.equals("course")) {
+					professor.controller.CourseController pcc = new professor.controller.CourseController();
+					pcc.doPostAction(uriThree, request, response);
+				}else if(uriTwo.equals("grade")) {
+					GradeController pgc = new GradeController();
+					pgc.doPostAction(uriThree, request, response);
+				}else if(uriTwo.equals("mypage")) {
+					MypageController pmc = new MypageController();
+					pmc.doPostAction(request, response);
+				}else if(uriTwo.equals("notice")) {
+					professor.controller.NoticeController pnc = new professor.controller.NoticeController();
+					pnc.doPostAction(uriThree, request, response);
+				}else if(uriTwo.equals("profInfo")) {
+					ProfInfoController ppc = new ProfInfoController();
+					ppc.doPostAction(request, response);
+				}
+			}else if(uriOne.equals("student")) {
+				if(uriTwo.equals("acdCourse")) {
+					AcdCourseController sac = new AcdCourseController();
+					sac.doPostAction(uriThree, request, response);
+				}else if(uriTwo.equals("atdGrade")) {
+					AtdGradeController sac = new AtdGradeController();
+					sac.doPostAction(uriThree, request, response);
+				}else if(uriTwo.equals("corReg")) {
+					CorRegController scc = new CorRegController();
+					scc.doPostAction(uriThree, request, response);
+				}else if(uriTwo.equals("mypage")) {
+					student.controller.MypageController smc = new student.controller.MypageController();
+					smc.doPostAction(request, response);
+				}else if(uriTwo.equals("notice")) {
+					student.controller.NoticeController snc = new student.controller.NoticeController();
+					snc.doPostAction(uriThree, request, response);
+				}
+			}
+			
+		}
 	}
 
 }
