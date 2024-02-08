@@ -10,6 +10,38 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+  <!-- DB 접속정보 서블릿 -->
+  <servlet>
+        <servlet-name>dbcpInit</servlet-name>
+        <servlet-class>util.DBCPInit</servlet-class>
+        <init-param>
+            <param-name>jdbcDriver</param-name>
+            <param-value>com.mysql.jdbc.Driver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jdbcUrl</param-name>
+            <param-value>
+            <!-- DB 연결 url 작성부분 -->
+                jdbc:mysql://localhost:3306/board?characterEncoding=UTF-8&amp;useSSL=false
+            </param-value>
+        </init-param>
+        <init-param>
+        <!-- DB 연결 user 작성부분 -->
+            <param-name>dbUser</param-name>
+            <param-value>tester</param-value>
+        </init-param>
+        <init-param>
+         <!-- DB 연결 password 작성부분 -->
+            <param-name>dbPassword</param-name>
+            <param-value>1234</param-value>
+        </init-param>
+        <init-param>
+            <param-name>poolName</param-name>
+            <param-value>board</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+  
   <servlet>
   	<servlet-name>common</servlet-name>
   	<servlet-class>front.FrontController</servlet-class>
