@@ -1,4 +1,10 @@
-CREATE or REPLACE view Î∑∞Ïù¥Î¶Ñ AS 
- ((SELECT s.sid as id, s.spw as pw FROM student s)
- UNION (SELECT p.pid, p.ppw FROM professor p))
- UNION (SELECT a.aid, a.apw FROM administer a);
+-- ∫‰ª˝º∫
+CREATE or REPLACE view MemberVO AS 
+ ((SELECT s.sid as id, 'student' as type FROM student s)
+ UNION (SELECT p.pid, 'professor' as type FROM professor p))
+ UNION (SELECT a.aid, 'administer' as type FROM administer a);
+
+-- ∫‰ªË¡¶
+ drop view MemberVO;
+
+-- MemberVO ∫‰ vo ∏∏µÈæÓ≥˘¥¬µ• id∂˚ type∏∏ ¿÷¿∏¥œ √ﬂ∞°«œΩ«∫–¿∫ √ﬂ∞°«œº≈µµ µÀ¥œ¥Ÿ.
