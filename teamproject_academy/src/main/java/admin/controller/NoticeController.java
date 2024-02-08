@@ -1,11 +1,15 @@
 package admin.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import admin.dao.NoticeDAO;
+import vo.BoardVO;
 
 public class NoticeController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,6 +42,14 @@ public class NoticeController {
 	}
 	
 	public void noticeList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		NoticeDAO noticeDAO = new NoticeDAO();
+		List<BoardVO> noticeList = noticeDAO.selectAll();
+		
+//		request.setAttribute("noticeList", noticeList);
+		
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeList.jsp");
 		rd.forward(request, response);
 		
