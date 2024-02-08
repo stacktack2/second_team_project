@@ -26,6 +26,7 @@ import student.controller.CorRegController;
  * Servlet implementation class FrontController
  */
 @WebServlet("*.do")
+//@WebServlet(urlPatterns={"*.do","/admin/*"})
 public class FrontController extends HttpServlet {
 	
 	//.do로 들어왔을때 => 이 서블릿 페이지 노출
@@ -66,6 +67,8 @@ public class FrontController extends HttpServlet {
 //		command 예시 => admin/course/courMgList.do - admin/admMain.do - asdf.do - adsfasd/asdfasdf.do
 		
 		String[] uris = command.split("/");
+		
+		System.out.println(command);
 		
 		if(uris.length == 2) {
 			
