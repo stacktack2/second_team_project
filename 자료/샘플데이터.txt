@@ -39,10 +39,6 @@ BEGIN
 		INSERT INTO board(btitle,bcontent,bhit,ano)
           VALUES(concat('공지사항제목입니다.',i),concat('공지사항내용입니다.',i),i,i);
 		
-        -- 공지사항 첨부파일
-        INSERT INTO boardfile(bfrealnm,bforiginnm,bno)
-          VALUES(concat('첨부파일실제이름',i),concat('첨부파일원래이름',i),i);
-		
         -- 강의정보
          INSERT INTO lecture(lname,lyear,lsemester,lcredit,ltime, lroom,lmaxpeople,
 			lintro, lfocus,lstatus,pno)

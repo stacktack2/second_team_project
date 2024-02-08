@@ -1,0 +1,4 @@
+CREATE or REPLACE view 뷰이름 AS 
+ ((SELECT s.sid as id, s.spw as pw FROM student s)
+ UNION (SELECT p.pid, p.ppw FROM professor p))
+ UNION (SELECT a.aid, a.apw FROM administer a);
