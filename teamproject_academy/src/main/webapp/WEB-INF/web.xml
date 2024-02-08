@@ -41,28 +41,5 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-  
-  <servlet>
-  	<servlet-name>common</servlet-name>
-  	<servlet-class>front.FrontController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>common</servlet-name>
-  	<url-pattern>/teamproject_academy/common/</url-pattern>
-  </servlet-mapping>
-  <servlet>
-  	<servlet-name>index</servlet-name>
-  	<jsp-file>/WEB-INF/common/index.jsp</jsp-file>
-  </servlet>
-  
-  <servlet>
-  	<servlet-name>student</servlet-name>
-  	<servlet-class>front.FrontController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>student</servlet-name>
-  	<url-pattern>/student/</url-pattern>
-  </servlet-mapping>
-  
 
 </web-app>
