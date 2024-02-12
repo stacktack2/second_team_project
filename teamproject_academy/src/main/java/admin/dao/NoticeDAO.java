@@ -25,11 +25,12 @@ public class NoticeDAO {
 			board.setBrdate(dbm.getString("brdate"));
 			board.setBhit(dbm.getInt("bhit"));
 			
+			// noticeList에 꼭 추가
+			noticeList.add(board);
+			
 		}
 		
 		dbm.close();
-		
-		
 		
 		return noticeList;
 	}

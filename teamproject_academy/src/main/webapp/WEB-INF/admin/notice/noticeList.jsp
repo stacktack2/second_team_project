@@ -91,8 +91,8 @@
 											<option value="1" selected>제목</option>
 											<option value="2">내용</option>
 										</select>
-										<form action="noticeList.do" method="get"
-											class="datatable-search inline">
+										<!-- 검색입력 div -->
+										<form action="noticeList.do" method="get"class="datatable-search inline">
 											<input class="datatable-input inline wauto"
 												placeholder="검색어를 입력하세요" type="search"
 												title="Search within table" aria-controls="datatablesSimple">
@@ -113,14 +113,14 @@
 											</tr>
 										</thead>
 										<tbody>
-								        <c:forEach var="boardVO" items="${noticeList}">
-								            <tr>
-								                <td><c:out value="${boardVO.bno}"></c:out></td>
-								                <td><a href="noticeView.do?bno=${boardVO.bno}">${boardVO.btitle}</a></td>
-								                <td>${boardVO.brdate}</td>
-								                <td>${boardVO.bhit}</td>
-								            </tr>
-								        </c:forEach>
+								        <c:forEach var="board" items="${noticeList}">
+										    <tr>
+										        <td>${board.bno}</td>
+										        <td><a href="noticeView.do?bno=${board.bno}">${board.btitle}</a></td>
+										        <td>${board.brdate}</td>
+										        <td>${board.bhit}</td>
+										    </tr>
+										</c:forEach>
 										</tbody>
 									</table>
 								</div>
