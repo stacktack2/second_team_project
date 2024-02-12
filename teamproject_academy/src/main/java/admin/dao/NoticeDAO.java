@@ -1,5 +1,6 @@
 package admin.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import util.DBM;
@@ -9,8 +10,10 @@ public class NoticeDAO {
 
 	public List<BoardVO> selectAll() {
 		
+		List<BoardVO> noticeList = new ArrayList<>();
+		
 		String sql = "SELECT bno, btitle, brdate, bhit "
-				   + "  FROM board b      ";
+				   + "  FROM board b" ;
 		
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).select();
@@ -28,7 +31,7 @@ public class NoticeDAO {
 		
 		
 		
-		return null;
+		return noticeList;
 	}
 
 }

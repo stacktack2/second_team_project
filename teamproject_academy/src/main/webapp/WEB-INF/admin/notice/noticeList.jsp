@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.List"%>
 <%@ page import="vo.BoardVO" %>
+<%@ page import="admin.dao.NoticeDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,26 +14,26 @@
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
-	<!-- 상단 nav 바 -->
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <!--로고자리-->
-         <a class="navbar-brand ps-3"
-			href="<%=request.getContextPath()%>/admin/admMain.do">이젠대학교</a>
-        <!--좌측 nav바 토글(클릭시 없어졌다 있어졌다) -->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-        <!-- 우측상단 사용자 메뉴-->
-		<div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-        	<span class="hello">홍길동 관리자님 안녕하세요  </span>
-        </div>
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">로그아웃</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+<!-- 상단 nav 바 -->
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+	<!--로고자리-->
+	      <a class="navbar-brand ps-3"
+	href="<%=request.getContextPath()%>/admin/admMain.do">이젠대학교</a>
+	<!--좌측 nav바 토글(클릭시 없어졌다 있어졌다) -->
+	<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+	<!-- 우측상단 사용자 메뉴-->
+	<div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+		<span class="hello">홍길동 관리자님 안녕하세요  </span>
+	</div>
+	<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+			<li><a class="dropdown-item" href="#!">로그아웃</a></li>
+			</ul>
+		</li>
+	</ul>
+</nav>
 
 	<!-- 좌측 nav 바 -->
 	<div id="layoutSidenav">
@@ -111,12 +113,14 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>${noticeList.bno}</td>
-												<td><a href="noticeView.do">공지사항 제목</a></td>
-												<td>2011/04/25</td>
-												<td>10</td>
-											</tr>
+								        <c:forEach var="boardVO" items="${noticeList}">
+								            <tr>
+								                <td><c:out value="${boardVO.bno}"></c:out></td>
+								                <td><a href="noticeView.do?bno=${boardVO.bno}">${boardVO.btitle}</a></td>
+								                <td>${boardVO.brdate}</td>
+								                <td>${boardVO.bhit}</td>
+								            </tr>
+								        </c:forEach>
 										</tbody>
 									</table>
 								</div>
