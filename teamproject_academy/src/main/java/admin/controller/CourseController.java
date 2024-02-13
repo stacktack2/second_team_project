@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CourseController {
+	
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String threeUri = threeUriParam.split("\\.")[0];
 		if(threeUri.equals("courMgList")) {
@@ -121,8 +122,5 @@ public class CourseController {
 		
 	
 	}
-	
-	
-	
-	
+
 }
