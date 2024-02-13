@@ -12,6 +12,8 @@ import admin.dao.NoticeDAO;
 import vo.BoardVO;
 
 public class NoticeController {
+	
+	
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String threeUri = threeUriParam.split("\\.")[0];
 
@@ -74,6 +76,8 @@ public class NoticeController {
 		
 	}
 	public void noticeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeView.jsp");
 		rd.forward(request, response);
 		
@@ -98,5 +102,15 @@ public class NoticeController {
 		
 		
 	}
+
+	public void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeList.jsp");
+		rd.forward(request, response);
+		
+	}
+
+	 
+
+	
 	
 }

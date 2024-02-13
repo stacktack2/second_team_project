@@ -70,12 +70,12 @@
                                             	<input class="btn btn-outline-success" type="button" value="인증확인" />
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="btn btn-primary mx-auto" href="findPw.do">비밀번호 찾기</a>
+                                                <a class="btn btn-primary mx-auto" href="findPw">비밀번호 찾기</a>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="index.do">로그인</a></div>
+                                        <div class="small"><a href="index">로그인</a></div>
                                     </div>
                                 </div>
                             </div>
