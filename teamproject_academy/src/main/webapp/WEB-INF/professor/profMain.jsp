@@ -14,7 +14,7 @@
 	<!-- 상단 nav 바 -->
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!--로고자리-->
-		<a class="navbar-brand ps-3" href="<%=request.getContextPath()%>/professor/profMain.do">이젠대학교</a>
+		<a class="navbar-brand ps-3" href="<%=request.getContextPath()%>/professor/profMain">이젠대학교</a>
 		<!--좌측 nav바 토글(클릭시 없어졌다 있어졌다) -->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
 			<i class="fas fa-bars"></i>
@@ -45,17 +45,17 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">출석관리</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/professor/attend/attendMgList.do">출석관리</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/professor/attend/attendMgList">출석관리</a>
 
 						<div class="sb-sidenav-menu-heading">성적관리</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/professor/grade/gradeMgList.do">성적관리</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/professor/grade/gradeMgList">성적관리</a>
 
 
 						<div class="sb-sidenav-menu-heading">교수정보</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/professor/profInfo/profInfo.do">교수정보 조회</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/professor/profInfo/profInfo">교수정보 조회</a>
 
 						<div class="sb-sidenav-menu-heading">마이페이지</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/professor/mypage/myInfoModify.do">비밀번호 변경</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/professor/mypage/myInfoModify">비밀번호 변경</a>
 					</div>
 				</div>
 			</nav>
@@ -73,7 +73,7 @@
 					</ol>
 
 					<div class="card mb-4">
-						<div class="card-header">교수과목<a href="course/couList.do" class="nav-link right bold">&#43;</a></div>
+						<div class="card-header">교수과목<a href="course/couList" class="nav-link right bold">&#43;</a></div>
 						
 						<div class="card-body">
 							<table class="datatable-table">
@@ -89,35 +89,35 @@
 								<tbody>
 									<tr>
 										<td>1</td>
-										<td><a href="curriculum">물리화학</a></td>
+										<td><a href="course/curriculum">물리화학</a></td>
 										<td>2022년</td>
 										<td>1학기</td>
 										<td>상 101</td>
 									</tr>
 									<tr>
 										<td>2</td>
-										<td><a href="course/curriculum.do">물리화학</a></td>
+										<td><a href="course/curriculum">물리화학</a></td>
 										<td>2022년</td>
 										<td>1학기</td>
 										<td>상 101</td>
 									</tr>
 									<tr>
 										<td>3</td>
-										<td><a href="course/curriculum.do">물리화학</a></td>
+										<td><a href="course/curriculum">물리화학</a></td>
 										<td>2022년</td>
 										<td>1학기</td>
 										<td>상 101</td>
 									</tr>
 									<tr>
 										<td>4</td>
-										<td><a href="course/curriculum.do">물리화학</a></td>
+										<td><a href="course/curriculum">물리화학</a></td>
 										<td>2022년</td>
 										<td>1학기</td>
 										<td>상 101</td>
 									</tr>
 									<tr>
 										<td>5</td>
-										<td><a href="course/curriculum.do">물리화학</a></td>
+										<td><a href="course/curriculum">물리화학</a></td>
 										<td>2022년</td>
 										<td>1학기</td>
 										<td>상 101</td>
@@ -130,7 +130,7 @@
 
 					<div class="card mb-4">
 						<div class="card-header">
-							공지사항 <a href="notice/noticeList.do" class="nav-link right bold">&#43;</a>
+							공지사항 <a href="notice/noticeList" class="nav-link right bold">&#43;</a>
 						</div>
 						<div class="card-body">
 							<table class="datatable-table">
@@ -145,31 +145,31 @@
 								<tbody>
 									<tr>
 										<td>1</td>
-										<td><a href="notice/noticeView.do">공지사항 제목</a></td>
+										<td><a href="notice/noticeView">공지사항 제목</a></td>
 										<td>2011/04/25</td>
 										<td>10</td>
 									</tr>
 									<tr>
 										<td>1</td>
-										<td><a href="notice/noticeView.do">공지사항 제목</a></td>
+										<td><a href="notice/noticeView">공지사항 제목</a></td>
 										<td>2011/04/25</td>
 										<td>10</td>
 									</tr>
 									<tr>
 										<td>1</td>
-										<td><a href="notice/noticeView.do">공지사항 제목</a></td>
+										<td><a href="notice/noticeView">공지사항 제목</a></td>
 										<td>2011/04/25</td>
 										<td>10</td>
 									</tr>
 									<tr>
 										<td>1</td>
-										<td><a href="notice/noticeView.do">공지사항 제목</a></td>
+										<td><a href="notice/noticeView">공지사항 제목</a></td>
 										<td>2011/04/25</td>
 										<td>10</td>
 									</tr>
 									<tr>
 										<td>1</td>
-										<td><a href="notice/noticeView.do">공지사항 제목</a></td>
+										<td><a href="notice/noticeView">공지사항 제목</a></td>
 										<td>2011/04/25</td>
 										<td>10</td>
 									</tr>
