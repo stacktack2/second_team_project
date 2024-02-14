@@ -1,13 +1,17 @@
 package common.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.mindrot.jbcrypt.BCrypt;
+
+import common.dao.indexDAO;
 
 public class IndexController {
 	
@@ -67,26 +71,51 @@ public class IndexController {
 	}
 //	index POST접근
 	public void Postindex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String id = request.getParameter("id");
-		String password = request.getParameter("pw");
+		String idParam = request.getParameter("id");
+		String pwParam = request.getParameter("pw");
+		String rememberParam = request.getParameter("inputRememberId");
 		
-		
-		
-		// 위 비밀번호의 BCrypt 알고리즘 해쉬 생성
-		// passwordHashed 변수는 실제 데이터베이스에 저장될 60바이트의 문자열이 된다.
-//		String passwordHashed = BCrypt.hashpw(password, BCrypt.gensalt());
+		//해당 id의 데이터베이스 해시된 pw값, BCrypt로 솔트된 해시 값이 들어있다고 가정
+		indexDAO indexdao = new indexDAO();
+		String[] result = indexdao.selectPw(idParam);
+		String pwData = result[0];
+		String typeData = result[1];
 
-		// 위 문장은 아래와 같다. 숫자가 높아질수록 해쉬를 생성하고 검증하는 시간은 느려진다.
-		// 즉, 보안이 우수해진다. 하지만 그만큼 응답 시간이 느려지기 때문에 적절한 숫자를 선정해야 한다. 기본값은 10이다.
-		String passwordHashed = BCrypt.hashpw(password, BCrypt.gensalt(10));
-
-		// 생성된 해쉬를 원래 비밀번호로 검증한다. 맞을 경우 true를 반환한다.
-		// 주로 회원 로그인 로직에서 사용된다.
-		boolean isValidPassword = BCrypt.checkpw(password, passwordHashed);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/common/index.jsp");
-		rd.forward(request, response);
+		
+		
+		//검증
+		boolean isValidPassword =false;
+		if(pwData != null) {
+			isValidPassword = BCrypt.checkpw(pwParam, pwData);
+		}
+		if(isValidPassword) {
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/common/index.jsp");
+			request.getSession().setAttribute("type",typeData);
+			request.getSession().setAttribute("id",idParam);
+			if(typeData.equals("student")) {
+				rd = request.getRequestDispatcher("/WEB-INF/student/stuMain.jsp");
+			}else if(typeData.equals("professor")) {
+				rd = request.getRequestDispatcher("/WEB-INF/professor/profMain.jsp");
+			}else if(typeData.equals("administer")) {
+				rd = request.getRequestDispatcher("/WEB-INF/admin/admMain.jsp");
+			}
+			//아이디 기억 쿠키
+			if(rememberParam.equals("check")) {
+				Cookie cookie = new Cookie("rememberParam",idParam);
+				cookie.setMaxAge(60*60*3);
+				response.addCookie(cookie);
+			}
+			rd.forward(request, response);
+		}else {
+			response.setContentType("text/html; charset=utf-8");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().append("<script>alert('로그인에 실패하였습니다.'); location.href='"+request.getContextPath()+"/';</script>");
+			response.getWriter().flush();
+		}
+		
 	}
+	
 	
 	public void findId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/common/findId.jsp");
