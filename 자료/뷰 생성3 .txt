@@ -1,10 +1,6 @@
--- 뷰생성
 CREATE or REPLACE view Member AS 
- ((SELECT s.sid as id, 'student' as type FROM student s)
- UNION (SELECT p.pid, 'professor' as type FROM professor p))
- UNION (SELECT a.aid, 'administer' as type FROM administer a);
+ ((SELECT s.sid as id, s.spw as pw, 'student' as type FROM student s)
+ UNION (SELECT p.pid, p.ppw, 'professor' as type FROM professor p))
+ UNION (SELECT a.aid, a.apw, 'administer' as type FROM administer a);
 
--- 뷰삭제
- drop view Member;
-
--- Member 뷰 vo 만들기
+drop view Member;
