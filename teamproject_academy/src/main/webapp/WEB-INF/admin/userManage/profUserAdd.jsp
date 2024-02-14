@@ -77,6 +77,7 @@
 								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 								<div class="datatable-container">
 									<!-- 테이블 -->
+									<form name="frm" action="profUserAdd" method="post">
 									<table class="datatable-table viewtable sschecktable">
 										<tbody>
 											<tr>
@@ -126,9 +127,9 @@
 												<td></td>
 
 											</tr>
-
 										</tbody>
 									</table>
+									</form>
 								</div>
 							</div>
 							<!-- 테이블 바텀 -->
