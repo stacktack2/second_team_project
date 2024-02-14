@@ -48,8 +48,8 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3 d-flex align-items-center justify-content-between">
-                                        <div class="small findId"><a href="findId.do">아이디 찾기</a></div>
-                                        <div class="small findPw"><a href="findPw.do">비밀번호 찾기</a></div>
+                                        <div class="small findId"><a href="findId">아이디 찾기</a></div>
+                                        <div class="small findPw"><a href="findPw">비밀번호 찾기</a></div>
                                     </div>
                                 </div>
                             </div>

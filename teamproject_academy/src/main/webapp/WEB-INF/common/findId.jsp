@@ -51,13 +51,13 @@
                                                 <label for="inputPhone">연락처</label>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="btn btn-primary mx-auto" href="#">아이디 찾기</a>
+                                                <a class="btn btn-primary mx-auto" href="findeId">아이디 찾기</a>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3 d-flex align-items-center">
-                                        <div class="small findId mx-auto"><a href="index.do">로그인</a></div>
-                                        <div class="small findPw mx-auto"><a href="findPw.do">비밀번호 찾기</a></div>
+                                        <div class="small findId mx-auto"><a href="index">로그인</a></div>
+                                        <div class="small findPw mx-auto"><a href="findPw">비밀번호 찾기</a></div>
                                     </div>
                                 </div>
                             </div>

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AcdCourseController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println(threeUriParam);
 		String threeUri = threeUriParam.split("\\.")[0];
 
 		if(threeUri.equals("absenseApp")) {
@@ -105,4 +105,5 @@ public class AcdCourseController {
 		
 		
 	}
+	
 }
