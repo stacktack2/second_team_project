@@ -96,6 +96,22 @@ public class FrontController extends HttpServlet {
 		                    	student.controller.AcdCourseController sac = new student.controller.AcdCourseController();
 		                    	sac.doAction(threeUri, request, response);
 		                    	break;
+		                    case "atdGrade":
+		                    	student.controller.AtdGradeController sgc = new student.controller.AtdGradeController();
+		                    	sgc.doPostAction(threeUri, request, response);
+		                    	break;
+		                    case "corReg":
+		                    	student.controller.CorRegController scc = new student.controller.CorRegController();
+		                    	scc.doPostAction(threeUri, request, response);
+		                    	break;
+		                    case "mypage":
+		                    	student.controller.MypageController smc = new student.controller.MypageController();
+		                    	smc.doPostAction(request, response);
+		                    	break;
+		                    case "notice":
+		                    	student.controller.NoticeController snc = new student.controller.NoticeController();
+		    					snc.doPostAction(threeUri, request, response);
+		                    	break;
 	                    	}
 	                    break;
 

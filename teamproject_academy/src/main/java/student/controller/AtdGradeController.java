@@ -10,26 +10,38 @@ import javax.servlet.http.HttpServletResponse;
 public class AtdGradeController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String threeUri = threeUriParam.split("\\.")[0];
-
-		if(threeUri.equals("attendcheckList")) {
+		//String threeUri = threeUriParam.split("\\.")[0];
+		
+		switch(threeUriParam) {
+		case "attendcheckList":
 			attendcheckList(request,response);
-		}else if(threeUri.equals("attendcheckView")) {
-			attendcheckView(request,response);			
-		}else if(threeUri.equals("cgradeCheck")) {
-			cgradeCheck(request,response);			
-		}
+			break;
+		case "attendcheckView":
+			attendcheckView(request,response);
+			break;
+		case "cgradeCheck":
+			cgradeCheck(request,response);
+			break;
+	}
+
+//		if(threeUriParam.equals("attendcheckList")) {
+//			attendcheckList(request,response);
+//		}else if(threeUriParam.equals("attendcheckView")) {
+//			attendcheckView(request,response);			
+//		}else if(threeUriParam.equals("cgradeCheck")) {
+//			cgradeCheck(request,response);			
+//		}
 		
 	}
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String threeUri = threeUriParam.split("\\.")[0];
+		//String threeUri = threeUriParam.split("\\.")[0];
 
-		if(threeUri.equals("attendcheckList")) {
+		if(threeUriParam.equals("attendcheckList")) {
 			PostattendcheckList(request,response);
-		}else if(threeUri.equals("attendcheckView")) {
+		}else if(threeUriParam.equals("attendcheckView")) {
 			PostattendcheckView(request,response);			
-		}else if(threeUri.equals("cgradeCheck")) {
+		}else if(threeUriParam.equals("cgradeCheck")) {
 			PostcgradeCheck(request,response);			
 		}
 		

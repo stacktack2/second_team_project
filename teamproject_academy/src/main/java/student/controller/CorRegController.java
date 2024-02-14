@@ -10,13 +10,22 @@ import javax.servlet.http.HttpServletResponse;
 public class CorRegController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String threeUri = threeUriParam.split("\\.")[0];
+//		String threeUri = threeUriParam.split("\\.")[0];
 
-		if(threeUri.equals("cAppCheck")) {
-			cAppCheck(request,response);
-		}else if(threeUri.equals("corReg")) {
-			corReg(request,response);			
+		switch (threeUriParam) {
+			case "cAppCheck":
+				cAppCheck(request,response);
+				break;
+			case "corReg":
+				corReg(request,response);
+				break;
 		}
+		
+//		if(threeUri.equals("cAppCheck")) {
+//			cAppCheck(request,response);
+//		}else if(threeUri.equals("corReg")) {
+//			corReg(request,response);			
+//		}
 		
 	}
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
