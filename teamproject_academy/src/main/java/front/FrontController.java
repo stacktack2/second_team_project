@@ -48,6 +48,7 @@ public class FrontController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String command = request.getRequestURI().substring(request.getContextPath().length()+1);
+		
 //		command 예시 => admin/course/courMgList.do - admin/admMain.do - asdf.do - adsfasd/asdfasdf.do
 		
 		String[] uris = command.split("/");
@@ -55,10 +56,12 @@ public class FrontController extends HttpServlet {
 		if(uris.length >= 1) {
 			
 			String oneUri = uris[0];
+			System.out.println(oneUri);
 			
 			if(uris.length == 2) {
 				
 			String twoUri = uris[1];
+			System.out.println(twoUri);
 			
 				switch (oneUri) {
 				case "common":
@@ -102,19 +105,19 @@ public class FrontController extends HttpServlet {
 		                    	break;
 		                    case "atdGrade":
 		                    	student.controller.AtdGradeController sgc = new student.controller.AtdGradeController();
-		                    	sgc.doPostAction(threeUri, request, response);
+		                    	sgc.doAction(threeUri, request, response);
 		                    	break;
 		                    case "corReg":
 		                    	student.controller.CorRegController scc = new student.controller.CorRegController();
-		                    	scc.doPostAction(threeUri, request, response);
+		                    	scc.doAction(threeUri, request, response);
 		                    	break;
 		                    case "mypage":
 		                    	student.controller.MypageController smc = new student.controller.MypageController();
-		                    	smc.doPostAction(request, response);
+		                    	smc.doAction(request, response);
 		                    	break;
 		                    case "notice":
 		                    	student.controller.NoticeController snc = new student.controller.NoticeController();
-		    					snc.doPostAction(threeUri, request, response);
+		    					snc.doAction(threeUri, request, response);
 		                    	break;
 	                    	}
 	                    break;
@@ -123,27 +126,27 @@ public class FrontController extends HttpServlet {
 	                	switch(twoUri) {
 		                    case "attend":
 		                    	professor.controller.AttendController pac = new professor.controller.AttendController();
-		    					pac.doPostAction(threeUri, request, response);
+		    					pac.doAction(threeUri, request, response);
 		                    	break;
 		                    case "course":
 		                    	professor.controller.CourseController pcc = new professor.controller.CourseController();
-		    					pcc.doPostAction(threeUri, request, response);
+		    					pcc.doAction(threeUri, request, response);
 		                    	break;
 		                    case "grade":
 		                    	professor.controller.GradeController pgc = new professor.controller.GradeController();
-		    					pgc.doPostAction(threeUri, request, response);
+		    					pgc.doAction(threeUri, request, response);
 		                    	break;
 		                    case "mypage":
 		                    	professor.controller.MypageController pmc = new professor.controller.MypageController();
-		                    	pmc.doPostAction(request, response);
+		                    	pmc.doAction(request, response);
 		                    	break;
 		                    case "notice":
 		                    	professor.controller.NoticeController pnc = new professor.controller.NoticeController();
-		    					pnc.doPostAction(threeUri, request, response);
+		    					pnc.doAction(threeUri, request, response);
 		                    	break;
 		                    case "profInfo":
 		                    	professor.controller.ProfInfoController ppc = new professor.controller.ProfInfoController();
-		    					ppc.doPostAction(request, response);
+		    					ppc.doAction(request, response);
 		                    	break;
                     	}
 	                    break;

@@ -14,10 +14,10 @@ public class CourseController {
 		
 		switch(threeUriParam) {
 			case "couList":
-				couList(request,response);
+				couList(request, response);
 				break;
 			case "curriculum":
-				curriculum(request,response);	
+				curriculum(request, response);	
 				break;
 		}
 
@@ -34,8 +34,8 @@ public class CourseController {
 
 		if(threeUri.equals("couList")) {
 			PostcouList(request,response);
-		}else if(threeUri.equals("courriculum")) {
-			Postcourriculum(request,response);			
+		}else if(threeUri.equals("curriculum")) {
+			Postcurriculum(request,response);			
 		}
 		
 	}
@@ -57,7 +57,7 @@ public class CourseController {
 		
 		
 	}
-	public void Postcourriculum(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void Postcurriculum(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/course/courriculum.jsp");
 		rd.forward(request, response);
 		
