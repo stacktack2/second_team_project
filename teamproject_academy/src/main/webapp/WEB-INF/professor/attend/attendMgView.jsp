@@ -20,7 +20,7 @@
 	<!-- 상단 nav 바 -->
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!--로고자리-->
-		<a class="navbar-brand ps-3" href="<%=request.getContextPath()%>/professor/profMain.do">이젠대학교</a>
+		<a class="navbar-brand ps-3" href="<%=request.getContextPath()%>/professor/profMain">이젠대학교</a>
 		<!--좌측 nav바 토글(클릭시 없어졌다 있어졌다) -->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
 			<i class="fas fa-bars"></i>
@@ -51,17 +51,17 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">출석관리</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/professor/attend/attendMgList.do">출석관리</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/professor/attend/attendMgList">출석관리</a>
 
 						<div class="sb-sidenav-menu-heading">성적관리</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/professor/grade/gradeMgList.do">성적관리</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/professor/grade/gradeMgList">성적관리</a>
 
 
 						<div class="sb-sidenav-menu-heading">교수정보</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/professor/profInfo/profInfo.do">교수정보 조회</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/professor/profInfo/profInfo">교수정보 조회</a>
 
 						<div class="sb-sidenav-menu-heading">마이페이지</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/professor/mypage/myInfoModify.do">비밀번호 변경</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/professor/mypage/myInfoModify">비밀번호 변경</a>
 					</div>
 				</div>
 			</nav>
@@ -81,7 +81,7 @@
 								<div class="datatable-top">
 									<!-- 검색- 날짜 api 활용 -->
 									<div class="right">
-										<form action="noticeList.do" method="get" class="datatable-search inline">
+										<form action="noticeList" method="get" class="datatable-search inline">
 											<input type="text" name="attendday" />
 											<button class="btn btn-primary inline grey">검색</button>
 										</form>
