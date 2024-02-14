@@ -10,20 +10,44 @@ import javax.servlet.http.HttpServletResponse;
 public class CourseController {
 	
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String threeUri = threeUriParam.split("\\.")[0];
-		if(threeUri.equals("courMgList")) {
-			courMgList(request,response);
-		}else if(threeUri.equals("courseRegAdd")) {
-			courseRegAdd(request,response);			
-		}else if(threeUri.equals("courseRegList")) {
-			courseRegList(request,response);			
-		}else if(threeUri.equals("curriculum")) {
-			curriculum(request,response);			
-		}else if(threeUri.equals("curriculumAdd")) {
-			curriculumAdd(request,response);			
-		}else if(threeUri.equals("curriculumModify")) {
-			curriculumModify(request,response);			
+		
+		switch(threeUriParam) {
+			case "courMgList":
+				courMgList(request,response);
+				break;
+			case "courseRegAdd":
+				courseRegAdd(request,response);
+				break;
+			case "courseRegList":
+				courseRegList(request,response);
+				break;
+			case "curriculum":
+				curriculum(request,response);
+				break;
+			case "curriculumAdd":
+				curriculumAdd(request,response);
+				break;
+			case "curriculumModify":
+				curriculumModify(request,response);	
+				break;
+			default:
+				break;
 		}
+		
+//		String threeUri = threeUriParam.split("\\.")[0];
+//		if(threeUri.equals("courMgList")) {
+//			courMgList(request,response);
+//		}else if(threeUri.equals("courseRegAdd")) {
+//			courseRegAdd(request,response);			
+//		}else if(threeUri.equals("courseRegList")) {
+//			courseRegList(request,response);			
+//		}else if(threeUri.equals("curriculum")) {
+//			curriculum(request,response);			
+//		}else if(threeUri.equals("curriculumAdd")) {
+//			curriculumAdd(request,response);			
+//		}else if(threeUri.equals("curriculumModify")) {
+//			curriculumModify(request,response);			
+//		}
 	}
 	
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

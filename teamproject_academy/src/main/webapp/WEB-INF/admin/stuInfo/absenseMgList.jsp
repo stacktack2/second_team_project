@@ -14,7 +14,7 @@
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!--로고자리-->
          <a class="navbar-brand ps-3"
-			href="<%=request.getContextPath()%>/admin/admMain.do">이젠대학교</a>
+			href="<%=request.getContextPath()%>/admin/admMain">이젠대학교</a>
         <!--좌측 nav바 토글(클릭시 없어졌다 있어졌다) -->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- 우측상단 사용자 메뉴-->
@@ -38,19 +38,19 @@
 					<div class="sb-sidenav-menu">
 						<div class="nav">
 							<div class="sb-sidenav-menu-heading">공지사항</div>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/notice/noticeList.do">공지사항 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/notice/noticeList">공지사항 관리</a>
 							<div class="sb-sidenav-menu-heading">사용자 관리</div>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/stuUserMgList.do">학생 관리</a>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/profUserMgList.do">교수 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/stuUserMgList">학생 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/profUserMgList">교수 관리</a>
 							
 							<div class="sb-sidenav-menu-heading">학생 정보</div>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/gradeMgList.do">학생 성적 관리</a>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/attendMgList.do">학생 출결 관리</a>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/absenseMgList.do">학생 휴복학 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/gradeMgList">학생 성적 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/attendMgList">학생 출결 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/absenseMgList">학생 휴복학 관리</a>
 							
 							<div class="sb-sidenav-menu-heading">강의 관리</div>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courMgList.do">강의 관리</a>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courseRegList.do">수강신청 열기/닫기</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courMgList">강의 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courseRegList">수강신청 열기/닫기</a>
 							</div>
 					</div>
 				</nav>
@@ -62,7 +62,7 @@
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">휴복학 관리 목록</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href="noticeList.do">학생 정보</a></li>
+						<li class="breadcrumb-item"><a href="noticeList">학생 정보</a></li>
 						<li class="breadcrumb-item active">학생 휴복관 관리</li>
 					</ol>
 
@@ -88,7 +88,7 @@
 											<option value="1" selected>학번</option>
 											<option value="2">이름</option>
 										</select>
-										<form action="noticeList.do" method="get"
+										<form action="noticeList" method="get"
 											class="datatable-search inline">
 											<input class="datatable-input inline wauto"
 												placeholder="검색어를 입력하세요" type="search"
@@ -116,7 +116,7 @@
 											<tr>
 												<td>1</td>
 												<td>홍길동</td>
-												<td><a href="absenseMgView.do">휴학</a></td>
+												<td><a href="absenseMgView">휴학</a></td>
 												<td>2024.02.04</td>
 												<td>처리대기</td>
 												<td>2024.02.06</td>
@@ -125,7 +125,7 @@
 											<tr>
 												<td>2</td>
 												<td>홍길동</td>
-												<td><a href="absenseMgView.do">재학</a></td>
+												<td><a href="absenseMgView">재학</a></td>
 												<td>2024.02.04</td>
 												<td>처리완료</td>
 												<td>2024.02.06</td>
@@ -155,7 +155,7 @@
 									</ul>
 								</nav>
 								<div class="datatable-bottom offset-4-1">
-									<a href="noticeWrite.do" class="btn btn-primary grey right mright">글쓰기</a>
+									<a href="noticeWrite" class="btn btn-primary grey right mright">글쓰기</a>
 								</div>
 							</div>
 						</div>

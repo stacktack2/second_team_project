@@ -107,7 +107,7 @@
 										<tbody>
 											<tr>
 												<td>1</td>
-												<td><a href="curriculum.do">물리화학</a></td>
+												<td><a href="curriculum">물리화학</a></td>
 												<td>2022년</td>
 												<td>1학기</td>
 												<td>상 101</td>

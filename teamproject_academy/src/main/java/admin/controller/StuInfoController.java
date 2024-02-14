@@ -11,21 +11,45 @@ public class StuInfoController {
 	
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String threeUri = threeUriParam.split("\\.")[0];
-
-		if(threeUri.equals("absenseMgList")) {
-			absenseMgList(request,response);
-		}else if(threeUri.equals("absenseMgView")) {
-			absenseMgView(request,response);			
-		}else if(threeUri.equals("attendMgList")) {
-			attendMgList(request,response);			
-		}else if(threeUri.equals("attendMgView")) {
-			attendMgView(request,response);			
-		}else if(threeUri.equals("gradeMgList")) {
-			gradeMgList(request,response);			
-		}else if(threeUri.equals("gradeMgView")) {
-			gradeMgView(request,response);			
+		switch(threeUriParam) {
+			case "absenseMgList":
+				absenseMgList(request,response);
+				break;
+			case "absenseMgView":
+				absenseMgView(request,response);
+				break;
+			case "attendMgList":
+				attendMgList(request,response);
+				break;
+			case "attendMgView":
+				attendMgView(request,response);
+				break;
+			case "gradeMgList":
+				gradeMgList(request,response);
+				break;
+			case "gradeMgView":
+				gradeMgView(request,response);	
+				break;
+			default:
+				break;
 		}
+		
+//		String threeUri = threeUriParam.split("\\.")[0];
+//
+//		if(threeUri.equals("absenseMgList")) {
+//			absenseMgList(request,response);
+//		}else if(threeUri.equals("absenseMgView")) {
+//			absenseMgView(request,response);			
+//		}else if(threeUri.equals("attendMgList")) {
+//			attendMgList(request,response);			
+//		}else if(threeUri.equals("attendMgView")) {
+//			attendMgView(request,response);			
+//		}else if(threeUri.equals("gradeMgList")) {
+//			gradeMgList(request,response);			
+//		}else if(threeUri.equals("gradeMgView")) {
+//			gradeMgView(request,response);			
+//		}
+		
 	}
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

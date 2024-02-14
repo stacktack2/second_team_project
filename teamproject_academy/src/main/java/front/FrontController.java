@@ -64,26 +64,26 @@ public class FrontController extends HttpServlet {
 			System.out.println(twoUri);
 			
 				switch (oneUri) {
-				case "common":
-					common.controller.IndexController cic = new common.controller.IndexController();
-					cic.doAction(twoUri, request, response);
-					break;
-				case "student":
-					student.controller.MainController smc = new student.controller.MainController();
-					smc.doAction(request, response);
-					break;
-					
-				case "professor":
-					professor.controller.MainController pmc = new professor.controller.MainController();
-					pmc.doAction(request, response);
-					break;
-					
-				case "admin":
-					admin.controller.MainController amc = new admin.controller.MainController();
-					amc.doAction(request, response);
-					break;
-				default:
-					break;
+					case "common":
+						common.controller.IndexController cic = new common.controller.IndexController();
+						cic.doAction(twoUri, request, response);
+						break;
+					case "student":
+						student.controller.MainController smc = new student.controller.MainController();
+						smc.doAction(request, response);
+						break;
+						
+					case "professor":
+						professor.controller.MainController pmc = new professor.controller.MainController();
+						pmc.doAction(request, response);
+						break;
+						
+					case "admin":
+						admin.controller.MainController amc = new admin.controller.MainController();
+						amc.doAction(request, response);
+						break;
+					default:
+						break;
 				}
 				
 			}else if (uris.length == 3) {
@@ -152,9 +152,25 @@ public class FrontController extends HttpServlet {
 	                    break;
 
 	                case "admin":
-	                    admin.controller.MainController amc = new admin.controller.MainController();
-	                    amc.doAction(request, response);
-	                    break;
+	                	switch(twoUri) {
+	                    case "course":
+	                    	admin.controller.CourseController acc = new admin.controller.CourseController();
+	                    	acc.doAction(threeUri, request, response);
+	                    	break;
+	                    case "notice":
+	                    	admin.controller.NoticeController anc = new admin.controller.NoticeController();
+	                    	anc.doAction(threeUri, request, response);
+	                    	break;
+	                    case "stuInfo":
+	                    	admin.controller.StuInfoController asc = new admin.controller.StuInfoController();
+	                    	asc.doAction(threeUri, request, response);
+	                    	break;
+	                    case "userManage":
+	                    	admin.controller.UserManageController auc = new admin.controller.UserManageController();
+	                    	auc.doAction(threeUri, request, response);
+	                    	break;
+	                	}
+	                	break;
 	                default:
 	                    break;
 	            }

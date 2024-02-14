@@ -11,25 +11,54 @@ public class UserManageController {
 	
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String threeUri = threeUriParam.split("\\.")[0];
-
-		if(threeUri.equals("stuUserAdd")) {
-			stuUserAdd(request,response);
-		}else if(threeUri.equals("profUserAdd")) {
-			profUserAdd(request,response);
-		}else if(threeUri.equals("stuUserInfoModify")) {
-			stuUserInfoModify(request,response);			
-		}else if(threeUri.equals("profUserInfoModify")) {
-			profUserInfoModify(request,response);			
-		}else if(threeUri.equals("stuUserMgList")) {
-			stuUserMgList(request,response);			
-		}else if(threeUri.equals("profUserMgList")) {
-			profUserMgList(request,response);			
-		}else if(threeUri.equals("stuUserMgView")) {
-			stuUserMgView(request,response);			
-		}else if(threeUri.equals("profUserMgView")) {
-			profUserMgView(request,response);			
+		switch(threeUriParam) {
+			case "stuUserAdd":
+				stuUserAdd(request,response);
+				break;
+			case "profUserAdd":
+				profUserAdd(request,response);
+				break;
+			case "stuUserInfoModify":
+				stuUserInfoModify(request,response);
+				break;
+			case "profUserInfoModify":
+				profUserInfoModify(request,response);
+				break;
+			case "stuUserMgList":
+				stuUserMgList(request,response);	
+				break;
+			case "profUserMgList":
+				profUserMgList(request,response);	
+				break;
+			case "stuUserMgView":
+				stuUserMgView(request,response);	
+				break;
+			case "profUserMgView":
+				profUserMgView(request,response);	
+				break;
+			default:
+				break;
 		}
+		
+//		String threeUri = threeUriParam.split("\\.")[0];
+//
+//		if(threeUri.equals("stuUserAdd")) {
+//			stuUserAdd(request,response);
+//		}else if(threeUri.equals("profUserAdd")) {
+//			profUserAdd(request,response);
+//		}else if(threeUri.equals("stuUserInfoModify")) {
+//			stuUserInfoModify(request,response);			
+//		}else if(threeUri.equals("profUserInfoModify")) {
+//			profUserInfoModify(request,response);			
+//		}else if(threeUri.equals("stuUserMgList")) {
+//			stuUserMgList(request,response);			
+//		}else if(threeUri.equals("profUserMgList")) {
+//			profUserMgList(request,response);			
+//		}else if(threeUri.equals("stuUserMgView")) {
+//			stuUserMgView(request,response);			
+//		}else if(threeUri.equals("profUserMgView")) {
+//			profUserMgView(request,response);			
+//		}
 	}
 	
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
