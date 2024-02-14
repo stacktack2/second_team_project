@@ -42,7 +42,7 @@
 									<h3 class="text-center font-weight-light my-4">로그인</h3>
 								</div>
 								<div class="card-body">
-									<form name="frm" action="index.do" method="get">
+									<form name="frm" action="index.do" method="post">
 										<div class="form-floating mb-3">
 											<input class="form-control" id="id" type="text" placeholder="아이디" /> 
 											<label for="inputId">아이디</label>

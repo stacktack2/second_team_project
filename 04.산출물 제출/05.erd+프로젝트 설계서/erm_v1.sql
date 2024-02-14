@@ -38,7 +38,7 @@ CREATE TABLE administer
 (
 	ano int unsigned NOT NULL AUTO_INCREMENT,
 	aid varchar(20) NOT NULL,
-	apw varchar(20) NOT NULL,
+	apw varchar(255) NOT NULL,
 	ardate date DEFAULT (current_date) NOT NULL,
 	amanage tinyint unsigned DEFAULT 1 NOT NULL,
 	adelyn tinyint unsigned DEFAULT 0 NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE professor
 (
 	pno int unsigned NOT NULL AUTO_INCREMENT,
 	pid varchar(20) NOT NULL,
-	ppw varchar(20) NOT NULL,
+	ppw varchar(255) NOT NULL,
 	pname varchar(20) NOT NULL,
 	pregNo1 char(6) NOT NULL,
 	pregNo2 char(7) NOT NULL,
@@ -158,7 +158,7 @@ CREATE TABLE student
 (
 	sno int unsigned NOT NULL AUTO_INCREMENT,
 	sid varchar(20) NOT NULL,
-	spw varchar(20) NOT NULL,
+	spw varchar(255) NOT NULL,
 	sname varchar(20) NOT NULL,
 	sregNo1 char(6) NOT NULL,
 	sregNo2 char(7) NOT NULL,
