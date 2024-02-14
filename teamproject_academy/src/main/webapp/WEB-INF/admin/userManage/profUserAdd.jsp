@@ -82,7 +82,9 @@
 										<tbody>
 											<tr>
 												<th>교번</th>
-												<td></td>
+												<td style="width: 25rem;">
+													<input type="text" name="pid" id="pid" class="datatable-input">
+												</td>
 												<th>성명</th>
 												<td></td>
 												<th>주민번호</th>
