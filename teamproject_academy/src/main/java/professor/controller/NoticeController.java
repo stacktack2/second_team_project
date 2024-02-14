@@ -11,12 +11,12 @@ public class NoticeController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		switch(threeUriParam) {
-		case "noticeList":
-			noticeList(request,response);
-			break;
-		case "noticeView":
-			noticeView(request,response);
-			break;
+			case "noticeList":
+				noticeList(request,response);
+				break;
+			case "noticeView":
+				noticeView(request,response);
+				break;
 		}
 		
 		

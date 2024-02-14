@@ -26,7 +26,7 @@ import student.controller.CorRegController;
  * Servlet implementation class FrontController
  */
 //@WebServlet("*.do")
-@WebServlet(urlPatterns={"/common/*", "/admin", "/student/*", "/professor"})
+@WebServlet(urlPatterns={"/common/*", "/admin/*", "/student/*", "/professor/*", "/common", "/admin", "/student", "/professor"})
 public class FrontController extends HttpServlet {
 	
 	//.do로 들어왔을때 => 이 서블릿 페이지 노출
@@ -53,32 +53,36 @@ public class FrontController extends HttpServlet {
 		String[] uris = command.split("/");
 		
 		if(uris.length >= 1) {
+			
 			String oneUri = uris[0];
 			
 			if(uris.length == 2) {
-				String twoUri = uris[1];
+				
+			String twoUri = uris[1];
+			
 				switch (oneUri) {
-					case "common":
-	                    common.controller.IndexController cic = new common.controller.IndexController();
-	                    cic.doAction(twoUri, request, response);
-	                    break;
-	                case "student":
-	                    student.controller.MainController smc = new student.controller.MainController();
-	                    smc.doAction(request, response);
-	                    break;
-	
-	                case "professor":
-	                    professor.controller.MainController pmc = new professor.controller.MainController();
-	                    pmc.doAction(request, response);
-	                    break;
-	
-	                case "admin":
-	                    admin.controller.MainController amc = new admin.controller.MainController();
-	                    amc.doAction(request, response);
-	                    break;
-	                default:
-	                    break;
-	            }
+				case "common":
+					common.controller.IndexController cic = new common.controller.IndexController();
+					cic.doAction(twoUri, request, response);
+					break;
+				case "student":
+					student.controller.MainController smc = new student.controller.MainController();
+					smc.doAction(request, response);
+					break;
+					
+				case "professor":
+					professor.controller.MainController pmc = new professor.controller.MainController();
+					pmc.doAction(request, response);
+					break;
+					
+				case "admin":
+					admin.controller.MainController amc = new admin.controller.MainController();
+					amc.doAction(request, response);
+					break;
+				default:
+					break;
+				}
+				
 			}else if (uris.length == 3) {
 				String twoUri = uris[1];
 	            String threeUri = uris[2];
@@ -117,30 +121,30 @@ public class FrontController extends HttpServlet {
 
 	                case "professor":
 	                	switch(twoUri) {
-	                    case "attend":
-	                    	professor.controller.AttendController pac = new professor.controller.AttendController();
-	    					pac.doPostAction(threeUri, request, response);
-	                    	break;
-	                    case "course":
-	                    	professor.controller.CourseController pcc = new professor.controller.CourseController();
-	    					pcc.doPostAction(threeUri, request, response);
-	                    	break;
-	                    case "grade":
-	                    	professor.controller.GradeController pgc = new professor.controller.GradeController();
-	    					pgc.doPostAction(threeUri, request, response);
-	                    	break;
-	                    case "mypage":
-	                    	professor.controller.MypageController pmc = new professor.controller.MypageController();
-	                    	pmc.doPostAction(request, response);
-	                    	break;
-	                    case "notice":
-	                    	professor.controller.NoticeController pnc = new professor.controller.NoticeController();
-	    					pnc.doPostAction(threeUri, request, response);
-	                    	break;
-	                    case "profInfo":
-	                    	professor.controller.ProfInfoController ppc = new professor.controller.ProfInfoController();
-	    					ppc.doPostAction(request, response);
-	                    	break;
+		                    case "attend":
+		                    	professor.controller.AttendController pac = new professor.controller.AttendController();
+		    					pac.doPostAction(threeUri, request, response);
+		                    	break;
+		                    case "course":
+		                    	professor.controller.CourseController pcc = new professor.controller.CourseController();
+		    					pcc.doPostAction(threeUri, request, response);
+		                    	break;
+		                    case "grade":
+		                    	professor.controller.GradeController pgc = new professor.controller.GradeController();
+		    					pgc.doPostAction(threeUri, request, response);
+		                    	break;
+		                    case "mypage":
+		                    	professor.controller.MypageController pmc = new professor.controller.MypageController();
+		                    	pmc.doPostAction(request, response);
+		                    	break;
+		                    case "notice":
+		                    	professor.controller.NoticeController pnc = new professor.controller.NoticeController();
+		    					pnc.doPostAction(threeUri, request, response);
+		                    	break;
+		                    case "profInfo":
+		                    	professor.controller.ProfInfoController ppc = new professor.controller.ProfInfoController();
+		    					ppc.doPostAction(request, response);
+		                    	break;
                     	}
 	                    break;
 
