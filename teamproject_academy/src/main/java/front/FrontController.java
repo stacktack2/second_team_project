@@ -26,7 +26,7 @@ import student.controller.CorRegController;
  * Servlet implementation class FrontController
  */
 //@WebServlet("*.do")
-@WebServlet(urlPatterns={"/common/*", "/admin/*", "/student/*", "/professor/*", "/common", "/admin", "/student", "/professor"})
+@WebServlet(urlPatterns={"/common/*", "/admin/*", "/student/*", "/professor/*"})
 public class FrontController extends HttpServlet {
 	
 	//.do로 들어왔을때 => 이 서블릿 페이지 노출
