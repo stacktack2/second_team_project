@@ -15,17 +15,35 @@ public class NoticeController {
 	
 	
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String threeUri = threeUriParam.split("\\.")[0];
-
-		if(threeUri.equals("noticeList")) {
-			noticeList(request,response);
-		}else if(threeUri.equals("noticeModify")) {
-			noticeModify(request,response);			
-		}else if(threeUri.equals("noticeView")) {
-			noticeView(request,response);			
-		}else if(threeUri.equals("noticeWrite")) {
-			noticeWrite(request,response);			
+		
+		switch(threeUriParam) {
+			case "noticeList":
+				noticeList(request,response);
+				break;
+			case "noticeModify":
+				noticeModify(request,response);
+				break;
+			case "noticeView":
+				noticeView(request,response);
+				break;
+			case "noticeWrite":
+				noticeWrite(request,response);
+				break;
+			default:
+				break;
 		}
+		
+//		String threeUri = threeUriParam.split("\\.")[0];
+//
+//		if(threeUri.equals("noticeList")) {
+//			noticeList(request,response);
+//		}else if(threeUri.equals("noticeModify")) {
+//			noticeModify(request,response);			
+//		}else if(threeUri.equals("noticeView")) {
+//			noticeView(request,response);			
+//		}else if(threeUri.equals("noticeWrite")) {
+//			noticeWrite(request,response);			
+//		}
 	}
 	
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

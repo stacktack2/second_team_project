@@ -14,7 +14,7 @@
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!--로고자리-->
          <a class="navbar-brand ps-3"
-			href="<%=request.getContextPath()%>/admin/admMain.do">이젠대학교</a>
+			href="<%=request.getContextPath()%>/admin/admMain">이젠대학교</a>
         <!--좌측 nav바 토글(클릭시 없어졌다 있어졌다) -->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- 우측상단 사용자 메뉴-->
@@ -38,19 +38,19 @@
 					<div class="sb-sidenav-menu">
 						<div class="nav">
 							<div class="sb-sidenav-menu-heading">공지사항</div>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/notice/noticeList.do">공지사항 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/notice/noticeList">공지사항 관리</a>
 							<div class="sb-sidenav-menu-heading">사용자 관리</div>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/stuUserMgList.do">학생 관리</a>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/profUserMgList.do">교수 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/stuUserMgList">학생 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/profUserMgList">교수 관리</a>
 							
 							<div class="sb-sidenav-menu-heading">학생 정보</div>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/gradeMgList.do">학생 성적 관리</a>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/attendMgList.do">학생 출결 관리</a>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/absenseMgList.do">학생 휴복학 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/gradeMgList">학생 성적 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/attendMgList">학생 출결 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/absenseMgList">학생 휴복학 관리</a>
 							
 							<div class="sb-sidenav-menu-heading">강의 관리</div>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courMgList.do">강의 관리</a>
-							<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courseRegList.do">수강신청 열기/닫기</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courMgList">강의 관리</a>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courseRegList">수강신청 열기/닫기</a>
 							</div>
 					</div>
 				</nav>
@@ -62,7 +62,7 @@
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">공지사항 상세</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href="noticeList.do">공지사항</a></li>
+						<li class="breadcrumb-item"><a href="noticeList">공지사항</a></li>
 						<li class="breadcrumb-item active">공지사항 상세페이지</li>
 					</ol>
 
@@ -97,10 +97,10 @@
 									</table>
 								</div>
 								<div class="datatable-bottom d-inline-block offset-12">
-									<a href="noticeModify.do" class="btn btn-primary grey right mright">수정</a>
+									<a href="noticeModify" class="btn btn-primary grey right mright">수정</a>
 								</div>
 								<div class="datatable-bottom d-inline-block">
-									<a href="noticeList.do" class="btn btn-primary grey right mright">목록</a>
+									<a href="noticeList" class="btn btn-primary grey right mright">목록</a>
 								</div>
 							</div>
 						</div>
