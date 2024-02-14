@@ -55,12 +55,13 @@ public class FrontController extends HttpServlet {
 		if(uris.length >= 1) {
 			String oneUri = uris[0];
 			
-			if(uris.length == 1) {
+			if(uris.length == 2) {
+				String twoUri = uris[1];
 				switch (oneUri) {
-//					case "common":
-//	                    common.controller.IndexController cic = new common.controller.IndexController();
-//	                    cic.doAction(oneUri, request, response);
-//	                    break;
+					case "common":
+	                    common.controller.IndexController cic = new common.controller.IndexController();
+	                    cic.doAction(twoUri, request, response);
+	                    break;
 	                case "student":
 	                    student.controller.MainController smc = new student.controller.MainController();
 	                    smc.doAction(request, response);
@@ -78,8 +79,8 @@ public class FrontController extends HttpServlet {
 	                default:
 	                    break;
 	            }
-			}else if (uris.length == 2) {
-	            String twoUri = uris[1];
+			}else if (uris.length == 3) {
+				String twoUri = uris[1];
 	            String threeUri = uris[2];
 	            //System.out.println(twoUri);
 
