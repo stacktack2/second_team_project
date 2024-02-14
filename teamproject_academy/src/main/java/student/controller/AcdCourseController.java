@@ -10,19 +10,36 @@ import javax.servlet.http.HttpServletResponse;
 public class AcdCourseController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(threeUriParam);
-		String threeUri = threeUriParam.split("\\.")[0];
 
-		if(threeUri.equals("absenseApp")) {
-			absenseApp(request,response);
-		}else if(threeUri.equals("curriculum")) {
-			curriculum(request,response);			
-		}else if(threeUri.equals("scheduleCheck")) {
-			scheduleCheck(request,response);			
-		}else if(threeUri.equals("sscheck")) {
-			sscheck(request,response);			
-		}else if(threeUri.equals("subcheck")) {
-			subcheck(request,response);			
+		switch(threeUriParam) {
+			case "absenseApp":
+				absenseApp(request,response);
+				break;
+			case "curriculum":
+				curriculum(request,response);
+				break;
+			case "scheduleCheck":
+				scheduleCheck(request,response);
+				break;
+			case "sscheck":
+				sscheck(request,response);
+				break;
+			case "subcheck":
+				subcheck(request,response);
+				break;
 		}
+		
+//		if(threeUriParam.equals("absenseApp")) {
+//			absenseApp(request,response);
+//		}else if(threeUriParam.equals("curriculum")) {
+//			curriculum(request,response);			
+//		}else if(threeUriParam.equals("scheduleCheck")) {
+//			scheduleCheck(request,response);			
+//		}else if(threeUriParam.equals("sscheck")) {
+//			sscheck(request,response);			
+//		}else if(threeUriParam.equals("subcheck")) {
+//			subcheck(request,response);			
+//		}
 		
 	}
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
