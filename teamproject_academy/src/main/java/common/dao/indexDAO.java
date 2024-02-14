@@ -4,10 +4,12 @@ import util.DBM;
 
 public class indexDAO {
 	
-//	String sql = "select "
-//	
-//	DBM dbm = DBM.getInstance();
-//	
-//	dbm.select(sql)
-//	
+	
+	
+	String sql = "select * from member where id = ?";
+	
+	DBM dbm = DBM.getInstance();
+	
+	dbm.select(sql).
+	
 }

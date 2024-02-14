@@ -70,6 +70,8 @@ public class IndexController {
 		String id = request.getParameter("id");
 		String password = request.getParameter("pw");
 		
+		
+		
 		// 위 비밀번호의 BCrypt 알고리즘 해쉬 생성
 		// passwordHashed 변수는 실제 데이터베이스에 저장될 60바이트의 문자열이 된다.
 //		String passwordHashed = BCrypt.hashpw(password, BCrypt.gensalt());
