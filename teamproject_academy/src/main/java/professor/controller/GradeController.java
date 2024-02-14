@@ -10,13 +10,22 @@ import javax.servlet.http.HttpServletResponse;
 public class GradeController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String threeUri = threeUriParam.split("\\.")[0];
+//		String threeUri = threeUriParam.split("\\.")[0];
 
-		if(threeUri.equals("gradeMgList")) {
-			gradeMgList(request,response);
-		}else if(threeUri.equals("gradeMgView")) {
-			gradeMgView(request,response);			
+		switch(threeUriParam) {
+			case "gradeMgList":
+				gradeMgList(request,response);
+				break;
+			case "gradeMgView":
+				gradeMgView(request,response);
+				break;
 		}
+		
+//		if(threeUri.equals("gradeMgList")) {
+//			gradeMgList(request,response);
+//		}else if(threeUri.equals("gradeMgView")) {
+//			gradeMgView(request,response);			
+//		}
 		
 	}
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

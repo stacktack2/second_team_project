@@ -10,13 +10,22 @@ import javax.servlet.http.HttpServletResponse;
 public class CourseController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String threeUri = threeUriParam.split("\\.")[0];
-
-		if(threeUri.equals("couList")) {
-			couList(request,response);
-		}else if(threeUri.equals("curriculum")) {
-			curriculum(request,response);			
+		//String threeUri = threeUriParam.split("\\.")[0];
+		
+		switch(threeUriParam) {
+			case "couList":
+				couList(request,response);
+				break;
+			case "curriculum":
+				curriculum(request,response);	
+				break;
 		}
+
+//		if(threeUri.equals("couList")) {
+//			couList(request,response);
+//		}else if(threeUri.equals("curriculum")) {
+//			curriculum(request,response);			
+//		}
 		
 	}
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

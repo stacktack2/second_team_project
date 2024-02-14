@@ -10,13 +10,22 @@ import javax.servlet.http.HttpServletResponse;
 public class AttendController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String threeUri = threeUriParam.split("\\.")[0];
+//		String threeUri = threeUriParam.split("\\.")[0];
 
-		if(threeUri.equals("attendMgList")) {
-			attendMgList(request,response);
-		}else if(threeUri.equals("attendMgView")) {
-			attendMgView(request,response);			
+		switch(threeUriParam) {
+			case "attendMgList":
+				attendMgList(request,response);
+				break;
+			case "attendMgView":
+				attendMgView(request,response);
+				break;
 		}
+		
+//		if(threeUri.equals("attendMgList")) {
+//			attendMgList(request,response);
+//		}else if(threeUri.equals("attendMgView")) {
+//			attendMgView(request,response);			
+//		}
 		
 	}
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -116,8 +116,32 @@ public class FrontController extends HttpServlet {
 	                    break;
 
 	                case "professor":
-	                    professor.controller.MainController pmc = new professor.controller.MainController();
-	                    pmc.doAction(request, response);
+	                	switch(twoUri) {
+	                    case "attend":
+	                    	professor.controller.AttendController pac = new professor.controller.AttendController();
+	    					pac.doPostAction(threeUri, request, response);
+	                    	break;
+	                    case "course":
+	                    	professor.controller.CourseController pcc = new professor.controller.CourseController();
+	    					pcc.doPostAction(threeUri, request, response);
+	                    	break;
+	                    case "grade":
+	                    	professor.controller.GradeController pgc = new professor.controller.GradeController();
+	    					pgc.doPostAction(threeUri, request, response);
+	                    	break;
+	                    case "mypage":
+	                    	professor.controller.MypageController pmc = new professor.controller.MypageController();
+	                    	pmc.doPostAction(request, response);
+	                    	break;
+	                    case "notice":
+	                    	professor.controller.NoticeController pnc = new professor.controller.NoticeController();
+	    					pnc.doPostAction(threeUri, request, response);
+	                    	break;
+	                    case "profInfo":
+	                    	professor.controller.ProfInfoController ppc = new professor.controller.ProfInfoController();
+	    					ppc.doPostAction(request, response);
+	                    	break;
+                    	}
 	                    break;
 
 	                case "admin":
