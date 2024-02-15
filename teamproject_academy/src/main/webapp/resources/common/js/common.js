@@ -24,7 +24,6 @@ function searchId(){
 		let regId = /^[가-힣a-zA-Z]$/;
 		let regRs = regId.test(name);
 		if(!regRs){
-			console.log(1);
 		}else{
 			isSubmit = false;
 		}
@@ -36,7 +35,6 @@ function searchId(){
 		let regId = /^(19|20)\d\d(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/;
 		let regRs = regId.test(birth);
 		if(regRs){
-			console.log(2);
 		}else{
 			isSubmit = false;
 		}
@@ -48,7 +46,6 @@ function searchId(){
 		let regId = /^01(0|1|[6-9])[0-9]{3,4}[0-9]{4}$/;
 		let regRs = regId.test(phone);
 		if(regRs){
-			console.log(3);
 		}else{
 			isSubmit = false;
 		}
@@ -56,19 +53,20 @@ function searchId(){
 	
 	if(isSubmit){
 		let params = $('#searchIdForm').serialize();
+		$('#idModal').modal('show');
 		$.ajax({
 				url: "findId",
 				type: "post",
 				data: params,
 				success:function(data){
-					console.log(data);
+					if(data.trim() == "null"){
+						$('.modal-body').text("일치하는 아이디가 없습니다.");
+					}else{
+						$('.modal-body').text("일치하는 아이디는 : '" + data + "' 입니다.");
+					}
 				},error:function(){
 				}
 			});
-		
-		
-		$('#idModal').modal('show');
-		$('.modal-body').text("팔로우")
 	}else{
 		alert("입력값이 유효하지 않습니다.")
 	}
