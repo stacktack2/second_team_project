@@ -1,7 +1,6 @@
 package common.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.mindrot.jbcrypt.BCrypt;
 
 import common.dao.FindIdDAO;
+import common.dao.FindPwDAO;
 import common.dao.indexDAO;
 
 public class IndexController {
@@ -150,8 +150,30 @@ public class IndexController {
 		rd.forward(request, response);
 	}
 	public void PostfindPw(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/common/findPw.jsp");
-		rd.forward(request, response);
+		String type = request.getParameter("type");
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String birth = request.getParameter("birth");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		
+		FindPwDAO findPwDAO = new FindPwDAO();
+		String memberNo ="";
+		
+		if(type.equals("학생")) {
+			memberNo = findPwDAO.searchStudentNo(id, name, birth, phone, email);
+		}else if(type.equals("교수")) {
+			memberNo = findPwDAO.searchProfessorNo(id, name, birth, phone, email);
+		}
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		if(memberNo == null) {
+			response.getWriter().append("null");
+		}else {
+			String newPw = findPwDAO.insertNewPw(type, memberNo);
+			response.getWriter().append(newPw);
+		}
+		response.getWriter().flush();
 	}
 
 }
