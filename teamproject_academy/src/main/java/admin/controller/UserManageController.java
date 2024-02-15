@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import admin.dao.UserManageDAO;
+import vo.PagingVO;
 import vo.ProfessorVO;
 
 public class UserManageController {
@@ -161,12 +162,14 @@ public class UserManageController {
 //	GET	
 	public void profUserMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 //		교수 목록		
 		UserManageDAO userManageDAO = new UserManageDAO();
 		List<ProfessorVO> professorList = userManageDAO.selectProf();
 		
 		request.setAttribute("professorList", professorList);
+		
+		int totalCnt = professorList.size();
+		
 		
 //		검색
 		String searchValue = request.getParameter("searchValue");
@@ -175,7 +178,17 @@ public class UserManageController {
 		if (searchValue != null && !searchValue.isEmpty()) {
 	        List<ProfessorVO> searchResults = userManageDAO.searchProf(searchValue);
 	        request.setAttribute("professorList", searchResults);
+	        
+	        totalCnt = searchResults.size();
 	    }
+		
+//		페이징
+		int nowPage = 1;
+		int perPage = 5;
+		
+		PagingVO pagingVO = new PagingVO(nowPage, totalCnt, perPage);
+		
+		request.setAttribute("pagingVO", pagingVO);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgList.jsp");
 		rd.forward(request, response);

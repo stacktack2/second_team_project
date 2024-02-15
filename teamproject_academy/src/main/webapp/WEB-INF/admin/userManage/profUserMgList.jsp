@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="vo.PagingVO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,19 +130,21 @@
 								<button class="btn btn-primary inline grey mleft" type="button">삭제</button>
 							</div>
 								<!-- 페이징 -->
+								
 								<nav class="datatable-pagination d-inline-block offset-5-5 mt-px">
 									<ul class="datatable-pagination-list">
 										<li class="datatable-pagination-list-item datatable-hidden datatable-disabled">
-											<a data-page="1" class="datatable-pagination-list-item-link">‹</a>
+											<a class="datatable-pagination-list-item-link"
+											   href="">‹</a>
 										</li>
 										<li class="datatable-pagination-list-item datatable-active">
-											<a data-page="1" class="datatable-pagination-list-item-link">1</a>
+											<a class="datatable-pagination-list-item-link">1</a>
 										</li>
 										<li class="datatable-pagination-list-item">
-											<a data-page="2" class="datatable-pagination-list-item-link">2</a>
+											<a class="datatable-pagination-list-item-link">2</a>
 										</li>
 										<li class="datatable-pagination-list-item">
-											<a data-page="2" class="datatable-pagination-list-item-link">›</a>
+											<a class="datatable-pagination-list-item-link">›</a>
 										</li>
 									</ul>
 								</nav>

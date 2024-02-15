@@ -10,7 +10,7 @@ public class PagingVO {
 	private int lastPage; //전체 페이지영역 끝번호
 	private int start; //화면에서의 게시글 시작 번호
 	private int end; //화면에서의 게시글 끝번호
-	private int cntPage =10; //보여줄 페이지영역 페이지 갯수
+	private int cntPage =5; //보여줄 페이지영역 페이지 갯수
 	
 	public PagingVO() {}
 	public PagingVO(int nowPage, int total, int perPage) {
@@ -29,6 +29,7 @@ public class PagingVO {
 		calcStartEndPage(nowPage,cntPage);
 		
 	}
+	
 	public void calcLastPage(int total, int perPage) {
 		int lastPage = (int)Math.ceil(total/(double)perPage);
 		setLastPage(lastPage);
