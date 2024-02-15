@@ -1,5 +1,39 @@
 package common.dao;
 
-public class FindIdDAO {
+import util.DBM;
 
+public class FindIdDAO {
+	
+	public String searchStudentId(String name, int birth, String phone) {
+		
+		String sql = "select sid from student where sname = ? && sbirth = ? && sphone = ?";
+		
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql).setString("name").setString("birth").setString("phone").select();
+		
+		String id = null;
+		
+		while(dbm.next()) {
+			id = dbm.getString("sid");
+		}
+		
+		return id;
+	}
+	
+	public String searchProfessorId(String name, int birth, String phone) {
+		
+		String sql = "select pid from professor where pname = ? && pbirth = ? && pphone = ?";
+		
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql).setString("name").setString("birth").setString("phone").select();
+		
+		String id = null;
+		
+		while(dbm.next()) {
+			id = dbm.getString("pid");
+		}
+		
+		return id;
+	}
+	
 }
