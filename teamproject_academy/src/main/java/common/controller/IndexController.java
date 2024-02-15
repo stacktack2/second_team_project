@@ -1,7 +1,7 @@
 package common.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import common.dao.FindIdDAO;
 import common.dao.indexDAO;
 
 public class IndexController {
@@ -122,8 +123,25 @@ public class IndexController {
 		rd.forward(request, response);
 	}
 	public void PostfindId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/common/findId.jsp");
-		rd.forward(request, response);
+		
+		String type = request.getParameter("selectType");
+		String name = request.getParameter("inputName");
+		String birth = request.getParameter("inputBirth");
+		String phone = request.getParameter("inputPhone");
+		
+		FindIdDAO findIdDAO = new FindIdDAO();
+		String id =null;
+		
+		if(type.equals("학생")) {
+			id = findIdDAO.searchStudentId(name, birth, phone);
+		}else if(type.equals("교수")) {
+			id = findIdDAO.searchProfessorId(name, birth, phone);
+		}
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().append(id);
+		response.getWriter().flush();
+		
 	}
 	
 	

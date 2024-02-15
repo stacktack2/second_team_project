@@ -24,9 +24,9 @@ CREATE TABLE absense
 (
 	abseno int unsigned NOT NULL AUTO_INCREMENT,
 	abseinfo tinyint unsigned NOT NULL,
-	abserdate date NOT NULL,
+	abserdate varchar(10) NOT NULL,
 	absestatus tinyint unsigned,
-	absepdate date,
+	absepdate varchar(10),
 	absereason text,
 	abseyn tinyint unsigned,
 	sno int unsigned NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE administer
 CREATE TABLE attendment
 (
 	attendno int unsigned NOT NULL AUTO_INCREMENT,
-	attendrdate date,
+	attendrdate varchar(10),
 	attendyn tinyint unsigned,
 	cno int unsigned NOT NULL,
 	PRIMARY KEY (attendno)
@@ -103,7 +103,7 @@ CREATE TABLE lecture
 (
 	lno int unsigned NOT NULL AUTO_INCREMENT,
 	lname varchar(40) NOT NULL,
-	lyear date NOT NULL,
+	lyear varchar(10) NOT NULL,
 	lsemester tinyint unsigned NOT NULL,
 	lcredit tinyint unsigned NOT NULL,
 	ltime tinyint unsigned NOT NULL,
@@ -134,7 +134,7 @@ CREATE TABLE professor
 	pname varchar(20) NOT NULL,
 	pregNo1 char(6) NOT NULL,
 	pregNo2 char(7) NOT NULL,
-	pbirth date NOT NULL,
+	pbirth varchar(10) NOT NULL,
 	pgender varchar(2) NOT NULL,
 	pemail varchar(45) NOT NULL,
 	pphone varchar(20) NOT NULL,
@@ -148,7 +148,7 @@ CREATE TABLE professor
 	pmajor varchar(40) NOT NULL,
 	pdegree varchar(40) NOT NULL,
 	plab varchar(40) NOT NULL,
-	pappointDate date NOT NULL,
+	pappointDate varchar(10) NOT NULL,
 	pdelyn tinyint unsigned DEFAULT 0 NOT NULL,
 	PRIMARY KEY (pno)
 );
@@ -162,7 +162,7 @@ CREATE TABLE student
 	sname varchar(20) NOT NULL,
 	sregNo1 char(6) NOT NULL,
 	sregNo2 char(7) NOT NULL,
-	sbirth date NOT NULL,
+	sbirth varchar(10) NOT NULL,
 	sgender varchar(2) NOT NULL,
 	semail varchar(45) NOT NULL,
 	sphone varchar(20) NOT NULL,
@@ -176,10 +176,10 @@ CREATE TABLE student
 	smajor varchar(40) NOT NULL,
 	sgrade tinyint unsigned NOT NULL,
 	srank int unsigned NOT NULL,
-	scomeDate date NOT NULL,
-	soutDate date,
-	scompletionDate date,
-	sgradDate date,
+	scomeDate varchar(10) NOT NULL,
+	soutDate varchar(10),
+	scompletionDate varchar(10),
+	sgradDate varchar(10),
 	smaxgrade tinyint unsigned NOT NULL,
 	sdelyn tinyint unsigned DEFAULT 0 NOT NULL,
 	PRIMARY KEY (sno)
