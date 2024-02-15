@@ -77,11 +77,14 @@
 								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 								<div class="datatable-container">
 									<!-- 테이블 -->
+									<form name="frm" action="profUserAdd" method="post">
 									<table class="datatable-table viewtable sschecktable">
 										<tbody>
 											<tr>
 												<th>교번</th>
-												<td></td>
+												<td style="width: 25rem;">
+													<input type="text" name="pid" id="pid" class="datatable-input">
+												</td>
 												<th>성명</th>
 												<td></td>
 												<th>주민번호</th>
@@ -126,9 +129,9 @@
 												<td></td>
 
 											</tr>
-
 										</tbody>
 									</table>
+									</form>
 								</div>
 							</div>
 							<!-- 테이블 바텀 -->

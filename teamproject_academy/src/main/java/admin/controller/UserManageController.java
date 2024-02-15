@@ -1,11 +1,15 @@
 package admin.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import admin.dao.UserManageDAO;
+import vo.ProfessorVO;
 
 public class UserManageController {
 	
@@ -106,6 +110,10 @@ public class UserManageController {
 	}
 	
 	public void PostprofUserAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserAdd.jsp");
 		rd.forward(request, response);
 		
@@ -148,12 +156,33 @@ public class UserManageController {
 		
 		
 	}
+
+//	교수 사용자 관리 페이지 
+//	GET	
 	public void profUserMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+//		교수 목록		
+		UserManageDAO userManageDAO = new UserManageDAO();
+		List<ProfessorVO> professorList = userManageDAO.selectProf();
+		
+		request.setAttribute("professorList", professorList);
+		
+//		검색
+		String searchValue = request.getParameter("searchValue");
+		
+// 		검색 결과가 있을 경우 검색 결과를 전달
+		if (searchValue != null && !searchValue.isEmpty()) {
+	        List<ProfessorVO> searchResults = userManageDAO.searchProf(searchValue);
+	        request.setAttribute("professorList", searchResults);
+	    }
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgList.jsp");
 		rd.forward(request, response);
 		
 		
 	}
+//	POST
 	public void PostprofUserMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgList.jsp");
 		rd.forward(request, response);
@@ -179,11 +208,11 @@ public class UserManageController {
 		
 		
 	}
+	
 	public void PostprofUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
 		rd.forward(request, response);
-		
-		
 	}
 
 	

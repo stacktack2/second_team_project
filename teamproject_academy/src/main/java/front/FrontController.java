@@ -56,12 +56,12 @@ public class FrontController extends HttpServlet {
 		if(uris.length >= 1) {
 			
 			String oneUri = uris[0];
-			System.out.println(oneUri);
+			
 			
 			if(uris.length == 2) {
 				
 			String twoUri = uris[1];
-			System.out.println(twoUri);
+			
 			
 				switch (oneUri) {
 					case "common":
@@ -195,8 +195,6 @@ public class FrontController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//doGet(); 삭제 했습니다 (전용휘);
 		
 		String command = request.getRequestURI().substring(request.getContextPath().length()+1);
 //		command 예시 => admin/course/courMgList.do - admin/admMain.do - asdf.do - adsfasd/asdfasdf.do
