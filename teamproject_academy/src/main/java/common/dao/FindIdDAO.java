@@ -9,7 +9,7 @@ public class FindIdDAO {
 		String sql = "select sid from student where sname = ? && sbirth = ? && sphone = ?";
 		
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setString("name").setString("birth").setString("phone").select();
+		dbm.prepare(sql).setString(name).setString(birth).setString(phone).select();
 		
 		String id = null;
 		
@@ -27,7 +27,7 @@ public class FindIdDAO {
 		String sql = "select pid from professor where pname = ? && pbirth = ? && pphone = ?";
 		
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setString("name").setString("birth").setString("phone").select();
+		dbm.prepare(sql).setString(name).setString(birth).setString(phone).select();
 		
 		String id = null;
 		

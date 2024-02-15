@@ -9,6 +9,8 @@ public class indexDAO {
 	
 	DBM dbm = DBM.getInstance();
 	
+	
+	
 	dbm.prepare(sql).setString(id).select();
 	
 	String pw=null, type =null;

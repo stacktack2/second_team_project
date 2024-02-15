@@ -7,6 +7,8 @@
 <title>비밀번호 찾기</title>
 <link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<script src="<%=request.getContextPath()%>/resources/share/js/jquery-3.7.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/common/js/common.js"></script>
 <style>
 .bg-primary {
 	background-image:
@@ -24,6 +26,22 @@
 </style>
 </head>
 <body class="bg-primary">
+	<!-- 모달창 start -->
+	<div class="modal fade" id="pwModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="exampleModalLabel">비밀번호 찾기</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	      	비밀번호가 존재하지 않습니다.
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- 모달창 end -->
+	
 	<div id="layoutAuthentication">
 		<div id="layoutAuthentication_content">
 			<main>
@@ -42,46 +60,45 @@
 										<span class="block">* 인증수단 정보를 입력한 뒤 다음 버튼을 누르면 해당 이메일로
 											인증번호가 발송됩니다</span>
 									</div>
-									<form>
+									<form method="post" action="#" name="searchPwForm" id="searchPwForm" onsubmit="return false;">
 										<div class="datatable-dropdown mb-3">
-											<select class="datatable-selector">
+											<select class="datatable-selector" name="type">
 												<option value="학생">학생</option>
 												<option value="교수">교수</option>
 											</select>
 										</div>
 										<div class="form-floating mb-3">
-											<input class="form-control" id="inputId" type="text" placeholder="아이디" /> 
+											<input class="form-control" id="inputId" name="id" type="text" placeholder="아이디" /> 
 											<label for="inputId">아이디</label>
 										</div>
 										<div class="form-floating mb-3">
-											<input class="form-control" id="inputName" type="text" placeholder="이름" /> 
+											<input class="form-control" id="inputName" name="name" type="text" placeholder="이름" /> 
 											<label for="inputName">이름</label>
 										</div>
 										<div class="form-floating mb-3">
-											<input class="form-control" id="inputBirth" type="text" placeholder="생년월일" /> 
+											<input class="form-control" id="inputBirth" name="birth" type="text" placeholder="생년월일" /> 
 											<label for="inputBirth">생년월일</label>
 										</div>
 										<div class="form-floating mb-3">
-											<input class="form-control" id="inputPhone" placeholder="연락처" />
+											<input class="form-control" id="inputPhone" name="phone" placeholder="연락처" />
 											<label for="inputPhone">연락처</label>
 										</div>
 										<div class="form-floating mb-3 col-md-8 d-inline-block">
-											<input class="form-control" id="inputEmail" placeholder="이메일" />
+											<input class="form-control" id="inputEmail" name="email" placeholder="이메일" />
 											<label for="inputEmail">이메일</label>
 										</div>
 										<div class="form-floating d-inline-block">
-											<input class="btn btn-outline-secondary2" type="button"
-												value="인증하기" />
+											<input class="btn btn-outline-success" type="button" value="인증하기" />
 										</div>
 										<div class="form-floating mb-3 col-md-8 d-inline-block">
-											<input class="form-control" id="inputCode" placeholder="인증코드" />
+											<input class="form-control" id="inputCode" name="code" placeholder="인증코드" />
 											<label for="inputCode">인증코드</label>
 										</div>
 										<div class="form-floating d-inline-block">
 											<input class="btn btn-outline-success" type="button" value="인증확인" />
 										</div>
 										<div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-											<a class="btn btn-primary mx-auto" href="findPw">비밀번호 찾기</a>
+											<button type="button" class="btn btn-primary mx-auto" onclick="searchPw();">비밀번호 찾기</button>
 										</div>
 									</form>
 								</div>
