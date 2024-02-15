@@ -17,6 +17,8 @@ public class FindIdDAO {
 			id = dbm.getString("sid");
 		}
 		
+		dbm.close();
+		
 		return id;
 	}
 	
@@ -32,6 +34,8 @@ public class FindIdDAO {
 		while(dbm.next()) {
 			id = dbm.getString("pid");
 		}
+		
+		dbm.close();
 		
 		return id;
 	}
