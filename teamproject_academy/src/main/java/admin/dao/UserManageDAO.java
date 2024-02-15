@@ -36,4 +36,42 @@ public class UserManageDAO {
 		return professorList;
 	}
 
+	public List<ProfessorVO> searchProf(String searchValue) {
+		
+		List<ProfessorVO> searchResults = new ArrayList<>();
+		
+		String searchSql = "SELECT pno, pid, pname, pposition, plab, pphone, pemail "
+						 + "  FROM professor p " ;
+		
+		if(searchValue != null && !searchValue.isEmpty()) {
+			searchSql += " WHERE pname LIKE CONCAT('%', ?, '%')";
+		}
+		
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(searchSql);
+		
+		if(searchValue != null && !searchValue.isEmpty()) {
+			dbm.setString(searchValue);
+		}
+		
+		dbm.select();
+		
+		while(dbm.next()) {
+			ProfessorVO searchProf = new ProfessorVO();
+			searchProf.setPno(dbm.getInt("pno"));
+			searchProf.setPid(dbm.getString("pid"));
+			searchProf.setPname(dbm.getString("pname"));
+			searchProf.setPposition(dbm.getString("pposition"));
+			searchProf.setPlab(dbm.getString("plab"));
+			searchProf.setPphone(dbm.getString("pphone"));
+			searchProf.setPemail(dbm.getString("pemail"));
+			
+			searchResults.add(searchProf);
+		}
+		
+		dbm.close();
+		
+		return searchResults;
+	}
+
 }

@@ -76,11 +76,12 @@
 								<div class="datatable-top">
 									<!-- 검색 -->
 									<div class="right">
-										<form action="profUserMgList" method="post"
-											class="datatable-search inline">
-											<input class="datatable-input inline wauto"
-												placeholder="이름을 입력하세요" type="search"
-												title="Search within table" aria-controls="datatablesSimple">
+										<form name="frm" action="profUserMgList" method="get" class="datatable-search inline">
+											<input 
+												class="datatable-input inline wauto"
+												placeholder="이름을 입력하세요" type="text"
+												aria-controls="datatablesSimple" 
+												name="searchValue" id="title">
 											<button class="btn btn-primary inline grey">검색</button>
 										</form>
 									</div>

@@ -56,12 +56,12 @@ public class FrontController extends HttpServlet {
 		if(uris.length >= 1) {
 			
 			String oneUri = uris[0];
-			System.out.println(oneUri);
+			
 			
 			if(uris.length == 2) {
 				
 			String twoUri = uris[1];
-			System.out.println(twoUri);
+			
 			
 				switch (oneUri) {
 					case "common":
