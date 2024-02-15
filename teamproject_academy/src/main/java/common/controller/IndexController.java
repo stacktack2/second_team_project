@@ -126,16 +126,7 @@ public class IndexController {
 		
 		String type = request.getParameter("selectType");
 		String name = request.getParameter("inputName");
-		String birthParam = request.getParameter("inputBirth");
-		int birth =0;
-		if(birthParam != null && birthParam.equals("")) {
-			try {
-				birth = Integer.parseInt(birthParam);
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			}
-		}
-			
+		String birth = request.getParameter("inputBirth");
 		String phone = request.getParameter("inputPhone");
 		
 		FindIdDAO findIdDAO = new FindIdDAO();

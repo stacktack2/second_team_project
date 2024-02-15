@@ -4,7 +4,7 @@ import util.DBM;
 
 public class FindIdDAO {
 	
-	public String searchStudentId(String name, int birth, String phone) {
+	public String searchStudentId(String name, String birth, String phone) {
 		
 		String sql = "select sid from student where sname = ? && sbirth = ? && sphone = ?";
 		
@@ -20,7 +20,7 @@ public class FindIdDAO {
 		return id;
 	}
 	
-	public String searchProfessorId(String name, int birth, String phone) {
+	public String searchProfessorId(String name, String birth, String phone) {
 		
 		String sql = "select pid from professor where pname = ? && pbirth = ? && pphone = ?";
 		
