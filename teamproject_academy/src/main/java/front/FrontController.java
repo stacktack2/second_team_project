@@ -196,8 +196,6 @@ public class FrontController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//doGet(); 삭제 했습니다 (전용휘);
-		
 		String command = request.getRequestURI().substring(request.getContextPath().length()+1);
 //		command 예시 => admin/course/courMgList.do - admin/admMain.do - asdf.do - adsfasd/asdfasdf.do
 		

@@ -106,6 +106,15 @@
 	.center, .checktable td{text-align:center !important;}
 	.timetable tr>td{height:8vh !important;}
 
+.left{
+	float: left !important;
+	margin-left:10px;
+}
+.mleft{
+	margin-left: 10px !important; 
+	margin-top:10px;
+}
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -7650,6 +7659,10 @@ textarea.form-control-lg {
 .my-auto {
   margin-top: auto !important;
   margin-bottom: auto !important;
+}
+
+.mt-px {
+  margin-top: 10px !important;
 }
 
 .mt-0 {
