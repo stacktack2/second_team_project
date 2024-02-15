@@ -42,17 +42,17 @@
 									<h3 class="text-center font-weight-light my-4">로그인</h3>
 								</div>
 								<div class="card-body">
-									<form name="frm" action="index.do" method="post">
+									<form name="frm" action="index" method="post">
 										<div class="form-floating mb-3">
-											<input class="form-control" id="id" type="text" placeholder="아이디" /> 
-											<label for="inputId">아이디</label>
+											<input class="form-control" id="id" type="text" placeholder="아이디" value="${cookie.id.value }" /> 
+											<label for="id">아이디</label>
 										</div>
 										<div class="form-floating mb-3">
 											<input class="form-control" id="pw" type="password" placeholder="비밀번호" /> 
-											<label for="inputPassword">비밀번호</label>
+											<label for="pw">비밀번호</label>
 										</div>
 										<div class="form-check mb-3">
-											<input class="form-check-input" id="inputRememberId" type="checkbox" value="" /> 
+											<input class="form-check-input" id="inputRememberId" type="checkbox" value="check" /> 
 											<label class="form-check-label" for="inputRememberId">아이디 기억하기</label>
 										</div>
 										<div class="d-flex align-items-center justify-content-between mt-4 mb-0">
