@@ -50,9 +50,9 @@ public class AtdGradeDAO {
 				+" INNER JOIN lecture l ON c.lno = l.lno "
 				+" INNER JOIN professor p ON l.pno = p.pno "
 				+" INNER JOIN student s ON c.sno = s.sno "
-				+" WHERE s.sno = c.sno "
-				+" ORDER BY c.cno "
-				+" WHERE s.sno = ?";
+				+" WHERE s.sno = ? "
+				+" ORDER BY c.cno ";
+				
 		
 		//dbm 객체생성
 		DBM dbm = DBM.getInstance();
@@ -66,7 +66,7 @@ public class AtdGradeDAO {
 			courseMap.put("cno", dbm.getInt("cno"));
 			courseMap.put("lno", dbm.getInt("lno"));
 			courseMap.put("lname", dbm.getString("lname"));
-			courseMap.put("ltime", dbm.getString("ltime"));
+			courseMap.put("ltime", dbm.getInt("ltime"));
 			courseMap.put("lroom", dbm.getString("lroom"));
 			courseMap.put("pname", dbm.getString("pname"));
 

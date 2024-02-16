@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -12,7 +11,6 @@
 </head>
 <body class="sb-nav-fixed">
 	<%@ include file="/resources/student/include/navHead.jsp" %>
-
 	<div id="layoutSidenav">
 	<%@ include file="/resources/student/include/navLeft.jsp" %>
 
@@ -29,8 +27,7 @@
 						<div class="card-header disNone">성적 조회</div>
 						<div class="card-body">
 
-							<div
-								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+							<div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 								<div class="datatable-container">
 									<!-- 테이블 -->
 									<table class="datatable-table viewtable checktable">
@@ -58,10 +55,8 @@
 
 								</div>
 								<div class="datatable-top">
-
 									<div class="right">
-										<form action="noticeList.do" method="get"
-											class="datatable-search inline">
+										<form action="noticeList.do" method="get" class="datatable-search inline">
 											<select class="datatable-selector">
 												<option value="1" selected>2024</option>
 												<option value="2">2023</option>

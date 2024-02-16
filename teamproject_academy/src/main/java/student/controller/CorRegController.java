@@ -1,11 +1,15 @@
 package student.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import student.dao.CorRegDAO;
 
 public class CorRegController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,6 +56,10 @@ public class CorRegController {
 		
 	}
 	public void corReg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CorRegDAO corRegDAO = new CorRegDAO();
+		List<Map<String, Object>> corRegList = corRegDAO.selectCorRegAll();
+		request.setAttribute("corRegList",corRegList);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/corReg/corReg.jsp");
 		rd.forward(request, response);
 		
