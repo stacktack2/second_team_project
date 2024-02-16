@@ -74,12 +74,30 @@ public class UserManageDAO {
 		return searchResults;
 	}
 
-	public List<ProfessorVO> searchPaging() {
-		
-		
-		
-		return null;
-	}
+	public List<ProfessorVO> selectProfPaging(int start, int perPage) {
+		 List<ProfessorVO> professorList = new ArrayList<>();
 
+		    String pagingSql = "SELECT * FROM professor p LIMIT ?, ?";
+
+		    DBM dbm = DBM.getInstance();
+		    dbm.prepare(pagingSql);
+
+		    dbm.setInt(start);
+		    dbm.setInt(perPage);
+
+		    dbm.select();
+
+		    while (dbm.next()) {
+		        ProfessorVO professor = new ProfessorVO();
+		        professor.setPno(dbm.getInt("pno"));
+		        // 필요한 다른 필드들도 추가
+		        professorList.add(professor);
+		    }
+
+		    dbm.close();
+
+		    return professorList;
+	}
 	
+
 }

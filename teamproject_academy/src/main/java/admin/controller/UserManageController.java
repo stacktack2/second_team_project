@@ -183,14 +183,14 @@ public class UserManageController {
 		
 //		페이징
 		int nowPage = 1;
-		int perPage = 5;
-		
-		PagingVO pagingVO = new PagingVO(nowPage, totalCnt, perPage);
-		
-		List<ProfessorVO> pagingList = userManageDAO.searchPaging();
-		
-		request.setAttribute("pagingVO", pagingVO);
-		request.setAttribute("pagingList", pagingList);
+	    int perPage = 5;
+
+	    PagingVO pagingVO = new PagingVO(nowPage, totalCnt, perPage);
+
+	    List<ProfessorVO> pagingList = userManageDAO.selectProfPaging(pagingVO.getStart(), perPage);
+
+	    request.setAttribute("pagingVO", pagingVO);
+	    request.setAttribute("pagingList", pagingList);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgList.jsp");
 		rd.forward(request, response);
