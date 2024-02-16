@@ -27,8 +27,7 @@
 					<div class="card mb-4 white">
 						<div class="card-header disNone">휴복학 신청</div>
 						<div class="card-body">
-							<table class="datatable-table viewtable checktable"
-								style="width: 20%;">
+							<table class="datatable-table viewtable checktable" style="width: 20%;">
 								<tbody>
 									<tr>
 										<th>학적상태</th>

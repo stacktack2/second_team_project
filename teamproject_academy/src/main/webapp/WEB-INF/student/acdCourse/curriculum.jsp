@@ -29,8 +29,7 @@
 					<div class="card mb-4 white">
 						<div class="card-header disNone">강의계획서 조회</div>
 						<div class="card-body">
-							<div
-								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+							<div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 								<div class=""></div>
 								<div class="datatable-container">
 									<div class="datatable-top">
