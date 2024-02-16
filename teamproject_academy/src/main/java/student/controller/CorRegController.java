@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import student.dao.CorRegDAO;
+import vo.StudentVO;
 
 public class CorRegController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,6 +31,14 @@ public class CorRegController {
 //		}else if(threeUri.equals("corReg")) {
 //			corReg(request,response);			
 //		}
+		String snoParam = request.getParameter("sno");
+		int sno = 0;
+		if(snoParam != null && !snoParam.equals("")) {
+			sno = Integer.parseInt(snoParam);
+		}
+		CorRegDAO corRegDAO = new CorRegDAO();
+		StudentVO student = corRegDAO.selectSid(sno);
+		request.setAttribute("student", student);
 		
 	}
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

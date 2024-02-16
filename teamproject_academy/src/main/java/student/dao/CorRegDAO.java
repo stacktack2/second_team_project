@@ -6,8 +6,21 @@ import java.util.List;
 import java.util.Map;
 
 import util.DBM;
+import vo.StudentVO;
 
 public class CorRegDAO {
+	public StudentVO selectSid(int sno) {
+		StudentVO student = new StudentVO();
+		
+		String sql = "select sid from student "
+				+"where sno = ?";
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql).setInt(sno).select();
+		
+		dbm.close();
+		return student;
+	}
+	
 	public List<Map<String, Object>> selectCorRegAll(){
 		List<Map<String, Object>> corRegList = new ArrayList<>();
 		

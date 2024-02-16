@@ -7,8 +7,20 @@ import java.util.Map;
 
 import util.DBM;
 import vo.BoardVO;
+import vo.StudentVO;
 
 public class MainDAO {
+	public StudentVO selectSid(int sno) {
+		StudentVO student = new StudentVO();
+		
+		String sql = "select sid from student "
+				+"where sno = ?";
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql).setInt(sno).select();
+		
+		dbm.close();
+		return student;
+	}
 
 	public List<Map<String, Object>>  selectCourseAll(){
 		// 1. list 생성
@@ -57,7 +69,7 @@ public class MainDAO {
 			
 		}
 		//닫기
-		//dbm.close();
+		dbm.close();
 		
 		//5. list에는 map들이 담겨있음, list리턴
 		return courseList;
@@ -83,7 +95,7 @@ public class MainDAO {
 			
 			noticeList.add(board);
 		}
-		//dbm.close();
+		dbm.close();
 		
 		return noticeList;
 	}

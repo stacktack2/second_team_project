@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import student.dao.AcdCourseDAO;
+import vo.StudentVO;
 
 public class AcdCourseController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,6 +45,15 @@ public class AcdCourseController {
 //		}else if(threeUriParam.equals("subcheck")) {
 //			subcheck(request,response);			
 //		}
+		
+		String snoParam = request.getParameter("sno");
+		int sno = 0;
+		if(snoParam != null && !snoParam.equals("")) {
+			sno = Integer.parseInt(snoParam);
+		}	
+		AcdCourseDAO acdCourseDAO = new AcdCourseDAO();
+		StudentVO student = acdCourseDAO.selectSid(sno);
+		request.setAttribute("student", student);
 		
 	}
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
