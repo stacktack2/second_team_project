@@ -35,6 +35,7 @@
         <!-- 좌측 nav 바 -->
 		<div id="layoutSidenav">
 			<div id="layoutSidenav_nav">
+				<!-- 페이징 -->
 				<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 					<div class="sb-sidenav-menu">
 						<div class="nav">
@@ -130,24 +131,40 @@
 								<button class="btn btn-primary inline grey mleft" type="button">삭제</button>
 							</div>
 								<!-- 페이징 -->
+								<nav class="datatable-pagination" style="display: inline-block; margin-top: 0.75rem; margin-left: 32rem;">
+								    <ul class="datatable-pagination-list">
+								        <c:if test="${pagingVO.startPage > 1 }">
+								            <li class="datatable-pagination-list-item">
+								                <a class="datatable-pagination-list-item-link"
+								                   href="<%=request.getContextPath()%>/admin/userManage/profUserMgList?nowPage=${pagingVO.startPage - 1}">‹</a>
+								            </li>
+								        </c:if>
 								
-								<nav class="datatable-pagination d-inline-block offset-5-5 mt-px">
-									<ul class="datatable-pagination-list">
-										<li class="datatable-pagination-list-item datatable-hidden datatable-disabled">
-											<a class="datatable-pagination-list-item-link"
-											   href="">‹</a>
-										</li>
-										<li class="datatable-pagination-list-item datatable-active">
-											<a class="datatable-pagination-list-item-link">1</a>
-										</li>
-										<li class="datatable-pagination-list-item">
-											<a class="datatable-pagination-list-item-link">2</a>
-										</li>
-										<li class="datatable-pagination-list-item">
-											<a class="datatable-pagination-list-item-link">›</a>
-										</li>
-									</ul>
+								        <c:forEach begin="${pagingVO.startPage}" end="${pagingVO.endPage}" var="page">
+								            <c:choose>
+								                <c:when test="${page eq pagingVO.nowPage}">
+								                    <li class="datatable-pagination-list-item datatable-active">
+								                        <a data-page="${page}" class="datatable-pagination-list-item-link">${page}</a>
+								                    </li>
+								                </c:when>
+								                <c:otherwise>
+								                    <li class="datatable-pagination-list-item">
+								                        <a href="<%=request.getContextPath()%>/admin/userManage/profUserMgList?nowPage=${page}"
+								                           class="datatable-pagination-list-item-link">${page}</a>
+								                    </li>
+								                </c:otherwise>
+								            </c:choose>
+								        </c:forEach>
+								
+								        <c:if test="${pagingVO.endPage < pagingVO.lastPage}">
+								            <li class="datatable-pagination-list-item">
+								                <a href="<%=request.getContextPath()%>/admin/userManage/profUserMgList?nowPage=${pagingVO.endPage + 1}"
+								                   class="datatable-pagination-list-item-link">›</a>
+								            </li>
+								        </c:if>
+								    </ul>
 								</nav>
+
 							<div class="datatable-bottom ms-auto">
 									<a href="profUserAdd" class="btn btn-primary grey right mright">사용자 추가</a>
 							</div>

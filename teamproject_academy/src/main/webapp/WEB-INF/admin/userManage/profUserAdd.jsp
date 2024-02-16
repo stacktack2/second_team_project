@@ -86,15 +86,25 @@
 													<input type="text" name="pid" id="pid" class="datatable-input">
 												</td>
 												<th>성명</th>
-												<td></td>
+												<td>
+													<input type="text" name="pname" id="pname" class="datatable-input">
+												</td>
 												<th>주민번호</th>
-												<td></td>
+												<td>
+													<input type="text" name="pregNo1" id="pregNo1" class="datatable-input d-inline-block" style="width: 45%;"> - 
+													<input type="text" name="pregNo2" id="pregNo2" class="datatable-input d-inline-block" style="width: 45%;">
+												</td>
 											</tr>
 											<tr>
 												<th>생년월일</th>
-												<td></td>
+												<td>
+													<input type="text" name="pbirth" id="pbirth" class="datatable-input d-inline-block" style="width: 45%;">
+												</td>
 												<th>성별</th>
-												<td></td>
+												<td>
+													<input type="radio" name="pgender" id="pgender" value="M" class="form-check d-inline-block" >남
+													<input type="radio" name="pgender" id="pgender" value="W" class="form-check d-inline-block" >여
+												</td>
 												<th>직급</th>
 												<td></td>
 											</tr>
