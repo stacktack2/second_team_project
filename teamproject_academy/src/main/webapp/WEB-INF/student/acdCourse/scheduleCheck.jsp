@@ -13,7 +13,6 @@
 <%@ include file="/resources/student/include/navHead.jsp" %>
 	<div id="layoutSidenav">
 <%@ include file="/resources/student/include/navLeft.jsp" %>
-
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
@@ -29,8 +28,7 @@
 
 							<div class="card mb-4 white">
 								<div class="right">
-									<form action="noticeList.do" method="get"
-										class="datatable-search inline">
+									<form action="noticeList.do" method="get" class="datatable-search inline">
 										<select class="datatable-selector">
 											<option value="1" selected>2024</option>
 											<option value="2">2023</option>
@@ -43,7 +41,6 @@
 								</div>
 							</div>
 							<div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-
 								<div class="datatable-container">
 									<table class="datatable-table viewtable checktable timetable">
 										<thead>

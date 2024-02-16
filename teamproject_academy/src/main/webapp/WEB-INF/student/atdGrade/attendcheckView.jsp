@@ -202,8 +202,7 @@
 									</table>
 								</div>
 								<div class="datatable-bottom">
-									<a class="btn btn-primary grey right mright"
-										href="attendcheckList">뒤로가기</a>
+									<a class="btn btn-primary grey right mright" href="attendcheckList">뒤로가기</a>
 								</div>
 							</div>
 						</div>

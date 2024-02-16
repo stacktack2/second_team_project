@@ -45,7 +45,7 @@
 								<div class="card-body">
 									<form name="loginForm" action="index" method="post" onsubmit="return false;">
 										<div class="form-floating mb-3">
-											<input class="form-control" id="id" name="id" type="text" placeholder="아이디" value="${cookie.id.value }" /> 
+											<input class="form-control" id="id" name="id" type="text" placeholder="아이디" value="${cookie.rememberParam.value }" /> 
 											<label for="id">아이디</label>
 										</div>
 										<div class="form-floating mb-3">

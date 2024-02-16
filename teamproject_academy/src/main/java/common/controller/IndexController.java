@@ -1,6 +1,6 @@
 package common.controller;
 
-import java.io.IOException; 
+import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +14,8 @@ import common.dao.FindIdDAO;
 import common.dao.FindPwDAO;
 import common.dao.indexDAO;
 import util.SendEmail;
+
+
 
 public class IndexController {
 	
@@ -88,6 +90,7 @@ public class IndexController {
 		boolean isValidPassword =false;
 		if(pwData != null) {
 			isValidPassword = BCrypt.checkpw(pwParam, pwData);
+			
 		}
 		if(isValidPassword) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/common/index.jsp");
@@ -101,7 +104,7 @@ public class IndexController {
 				rd = request.getRequestDispatcher("/WEB-INF/admin/admMain.jsp");
 			}
 			//아이디 기억 쿠키
-			if(rememberParam.equals("check")) {
+			if(rememberParam != null && rememberParam.equals("check")) {
 				Cookie cookie = new Cookie("rememberParam",idParam);
 				cookie.setMaxAge(60*60*3);
 				response.addCookie(cookie);

@@ -53,16 +53,15 @@ function searchId() {
 
 	if (isSubmit) {
 		let params = $('#searchIdForm').serialize();
-		$('#idModal').modal('show');
 		$.ajax({
 			url: "findId",
 			type: "post",
 			data: params,
 			success: function(data) {
 				if (data.trim() == "null") {
-					$('.modal-body').text("일치하는 아이디가 없습니다.");
+					alert("일치하는 아이디가 없습니다.");
 				} else {
-					$('.modal-body').text("일치하는 아이디는 : '" + data + "' 입니다.");
+					alert("일치하는 아이디는 : '" + data + "' 입니다.");
 				}
 			}, error: function() {
 			}
@@ -220,16 +219,16 @@ function searchPw() {
 
 	if (isSubmit && checkOk) {
 		let params = $('#searchPwForm').serialize();
-		$('#pwModal').modal('show');
 		$.ajax({
 			url: "findPw",
 			type: "post",
 			data: params,
 			success: function(data) {
 				if (data.trim() == "null") {
-					$('.modal-body').text("일치하는 계정을 찾을 수 없습니다.");
+					alert("일치하는 계정을 찾을 수 없습니다.");
 				} else {
-					$('.modal-body').text("새 비밀번호는 : '" + data + "' 입니다.");
+					alert("새 비밀번호는 : '" + data + "' 입니다.");
+					location.href="/teamproject_academy/";
 				}
 			}, error: function() {
 			}
@@ -237,6 +236,6 @@ function searchPw() {
 	} else {
 		alert("입력값이 유효하지 않거나 인증이 되지 않았습니다.")
 	}
-
+	
 
 }
