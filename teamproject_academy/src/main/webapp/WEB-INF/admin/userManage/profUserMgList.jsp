@@ -130,23 +130,22 @@
 								<button class="btn btn-primary inline grey mleft" type="button">삭제</button>
 							</div>
 								<!-- 페이징 -->
-								
-								<nav class="datatable-pagination d-inline-block offset-5-5 mt-px">
-									<ul class="datatable-pagination-list">
-										<li class="datatable-pagination-list-item datatable-hidden datatable-disabled">
-											<a class="datatable-pagination-list-item-link"
-											   href="">‹</a>
-										</li>
-										<li class="datatable-pagination-list-item datatable-active">
-											<a class="datatable-pagination-list-item-link">1</a>
-										</li>
-										<li class="datatable-pagination-list-item">
-											<a class="datatable-pagination-list-item-link">2</a>
-										</li>
-										<li class="datatable-pagination-list-item">
-											<a class="datatable-pagination-list-item-link">›</a>
-										</li>
-									</ul>
+								<nav class="datatable-pagination" style="display: inline-block; margin-top: 0.75rem; margin-left: 32rem;">
+								<ul class="datatable-pagination-list">
+									<li class="datatable-pagination-list-item datatable-hidden datatable-disabled">
+										<a data-page="1" class="datatable-pagination-list-item-link">‹</a>
+									</li>
+									<li class="datatable-pagination-list-item datatable-active">
+										<a data-page="1" class="datatable-pagination-list-item-link">1</a>
+									</li>
+									<li class="datatable-pagination-list-item">
+										<a data-page="2" class="datatable-pagination-list-item-link">2</a>
+									</li>
+									<li class="datatable-pagination-list-item">
+									<li class="datatable-pagination-list-item">
+										<a data-page="2" class="datatable-pagination-list-item-link">›</a>
+									</li>
+								</ul>
 								</nav>
 							<div class="datatable-bottom ms-auto">
 									<a href="profUserAdd" class="btn btn-primary grey right mright">사용자 추가</a>

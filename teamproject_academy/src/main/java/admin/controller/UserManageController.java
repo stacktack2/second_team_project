@@ -170,7 +170,6 @@ public class UserManageController {
 		
 		int totalCnt = professorList.size();
 		
-		
 //		검색
 		String searchValue = request.getParameter("searchValue");
 		
@@ -188,13 +187,15 @@ public class UserManageController {
 		
 		PagingVO pagingVO = new PagingVO(nowPage, totalCnt, perPage);
 		
+		List<ProfessorVO> pagingList = userManageDAO.searchPaging();
+		
 		request.setAttribute("pagingVO", pagingVO);
+		request.setAttribute("pagingList", pagingList);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgList.jsp");
 		rd.forward(request, response);
-		
-		
 	}
+	
 //	POST
 	public void PostprofUserMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgList.jsp");

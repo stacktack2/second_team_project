@@ -73,5 +73,13 @@ public class UserManageDAO {
 		
 		return searchResults;
 	}
+
+	public List<ProfessorVO> searchPaging() {
+		
+		
+		
+		return null;
+	}
+
 	
 }
