@@ -1,6 +1,7 @@
 package common.dao;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.mindrot.jbcrypt.BCrypt;
 
 import util.DBM;
 
@@ -25,7 +26,7 @@ public class FindPwDAO {
 	
 	public String searchProfessorNo(String id, String name, String birth, String phone, String email) {
 		
-		String sql = "select pno from professor where pid = pname = ? && pbirth = ? && pphone = ? && pemail = ?";
+		String sql = "select pno from professor where pid = ? && pname = ? && pbirth = ? && pphone = ? && pemail = ?";
 		
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setString(id).setString(name).setString(birth).setString(phone).setString(email).select();
@@ -43,16 +44,16 @@ public class FindPwDAO {
 	
 	public String insertNewPw(String type, String memberNo) {
 		String randomPw = RandomStringUtils.random(10, true, true);
-		
+		String inputRandomPw = BCrypt.hashpw(randomPw, BCrypt.gensalt());
 		String sql = "";
 		if(type.equals("학생")) {
-			sql ="update student set spw = "+randomPw+" where sno = ? ";
+			sql ="update student set spw = ? where sno = ? ";
 		}else if(type.equals("교수")) {
-			sql ="update professor set ppw = "+randomPw+" where pno = ? ";
+			sql ="update professor set ppw = ? where pno = ? ";
 		}
 		
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setString(memberNo).update();
+		dbm.prepare(sql).setString(inputRandomPw).setString(memberNo).update();
 		
 		dbm.close();
 		

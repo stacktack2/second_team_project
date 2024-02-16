@@ -1,0 +1,67 @@
+DELIMITER $$
+DROP PROCEDURE IF EXISTS loopInsert$$
+ 
+CREATE PROCEDURE loopInsert()
+BEGIN
+    DECLARE i INT DEFAULT 1;
+        
+    WHILE i <= 50 DO
+		-- 학생
+        INSERT INTO student(sid, spw, sname, sregNo1, sregNo2, sbirth, sgender,
+			 semail, sphone, saddr, szipCode, sstatus, suniv, sfaculty, smajor, sgrade, srank, scomeDate, smaxgrade)
+          VALUES(concat('stuid',i),concat('stupw',i),concat('학생',i), '060101', '3333333' , DATE_FORMAT('2006-01-01', '%Y%m%d'), 'M',
+           'testemail@naver.com','01011112222', '전주시 덕진구', '54930', '0', '공과대학', '컴퓨터공학부', '컴퓨터공학과','1', i, current_date(), '18');
+           
+		-- 교수
+        INSERT INTO professor(pid, ppw, pname, pregNo1, pregNo2,pbirth,pgender,
+			 pemail, pphone, paddr, pzipCode, pposition, puniv, pfaculty, pmajor, pdegree, plab, pappointDate)
+          VALUES(concat('profid',i),concat('profpw',i),concat('교수',i), '860101', '1111111' ,DATE_FORMAT('1986-01-01', '%Y%m%d'), 'M',
+           'testemail@naver.com','01011112222', '전주시 덕진구','54930','교수', '공과대학', '컴퓨터공학부', '컴퓨터공학과','박사',concat('공대 2호관',i), current_date());
+          
+		-- 관리자
+        INSERT INTO administer(aid,apw)
+          VALUES(concat('adminid',i),concat('adminpw',i));
+          
+		-- 파일
+        INSERT INTO File(frealnm,foriginnm)
+          VALUES(concat('첨부파일실제이름',i),concat('첨부파일원래이름',i));
+         
+		-- 학생 사진파일 브릿지
+        INSERT INTO studentbridgefile(sno,fno) VALUES(i,i);
+         
+		-- 교수 사진파일 브릿지
+        INSERT INTO profBridgeFile(pno,fno) VALUES(i,i);
+          
+		-- 공지사항 파일 브릿지
+          INSERT INTO boardbridgefile(fno,bno) VALUES(i,i);
+          
+        -- 공지사항  
+		INSERT INTO board(btitle,bcontent,bhit,ano)
+          VALUES(concat('공지사항제목입니다.',i),concat('공지사항내용입니다.',i),i,i);
+		
+        -- 강의정보
+         INSERT INTO lecture(lname,lyear,lsemester,lcredit,ltime, lroom,lmaxpeople,
+			lintro, lfocus,lstatus,pno)
+          VALUES('컴퓨터공학론',current_date(),'1','3','3',concat('공대 1호관',i),30,
+			'소프트웨어,하드웨어의 기초부분을 공부하여, 컴퓨터 시스템에 대한 이해를 돕는다.',
+            '새롭게 개발되는 소프트웨어,하드웨어 구성요소를 정의하고, 이들의 구조 및 성질을 이해하고, 총체적으로 결합된 컴퓨터 시스템을, 높은 성능을 보장하면서도 매우 안전하게 만드는 연구를 수행한다.
+             수강 후 컴퓨터 시스템에 대한 이해를 통하여 운영체제 내의 소프트웨어 계층을 최적화하고, 컴퓨터 시스템을 외부의 침입이나 공격으로부터 보호하며, 대용량 데이터들을 효과적으로 처리하는 분산/병렬 프레임워크를 구현하고 개선하는 연구를 진행한다.',3,i);
+          
+		-- 수강정보 브릿지
+          INSERT INTO course(cyn,cgrade,lno,sno) VALUES( '1', 'A', i, i);
+          
+		-- 출석정보
+        INSERT INTO attendment(attendrdate,attendyn,cno) 
+			VALUES(current_date(), 1, i);
+            
+		-- 휴복학정보
+        -- INSERT INTO absense(abseinfo,abserdate,sno)
+		-- VALUES(0,current_date(),i);
+		
+        SET i = i + 1;
+    END WHILE;
+END$$
+DELIMITER $$
+
+
+CALL loopInsert;

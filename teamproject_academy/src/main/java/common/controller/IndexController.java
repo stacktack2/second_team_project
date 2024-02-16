@@ -1,6 +1,6 @@
 package common.controller;
 
-import java.io.IOException; 
+import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +14,8 @@ import common.dao.FindIdDAO;
 import common.dao.FindPwDAO;
 import common.dao.indexDAO;
 import util.SendEmail;
+
+
 
 public class IndexController {
 	
@@ -88,25 +90,25 @@ public class IndexController {
 		boolean isValidPassword =false;
 		if(pwData != null) {
 			isValidPassword = BCrypt.checkpw(pwParam, pwData);
+			
 		}
 		if(isValidPassword) {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/common/index.jsp");
 			request.getSession().setAttribute("type",typeData);
 			request.getSession().setAttribute("id",idParam);
-			if(typeData.equals("student")) {
-				rd = request.getRequestDispatcher("/WEB-INF/student/stuMain.jsp");
-			}else if(typeData.equals("professor")) {
-				rd = request.getRequestDispatcher("/WEB-INF/professor/profMain.jsp");
-			}else if(typeData.equals("administer")) {
-				rd = request.getRequestDispatcher("/WEB-INF/admin/admMain.jsp");
-			}
 			//아이디 기억 쿠키
-			if(rememberParam.equals("check")) {
+			if(rememberParam != null && rememberParam.equals("check")) {
 				Cookie cookie = new Cookie("rememberParam",idParam);
 				cookie.setMaxAge(60*60*3);
 				response.addCookie(cookie);
 			}
-			rd.forward(request, response);
+			if(typeData.equals("student")) {
+				response.sendRedirect(request.getContextPath()+"/student/stuMain");
+			}else if(typeData.equals("professor")) {
+				response.sendRedirect(request.getContextPath()+"/professor/profMain");
+			}else if(typeData.equals("administer")) {
+				response.sendRedirect(request.getContextPath()+"/admin/admMain");
+			}
+			
 		}else {
 			response.setContentType("text/html; charset=utf-8");
 			response.setCharacterEncoding("UTF-8");
