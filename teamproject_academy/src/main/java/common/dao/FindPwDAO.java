@@ -26,7 +26,7 @@ public class FindPwDAO {
 	
 	public String searchProfessorNo(String id, String name, String birth, String phone, String email) {
 		
-		String sql = "select pno from professor where pid = pname = ? && pbirth = ? && pphone = ? && pemail = ?";
+		String sql = "select pno from professor where pid = ? && pname = ? && pbirth = ? && pphone = ? && pemail = ?";
 		
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setString(id).setString(name).setString(birth).setString(phone).setString(email).select();
