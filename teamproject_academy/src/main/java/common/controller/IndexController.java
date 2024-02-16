@@ -1,6 +1,6 @@
 package common.controller;
 
-import java.io.IOException;
+import java.io.IOException; 
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +13,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import common.dao.FindIdDAO;
 import common.dao.FindPwDAO;
 import common.dao.indexDAO;
+import util.SendEmail;
 
 public class IndexController {
 	
@@ -24,8 +25,6 @@ public class IndexController {
 	
 	public void doAction(String twoUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println(twoUriParam);
-		
 		switch (twoUriParam) {
 			case "index":
 				index(request, response);
@@ -36,6 +35,7 @@ public class IndexController {
 			case "findPw":
 				findPw(request, response);
 				break;
+			
 		}
 		
 //		if(twoUriParam.equals("index")) {
@@ -59,14 +59,17 @@ public class IndexController {
 			PostfindId(request,response);			
 		}else if(twoUri.equals("findPw")) {
 			PostfindPw(request,response);			
+		}else if(twoUri.equals("sendEmail")) {
+			PostsendEmail(request,response);			
+		}else if(twoUri.equals("sendCode")) {
+			PostsendCode(request,response);			
 		}
-		
 		
 	}
 
-//	index GET접근
+
+	//	index GET접근
 	public void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-	
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/common/index.jsp");
 		rd.forward(request, response);
 	}
@@ -81,10 +84,6 @@ public class IndexController {
 		String[] result = indexdao.selectPw(idParam);
 		String pwData = result[0];
 		String typeData = result[1];
-
-		
-		
-		
 		//검증
 		boolean isValidPassword =false;
 		if(pwData != null) {
@@ -156,24 +155,63 @@ public class IndexController {
 		String birth = request.getParameter("birth");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
+		String inCode = request.getParameter("code");
 		
-		FindPwDAO findPwDAO = new FindPwDAO();
-		String memberNo ="";
+		String outCode = (String)request.getSession().getAttribute("code");
 		
-		if(type.equals("학생")) {
-			memberNo = findPwDAO.searchStudentNo(id, name, birth, phone, email);
-		}else if(type.equals("교수")) {
-			memberNo = findPwDAO.searchProfessorNo(id, name, birth, phone, email);
-		}
 		response.setContentType("text/html; charset=utf-8");
 		response.setCharacterEncoding("UTF-8");
-		if(memberNo == null) {
+		if(outCode.equals(inCode)) {
+			FindPwDAO findPwDAO = new FindPwDAO();
+			String memberNo ="";
+			if(type.equals("학생")) {
+				memberNo = findPwDAO.searchStudentNo(id, name, birth, phone, email);
+			}else if(type.equals("교수")) {
+				memberNo = findPwDAO.searchProfessorNo(id, name, birth, phone, email);
+			}
+			
+			if(memberNo == null) {
+				response.getWriter().append("null");
+			}else {
+				String newPw = findPwDAO.insertNewPw(type, memberNo);
+				response.getWriter().append(newPw);
+			}
+		}else {
+			response.getWriter().append("null");
+		}
+		response.getWriter().flush();
+		
+	}
+	
+	private void PostsendEmail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String email = request.getParameter("email");
+		SendEmail sendEmail = new SendEmail();
+		String code = sendEmail.sendEmail(email);
+		
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		if(code == null) {
 			response.getWriter().append("null");
 		}else {
-			String newPw = findPwDAO.insertNewPw(type, memberNo);
-			response.getWriter().append(newPw);
+			request.getSession().setAttribute("code", code);
+			request.getSession().setMaxInactiveInterval(180);
+			response.getWriter().append("ok");
 		}
 		response.getWriter().flush();
 	}
-
+	
+	private void PostsendCode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String outCode = (String)request.getSession().getAttribute("code");
+		String inCode = request.getParameter("code");
+		
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		if(outCode.equals(inCode)) {
+			response.getWriter().append("ok");
+		}else {
+			response.getWriter().append("null");
+		}
+		response.getWriter().flush();
+		
+	}
 }

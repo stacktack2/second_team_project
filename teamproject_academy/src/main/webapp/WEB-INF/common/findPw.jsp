@@ -8,7 +8,6 @@
 <link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 <script src="<%=request.getContextPath()%>/resources/share/js/jquery-3.7.1.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/common/js/common.js"></script>
 <style>
 .bg-primary {
 	background-image:
@@ -88,14 +87,17 @@
 											<label for="inputEmail">이메일</label>
 										</div>
 										<div class="form-floating d-inline-block">
-											<input class="btn btn-outline-success" type="button" value="인증하기" />
+											<input class="btn btn-outline-success" type="button" value="인증하기" onclick="sendEmail();" />
 										</div>
 										<div class="form-floating mb-3 col-md-8 d-inline-block">
 											<input class="form-control" id="inputCode" name="code" placeholder="인증코드" />
 											<label for="inputCode">인증코드</label>
 										</div>
 										<div class="form-floating d-inline-block">
-											<input class="btn btn-outline-success" type="button" value="인증확인" />
+											<input class="btn btn-outline-success" type="button" value="인증확인" onclick="codeCheck();" />
+										</div>
+										<div class="form-floating d-inline-block">
+											<input class="btn" id="Timer" type="button" value="" readonly/>
 										</div>
 										<div class="d-flex align-items-center justify-content-between mt-4 mb-0">
 											<button type="button" class="btn btn-primary mx-auto" onclick="searchPw();">비밀번호 찾기</button>
@@ -125,5 +127,6 @@
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/resources/share/js/scripts.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/common/js/common.js"></script>
 </body>
 </html>
