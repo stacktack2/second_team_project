@@ -45,7 +45,7 @@ public class SampleDataMaker {
 				String sql = "        INSERT INTO student(sid, spw, sname, sregNo1, sregNo2, sbirth, sgender, "
 						+ "			 semail, sphone, saddr, szipCode, sstatus, suniv, sfaculty, smajor, sgrade, srank, scomeDate, smaxgrade) "
 						+ "          VALUES(concat('stuid',"+i+"),?,'학생', '060101', '3333333' , DATE_FORMAT('2006-01-01', '%Y%m%d'), 'M', "
-						+ "           'testemail@naver.com','01011112222', '전주시 덕진구', '54930', '0', '공과대학', '컴퓨터공학부', '컴퓨터공학과','1', "+i+", current_date(), '18') "
+						+ "           'stacktack.2@gmail.com','0101111222"+i+"', '전주시 덕진구', '54930', '0', '공과대학', '컴퓨터공학부', '컴퓨터공학과','1', "+i+", current_date(), '18') "
 						+ "           ";
 						
 						
