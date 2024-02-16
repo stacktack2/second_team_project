@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="vo.PagingVO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,11 +77,12 @@
 								<div class="datatable-top">
 									<!-- 검색 -->
 									<div class="right">
-										<form action="stuUserMgList" method="post"
-											class="datatable-search inline">
-											<input class="datatable-input inline wauto"
-												placeholder="이름을 입력하세요" type="search"
-												title="Search within table" aria-controls="datatablesSimple">
+										<form name="frm" action="profUserMgList" method="get" class="datatable-search inline">
+											<input 
+												class="datatable-input inline wauto"
+												placeholder="이름을 입력하세요" type="text"
+												aria-controls="datatablesSimple" 
+												name="searchValue" id="title">
 											<button class="btn btn-primary inline grey">검색</button>
 										</form>
 									</div>
@@ -87,6 +90,7 @@
 								<!-- 테이블 컨테이너 -->
 								<div class="datatable-container">
 									<!-- 테이블 -->
+									<form name="frm" action="profUserMgView" method="post">
 									<table class="datatable-table">
 										<thead>
 											<tr>
@@ -100,38 +104,47 @@
 											</tr>
 										</thead>
 										<tbody>
+										<c:forEach var="professor" items="${professorList}">
 											<tr>
 												<td style="text-align: center">
 													<input type="checkbox" name="" id="">
 												</td>
-												<td>1</td>
-												<td><a href="profUserMgView">홍길동</a></td>
-												<td>재학</td>
-												<td>s501</td>
-												<td>010-1111-1111</td>
-												<td>ezen@gmail.com</td>
+												<td>${professor.pid }</td>
+												<td>
+													<a href="profUserMgView?pno=${professor.pno }">${professor.pname }</a>
+												</td>
+												<td>${professor.pposition }</td>
+												<td>${professor.plab }</td>
+												<td>${professor.pphone }</td>
+												<td>${professor.pemail }</td>
 											</tr>
+										</c:forEach>
 										</tbody>
 									</table>
+									</form>
 								</div>
 							</div>
 							<!-- 테이블 바텀 -->
-							<div class="datatable-bottom">
-							<button class="btn btn-primary inline grey" type="button">삭제</button>
+							<div class="datatable-bottom col-12 d-sm-inline-block">
+							<div class="datatable-bottom ms-auto ">
+								<button class="btn btn-primary inline grey mleft" type="button">삭제</button>
+							</div>
 								<!-- 페이징 -->
-								<nav class="datatable-pagination d-inline-block">
+								
+								<nav class="datatable-pagination d-inline-block offset-5-5 mt-px">
 									<ul class="datatable-pagination-list">
 										<li class="datatable-pagination-list-item datatable-hidden datatable-disabled">
-											<a data-page="1" class="datatable-pagination-list-item-link">‹</a>
+											<a class="datatable-pagination-list-item-link"
+											   href="">‹</a>
 										</li>
 										<li class="datatable-pagination-list-item datatable-active">
-											<a data-page="1" class="datatable-pagination-list-item-link">1</a>
+											<a class="datatable-pagination-list-item-link">1</a>
 										</li>
 										<li class="datatable-pagination-list-item">
-											<a data-page="2" class="datatable-pagination-list-item-link">2</a>
+											<a class="datatable-pagination-list-item-link">2</a>
 										</li>
 										<li class="datatable-pagination-list-item">
-											<a data-page="2" class="datatable-pagination-list-item-link">›</a>
+											<a class="datatable-pagination-list-item-link">›</a>
 										</li>
 									</ul>
 								</nav>

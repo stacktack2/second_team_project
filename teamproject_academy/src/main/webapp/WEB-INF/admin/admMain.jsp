@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.List"%>
+<%@ page import="vo.BoardVO" %>
+<%@ page import="admin.dao.NoticeDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,36 +85,14 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
+								<c:forEach var="board" items="${mainList}">
+								    <tr>
+								        <td>${board.bno}</td>
+								        <td><a href="noticeView?bno=${board.bno}">${board.btitle}</a></td>
+								        <td>${board.brdate}</td>
+								        <td>${board.bhit}</td>
+								    </tr>
+								</c:forEach>
 								</tbody>
 							</table>
 						</div>

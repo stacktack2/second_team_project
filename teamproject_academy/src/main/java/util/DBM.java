@@ -66,6 +66,8 @@ public class DBM {
 		localorderCount.set(localorderCount.get()+1);
 		return this;
 	}
+	
+	
 	public DBM setInt(int value) {
 		try {
 			localPreparedStatement.get().setInt(localorderCount.get(), value);
