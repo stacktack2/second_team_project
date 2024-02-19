@@ -17,9 +17,9 @@ public class MypageController {
 		if(snoParam != null && !snoParam.equals("")) {
 			sno = Integer.parseInt(snoParam);
 		}
-		
+		sno=5;
 		MypageDAO mypageDAO = new MypageDAO();
-		StudentVO student = mypageDAO.selectSid(sno);
+		StudentVO student = mypageDAO.selectSnameByOne(sno);
 		request.setAttribute("student", student);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/mypage/myInfoModify.jsp");

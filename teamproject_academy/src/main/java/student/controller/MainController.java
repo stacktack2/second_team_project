@@ -24,9 +24,11 @@ public class MainController {
 		if(snoParam != null && !snoParam.equals("")) {
 			sno = Integer.parseInt(snoParam);
 		}
+		sno=5;
 		//헤더네비
-		StudentVO student = mainDAO.selectSid(sno);
+		StudentVO student = mainDAO.selectSnameByOne(sno);
 		request.setAttribute("student", student);
+
 		//수강과목 목록
 		List<Map<String, Object>> courseList = mainDAO.selectCourseAll();
 		request.setAttribute("courseList", courseList);

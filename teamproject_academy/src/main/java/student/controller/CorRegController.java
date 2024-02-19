@@ -16,7 +16,16 @@ public class CorRegController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 //		String threeUri = threeUriParam.split("\\.")[0];
-
+		String snoParam = request.getParameter("sno");
+		int sno = 0;
+		if(snoParam != null && !snoParam.equals("")) {
+			sno = Integer.parseInt(snoParam);
+		}
+		sno=5;
+		CorRegDAO corRegDAO = new CorRegDAO();
+		StudentVO student = corRegDAO.selectSnameByOne(sno);
+		request.setAttribute("student", student);
+		
 		switch (threeUriParam) {
 			case "cAppCheck":
 				cAppCheck(request,response);
@@ -31,14 +40,7 @@ public class CorRegController {
 //		}else if(threeUri.equals("corReg")) {
 //			corReg(request,response);			
 //		}
-		String snoParam = request.getParameter("sno");
-		int sno = 0;
-		if(snoParam != null && !snoParam.equals("")) {
-			sno = Integer.parseInt(snoParam);
-		}
-		CorRegDAO corRegDAO = new CorRegDAO();
-		StudentVO student = corRegDAO.selectSid(sno);
-		request.setAttribute("student", student);
+
 		
 	}
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

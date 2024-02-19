@@ -16,6 +16,15 @@ public class AtdGradeController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//String threeUri = threeUriParam.split("\\.")[0];
+		String snoParam = request.getParameter("sno");
+		int sno = 0;
+		if(snoParam != null && !snoParam.equals("")) {
+			sno = Integer.parseInt(snoParam);
+		}
+		sno=5;
+		AtdGradeDAO atdGradeDAO = new AtdGradeDAO();
+		StudentVO student = atdGradeDAO.selectSnameByOne(sno);
+		request.setAttribute("student", student);
 		
 		switch(threeUriParam) {
 		case "attendcheckList":
@@ -36,14 +45,7 @@ public class AtdGradeController {
 //		}else if(threeUriParam.equals("cgradeCheck")) {
 //			cgradeCheck(request,response);			
 //		}
-		String snoParam = request.getParameter("sno");
-		int sno = 0;
-		if(snoParam != null && !snoParam.equals("")) {
-			sno = Integer.parseInt(snoParam);
-		}
-		AtdGradeDAO atdGradeDAO = new AtdGradeDAO();
-		StudentVO student = atdGradeDAO.selectSid(sno);
-		request.setAttribute("student", student);
+
 		
 		
 	}
