@@ -6,8 +6,25 @@ import java.util.List;
 import java.util.Map;
 
 import util.DBM;
+import vo.StudentVO;
 
 public class AtdGradeDAO {
+	
+	public StudentVO selectSnameByOne(int sno) {
+		StudentVO student = new StudentVO();
+		
+		String sql = "select sname from student "
+				+"where sno = ?";
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql).setInt(sno).select();
+		
+		while(dbm.next()) {
+			student.setSname(dbm.getString("sname"));
+		}
+
+		dbm.close();
+		return student;
+	}
 	public List<Map<String, Object>>  selectgradeAll(int sno){
 		List<Map<String, Object>> gradeList = new ArrayList<>();
 		
@@ -22,7 +39,7 @@ public class AtdGradeDAO {
 		while(dbm.next()) {
 			Map<String, Object> gradeMap = new HashMap<>();
 			
-			gradeMap.put("sid", dbm.getInt("sid"));
+			gradeMap.put("sid", dbm.getString("sid"));
 			gradeMap.put("smajor", dbm.getString("smajor"));
 			gradeMap.put("sname", dbm.getString("sname"));
 			gradeMap.put("sgrade", dbm.getInt("sgrade"));
@@ -36,13 +53,12 @@ public class AtdGradeDAO {
 			
 			gradeList.add(gradeMap);
 		}
-		//System.out.println(gradeList.size());
+		
 		dbm.close();
 		return gradeList;
 	}
 	
 	public List<Map<String, Object>>  selectCourseAll(int sno){
-		// 1. list 생성
 		List<Map<String, Object>> courseList = new ArrayList<>();
 		
 		String sql = "SELECT c.cno, l.lname, p.pname, l.ltime, l.lroom, l.lno "
@@ -53,16 +69,12 @@ public class AtdGradeDAO {
 				+" WHERE s.sno = ? "
 				+" ORDER BY c.cno ";
 				
-		
-		//dbm 객체생성
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setInt(sno).select();
 		
 		while(dbm.next()) {
-			//2.  map 생성
 			Map<String, Object> courseMap = new HashMap<>();
 			
-			//3. map에 원소추가(put)
 			courseMap.put("cno", dbm.getInt("cno"));
 			courseMap.put("lno", dbm.getInt("lno"));
 			courseMap.put("lname", dbm.getString("lname"));
@@ -70,14 +82,11 @@ public class AtdGradeDAO {
 			courseMap.put("lroom", dbm.getString("lroom"));
 			courseMap.put("pname", dbm.getString("pname"));
 
-			//4. list에 map 추가(담기)
 			courseList.add(courseMap);
 			
 		}
-		//닫기
 		dbm.close();
-		
-		//5. list에는 map들이 담겨있음, list리턴
+
 		return courseList;
 	}
 	
@@ -106,7 +115,7 @@ public class AtdGradeDAO {
 
 			attendList.add(attendMap);
 		}
-		//System.out.println(gradeList.size());
+		
 		dbm.close();
 		return attendList;
 	}

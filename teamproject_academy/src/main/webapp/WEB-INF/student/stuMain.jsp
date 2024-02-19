@@ -32,7 +32,7 @@
 							<a href="acdCourse/subcheck" class="nav-link right bold">&#43;</a>
 						</div>
 						<div class="card-body">
-							<table class="datatable-table">
+							<table class="datatable-table checktable">
 								<thead>
 									<tr>
 										<th>번호</th>
@@ -62,7 +62,7 @@
 							</a>
 						</div>
 						<div class="card-body">
-							<table class="datatable-table">
+							<table class="datatable-table checktable">
 								<thead>
 									<tr>
 										<th>번호</th>
