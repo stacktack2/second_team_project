@@ -20,7 +20,7 @@
 		</button>
 		<!-- 우측상단 사용자 메뉴-->
 		<div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-			<span class="hello">홍길동 교수님 안녕하세요 </span>
+			<span class="hello">${name} 교수님 안녕하세요 </span>
 		</div>
 		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
 			<li class="nav-item dropdown">
