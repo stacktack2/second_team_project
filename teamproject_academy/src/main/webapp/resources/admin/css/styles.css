@@ -90,6 +90,42 @@
     scroll-behavior: smooth;
   }
 }
+/*학생*/
+	.disNone{display:none;}
+	.white{border-color: white !important;}
+	.grey{border-color: grey !important; background-color:grey !important;}
+	button.grey:hover{border-color: grey !important; background-color:lightgrey !important; color:grey !important;}
+	.inline{display:inline-block !important;}
+	.right{float:right !important; margin-right:10px;}
+	.wauto{width:auto !important;}
+	.viewtable > tbody > tr:hover > *{--bs-table-accent-bg:none !important;}
+	.mright{margin-right: 10px !important; margin-top:10px;}
+	.sschecktable> tbody > tr > th{width:10% !important;}
+	.bold{font-weight:bold !important;}
+	.blue{color:blue !important;}
+	.center, .checktable td{text-align:center !important;}
+	.timetable tr>td{height:8vh !important;}
+	
+.inputSpan{
+	font-size: medium;
+    color: grey;
+    font-family: revert;
+}
+	
+#photoPreview {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.left{
+	float: left !important;
+	margin-left:10px;
+}
+.mleft{
+	margin-left: 10px !important; 
+	margin-top:10px;
+}
 
 body {
   margin: 0;
@@ -804,8 +840,16 @@ progress {
   margin-left: 33.33333333%;
 }
 
+.offset-4-1 {
+  margin-left: 39%;
+}
+
 .offset-5 {
   margin-left: 41.66666667%;
+}
+
+.offset-5-5 {
+  margin-left: 45%;
 }
 
 .offset-6 {
@@ -830,6 +874,10 @@ progress {
 
 .offset-11 {
   margin-left: 91.66666667%;
+}
+
+.offset-12 {
+  margin-left: 91%;
 }
 
 .g-0,
@@ -1751,7 +1799,7 @@ progress {
   width: 100%;
   margin-bottom: 1rem;
   color: var(--bs-table-color);
-  vertical-align: top;
+  vertical-align: middle;
   border-color: var(--bs-table-border-color);
 }
 .table > :not(caption) > * > *, .datatable-table > :not(caption) > * > * {
@@ -2007,12 +2055,48 @@ progress {
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+.userAdd-input {
+  display: block;
+  width: 45%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.datatable-textarea {
+  display: block;
+  width: 100%;
+  font-weight: 400;
+  line-height: 1.5;
+  resize: none;
+  height: 15rem;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
 @media (prefers-reduced-motion: reduce) {
-  .form-control, .datatable-input {
+  .form-control, .datatable-input, userAdd-input {
     transition: none;
   }
 }
-.form-control[type=file], [type=file].datatable-input {
+.form-control[type=file], [type=file].datatable-input, userAdd-input {
   overflow: hidden;
 }
 .form-control[type=file]:not(:disabled):not([readonly]), [type=file].datatable-input:not(:disabled):not([readonly]) {
@@ -2223,8 +2307,8 @@ textarea.form-control-lg {
 }
 
 .form-check-input {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
   margin-top: 0.25em;
   vertical-align: top;
   background-color: #fff;
@@ -7607,6 +7691,10 @@ textarea.form-control-lg {
   margin-bottom: auto !important;
 }
 
+.mt-px {
+  margin-top: 10px !important;
+}
+
 .mt-0 {
   margin-top: 0 !important;
 }
@@ -11162,14 +11250,21 @@ body {
 .datatable-table > tfoot > tr > th,
 .datatable-table > thead > tr > td,
 .datatable-table > thead > tr > th {
-  vertical-align: top;
+  vertical-align: middle;
   padding: 0.5rem 0.5rem;
 }
 
 .datatable-table > thead > tr > th {
   vertical-align: bottom;
-  text-align: left;
+  text-align: center;
   border-bottom: none;
+  background-color:#ccc;
+}
+.datatable-table > tbody > tr > th {
+  vertical-align: middle;
+  text-align: center;
+  border-bottom: none;
+  background-color:#ccc;
 }
 
 .datatable-table > tfoot > tr > th {
