@@ -6,21 +6,6 @@ BEGIN
     DECLARE i INT DEFAULT 1;
         
     WHILE i <= 50 DO
-		-- 학생
-        INSERT INTO student(sid, spw, sname, sregNo1, sregNo2, sbirth, sgender,
-			 semail, sphone, saddr, szipCode, sstatus, suniv, sfaculty, smajor, sgrade, srank, scomeDate, smaxgrade)
-          VALUES(concat('stuid',i),concat('stupw',i),concat('학생',i), '060101', '3333333' , DATE_FORMAT('2006-01-01', '%Y%m%d'), 'M',
-           'testemail@naver.com','01011112222', '전주시 덕진구', '54930', '0', '공과대학', '컴퓨터공학부', '컴퓨터공학과','1', i, current_date(), '18');
-           
-		-- 교수
-        INSERT INTO professor(pid, ppw, pname, pregNo1, pregNo2,pbirth,pgender,
-			 pemail, pphone, paddr, pzipCode, pposition, puniv, pfaculty, pmajor, pdegree, plab, pappointDate)
-          VALUES(concat('profid',i),concat('profpw',i),concat('교수',i), '860101', '1111111' ,DATE_FORMAT('1986-01-01', '%Y%m%d'), 'M',
-           'testemail@naver.com','01011112222', '전주시 덕진구','54930','교수', '공과대학', '컴퓨터공학부', '컴퓨터공학과','박사',concat('공대 2호관',i), current_date());
-          
-		-- 관리자
-        INSERT INTO administer(aid,apw)
-          VALUES(concat('adminid',i),concat('adminpw',i));
           
 		-- 파일
         INSERT INTO File(frealnm,foriginnm)
