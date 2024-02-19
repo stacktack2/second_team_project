@@ -41,14 +41,13 @@
 						class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 						<div class="datatable-container">
 							<!-- 인적사항 정보 테이블 -->
-							<form name="frm" action="profUserAdd" method="post">
+							<form name="profUserAddForm" action="profUserMgView" method="post" id="profUserAddForm" onsubmit="return false;">
 							<table class="datatable-table viewtable sschecktable">
 								<tbody>
 									<tr>
 										<th>교번</th>
 										<td style="width: 20rem;">
 											<input type="text" name="pid" id="pid" class="datatable-input">
-											<input type="hidden" name="ppw" id="ppw">
 										</td>
 										<th>성명</th>
 										<td style="width: 20rem;">
@@ -130,9 +129,8 @@
 										</td>
 										<th>우편번호</th>
 										<td>
-											<input type="text" name="pzipcode" id="pzipcode" class="datatable-input d-inline-block">
+											<input type="text" name="pzipCode" id="pzipCode" class="datatable-input d-inline-block">
 										</td>
-
 									</tr>
 								</tbody>
 							</table>
@@ -141,7 +139,7 @@
 					</div>
 					<!-- 테이블 바텀 -->
 						<div class="datatable-bottom ms-auto">
-							<a href="profUserMgView" class="btn btn-primary grey right mright">등록</a>
+							<button onclick="register()" class="btn btn-primary grey right mright">등록</button>
 						</div>
 					</div>
 				</div>

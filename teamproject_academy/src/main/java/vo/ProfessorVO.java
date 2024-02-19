@@ -6,9 +6,9 @@ public class ProfessorVO {
 	private String pid;
 	private String ppw;
 	private String pname;
-	private int pregNo1;
-	private int pregNo2;
-	private int pbirth;
+	private String pregNo1;
+	private String pregNo2;
+	private String pbirth;
 	private String pgender;
 	private String pemail;
 	private String pphone;
@@ -49,22 +49,22 @@ public class ProfessorVO {
 	public void setPname(String pname) {
 		this.pname = pname;
 	}
-	public int getPregNo1() {
+	public String getPregNo1() {
 		return pregNo1;
 	}
-	public void setPregNo1(int pregNo1) {
+	public void setPregNo1(String pregNo1) {
 		this.pregNo1 = pregNo1;
 	}
-	public int getPregNo2() {
+	public String getPregNo2() {
 		return pregNo2;
 	}
-	public void setPregNo2(int pregNo2) {
+	public void setPregNo2(String pregNo2) {
 		this.pregNo2 = pregNo2;
 	}
-	public int getPbirth() {
+	public String getPbirth() {
 		return pbirth;
 	}
-	public void setPbirth(int pbirth) {
+	public void setPbirth(String pbirth) {
 		this.pbirth = pbirth;
 	}
 	public String getPgender() {
@@ -157,6 +157,7 @@ public class ProfessorVO {
 	public void setPdelyn(int pdelyn) {
 		this.pdelyn = pdelyn;
 	}
+	
 	
 	
 }

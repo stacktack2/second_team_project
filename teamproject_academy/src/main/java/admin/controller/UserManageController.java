@@ -117,53 +117,36 @@ public class UserManageController {
 	
 	public void PostprofUserAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserAdd.jsp");
-		rd.forward(request, response);		
+		rd.forward(request, response);
 		
-		String pid = request.getParameter("pid");
-		String ppwParam = request.getParameter("ppw");
-			   ppwParam = pid;
-			   System.out.println(ppwParam);
-		String ppw = BCrypt.hashpw(ppwParam, BCrypt.gensalt());
-		String pname = request.getParameter("pname");
-		String pregNo1 = request.getParameter("pregNo1");
-		String pregNo2 = request.getParameter("pregNo2");
-		String pbirth = request.getParameter("pbirth");
-		String pgender = request.getParameter("pgender");
-		String pposition = request.getParameter("pposition");
-		String puniv = request.getParameter("puniv");
-		String pfaculty = request.getParameter("pfaculty");
-		String pmajor = request.getParameter("pmajor");
-		String pdegree = request.getParameter("pdegree");
-		String plab = request.getParameter("plab");
-		String pappointDate = request.getParameter("pappointDate");
-		String pemail = request.getParameter("pemail");
-		String pphone = request.getParameter("pphone");
-		String pcall = request.getParameter("pcall");
-		String paddr = request.getParameter("paddr");
-		String pzipcode = request.getParameter("pzipcode");
+		ProfessorVO professorVO = new ProfessorVO();
 		
-		String[] profUserAdd = {pid, ppw, pname, pregNo1, pregNo2, pbirth, pgender, pposition,
-	            puniv, pfaculty, pmajor, pdegree, plab, pappointDate, pemail, pphone, pcall, paddr, pzipcode};
-		
-		System.out.println(profUserAdd);
-		
-		response.setContentType("text/html; charset=utf-8");
-		response.setCharacterEncoding("UTF-8");
+		professorVO.setPid(request.getParameter("pid")); 
+		String ppwParam = request.getParameter("pid");
+		professorVO.setPpw(BCrypt.hashpw(ppwParam, BCrypt.gensalt()));
+		professorVO.setPname(request.getParameter("pname"));
+		professorVO.setPregNo1(request.getParameter("pregNo1"));
+		professorVO.setPregNo2(request.getParameter("pregNo2"));
+		professorVO.setPbirth(request.getParameter("pbirth"));
+		professorVO.setPgender(request.getParameter("pgender"));
+		professorVO.setPposition(request.getParameter("pposition"));
+		professorVO.setPuniv(request.getParameter("puniv"));
+		professorVO.setPfaculty(request.getParameter("pfaculty"));
+		professorVO.setPmajor(request.getParameter("pmajor"));
+		professorVO.setPdegree(request.getParameter("pdegree"));
+		professorVO.setPlab(request.getParameter("plab"));
+		professorVO.setPappointDate(request.getParameter("pappointDate"));
+		professorVO.setPemail(request.getParameter("pemail"));
+		professorVO.setPphone(request.getParameter("pphone"));
+		professorVO.setPcall(request.getParameter("pcall"));
+		professorVO.setPaddr(request.getParameter("paddr"));
+		professorVO.setPzipCode(request.getParameter("pzipCode"));
 		
 		UserManageDAO userManageDAO = new UserManageDAO();
-		List<ProfessorVO> profAdd = userManageDAO.insertProf(profUserAdd);
+		List<ProfessorVO> profAdd = userManageDAO.insertProf(professorVO);
 		
 		request.setAttribute("profAdd", profAdd);
 		
-		
-//		if(profUserAdd != null) {
-//			response.sendRedirect(request.getContextPath()+"/admin/profUserMgView");
-//		}else {
-//			response.setContentType("text/html; charset=utf-8");
-//			response.setCharacterEncoding("UTF-8");
-//			response.getWriter().append("<script>alert('로그인에 실패하였습니다.'); location.href='"+request.getContextPath()+"/';</script>");
-//			response.getWriter().flush();
-//		}
 		
 		
 		

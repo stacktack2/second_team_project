@@ -1,3 +1,4 @@
+/* 사진 미리보기 */
 function displayPhotoPreview(event) {
         var input = event.target;
         var previewElement = document.getElementById('photoPreview');
@@ -22,7 +23,8 @@ function displayPhotoPreview(event) {
             previewElement.innerHTML = ''; // 이미지 미리보기를 초기화합니다.
         }
 }
-    
+
+/* 주소 검색 API */
 function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -63,10 +65,30 @@ function sample6_execDaumPostcode() {
                     document.getElementById("paddr").value = addr + extraAddr;
                 }
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('pzipcode').value = data.zonecode;
+                document.getElementById('pzipCode').value = data.zonecode;
                 document.getElementById("paddr").value = addr + extraAddr + " (상세주소를 입력해주세요)";
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("paddr").focus();
             }
         }).open();
     }
+    
+function register(){
+	let isSubmit = true;
+	let params = $('#profUserAddForm').serialize();
+	$.ajax({
+		url: "profUserAdd",
+		type: "post",
+		data: params,
+		success: function(data){
+			if(data.trim() == "null"){
+				alert("정보를 다시 입력해주세요.");
+			}else{
+				alert("사용자가 추가되었습니다.");
+				document.getElementById("profUserAddForm").submit();
+			}
+		}, error: function(){
+		}
+	});
+}
+

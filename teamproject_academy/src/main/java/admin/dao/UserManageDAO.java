@@ -103,20 +103,41 @@ public class UserManageDAO {
 	}
 
 //	교수 사용자 추가 DAO 메서드
-	public List<ProfessorVO> insertProf(String[] profUserAdd) {
+	public List<ProfessorVO> insertProf(ProfessorVO professorVO) {
 		List<ProfessorVO> profAdd = new ArrayList<>();
 		
 		String sql = " INSERT INTO professor "
 				   + " (pid, ppw, pname, pregNo1, pregNo2, pbirth, pgender, pposition, "
 				   + "	puniv, pfaculty, pmajor, pdegree, plab, pappointDate, pemail, "
-				   + "  pphone, pcall, paddr, pzipcode, prdate)"
+				   + "  pphone, pcall, paddr, pzipCode, prdate)"
 				   + "  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())";
 		
 		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql);
 		
+		dbm.setString(professorVO.getPid());
+		dbm.setString(professorVO.getPpw());
+		dbm.setString(professorVO.getPname());
+		dbm.setString(professorVO.getPregNo1());
+		dbm.setString(professorVO.getPregNo2());
+		dbm.setString(professorVO.getPbirth());
+		dbm.setString(professorVO.getPgender());
+		dbm.setString(professorVO.getPposition());
+		dbm.setString(professorVO.getPuniv());
+		dbm.setString(professorVO.getPfaculty());
+		dbm.setString(professorVO.getPmajor());
+		dbm.setString(professorVO.getPdegree());
+		dbm.setString(professorVO.getPlab());
+		dbm.setString(professorVO.getPappointDate());
+		dbm.setString(professorVO.getPemail());
+		dbm.setString(professorVO.getPphone());
+		dbm.setString(professorVO.getPcall());
+		dbm.setString(professorVO.getPaddr());
+		dbm.setString(professorVO.getPzipCode());
 		
+		dbm.update();
 		
-		
+		dbm.close();
 		
 		return profAdd;
 	}
