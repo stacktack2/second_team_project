@@ -14,7 +14,28 @@ public class LectureVO {
 	private String lfocus;
 	private int lstatus;
 	private String json_data;
+	private String pname;
+	private String pphone;
+	private String pemail;
 	
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+	public String getPphone() {
+		return pphone;
+	}
+	public void setPphone(String pphone) {
+		this.pphone = pphone;
+	}
+	public String getPemail() {
+		return pemail;
+	}
+	public void setPemail(String pemail) {
+		this.pemail = pemail;
+	}
 	public String getJson_data() {
 		return json_data;
 	}

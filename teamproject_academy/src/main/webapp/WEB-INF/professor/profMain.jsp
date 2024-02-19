@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +74,7 @@
 					</ol>
 
 					<div class="card mb-4">
-						<div class="card-header">교수과목<a href="course/couList" class="nav-link right bold">&#43;</a></div>
+						<div class="card-header">교수과목<a href="course/couList?lyear=2024&&lsemester=1" class="nav-link right bold">&#43;</a></div>
 						
 						<div class="card-body">
 							<table class="datatable-table">
@@ -87,41 +88,15 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>1</td>
-										<td><a href="course/curriculum">물리화학</a></td>
-										<td>2022년</td>
-										<td>1학기</td>
-										<td>상 101</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td><a href="course/curriculum">물리화학</a></td>
-										<td>2022년</td>
-										<td>1학기</td>
-										<td>상 101</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td><a href="course/curriculum">물리화학</a></td>
-										<td>2022년</td>
-										<td>1학기</td>
-										<td>상 101</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td><a href="course/curriculum">물리화학</a></td>
-										<td>2022년</td>
-										<td>1학기</td>
-										<td>상 101</td>
-									</tr>
-									<tr>
-										<td>5</td>
-										<td><a href="course/curriculum">물리화학</a></td>
-										<td>2022년</td>
-										<td>1학기</td>
-										<td>상 101</td>
-									</tr>
+									<c:forEach var="cntVar" begin="0" end="4" step="1">
+										<tr>
+											<td>${cntVar+1}</td>
+											<td><a href="course/curriculum?lno=${lecture[cntVar].getLno() }">${lecture[cntVar].getLname() }</a></td>
+											<td>${lecture[cntVar].getLyear() }</td>
+											<td>${lecture[cntVar].getLsemester() }</td>
+											<td>${lecture[cntVar].getLroom() }</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -143,36 +118,14 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a href="notice/noticeView">공지사항 제목</a></td>
-										<td>2011/04/25</td>
-										<td>10</td>
-									</tr>
+									<c:forEach var="cntVar" begin="0" end="4" step="1">
+										<tr>
+											<td>${cntVar+1}</td>
+											<td><a href="notice/noticeView?bno=${board[cntVar].getBno() }">${board[cntVar].getBtitle() }</a></td>
+											<td>${board[cntVar].getBrdate() }</td>
+											<td>${board[cntVar].getBhit() }</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -198,8 +151,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/resources/share/js/scripts.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/assets/demo/chart-area-demo.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/assets/demo/chart-bar-demo.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/resources/share/js/datatables-simple-demo.js"></script>
 </body>
