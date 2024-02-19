@@ -86,6 +86,9 @@ public class IndexController {
 		String[] result = indexdao.selectPw(idParam);
 		String pwData = result[0];
 		String typeData = result[1];
+		String noData = result[2];
+		System.out.println(typeData);
+		System.out.println(noData);
 		//검증
 		boolean isValidPassword =false;
 		if(pwData != null) {
@@ -93,8 +96,9 @@ public class IndexController {
 			
 		}
 		if(isValidPassword) {
+			//세션
 			request.getSession().setAttribute("type",typeData);
-			request.getSession().setAttribute("id",idParam);
+			request.getSession().setAttribute("no",noData);
 			//아이디 기억 쿠키
 			if(rememberParam != null && rememberParam.equals("check")) {
 				Cookie cookie = new Cookie("rememberParam",idParam);

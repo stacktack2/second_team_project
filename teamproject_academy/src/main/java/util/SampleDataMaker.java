@@ -37,7 +37,7 @@ public class SampleDataMaker {
 		try {
 			
 			String password = "", sql ="";
-			for(int i =0; i<10 ; i++) {
+			for(int i =1; i<=10 ; i++) {
 				
 				password = BCrypt.hashpw("stupw"+i, BCrypt.gensalt());
 				sql = "        INSERT INTO student(sid, spw, sname, sregNo1, sregNo2, sbirth, sgender, "
