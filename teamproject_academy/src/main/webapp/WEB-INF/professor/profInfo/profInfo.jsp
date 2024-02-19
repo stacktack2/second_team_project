@@ -65,6 +65,12 @@
 			<main>
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">교수정보 조회</h1>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item">교수정보 조회</li>
+						<li class="breadcrumb-item active">내정보 조회</li>
+					</ol>
+					
+					
 					<div class="card mb-4 white">
 						<div class="card-header disNone">교수정보 조회</div>
 						<div class="card-body">
@@ -150,8 +156,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/resources/share/js/scripts.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/assets/demo/chart-area-demo.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/assets/demo/chart-bar-demo.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/resources/share/js/datatables-simple-demo.js"></script>
 </body>
