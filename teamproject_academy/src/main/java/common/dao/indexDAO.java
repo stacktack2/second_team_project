@@ -13,13 +13,14 @@ public class indexDAO {
 	
 	dbm.prepare(sql).setString(id).select();
 	
-	String pw=null, type =null, no=null;
+	String pw=null, type =null, no=null, name=null;
 	while(dbm.next()) {
 		pw = dbm.getString("pw");
 		type = dbm.getString("type");
 		no = dbm.getString("no");
+		name = dbm.getString("name");
 	}
-	String[] result = {pw,type,no};
+	String[] result = {pw,type,no,name};
 	
 	dbm.close();
 	
