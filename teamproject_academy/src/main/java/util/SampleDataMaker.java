@@ -60,9 +60,9 @@ public class SampleDataMaker {
 				psmt.executeUpdate();
 				
 				
-				password = BCrypt.hashpw("adminpw"+i, BCrypt.gensalt());
+				password = BCrypt.hashpw("admpw"+i, BCrypt.gensalt());
 				sql = " INSERT INTO administer(aid,apw) "
-						+ "          VALUES(concat('adminid',"+i+"),?) ";
+						+ "          VALUES(concat('admid',"+i+"),?) ";
 				psmt=conn.prepareStatement(sql);
 				psmt.setString(1, password);
 				psmt.executeUpdate();
