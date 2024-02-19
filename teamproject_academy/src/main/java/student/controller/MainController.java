@@ -11,12 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import student.dao.MainDAO;
 import vo.BoardVO;
+import vo.StudentVO;
 
 
 public class MainController {
 	public void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MainDAO mainDAO = new MainDAO();
+		
+		String snoParam = request.getParameter("sno");
+		int sno = 0;
+		if(snoParam != null && !snoParam.equals("")) {
+			sno = Integer.parseInt(snoParam);
+		}
+		sno=5;
+		//헤더네비
+		StudentVO student = mainDAO.selectSnameByOne(sno);
+		request.setAttribute("student", student);
 
 		//수강과목 목록
 		List<Map<String, Object>> courseList = mainDAO.selectCourseAll();

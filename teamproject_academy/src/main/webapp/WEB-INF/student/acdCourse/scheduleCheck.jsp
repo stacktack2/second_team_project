@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +8,18 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+
+        th {
+            background-color: #f2f2f2;
+        }
+        td.subject1 {
+            background-color: #ffc0cb; /* 과목1 배경색 */
+        }
+        td.subject2 {
+            background-color: #87ceeb; /* 과목2 배경색 */
+        }
+    </style>
 </head>
 <body class="sb-nav-fixed">
 <%@ include file="/resources/student/include/navHead.jsp" %>
@@ -26,20 +38,6 @@
 						<div class="card-header disNone">수강시간표</div>
 						<div class="card-body">
 
-							<div class="card mb-4 white">
-								<div class="right">
-									<form action="noticeList.do" method="get" class="datatable-search inline">
-										<select class="datatable-selector">
-											<option value="1" selected>2024</option>
-											<option value="2">2023</option>
-										</select> <select class="datatable-selector">
-											<option value="1" selected>1학기</option>
-											<option value="2">2학기</option>
-										</select>
-										<button class="btn btn-primary inline grey">조회</button>
-									</form>
-								</div>
-							</div>
 							<div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 								<div class="datatable-container">
 									<table class="datatable-table viewtable checktable timetable">
@@ -54,54 +52,17 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>0</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>5</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
+
+       <c:forEach var="schedule" items="${scheduleList}" >
+            <tr>
+                <td></td>
+                <td>${schedule.json_data.subject_name}</td>
+                <td>${schedule.json_data.subject_name}</td>
+                <td>${schedule.json_data.subject_name}</td>
+                <td>${schedule.json_data.subject_name}</td>
+                <td>${schedule.json_data.subject_name}</td>
+            </tr>
+        </c:forEach>
 										</tbody>
 									</table>
 
@@ -109,22 +70,22 @@
 								<div class="card mb-4 white">
 									<table class="datatable-table viewtable checktable">
 										<tr>
-											<td>0교시(08:00 ~ 08:50)</td>
-											<td>1교시(09:00 ~ 10:15)</td>
-											<td>2교시(10:30 ~ 11:45)</td>
-											<td>3교시(12:00 ~ 13:15)</td>
+											<td>1교시(09:00 ~ 09:50)</td>
+											<td>2교시(10:00 ~ 10:50)</td>
+											<td>3교시(11:00 ~ 11:50)</td>
+											<td>4교시(12:00 ~ 12:50)</td>
 										</tr>
 										<tr>
-											<td>4교시(13:30 ~ 14:45)</td>
-											<td>5교시(15:00 ~ 16:15)</td>
-											<td>6교시(16:30 ~ 17:45)</td>
-											<td>7교시(18:00 ~ 18:45)</td>
+											<td>4교시(12:00 ~ 12:50)</td>
+											<td>5교시(13:00 ~ 13:50)</td>
+											<td>6교시(14:00 ~ 14:50)</td>
+											<td>7교시(15:00 ~ 15:50)</td>
 										</tr>
 										<tr>
-											<td>8교시(18:50 ~ 19:35)</td>
-											<td>9교시(19:40 ~ 20:25)</td>
-											<td>10교시(20:30 ~ 21:15)</td>
-											<td>11교시(21:20 ~ 22:05)</td>
+											<td>8교시(16:00 ~ 16:50)</td>
+											<td>9교시(17:00 ~ 17:50)</td>
+											<td>10교시(18:00 ~ 18:50)</td>	
+											<td>11교시(19:00 ~ 19:50)</td>	
 										</tr>
 									</table>
 								</div>

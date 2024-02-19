@@ -13,7 +13,14 @@ public class LectureVO {
 	private String lintro;
 	private String lfocus;
 	private int lstatus;
+	private String json_data;
 	
+	public String getJson_data() {
+		return json_data;
+	}
+	public void setJson_data(String json_data) {
+		this.json_data = json_data;
+	}
 	public int getLno() {
 		return lno;
 	}

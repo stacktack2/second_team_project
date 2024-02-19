@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,66 +21,10 @@
 </style>
 </head>
 <body class="sb-nav-fixed">
-	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<a class="navbar-brand ps-3"
-			href="<%=request.getContextPath()%>/student/stuMain.do">이젠대학교</a>
-		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
-			<i class="fas fa-bars"></i>
-		</button>
-		
-		<div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-			<span class="hello">홍길동 대학생님 안녕하세요 </span>
-		</div>
-		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					<i class="fas fa-user fa-fw"></i>
-				</a>
-				<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!">로그아웃</a></li>
-				</ul>
-			</li>
-		</ul>
-	</nav>
+		<%@ include file="/resources/student/include/navHead.jsp" %>
 
 	<div id="layoutSidenav">
-		<div id="layoutSidenav_nav">
-			<nav class="sb-sidenav accordion sb-sidenav-dark"
-				id="sidenavAccordion">
-				<div class="sb-sidenav-menu">
-					<div class="nav">
-						<div class="sb-sidenav-menu-heading">학적/수강관리</div>
-						<a class="nav-link"
-							href="<%=request.getContextPath()%>/student/stuMain.doacdCourse/sscheck.do">학적사항
-							조회</a> <a class="nav-link"
-							href="<%=request.getContextPath()%>/student/stuMain.doacdCourse/absenseApp.do">휴복학
-							신청</a> <a class="nav-link"
-							href="<%=request.getContextPath()%>/student/stuMain.doacdCourse/subcheck.do">교과목
-							조회</a> <a class="nav-link"
-							href="<%=request.getContextPath()%>/student/stuMain.doacdCourse/scheduleCheck.do">수강시간표
-							조회</a>
-
-						<div class="sb-sidenav-menu-heading">출석/성적관리</div>
-						<a class="nav-link"
-							href="<%=request.getContextPath()%>/student/stuMain.doatdGrade/attendcheckList.do">출결확인</a>
-						<a class="nav-link"
-							href="<%=request.getContextPath()%>/student/stuMain.doatdGrade/cgradeCheck.do">성적조회</a>
-
-						<div class="sb-sidenav-menu-heading">수강신청</div>
-						<a class="nav-link"
-							href="<%=request.getContextPath()%>/student/stuMain.docorReg/corReg.do">수강신청</a>
-						<a class="nav-link"
-							href="<%=request.getContextPath()%>/student/stuMain.docorReg/cAppCheck.do">수강신청
-							현황조회</a>
-
-						<div class="sb-sidenav-menu-heading">마이페이지</div>
-						<a class="nav-link"
-							href="<%=request.getContextPath()%>/student/stuMain.domypage/myInfoModify.do">비밀번호
-							변경</a>
-					</div>
-				</div>
-			</nav>
-		</div>
+	<%@ include file="/resources/student/include/navLeft.jsp" %>
 
 		<div id="layoutSidenav_content">
 			<main>
@@ -103,15 +47,7 @@
 					</div>
 				</div>
 			</main>
-
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid px-4">
-					<div
-						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; 이젠대학교 2023</div>
-					</div>
-				</div>
-			</footer>
+<%@ include file="/resources/student/include/footer.jsp" %>
 		</div>
 	</div>
 	<script>
@@ -200,12 +136,6 @@
 		}
 		
 	</script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/js/scripts.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="assets/demo/chart-area-demo.js"></script>
-	<script src="assets/demo/chart-bar-demo.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/js/datatables-simple-demo.js"></script>
+
 </body>
 </html>
