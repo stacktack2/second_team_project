@@ -30,7 +30,7 @@
 				<i class="fas fa-user fa-fw"></i>
 				</a>
 				<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!">로그아웃</a></li>
+					<li><a class="dropdown-item" href="<%=request.getContextPath()%>/common/logout">로그아웃</a></li>
 				</ul>
 			</li>
 		</ul>

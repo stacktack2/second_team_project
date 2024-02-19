@@ -37,7 +37,9 @@ public class IndexController {
 			case "findPw":
 				findPw(request, response);
 				break;
-			
+			case "logout":
+				logout(request, response);
+				break;
 		}
 		
 //		if(twoUriParam.equals("index")) {
@@ -51,6 +53,8 @@ public class IndexController {
 		
 	}
 	
+	
+
 	public void doPostAction(String twoUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String twoUri = twoUriParam.split("\\.")[0];
@@ -69,7 +73,13 @@ public class IndexController {
 		
 	}
 
-
+	//로그아웃 클릭시 실행
+	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.getSession().invalidate();
+		response.sendRedirect(request.getContextPath()+"/common/index");
+	}
+	
+	
 	//	index GET접근
 	public void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/common/index.jsp");
