@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import admin.dao.UserManageDAO;
 import vo.PagingVO;
 import vo.ProfessorVO;
@@ -114,12 +116,56 @@ public class UserManageController {
 	}
 	
 	public void PostprofUserAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserAdd.jsp");
-		rd.forward(request, response);
+		rd.forward(request, response);		
+		
+		String pid = request.getParameter("pid");
+		String ppwParam = request.getParameter("ppw");
+			   ppwParam = pid;
+			   System.out.println(ppwParam);
+		String ppw = BCrypt.hashpw(ppwParam, BCrypt.gensalt());
+		String pname = request.getParameter("pname");
+		String pregNo1 = request.getParameter("pregNo1");
+		String pregNo2 = request.getParameter("pregNo2");
+		String pbirth = request.getParameter("pbirth");
+		String pgender = request.getParameter("pgender");
+		String pposition = request.getParameter("pposition");
+		String puniv = request.getParameter("puniv");
+		String pfaculty = request.getParameter("pfaculty");
+		String pmajor = request.getParameter("pmajor");
+		String pdegree = request.getParameter("pdegree");
+		String plab = request.getParameter("plab");
+		String pappointDate = request.getParameter("pappointDate");
+		String pemail = request.getParameter("pemail");
+		String pphone = request.getParameter("pphone");
+		String pcall = request.getParameter("pcall");
+		String paddr = request.getParameter("paddr");
+		String pzipcode = request.getParameter("pzipcode");
+		
+		String[] profUserAdd = {pid, ppw, pname, pregNo1, pregNo2, pbirth, pgender, pposition,
+	            puniv, pfaculty, pmajor, pdegree, plab, pappointDate, pemail, pphone, pcall, paddr, pzipcode};
+		
+		System.out.println(profUserAdd);
+		
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		UserManageDAO userManageDAO = new UserManageDAO();
+		List<ProfessorVO> profAdd = userManageDAO.insertProf(profUserAdd);
+		
+		request.setAttribute("profAdd", profAdd);
+		
+		
+//		if(profUserAdd != null) {
+//			response.sendRedirect(request.getContextPath()+"/admin/profUserMgView");
+//		}else {
+//			response.setContentType("text/html; charset=utf-8");
+//			response.setCharacterEncoding("UTF-8");
+//			response.getWriter().append("<script>alert('로그인에 실패하였습니다.'); location.href='"+request.getContextPath()+"/';</script>");
+//			response.getWriter().flush();
+//		}
+		
+		
 		
 		
 	}

@@ -11255,7 +11255,7 @@ body {
   background-color:#ccc;
 }
 .datatable-table > tbody > tr > th {
-  vertical-align: bottom;
+  vertical-align: middle;
   text-align: center;
   border-bottom: none;
   background-color:#ccc;

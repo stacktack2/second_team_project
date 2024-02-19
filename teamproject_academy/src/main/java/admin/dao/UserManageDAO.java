@@ -7,7 +7,8 @@ import util.DBM;
 import vo.ProfessorVO;
 
 public class UserManageDAO {
-
+	
+//	교수 사용자 리스트 메서드
 	public List<ProfessorVO> selectProf() {
 		
 		List<ProfessorVO> professorList = new ArrayList<>();
@@ -36,6 +37,7 @@ public class UserManageDAO {
 		return professorList;
 	}
 
+//	교수 사용자 검색 메서드
 	public List<ProfessorVO> searchProf(String searchValue) {
 		
 		List<ProfessorVO> searchResults = new ArrayList<>();
@@ -73,7 +75,8 @@ public class UserManageDAO {
 		
 		return searchResults;
 	}
-
+	
+//	교수 사용자 리스트 페이징 메서드
 	public List<ProfessorVO> selectProfPaging(int start, int perPage) {
 		 List<ProfessorVO> professorList = new ArrayList<>();
 
@@ -98,6 +101,23 @@ public class UserManageDAO {
 
 		    return professorList;
 	}
-	
 
+//	교수 사용자 추가 DAO 메서드
+	public List<ProfessorVO> insertProf(String[] profUserAdd) {
+		List<ProfessorVO> profAdd = new ArrayList<>();
+		
+		String sql = " INSERT INTO professor "
+				   + " (pid, ppw, pname, pregNo1, pregNo2, pbirth, pgender, pposition, "
+				   + "	puniv, pfaculty, pmajor, pdegree, plab, pappointDate, pemail, "
+				   + "  pphone, pcall, paddr, pzipcode, prdate)"
+				   + "  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())";
+		
+		DBM dbm = DBM.getInstance();
+		
+		
+		
+		
+		
+		return profAdd;
+	}
 }

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>학생관리 페이지</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-<link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/resources/admin/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
@@ -31,8 +31,8 @@
 					<div class="card-body">
 						<div class="card mb-4" style="width: 247px; height: 292px;" id="photoPreview">
 							<!-- <img > -->
-							<input type="file" id="photoInput" onchange="displayPhotoPreview(event)"><!-- style="display: none;" -->
-						</div>
+					</div>
+						<input type="file" id="photoInput" onchange="displayPhotoPreview(event)" style="display: none;">
 						<label class="btn btn-primary inline grey mb-4" for="photoInput">사진 추가</label>
 						<!-- <button class="btn btn-primary inline grey mb-4" type="button" onclick="uploadPhoto()">사진 추가</button> -->
 					
@@ -48,6 +48,7 @@
 										<th>교번</th>
 										<td style="width: 20rem;">
 											<input type="text" name="pid" id="pid" class="datatable-input">
+											<input type="hidden" name="ppw" id="ppw">
 										</td>
 										<th>성명</th>
 										<td style="width: 20rem;">
@@ -67,8 +68,12 @@
 										</td>
 										<th>성별</th>
 										<td>
-											<input type="radio" name="pgender" id="pgender" value="M" class="form-check-input d-inline-block" >남
-											<input type="radio" name="pgender" id="pgender" value="W" class="form-check-input d-inline-block" >여
+											<input type="radio" name="pgender" id="pgender" value="M" 
+												   class="form-check-input d-inline-block mx-3 me-xxl-2" >
+											<span class="inputSpan">남</span>
+											<input type="radio" name="pgender" id="pgender" value="W" 
+												   class="form-check-input d-inline-block mx-3 me-xxl-2" >
+										    <span class="inputSpan">여</span>
 										</td>
 										<th>직급</th>
 										<td>
@@ -112,7 +117,7 @@
 										<td>
 											<input type="text" name="pphone" id="pphone" class="datatable-input">
 										</td>
-										<th>집전화번호</th>
+										<th>연구실 전화번호</th>
 										<td>
 											<input type="text" name="pcall" id="pcall" class="datatable-input">
 										</td>
@@ -120,11 +125,12 @@
 									<tr>
 										<th>주소</th>
 										<td colspan="3">
-											<input type="text" name="paddr" id="paddr" class="datatable-input">
+											<input type="text" name="paddr" id="paddr" class="datatable-input" style="display: inline-block; width: 89%;">
+											<input type="button" onclick="sample6_execDaumPostcode()" value="주소 검색">
 										</td>
 										<th>우편번호</th>
 										<td>
-											<input type="text" name="pzipcode" id="pzipcode" class="datatable-input">
+											<input type="text" name="pzipcode" id="pzipcode" class="datatable-input d-inline-block">
 										</td>
 
 									</tr>
@@ -144,6 +150,7 @@
 		<%@ include file="/resources/admin/include/footer.jsp" %>
 	</div>
     </div>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <!-- 첨부파일 js -->
     <!-- <script src="/resources/admin/js/profUserAddPhoto.js"></script> -->
     </body>
