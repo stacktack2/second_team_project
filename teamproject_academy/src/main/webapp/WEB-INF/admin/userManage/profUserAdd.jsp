@@ -70,113 +70,113 @@
 						<div class="card-header disNone">교수 사용자 추가</div>
 						<!-- 사진 첨부파일 -->
 						<div class="card-body">
-							<div class="card mb-4 w-25 h-50">
-								<img id="photoPreview" style="max-width: 150px; max-height: 150px;">
+							<div class="card mb-4" style="width: 247px; height: 292px;">
+								<img id="photoPreview" style="width: 247px; height: 292px;">
 							</div>
-						<!-- <button class="btn btn-primary inline grey mb-4" type="button" onclick="uploadPhoto()">사진 추가</button> -->
-						<input type="file" id="photoInput" accept="image/*" onchange="displayPhotoPreview(this)"><!-- style="display: none;" -->
-						<label class="btn btn-primary inline grey mb-4" for="photoInput">사진 추가</label>
+							<input type="file" id="photoInput" onchange="displayPhotoPreview(this)"><!-- style="display: none;" -->
+							<label class="btn btn-primary inline grey mb-4" for="photoInput">사진 추가</label>
+							<!-- <button class="btn btn-primary inline grey mb-4" type="button" onclick="uploadPhoto()">사진 추가</button> -->
 						
 						<!-- 인적사항 -->
-							<div
-								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-								<div class="datatable-container">
-									<!-- 인적사항 정보 테이블 -->
-									<form name="frm" action="profUserAdd" method="post">
-									<table class="datatable-table viewtable sschecktable">
-										<tbody>
-											<tr>
-												<th>교번</th>
-												<td style="width: 20rem;">
-													<input type="text" name="pid" id="pid" class="datatable-input">
-												</td>
-												<th>성명</th>
-												<td style="width: 20rem;">
-													<input type="text" name="pname" id="pname" class="datatable-input">
-												</td>
-												<th>주민번호</th>
-												<td>
-													<input type="text" name="pregNo1" id="pregNo1" class="datatable-input d-inline-block" style="width: 45%;">
-													<a style="margin: 0 0.9rem;">-</a> 
-													<input type="text" name="pregNo2" id="pregNo2" class="datatable-input d-inline-block" style="width: 45%;">
-												</td>
-											</tr>
-											<tr>
-												<th>생년월일</th>
-												<td>
-													<input type="text" name="pbirth" id="pbirth" class="datatable-input">
-												</td>
-												<th>성별</th>
-												<td>
-													<input type="radio" name="pgender" id="pgender" value="M" class="form-check-input d-inline-block" >남
-													<input type="radio" name="pgender" id="pgender" value="W" class="form-check-input d-inline-block" >여
-												</td>
-												<th>직급</th>
-												<td>
-													<input type="text" name="pposition" id="pposition" class="datatable-input">
-												</td>
-											</tr>
-											<tr>
-												<th>대학</th>
-												<td>
-													<input type="text" name="puniv" id="puniv" class="datatable-input">
-												</td>
-												<th>학부</th>
-												<td>
-													<input type="text" name="pfaculty" id="pfaculty" class="datatable-input">
-												</td>
-												<th>전공</th>
-												<td>
-													<input type="text" name="pmajor" id="pmajor" class="datatable-input">
-												</td>
-											</tr>
-											<tr>
-												<th>학위</th>
-												<td>
-													<input type="text" name="pdegree" id="pdegree" class="datatable-input">
-												</td>
-												<th>연구실</th>
-												<td>
-													<input type="text" name="plab" id="plab" class="datatable-input">
-												</td>
-												<th>임용일자</th>
-												<td>
-													<input type="text" name="pappointDate" id="pappointDate" class="datatable-input">
-												</td>
-											</tr>
-											<tr>
-												<th>E-mail</th>
-												<td>
-													<input type="text" name="pemail" id="pemail" class="datatable-input">
-												</td>
-												<th>휴대전화번호</th>
-												<td>
-													<input type="text" name="pphone" id="pphone" class="datatable-input">
-												</td>
-												<th>집전화번호</th>
-												<td>
-													<input type="text" name="pcall" id="pcall" class="datatable-input">
-												</td>
-											</tr>
-											<tr>
-												<th>주소</th>
-												<td colspan="3">
-													<input type="text" name="paddr" id="paddr" class="datatable-input">
-												</td>
-												<th>우편번호</th>
-												<td>
-													<input type="text" name="pzipcode" id="pzipcode" class="datatable-input">
-												</td>
+						<div
+							class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+							<div class="datatable-container">
+								<!-- 인적사항 정보 테이블 -->
+								<form name="frm" action="profUserAdd" method="post">
+								<table class="datatable-table viewtable sschecktable">
+									<tbody>
+										<tr>
+											<th>교번</th>
+											<td style="width: 20rem;">
+												<input type="text" name="pid" id="pid" class="datatable-input">
+											</td>
+											<th>성명</th>
+											<td style="width: 20rem;">
+												<input type="text" name="pname" id="pname" class="datatable-input">
+											</td>
+											<th>주민번호</th>
+											<td>
+												<input type="text" name="pregNo1" id="pregNo1" class="datatable-input d-inline-block" style="width: 45%;">
+												<a style="margin: 0 0.9rem;">-</a> 
+												<input type="text" name="pregNo2" id="pregNo2" class="datatable-input d-inline-block" style="width: 45%;">
+											</td>
+										</tr>
+										<tr>
+											<th>생년월일</th>
+											<td>
+												<input type="text" name="pbirth" id="pbirth" class="datatable-input">
+											</td>
+											<th>성별</th>
+											<td>
+												<input type="radio" name="pgender" id="pgender" value="M" class="form-check-input d-inline-block" >남
+												<input type="radio" name="pgender" id="pgender" value="W" class="form-check-input d-inline-block" >여
+											</td>
+											<th>직급</th>
+											<td>
+												<input type="text" name="pposition" id="pposition" class="datatable-input">
+											</td>
+										</tr>
+										<tr>
+											<th>대학</th>
+											<td>
+												<input type="text" name="puniv" id="puniv" class="datatable-input">
+											</td>
+											<th>학부</th>
+											<td>
+												<input type="text" name="pfaculty" id="pfaculty" class="datatable-input">
+											</td>
+											<th>전공</th>
+											<td>
+												<input type="text" name="pmajor" id="pmajor" class="datatable-input">
+											</td>
+										</tr>
+										<tr>
+											<th>학위</th>
+											<td>
+												<input type="text" name="pdegree" id="pdegree" class="datatable-input">
+											</td>
+											<th>연구실</th>
+											<td>
+												<input type="text" name="plab" id="plab" class="datatable-input">
+											</td>
+											<th>임용일자</th>
+											<td>
+												<input type="text" name="pappointDate" id="pappointDate" class="datatable-input">
+											</td>
+										</tr>
+										<tr>
+											<th>E-mail</th>
+											<td>
+												<input type="text" name="pemail" id="pemail" class="datatable-input">
+											</td>
+											<th>휴대전화번호</th>
+											<td>
+												<input type="text" name="pphone" id="pphone" class="datatable-input">
+											</td>
+											<th>집전화번호</th>
+											<td>
+												<input type="text" name="pcall" id="pcall" class="datatable-input">
+											</td>
+										</tr>
+										<tr>
+											<th>주소</th>
+											<td colspan="3">
+												<input type="text" name="paddr" id="paddr" class="datatable-input">
+											</td>
+											<th>우편번호</th>
+											<td>
+												<input type="text" name="pzipcode" id="pzipcode" class="datatable-input">
+											</td>
 
-											</tr>
-										</tbody>
-									</table>
-									</form>
-								</div>
+										</tr>
+									</tbody>
+								</table>
+								</form>
 							</div>
-							<!-- 테이블 바텀 -->
+						</div>
+						<!-- 테이블 바텀 -->
 							<div class="datatable-bottom ms-auto">
-									<a href="profUserMgView" class="btn btn-primary grey right mright">등록</a>
+								<a href="profUserMgView" class="btn btn-primary grey right mright">등록</a>
 							</div>
 						</div>
 					</div>

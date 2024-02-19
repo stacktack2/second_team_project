@@ -107,11 +107,10 @@
 	.timetable tr>td{height:8vh !important;}
 	
 #photoPreview {
-        margin-top: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 5px;
-    }
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 5px;
+}
 
 .left{
 	float: left !important;
