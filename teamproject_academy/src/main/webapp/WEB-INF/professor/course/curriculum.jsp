@@ -20,7 +20,7 @@
 		</button>
 		<!-- 우측상단 사용자 메뉴-->
 		<div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-			<span class="hello">홍길동 교수님 안녕하세요 </span>
+			<span class="hello">${name} 교수님 안녕하세요 </span>
 		</div>
 		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
 			<li class="nav-item dropdown">
@@ -67,7 +67,7 @@
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">강의계획서 조회</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item">교과목 조회</li>
+						<li class="breadcrumb-item">교수과목 조회</li>
 						<li class="breadcrumb-item active">강의계획서 조회</li>
 					</ol>
 
@@ -79,32 +79,32 @@
 								<div class=""></div>
 								<div class="datatable-container">
 									<div class="datatable-top">
-										<button class="btn btn-primary grey right mright">뒤로가기</button>
+										<a class="btn btn-primary grey right mright" href="javascript:history.back();">뒤로가기</a>
 									</div>
 									<!-- 테이블 -->
 									<table class="datatable-table viewtable sschecktable">
 										<tbody>
 											<tr>
 												<th>교과목명</th>
-												<td colspan="3"></td>
+												<td colspan="3">${lectureVO.lname }</td>
 												<th>년도/학기</th>
-												<td></td>
+												<td>${lectureVO.lyear }/${lectureVO.lsemester }</td>
 											</tr>
 											<tr>
 												<th>강의시간(강의실)</th>
-												<td></td>
+												<td>${lectureVO.lroom }</td>
 												<th>학점/시간</th>
-												<td></td>
+												<td>${lectureVO.lcredit }/${lectureVO.ltime }</td>
 												<th>이수구분</th>
 												<td></td>
 											</tr>
 											<tr>
 												<th>담당교수</th>
-												<td></td>
+												<td>${lectureVO.pname }</td>
 												<th>연락처</th>
-												<td></td>
+												<td>${lectureVO.pphone }</td>
 												<th>이메일</th>
-												<td></td>
+												<td>${lectureVO.pemail }</td>
 											</tr>
 											<tr>
 												<th>장애학생 지원</th>
@@ -113,14 +113,11 @@
 											</tr>
 											<tr>
 												<th>교과목 개요</th>
-												<td colspan="5">ㅇㅇㅇ의 기초부분을 공부하여, ㅇㅇㅇ에 대한 이해를 돕는다.</td>
+												<td colspan="5">${lectureVO.lintro }</td>
 											</tr>
 											<tr>
 												<th style="vertical-align: middle">학습목표 및 학습방법</th>
-												<td colspan="5">ㅇㅇㅇ를 정의하고, 이들의 구조 및 성질을 이해하고, ㅇㅇㅇ의 성질등을
-													파악하여 ㅇㅇㅇ의 현황, 응용실태 및 향후 연구개발 방향을 논의한다. 수강 후 ㅇㅇㅇ의 이해를 통하여
-													ㅇㅇㅇ업계의 취업시 업무 추진 능력을 배양하고, 진학 및 연속 연구 수행시 ㅇㅇㅇ에 관련된 학문을 깊이있게
-													추진할 수 있는 소양을 닦는다.</td>
+												<td colspan="5">${lectureVO.lfocus }</td>
 											</tr>
 										</tbody>
 									</table>
@@ -147,8 +144,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/resources/share/js/scripts.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/assets/demo/chart-area-demo.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/assets/demo/chart-bar-demo.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/resources/share/js/datatables-simple-demo.js"></script>
 </body>

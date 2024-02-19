@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,7 @@
 		</button>
 		<!-- 우측상단 사용자 메뉴-->
 		<div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-			<span class="hello">홍길동 교수님 안녕하세요 </span>
+			<span class="hello">${name} 교수님 안녕하세요 </span>
 		</div>
 		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
 			<li class="nav-item dropdown">
@@ -65,7 +66,12 @@
 			<main>
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">교수과목 조회</h1>
-
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item">교수과목 조회</li>
+						<li class="breadcrumb-item active">교수과목 조회</li>
+					</ol>
+						
+						
 					<div class="card mb-4 white">
 						<div class="card-header disNone">교수과목 조회</div>
 						<div class="card-body">
@@ -78,14 +84,14 @@
 									<!-- 검색 -->
 									<div class="right">
 
-										<form action="noticeList" method="get"
-											class="datatable-search inline">
-											<select class="datatable-selector">
-												<option value="1" selected>2024</option>
-												<option value="2">2023</option>
-											</select> <select class="datatable-selector">
-												<option value="1" selected>1학기</option>
-												<option value="2">2학기</option>
+										<form action="couList" method="get" class="datatable-search inline">
+											<select class="datatable-selector" name="lyear">
+												<option value="2024" <c:if test="${param.lyear eq '2024' }"> selected </c:if> >2024</option>
+												<option value="2023" <c:if test="${param.lyear eq '2023' }"> selected </c:if> >2023</option>
+											</select> 
+											<select class="datatable-selector" name="lsemester">
+												<option value="1" <c:if test="${param.lsemester eq '1' }"> selected </c:if> >1학기</option>
+												<option value="2" <c:if test="${param.lsemester eq '2' }"> selected </c:if> >2학기</option>
 											</select>
 											<button class="btn btn-primary inline grey">검색</button>
 										</form>
@@ -105,41 +111,15 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td><a href="curriculum">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td><a href="curriculum">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td><a href="curriculum">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td><a href="curriculum">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
-											<tr>
-												<td>5</td>
-												<td><a href="curriculum">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
+											<c:forEach items="${lecture }" var="lec" varStatus="loop">
+												<tr>
+													<td>${loop.count}</td>
+													<td><a href="curriculum?lno=${lec.getLno() }">${lec.getLname() }</a></td>
+													<td>${lec.getLyear() }</td>
+													<td>${lec.getLsemester() }</td>
+													<td>${lec.getLroom() }</td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -164,8 +144,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/resources/share/js/scripts.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/assets/demo/chart-area-demo.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/assets/demo/chart-bar-demo.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/resources/share/js/datatables-simple-demo.js"></script>
 </body>
