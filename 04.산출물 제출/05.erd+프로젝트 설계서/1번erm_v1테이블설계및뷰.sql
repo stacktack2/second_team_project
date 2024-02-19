@@ -297,9 +297,9 @@ ALTER TABLE studentBridgeFile
 drop view Member;
 
 CREATE or REPLACE view Member AS 
- ((SELECT s.sno as no, s.sid as id, s.spw as pw, 'student' as type FROM student s)
- UNION (SELECT p.pno, p.pid, p.ppw, 'professor' as type FROM professor p))
- UNION (SELECT a.ano, a.aid, a.apw, 'administer' as type FROM administer a);
+ ((SELECT s.sno as no, s.sname as name, s.sid as id, s.spw as pw, 'student' as type FROM student s)
+ UNION (SELECT p.pno, p.pname, p.pid, p.ppw, 'professor' as type FROM professor p))
+ UNION (SELECT a.ano, '관리자' as name, a.aid, a.apw, 'administer' as type FROM administer a);
 
 
 
