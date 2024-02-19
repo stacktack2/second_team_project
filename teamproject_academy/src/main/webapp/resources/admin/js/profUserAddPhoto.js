@@ -1,11 +1,11 @@
-function displayPhotoPreview(input) {
-	if(input.files && input.files[0]){
-		int reader = new FileReader();
-		reader.onload = function(e){
-			document.getElementById('photoPreview').src = e.targer.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	}else{
-		document.getElementById('preview').src = "";
-	}
+function displayPhotoPreview(event){
+	let reader = new FileReader();
+	
+	reader.onload = function(event){
+		int img = document.createElement("img");
+		img.setAttribute("src", event.target.result);
+		document.querySelector("div#photoPreview").appendChild(img);
+	};
+	
+	reader.readAsDataURL(event.target.files[0]);
 }
