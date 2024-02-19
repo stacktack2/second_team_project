@@ -29,19 +29,22 @@
 						<div class="card-body">
 							<div
 								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-
+								<!-- 테이블 탑 -->
 								<div class="datatable-top">
-
+									<!-- 검색 -->
 									<div class="right">
-										<form action="noticeList.do" method="get" class="datatable-search inline">
-											<select class="datatable-selector">
-												<option value="1" selected>2024</option>
-												<option value="2">2023</option>
-											</select> 
-											<select class="datatable-selector">
+										<select class="datatable-selector">
+											<option value="1" selected>2024</option>
+											<option value="2">2023</option>
+										</select>
+										<select class="datatable-selector">
 												<option value="1" selected>1학기</option>
 												<option value="2">2학기</option>
-											</select>
+										</select>
+										<form action="subcheck" method="get" class="datatable-search inline">
+											<input class="datatable-input inline wauto"
+												placeholder="검색어를 입력하세요" type="search"
+												title="Search within table" aria-controls="datatablesSimple">
 											<button class="btn btn-primary inline grey">검색</button>
 										</form>
 									</div>

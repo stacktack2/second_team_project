@@ -16,7 +16,6 @@ public class MypageDAO {
 		while(dbm.next()) {
 			student.setSname(dbm.getString("sname"));
 		}
-		//System.out.println(student.getSname());
 		dbm.close();
 		return student;
 	}

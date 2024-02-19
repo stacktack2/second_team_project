@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import student.dao.AcdCourseDAO;
+import vo.CourseVO;
 import vo.StudentVO;
 
 public class AcdCourseController {
@@ -148,7 +149,15 @@ public class AcdCourseController {
 		AcdCourseDAO acdCourseDAO = new AcdCourseDAO();
 		List<Map<String, Object>> courseList = acdCourseDAO.selectCourseAll();
 		request.setAttribute("courseList", courseList);
+		//[검색]
+		String searchValue = request.getParameter("searchValue");
 		
+		//검색 결과가 있을 경우 검색 결과를 전달
+		if (searchValue != null && !searchValue.isEmpty()) {
+	        List<Map<String, Object>> searchResults = acdCourseDAO.searchCourse(searchValue);
+	        request.setAttribute("courseList", searchResults);
+	        
+	    }
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/acdCourse/subcheck.jsp");
 		rd.forward(request, response);
 	}

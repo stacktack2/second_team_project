@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import util.DBM;
+import vo.CourseVO;
 import vo.StudentVO;
 
 
@@ -86,6 +87,37 @@ public class AcdCourseDAO {
 		dbm.close();
 		return courseList;
 	}
+	//교과목 조회 [검색]
+	public List<Map<String, Object>> searchCourse(String searchValue) {
+		List<Map<String, Object>> searchCourse = new ArrayList<>();
+		
+		String sql = "SELECT c.cno, l.lname, p.pname, l.ltime, l.lroom, l.lno "
+				+"FROM course c "
+				+" INNER JOIN lecture l ON c.lno = l.lno "
+				+" INNER JOIN professor p ON l.pno = p.pno "
+				+" INNER JOIN student s ON c.sno = s.sno "
+				+" WHERE s.sno = c.sno "
+				+" ORDER BY c.cno ";
+		
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql).select();
+		
+		while(dbm.next()) {
+			Map<String, Object> courseMap = new HashMap<>();
+
+			courseMap.put("cno", dbm.getInt("cno"));
+			courseMap.put("lno", dbm.getInt("lno"));
+			courseMap.put("lname", dbm.getString("lname"));
+			courseMap.put("ltime", dbm.getString("ltime"));
+			courseMap.put("lroom", dbm.getString("lroom"));
+			courseMap.put("pname", dbm.getString("pname"));
+
+			searchCourse.add(courseMap);
+		}
+
+		dbm.close();
+		return searchCourse;
+	}
 	
 	//학적사항조회
 	public Map<String, Object> selectsscheckByOne(int sno){
@@ -154,18 +186,18 @@ public class AcdCourseDAO {
 			absenseMap.put("sstatus", dbm.getInt("sstatus"));
 
 			absenseList.add(absenseMap);
-			
 		}
 
 		dbm.close();
 		return absenseList;
 	}
+	
 
 	public List<Map<String, Object>> selectAttendAll() {
 		
 		return null;
 	}
-	
+	//수강시간표 조회
 	public List<Map<String, Object>> selectScheduleAll(int sno){
 		List<Map<String, Object>> scheduleList = new ArrayList<>();
 		
@@ -192,4 +224,5 @@ public class AcdCourseDAO {
 		return scheduleList;
 		
 	}
+
 }
