@@ -18,8 +18,9 @@ public class MainDAO {
 		
 		dbm.prepare(sql).setString(pno).select();
 		
-		LectureVO lectureVO = new LectureVO();
+		LectureVO lectureVO = null;
 		while(dbm.next()) {
+			lectureVO = new LectureVO();
 			lectureVO.setLno(dbm.getInt("lno"));
 			lectureVO.setLname(dbm.getString("lname"));
 			lectureVO.setLyear(dbm.getString("lyear").substring(0,4));
@@ -45,8 +46,9 @@ public class MainDAO {
 		
 		dbm.prepare(sql).select();
 		
-		BoardVO boardVO = new BoardVO();
+		BoardVO boardVO = null;
 		while(dbm.next()) {
+			boardVO = new BoardVO();
 			boardVO.setBno(dbm.getInt("bno"));
 			boardVO.setBtitle(dbm.getString("btitle"));
 			boardVO.setBrdate(dbm.getString("brdate"));

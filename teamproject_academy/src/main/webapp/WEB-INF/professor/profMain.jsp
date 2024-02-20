@@ -105,7 +105,7 @@
 
 					<div class="card mb-4">
 						<div class="card-header">
-							공지사항 <a href="notice/noticeList" class="nav-link right bold">&#43;</a>
+							공지사항 <a href="notice/noticeList?nowPage=1&searchAlign=late&searchType=title" class="nav-link right bold">&#43;</a>
 						</div>
 						<div class="card-body">
 							<table class="datatable-table">
@@ -120,7 +120,7 @@
 								<tbody>
 									<c:forEach var="cntVar" begin="0" end="4" step="1">
 										<tr>
-											<td>${cntVar+1}</td>
+											<td>${cntVar}</td>
 											<td><a href="notice/noticeView?bno=${board[cntVar].getBno() }">${board[cntVar].getBtitle() }</a></td>
 											<td>${board[cntVar].getBrdate() }</td>
 											<td>${board[cntVar].getBhit() }</td>

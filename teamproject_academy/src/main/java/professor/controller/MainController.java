@@ -14,24 +14,21 @@ import vo.LectureVO;
 
 public class MainController {
 	public void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String pno = (String)request.getSession().getAttribute("no");
-		//세션이 없을경우 화면 초기화
-		if(pno == null || (pno != null && pno.equals(""))) {
-			response.sendRedirect(request.getContextPath());
-			
-		} else {
-			MainDAO mainDAO = new MainDAO();
-			
-			List<LectureVO> lecture = mainDAO.pnoFindLecture(pno);
-			request.setAttribute("lecture",lecture);
-			
-			List<BoardVO> board = mainDAO.FindBoard();
-			request.setAttribute("board",board);
-			
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/profMain.jsp");
-			rd.forward(request, response);
-		}
+		
+		MainDAO mainDAO = new MainDAO();
+		
+		List<LectureVO> lecture = mainDAO.pnoFindLecture(pno);
+		request.setAttribute("lecture",lecture);
+		
+		List<BoardVO> board = mainDAO.FindBoard();
+		request.setAttribute("board",board);
+		
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/profMain.jsp");
+		rd.forward(request, response);
+		
 		
 	}
 	public void doPostAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
