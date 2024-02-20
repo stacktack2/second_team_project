@@ -549,30 +549,30 @@
 function register() {
     // 모든 유효성 검사를 수행합니다.
     if (
-        checkId(document.getElementById("pid")) &&
-        checkName(document.getElementById("pname")) &&
-        checkRegNo1(document.getElementById("pregNo1")) &&
-        checkRegNo2(document.getElementById("pregNo2")) &&
-        checkBirth(document.getElementById("pbirth")) &&
-        checkGender(document.querySelector('input[name="pgender"]:checked')) &&
-        checkPosition(document.getElementById("pposition")) &&
-        checkUniv(document.getElementById("puniv")) &&
-        checkFaculty(document.getElementById("pfaculty")) &&
-        checkMajor(document.getElementById("pmajor")) &&
-        checkDegree(document.getElementById("pdegree")) &&
-        checkLab(document.getElementById("plab")) &&
-        checkAppointDate(document.getElementById("pappointDate")) &&
-        checkEmail(document.getElementById("pemail")) &&
-        checkPhone(document.getElementById("pphone")) &&
-        checkCall(document.getElementById("pcall")) &&
-        checkAddr(document.getElementById("paddr")) &&
-        checkZipCode(document.getElementById("pzipCode"))
+        checkId(document.getElementById("pid").value) &&
+        checkName(document.getElementById("pname").value) &&
+        checkRegNo1(document.getElementById("pregNo1").value) &&
+        checkRegNo2(document.getElementById("pregNo2").value) &&
+        checkBirth(document.getElementById("pbirth").value) &&
+        checkGender(document.querySelector('input[name="pgender"]:checked').value) &&
+        checkPosition(document.getElementById("pposition").value) &&
+        checkUniv(document.getElementById("puniv").value) &&
+        checkFaculty(document.getElementById("pfaculty").value) &&
+        checkMajor(document.getElementById("pmajor").value) &&
+        checkDegree(document.getElementById("pdegree").value) &&
+        checkLab(document.getElementById("plab").value) &&
+        checkAppointDate(document.getElementById("pappointDate").value) &&
+        checkEmail(document.getElementById("pemail").value) &&
+        checkPhone(document.getElementById("pphone").value) &&
+        checkCall(document.getElementById("pcall").value) &&
+        checkAddr(document.getElementById("paddr").value) &&
+        checkZipCode(document.getElementById("pzipCode").value)
     ) {
         // 파일 업로드 유효성 검사 및 FormData에 추가
         let photoInput = document.getElementById("photoInput");
         if (photoInput.files.length > 0) {
             let photoFile = photoInput.files[0];
-            if (/\.(jpe?g|png)$/i.test(photoFile.name) && photoFile.size <= 10 * 1024 * 1024) {
+            if (/\.(jpe?g|png)$/i.test(photoFile.name) && photoFile.size <= 100 * 1024 * 1024) {
                 // 파일이 유효하면 FormData에 추가
                 let formData = new FormData(document.getElementById("profUserAddForm"));
                 formData.append("photo", photoFile);

@@ -33,7 +33,7 @@ BEGIN
              수강 후 컴퓨터 시스템에 대한 이해를 통하여 운영체제 내의 소프트웨어 계층을 최적화하고, 컴퓨터 시스템을 외부의 침입이나 공격으로부터 보호하며, 대용량 데이터들을 효과적으로 처리하는 분산/병렬 프레임워크를 구현하고 개선하는 연구를 진행한다.',3,i);
           
 		-- 수강정보 브릿지
-          INSERT INTO course(cyn,cgrade,lno,sno) VALUES( '1', 'A', i, i);
+          INSERT INTO course(cyn,cgrade,lno,sno,cdelyn) VALUES( '1', 'A', i, i,0);
           
 		-- 출석정보
         INSERT INTO attendment(attendrdate,attendyn,cno) 
