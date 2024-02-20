@@ -8,7 +8,24 @@ import vo.BoardVO;
 
 public class NoticeDAO {
 	
-	
+	public BoardVO bnoFindBoard(int bno) {
+		String sql = "select * from board where bno = ? ";
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql).setInt(bno).select();
+		
+		BoardVO boardVO = null;
+		while(dbm.next()) {
+			boardVO = new BoardVO();
+			boardVO.setBtitle(dbm.getString("btitle"));
+			boardVO.setBcontent(dbm.getString("bcontent"));
+			boardVO.setBrdate(dbm.getString("brdate"));
+			boardVO.setBhit(dbm.getInt("bhit"));
+		}
+		
+		dbm.close();
+		
+		return boardVO;
+	}
 
 	public int FindTotalCnt(String searchAlign, String searchType, String searchValue){
 		String sql = "select count(*) as cnt from board b ";
