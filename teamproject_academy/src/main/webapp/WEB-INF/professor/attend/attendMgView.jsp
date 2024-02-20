@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,12 +9,15 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
 
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body class="sb-nav-fixed">
@@ -87,17 +91,19 @@
 								<div class="datatable-top">
 									<!-- 검색- 날짜 api 활용 -->
 									<div class="right">
-										<form action="noticeList" method="get" class="datatable-search inline">
-											<input type="text" name="attendday" />
+										<form action="attendMgView" method="get" class="datatable-search inline">
+											<input type="hidden" name="lno" value="${param.lno}">
+											<input type="text" name="attendday" value="${attenddayParam }"/>
 											<button class="btn btn-primary inline grey">검색</button>
 										</form>
 									</div>
 								</div>
-								
 								<!-- 테이블 컨테이너 -->
 								<div class="datatable-container">
+								
 									<!-- 테이블 -->
-									<form>
+									<form action="attendMgView" method="get">
+										<input type="hidden" name="lno" value="${param.lno}">
 										<table class="datatable-table">
 											<thead>
 												<tr>
@@ -109,35 +115,25 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>홍길동</td>
-													<td>202029322</td>
-													<td>010-2452-2424</td>
-													<td>출석</td>
-													<td>
-														<select class="datatable-selector right">
-															<option value="1" selected>출석</option>
-															<option value="2">결석</option>
-															<option value="2">지각</option>
-														</select>	
-													</td>
-												</tr>
-												<tr>
-													<td>김길동</td>
-													<td>202029322</td>
-													<td>010-2452-2424</td>
-													<td>출석</td>
-													<td>
-														<select class="datatable-selector right">
-															<option value="1" selected>출석</option>
-															<option value="2">결석</option>
-															<option value="2">지각</option>
-														</select>	
-													</td>
-												</tr>
+												<c:forEach items="${attendList }" var="attendVO" varStatus="loop">
+													<tr>
+														<td>${attendVO.sname }</td>
+														<td>${attendVO.sid }</td>
+														<td>${attendVO.sphone }</td>
+														<td><c:if test="${attendVO.attendyn eq 1 }">출석</c:if>
+														<c:if test="${attendVO.attendyn eq 2 }">결석</c:if>
+														<c:if test="${attendVO.attendyn eq 3 }">지각</c:if></td>
+														<td>
+															<select class="datatable-selector right" onchange="attendChange(${attendVO.attendno },this);">
+																<option value="1" selected>출석</option>
+																<option value="2">결석</option>
+																<option value="3">지각</option>
+															</select>	
+														</td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
-										<button class="btn btn-primary inline grey right">저장</button>
 									</form>
 								</div>
 							</div>
