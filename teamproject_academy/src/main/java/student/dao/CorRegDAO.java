@@ -65,18 +65,18 @@ public class CorRegDAO {
 	
 	//---------------------------------------------------------------
 	//내가 수강신청한 강의 조회
-	public List<Map<String, Object>> selectRegAll( String sno) {
+	public List<Map<String, Object>> selectRegAll() {
 		List<Map<String, Object>> regList = new ArrayList<>();
 		
 		String sql ="SELECT l.*,p.pname,c.cno from lecture l "
 				+ " INNER JOIN course c on c.lno = l.lno "
 				+ " INNER JOIN professor p on p.pno = l.pno "
 				+ " INNER JOIN student s on c.sno = s.sno "
-				+ " WHERE l.lstatus=2  and s.sno =? "
+				+ " WHERE l.lstatus=2 and c.delyn='N'"
 				+ " ORDER BY cno ";
 		
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setString(sno).select();
+		dbm.prepare(sql).select();
 		
 		while(dbm.next()) {
 			Map<String, Object> regMap = new HashMap<>();
@@ -93,7 +93,7 @@ public class CorRegDAO {
 		dbm.close();
 		return regList;
 	}
-	//[ajax: DELETE]
+	//[ajax: DELETE -> delyn]
 	public int deleteReg(int cno, String sno) {
 		int delRs =0;
 		String sql = "Update FROM course WHERE cno=? and sno =? ";

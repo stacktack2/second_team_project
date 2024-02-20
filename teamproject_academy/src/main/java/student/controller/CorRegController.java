@@ -40,14 +40,9 @@ public class CorRegController {
 	//수강신청 현황조회
 	public void cAppCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String sno = (String)request.getSession().getAttribute("no");
-		if(sno == null || (sno != null && sno.equals(""))) {
-			response.sendRedirect(request.getContextPath());
-			return;
-		}
 		CorRegDAO corRegDAO = new CorRegDAO();
 
-		List<Map<String, Object>> regList = corRegDAO.selectRegAll( sno);
+		List<Map<String, Object>> regList = corRegDAO.selectRegAll();
 		request.setAttribute("regList", regList);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/corReg/cAppCheck.jsp");

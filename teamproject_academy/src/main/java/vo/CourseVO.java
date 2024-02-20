@@ -5,13 +5,14 @@ public class CourseVO {
 	private int cno;
 	private int cyn;
 	private String cgrade;
-	private String delyn;
+	private int cdelyn;
 	
-	public String getDelyn() {
-		return delyn;
+	
+	public int getCdelyn() {
+		return cdelyn;
 	}
-	public void setDelyn(String delyn) {
-		this.delyn = delyn;
+	public void setCdelyn(int cdelyn) {
+		this.cdelyn = cdelyn;
 	}
 	public int getCno() {
 		return cno;
