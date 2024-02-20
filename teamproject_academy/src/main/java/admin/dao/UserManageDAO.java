@@ -120,7 +120,7 @@ public class UserManageDAO {
 		dbm.setString(professorVO.getPname());
 		dbm.setString(professorVO.getPregNo1());
 		dbm.setString(professorVO.getPregNo2());
-		dbm.setString(professorVO.getPbirth());
+		dbm.setString(professorVO.getPbirth()); 
 		dbm.setString(professorVO.getPgender());
 		dbm.setString(professorVO.getPposition());
 		dbm.setString(professorVO.getPuniv());
