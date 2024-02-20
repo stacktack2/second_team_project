@@ -8,7 +8,7 @@ function displayPhotoPreview(event) {
             let file = input.files[0];
 
             if (/\.(jpe?g|png)$/i.test(file.name)) { // 파일 형식 유효성 검사 jpeg, jpg, png
-				if(file.size <= 10 * 1024 * 1024){ // 파일 크기 유효성 검사 크기 = 10MB
+				if(file.size <= 100 * 1024 * 1024){ // 파일 크기 유효성 검사 크기 = 10MB
                 	reader.onload = function (e) {
                     previewElement.innerHTML = '<img src="' + e.target.result + '" style="width:100%; height:100%;" />';
 					

@@ -5,6 +5,7 @@ import java.util.List;
 
 import util.DBM;
 import vo.ProfessorVO;
+import vo.ProfessorfileVO;
 
 public class UserManageDAO {
 	
@@ -140,5 +141,52 @@ public class UserManageDAO {
 		dbm.close();
 		
 		return profAdd;
+	}
+
+
+	public List<ProfessorfileVO> insertProfPhoto(ProfessorfileVO professorfileVO) {
+		List<ProfessorfileVO> profPhoto = new ArrayList<>();
+		
+		String sql = " SELECT max(pno) as pno FROM professor";
+		
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql).select();
+		
+		int pno = 0;
+		if(dbm.next()) {
+			pno = dbm.getInt("pno");
+		}
+		
+		dbm.close();
+		
+		sql = " INSERT INTO professorfile "
+			+ " (pfrealnm, pforiginnm, pno, pfrdate)"
+			+ " VALUES(?, ?, ?, now())";
+		
+		dbm.prepare(sql);
+		
+		dbm.setString(professorfileVO.getPfrealnm());
+		dbm.setString(professorfileVO.getPforiginnm());
+		dbm.setInt(pno);
+		
+		dbm.update();
+		
+		dbm.close();
+		
+		return profPhoto;
+	}
+
+	public List<ProfessorVO> viewProf() {
+		List<ProfessorVO> viewProf = new ArrayList<>();
+		
+		
+		return viewProf;
+	}
+
+	public List<ProfessorfileVO> viewProfPhoto() {
+		List<ProfessorfileVO> viewProfPhoto = new ArrayList<>();
+		
+		
+		return viewProfPhoto;
 	}
 }

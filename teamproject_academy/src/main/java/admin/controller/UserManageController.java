@@ -1,22 +1,24 @@
 package admin.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.mindrot.jbcrypt.BCrypt;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import admin.dao.UserManageDAO;
 import vo.PagingVO;
 import vo.ProfessorVO;
+import vo.ProfessorfileVO;
 
 public class UserManageController {
 	
@@ -227,36 +229,83 @@ public class UserManageController {
 	}
 	
 	public void PostprofUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		ProfessorVO professorVO = new ProfessorVO();
+		request.setCharacterEncoding("UTF-8");
 		
-		professorVO.setPid(request.getParameter("pid")); 
-		String ppwParam = request.getParameter("pid");
-		professorVO.setPpw(BCrypt.hashpw(ppwParam, BCrypt.gensalt()));
-		professorVO.setPname(request.getParameter("pname"));
-		professorVO.setPregNo1(request.getParameter("pregNo1"));
-		String pregNo2Param = request.getParameter("pregNo2");
-		professorVO.setPregNo2(BCrypt.hashpw(pregNo2Param, BCrypt.gensalt()));
-		professorVO.setPbirth(request.getParameter("pbirth"));
-		professorVO.setPgender(request.getParameter("pgender"));
-		professorVO.setPposition(request.getParameter("pposition"));
-		professorVO.setPuniv(request.getParameter("puniv"));
-		professorVO.setPfaculty(request.getParameter("pfaculty"));
-		professorVO.setPmajor(request.getParameter("pmajor"));
-		professorVO.setPdegree(request.getParameter("pdegree"));
-		professorVO.setPlab(request.getParameter("plab"));
-		professorVO.setPappointDate(request.getParameter("pappointDate"));
-		professorVO.setPemail(request.getParameter("pemail"));
-		professorVO.setPphone(request.getParameter("pphone"));
-		professorVO.setPcall(request.getParameter("pcall"));
-		professorVO.setPaddr(request.getParameter("paddr"));
-		professorVO.setPzipCode(request.getParameter("pzipCode"));
+		String directory = "E:\\98.팀프로젝트\\02. 2차프로젝트\\second_team_project\\teamproject_academy\\src\\main\\webapp\\upload\\profUpload";
+		
+		int sizeLimit = 100 * 1024 * 1024;
+		if (request.getContentType() != null && request.getContentType().startsWith("multipart/form-data")) {
+	        try {
+	            MultipartRequest multi = new MultipartRequest(request, directory, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
+
+//	    		교수유저 추가
+	    		ProfessorVO professorVO = new ProfessorVO();
+	    		
+	    		professorVO.setPid(multi.getParameter("pid")); 
+	    		String ppwParam = multi.getParameter("pid");
+	    		professorVO.setPpw(BCrypt.hashpw(ppwParam, BCrypt.gensalt()));
+	    		professorVO.setPname(multi.getParameter("pname"));
+	    		professorVO.setPregNo1(multi.getParameter("pregNo1"));
+	    		String pregNo2Param = multi.getParameter("pregNo2");
+	    		professorVO.setPregNo2(BCrypt.hashpw(pregNo2Param, BCrypt.gensalt()));
+	    		professorVO.setPbirth(multi.getParameter("pbirth"));
+	    		professorVO.setPgender(multi.getParameter("pgender"));
+	    		professorVO.setPposition(multi.getParameter("pposition"));
+	    		professorVO.setPuniv(multi.getParameter("puniv"));
+	    		professorVO.setPfaculty(multi.getParameter("pfaculty"));
+	    		professorVO.setPmajor(multi.getParameter("pmajor"));
+	    		professorVO.setPdegree(multi.getParameter("pdegree"));
+	    		professorVO.setPlab(multi.getParameter("plab"));
+	    		professorVO.setPappointDate(multi.getParameter("pappointDate"));
+	    		professorVO.setPemail(multi.getParameter("pemail"));
+	    		professorVO.setPphone(multi.getParameter("pphone"));
+	    		professorVO.setPcall(multi.getParameter("pcall"));
+	    		professorVO.setPaddr(multi.getParameter("paddr"));
+	    		professorVO.setPzipCode(multi.getParameter("pzipCode"));
+	    		
+	    		UserManageDAO userManageDAO = new UserManageDAO();
+	    		List<ProfessorVO> profAdd = userManageDAO.insertProf(professorVO);
+	    		
+	    		response.setContentType("text/html; charset=utf-8");
+	    		response.setCharacterEncoding("UTF-8");
+	    		
+	    		request.setAttribute("profAdd", profAdd);
+	    		
+	            // 파일 유효성 검사 (예시: 확장자 제한)
+	            String allowedExtension = "jpg|jpeg|png";
+	            String originalFileName = multi.getOriginalFileName("profPhoto");
+	            
+	            if (originalFileName != null && !originalFileName.isEmpty()) {
+	                String fileExtension = originalFileName.substring(originalFileName.lastIndexOf(".") + 1).toLowerCase();
+	                
+	                if (!Arrays.asList(allowedExtension.split("\\|")).contains(fileExtension)) {
+	                    throw new FileUploadException("허용되지 않는 파일 형식입니다.");
+	                }
+	            }
+
+	            ProfessorfileVO professorfileVO = new ProfessorfileVO();
+	            professorfileVO.setPfrealnm(multi.getFilesystemName("profPhoto")); // 넘어온 파일명
+	            professorfileVO.setPforiginnm(originalFileName); // 원본 파일명
+
+	            List<ProfessorfileVO> profPhoto = userManageDAO.insertProfPhoto(professorfileVO);
+	            
+	            response.setContentType("text/html; charset=utf-8");
+	    		response.setCharacterEncoding("UTF-8");
+
+	            request.setAttribute("profPhoto", profPhoto);
+
+	        } catch (FileUploadException e) {
+	            // 파일 업로드 실패 시 예외 처리
+	            request.setAttribute("uploadError", e.getMessage());
+	        }
+	    }
 		
 		UserManageDAO userManageDAO = new UserManageDAO();
-		List<ProfessorVO> profAdd = userManageDAO.insertProf(professorVO);
+		List<ProfessorVO> viewProf = userManageDAO.viewProf();
+		List<ProfessorfileVO> viewProfPhoto = userManageDAO.viewProfPhoto();
 		
-		request.setAttribute("profAdd", profAdd);
-		
+		request.setAttribute("viewProf", viewProf);
+		request.setAttribute("viewProfPhoto", viewProfPhoto);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
 		rd.forward(request, response);
