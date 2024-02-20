@@ -175,4 +175,18 @@ public class UserManageDAO {
 		
 		return profPhoto;
 	}
+
+	public List<ProfessorVO> viewProf() {
+		List<ProfessorVO> viewProf = new ArrayList<>();
+		
+		
+		return viewProf;
+	}
+
+	public List<ProfessorfileVO> viewProfPhoto() {
+		List<ProfessorfileVO> viewProfPhoto = new ArrayList<>();
+		
+		
+		return viewProfPhoto;
+	}
 }

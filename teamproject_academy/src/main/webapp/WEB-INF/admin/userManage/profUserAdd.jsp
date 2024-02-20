@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>학생관리 페이지</title>
+<title>교수관리 페이지</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/admin/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -33,7 +33,7 @@
 					<div class="card-body">
 						<div class="card mb-4" style="width: 247px; height: 292px;" id="photoPreview">
 							<!-- <img > -->
-					</div>
+						</div>
 						<input type="file" name="profPhoto" id="photoInput" onchange="displayPhotoPreview(event)" ><!-- style="display: none;" -->
 						<label class="btn btn-primary inline grey mb-4" for="photoInput">사진 추가</label>
 						<!-- <button class="btn btn-primary inline grey mb-4" type="button" onclick="uploadPhoto()">사진 추가</button> -->

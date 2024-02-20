@@ -300,6 +300,13 @@ public class UserManageController {
 	        }
 	    }
 		
+		UserManageDAO userManageDAO = new UserManageDAO();
+		List<ProfessorVO> viewProf = userManageDAO.viewProf();
+		List<ProfessorfileVO> viewProfPhoto = userManageDAO.viewProfPhoto();
+		
+		request.setAttribute("viewProf", viewProf);
+		request.setAttribute("viewProfPhoto", viewProfPhoto);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
 		rd.forward(request, response);
 	}
