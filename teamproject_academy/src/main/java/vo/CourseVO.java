@@ -1,13 +1,26 @@
 package vo;
 
 public class CourseVO {
-	
+	private int lno;
+	private int sno;
 	private int cno;
 	private int cyn;
 	private String cgrade;
 	private int cdelyn;
 	
 	
+	public int getLno() {
+		return lno;
+	}
+	public void setLno(int lno) {
+		this.lno = lno;
+	}
+	public int getSno() {
+		return sno;
+	}
+	public void setSno(int sno) {
+		this.sno = sno;
+	}
 	public int getCdelyn() {
 		return cdelyn;
 	}

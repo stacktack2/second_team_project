@@ -12,12 +12,13 @@ import vo.StudentVO;
 public class CorRegDAO {
 
 	//수강신청 강의 전체 조회
-	public List<Map<String, Object>> selectCorRegAll(String searchType, String searchValue){
+	public List<Map<String, Object>> selectCorRegAll( String searchType, String searchValue){
 		List<Map<String, Object>> corRegList = new ArrayList<>();
 		
 		String sql = " SELECT l.*, p.pname from lecture l "
 				+ " INNER JOIN professor p ON p.pno = l.pno "
 				+ " WHERE l.lstatus=2 ";
+
 		//[검색]
 		if(searchType != null && searchType.equals("")){
 			if(searchType.equals("1")){
@@ -28,7 +29,7 @@ public class CorRegDAO {
 		}
 		DBM dbm = DBM.getInstance();
 		
-		if(searchType != null  && searchType.equals("")) {
+		if(searchType != null  && !searchType.equals("")) {
 			dbm.prepare(sql).setString(searchValue).select();
 		}else {
 			dbm.prepare(sql).select();
@@ -49,8 +50,39 @@ public class CorRegDAO {
 		dbm.close();
 		return corRegList;
 	}
-
-	//[ajax:INSERT]
+	// 수강신청 중복배제를 위한 courseList 조회
+	public List<CourseVO> selectCourseAll(String searchType, String searchValue) {
+		List<CourseVO> courseList = new ArrayList<>();
+		
+		String sql = "SELECT * from course ";
+		//[검색]
+		if(searchType != null && searchType.equals("")){
+			if(searchType.equals("1")){
+				sql += " AND l.lname LIKE CONCAT('%',?,'%')";
+			}else if(searchType.equals("2")){
+				sql += " AND p.pname LIKE CONCAT('%',?,'%')";
+			}
+		}
+		DBM dbm = DBM.getInstance();
+		
+		if(searchType != null  && !searchType.equals("")) {
+			dbm.prepare(sql).setString(searchValue).select();
+		}else {
+			dbm.prepare(sql).select();
+		}
+		while(dbm.next()) {
+			CourseVO course = new CourseVO();
+			
+			course.setLno(dbm.getInt("lno"));
+			
+			courseList.add(course);
+			
+		}
+		dbm.close();
+		return courseList;
+	}	
+	//---------------------------------------------------------------
+	//[ajax:INSERT 신청버튼 클릭시]
 	public int insertReg(int lno, String sno) {
 		int insertRs = 0;
 		
@@ -63,7 +95,6 @@ public class CorRegDAO {
 		return insertRs;
 	}
 	
-	//---------------------------------------------------------------
 	//내가 수강신청한 강의 조회
 	public List<Map<String, Object>> selectRegAll() {
 		List<Map<String, Object>> regList = new ArrayList<>();
@@ -71,8 +102,7 @@ public class CorRegDAO {
 		String sql ="SELECT l.*,p.pname,c.cno from lecture l "
 				+ " INNER JOIN course c on c.lno = l.lno "
 				+ " INNER JOIN professor p on p.pno = l.pno "
-				+ " INNER JOIN student s on c.sno = s.sno "
-				+ " WHERE l.lstatus=2 and c.delyn='N'"
+				+ " WHERE l.lstatus=2 and c.cdelyn=0"
 				+ " ORDER BY cno ";
 		
 		DBM dbm = DBM.getInstance();
@@ -93,17 +123,14 @@ public class CorRegDAO {
 		dbm.close();
 		return regList;
 	}
-	//[ajax: DELETE -> delyn]
-	public int deleteReg(int cno, String sno) {
+	//[ajax: DELETE 취소버튼 클릭시-> cdelyn=1]
+	public int deleteReg(int cno) {
 		int delRs =0;
-		String sql = "Update FROM course WHERE cno=? and sno =? ";
+		String sql = "UPDATE course SET cdelyn=? WHERE cno=?";
 		DBM dbm = DBM.getInstance();
-		delRs = dbm.prepare(sql).setInt(cno).setString(sno).update();
+		delRs = dbm.prepare(sql).setInt(1).setInt(cno).update();
 		dbm.close();
-		System.out.println(cno);
-		System.out.println(delRs);
+
 		return delRs;
-	}	
-	
-	
+	}
 }

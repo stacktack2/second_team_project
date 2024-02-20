@@ -52,67 +52,79 @@ public class CorRegController {
 	//수강신청 ajax
 	public void PostcAppCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//[ajax에서 가져온 lno]
-		String lnoParam = request.getParameter("lno");
-		int lno=0;
-		if(lnoParam != null && !lnoParam.equals("")) {
-			lno = Integer.parseInt(lnoParam);
-		}
 		String sno = (String)request.getSession().getAttribute("no");
-		if(sno == null || (sno != null && sno.equals(""))) {
-			response.sendRedirect(request.getContextPath());
-			return;
-		}
-		String cnoParam = request.getParameter("cno");
-		int cno=0;
-		if(cnoParam != null && !cnoParam.equals("")) {
-			cno = Integer.parseInt(cnoParam);
-		}
-		
-		CorRegDAO corRegDAO = new CorRegDAO();
-		//[ajax: 신청]
-		int insertRs = corRegDAO.insertReg(lno, sno);
-		request.setAttribute("insertRs", insertRs);
+			if(sno == null || (sno != null && sno.equals(""))) {
+				response.sendRedirect(request.getContextPath());
+				return;
+			}
 
-		//[ajax: 삭제]
-		int delRs = corRegDAO.deleteReg(cno, sno);
-		request.setAttribute("delRs", delRs);
+		CorRegDAO corRegDAO = new CorRegDAO();
+
+		String lnoParam = request.getParameter("lno");
+		if(lnoParam != null && !lnoParam.equals("")) {
+			int lno = Integer.parseInt(lnoParam);
+			//[ajax: 신청]
+			int insertRs = corRegDAO.insertReg(lno, sno);
+			request.setAttribute("insertRs", insertRs);
 
 			if(insertRs >0) {
 				response.setContentType("text/html; charset=utf-8");
 				response.setCharacterEncoding("UTF-8");
 				response.getWriter().append("SUCCESS");
 				response.getWriter().flush();
-			}else if(insertRs == 0){
+			} else {
 				response.setContentType("text/html; charset=utf-8");
 				response.setCharacterEncoding("UTF-8");
 				response.getWriter().append("FAIL");
 				response.getWriter().flush();
 			}
-			System.out.println(delRs);
-			System.out.println(cno);
+		}
+
+		String cnoParam = request.getParameter("cno");
+		if(cnoParam != null && !cnoParam.equals("")) {
+			int cno = Integer.parseInt(cnoParam);
+			//[ajax: 삭제]
+			int delRs = corRegDAO.deleteReg(cno);
+			request.setAttribute("delRs", delRs);
+
 			if(delRs >0) {
 				response.setContentType("text/html; charset=utf-8");
 				response.setCharacterEncoding("UTF-8");
 				response.getWriter().append("SUCCESS2");
 				response.getWriter().flush();
-			}else if(delRs == 0) {
+			} else {
 				response.setContentType("text/html; charset=utf-8");
 				response.setCharacterEncoding("UTF-8");
 				response.getWriter().append("FAIL2");
 				response.getWriter().flush();
 			}
-		
-
+		}
 	}
+
+		
 	//수강신청조회
 	public void corReg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		//[검색]
 		String searchType = request.getParameter("searchType");
 		String searchValue = request.getParameter("searchValue");
 		
 		CorRegDAO corRegDAO = new CorRegDAO();
+		//수강신청 lecture list 조회
 		List<Map<String, Object>> corRegList = corRegDAO.selectCorRegAll(searchType,searchValue);
 		request.setAttribute("corRegList",corRegList);
+		//수강신청 course list 조회
+		List<CourseVO> courseList = corRegDAO.selectCourseAll(searchType,searchValue);
+		request.setAttribute("courseList",courseList);
+	    // lecture의 lno와 course의 lno가 같다면 즉 한번 신청을 했으면 break를 하고 반복문을 빠져나옴
+//	    for (Map<String, Object> corReg : corRegList) {//lectureList
+//	        for (CourseVO course : courseList) {//courseList
+//	            if (course.getLno() == (int) corReg.get("lno")) {
+//	                corReg.put("applied", true);
+//	                break;
+//	            }
+//	        }
+//	    }
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/corReg/corReg.jsp");
 		rd.forward(request, response);

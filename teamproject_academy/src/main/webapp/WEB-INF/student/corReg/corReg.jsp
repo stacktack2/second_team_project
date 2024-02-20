@@ -74,8 +74,13 @@
 												<td>${corReg.ltime } ( ${corReg.lroom } )</td>
 												<td>${corReg.pname }</td>
 												<td>
-													<button class="btn btn-primary inline grey" 
-													onclick="corRegFn(this,${corReg.lno })">신청</button>
+													<button class="btn btn-primary inline grey" id="btn-apply"
+													onclick="corRegFn(this,${corReg.lno })"
+													<c:forEach var="course" items="${courseList}">
+														<c:if test="${course.lno == corReg.lno && course.cdelyn==0}">disabled</c:if>
+														
+													</c:forEach>
+													>신청</button>
 												</td>
 											</tr>
 										</c:forEach>
