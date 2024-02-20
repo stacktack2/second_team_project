@@ -2,6 +2,7 @@ package admin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.List;
 
@@ -145,6 +146,8 @@ public class UserManageController {
 		
 		UserManageDAO userManageDAO = new UserManageDAO();
 		List<ProfessorVO> profAdd = userManageDAO.insertProf(professorVO);
+		
+		
 		
 		request.setAttribute("profAdd", profAdd);
 		
