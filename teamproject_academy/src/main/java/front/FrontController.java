@@ -74,6 +74,18 @@ public class FrontController extends HttpServlet {
 						break;
 						
 					case "professor":
+						String type = (String)request.getSession().getAttribute("type");
+						//세션- 타입이 일치하지 않으면 화면 초기화
+						if(type == null || (type != null && !type.equals("professor"))) {
+							response.sendRedirect(request.getContextPath());
+							return;
+						}
+						String pno = (String)request.getSession().getAttribute("no");
+						//세션이 없을경우 화면 초기화
+						if(pno == null || (pno != null && pno.equals(""))) {
+							response.sendRedirect(request.getContextPath());
+							return;
+						}
 						professor.controller.MainController pmc = new professor.controller.MainController();
 						pmc.doAction(request, response);
 						break;
@@ -123,6 +135,18 @@ public class FrontController extends HttpServlet {
 	                    break;
 
 	                case "professor":
+	                	String type = (String)request.getSession().getAttribute("type");
+	            		//세션- 타입이 일치하지 않으면 화면 초기화
+	            		if(type == null || (type != null && !type.equals("professor"))) {
+	            			response.sendRedirect(request.getContextPath());
+	            			return;
+	            		}
+	            		String pno = (String)request.getSession().getAttribute("no");
+	            		//세션이 없을경우 화면 초기화
+	            		if(pno == null || (pno != null && pno.equals(""))) {
+	            			response.sendRedirect(request.getContextPath());
+	            			return;
+	            		}
 	                	switch(twoUri) {
 		                    case "attend":
 		                    	professor.controller.AttendController pac = new professor.controller.AttendController();
@@ -212,6 +236,18 @@ public class FrontController extends HttpServlet {
 				IndexController ic = new IndexController();
 				ic.doPostAction(uriTwo, request, response);
 			}else if(uriOne.equals("professor")){
+				String type = (String)request.getSession().getAttribute("type");
+        		//세션- 타입이 일치하지 않으면 화면 초기화
+        		if(type == null || (type != null && !type.equals("professor"))) {
+        			response.sendRedirect(request.getContextPath());
+        			return;
+        		}
+        		String pno = (String)request.getSession().getAttribute("no");
+        		//세션이 없을경우 화면 초기화
+        		if(pno == null || (pno != null && pno.equals(""))) {
+        			response.sendRedirect(request.getContextPath());
+        			return;
+        		}
 				professor.controller.MainController pmc = new professor.controller.MainController();
 				pmc.doPostAction(request, response);
 			}else if(uriOne.equals("student")){
@@ -239,6 +275,18 @@ public class FrontController extends HttpServlet {
 					auc.doPostAction(uriThree, request, response);
 				}	
 			}else if(uriOne.equals("professor")) {
+				String type = (String)request.getSession().getAttribute("type");
+        		//세션- 타입이 일치하지 않으면 화면 초기화
+        		if(type == null || (type != null && !type.equals("professor"))) {
+        			response.sendRedirect(request.getContextPath());
+        			return;
+        		}
+        		String pno = (String)request.getSession().getAttribute("no");
+        		//세션이 없을경우 화면 초기화
+        		if(pno == null || (pno != null && pno.equals(""))) {
+        			response.sendRedirect(request.getContextPath());
+        			return;
+        		}
 				if(uriTwo.equals("attend")) {
 					AttendController pac = new AttendController();
 					pac.doPostAction(uriThree, request, response);

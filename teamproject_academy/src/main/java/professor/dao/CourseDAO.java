@@ -17,8 +17,9 @@ public class CourseDAO {
 		
 		dbm.prepare(sql).setString(pno).setString(lyear).setInt(lsemester).select();
 		
-		LectureVO lectureVO = new LectureVO();
+		LectureVO lectureVO = null;
 		while(dbm.next()) {
+			lectureVO = new LectureVO();
 			lectureVO.setLno(dbm.getInt("lno"));
 			lectureVO.setLname(dbm.getString("lname"));
 			lectureVO.setLyear(dbm.getString("lyear").substring(0,4));
@@ -43,8 +44,9 @@ public class CourseDAO {
 		
 		dbm.prepare(sql).setString(lno).select();
 		
-		LectureVO lectureVO = new LectureVO();
+		LectureVO lectureVO = null;
 		while(dbm.next()) {
+			lectureVO = new LectureVO();
 			lectureVO.setLno(dbm.getInt("lno"));
 			lectureVO.setLname(dbm.getString("lname"));
 			lectureVO.setLyear(dbm.getString("lyear").substring(0,4));

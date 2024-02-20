@@ -5,7 +5,15 @@ public class CourseVO {
 	private int cno;
 	private int cyn;
 	private String cgrade;
+	private int cdelyn;
 	
+	
+	public int getCdelyn() {
+		return cdelyn;
+	}
+	public void setCdelyn(int cdelyn) {
+		this.cdelyn = cdelyn;
+	}
 	public int getCno() {
 		return cno;
 	}

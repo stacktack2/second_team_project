@@ -9,6 +9,7 @@ public class BoardVO {
 	private int bhit;
 	private int bdelyn;
 	
+	
 	public int getBno() {
 		return bno;
 	}

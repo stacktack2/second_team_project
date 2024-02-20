@@ -69,14 +69,13 @@ public class SampleDataMaker {
 				
 				
 				
-				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 		}
-		
+
+		System.out.println("Sample이 생성되었습니다.");
 			try {
 				if(conn != null) conn.close();
 				if(psmt != null) psmt.close();

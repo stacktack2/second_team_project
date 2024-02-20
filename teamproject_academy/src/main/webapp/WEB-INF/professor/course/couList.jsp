@@ -114,10 +114,10 @@
 											<c:forEach items="${lecture }" var="lec" varStatus="loop">
 												<tr>
 													<td>${loop.count}</td>
-													<td><a href="curriculum?lno=${lec.getLno() }">${lec.getLname() }</a></td>
-													<td>${lec.getLyear() }</td>
-													<td>${lec.getLsemester() }</td>
-													<td>${lec.getLroom() }</td>
+													<td><a href="curriculum?lno=${lec.lno }">${lec.lname }</a></td>
+													<td>${lec.lyear }</td>
+													<td>${lec.lsemester }</td>
+													<td>${lec.lroom }</td>
 												</tr>
 											</c:forEach>
 										</tbody>
