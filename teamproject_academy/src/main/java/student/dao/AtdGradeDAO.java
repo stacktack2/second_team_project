@@ -9,23 +9,8 @@ import util.DBM;
 import vo.StudentVO;
 
 public class AtdGradeDAO {
-	
-	public StudentVO selectSnameByOne(int sno) {
-		StudentVO student = new StudentVO();
-		
-		String sql = "select sname from student "
-				+"where sno = ?";
-		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setInt(sno).select();
-		
-		while(dbm.next()) {
-			student.setSname(dbm.getString("sname"));
-		}
 
-		dbm.close();
-		return student;
-	}
-	public List<Map<String, Object>>  selectgradeAll(int sno){
+	public List<Map<String, Object>>  selectgradeAll(String sno){
 		List<Map<String, Object>> gradeList = new ArrayList<>();
 		
 		String sql = "select s.smajor, s.sid, s.sname, s.sgrade, s.sstatus, c.cno, c.cgrade, l.lname, l.lcredit from student s "
@@ -34,7 +19,7 @@ public class AtdGradeDAO {
 				+ "where s.sno = ?";
 		
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setInt(sno).select();
+		dbm.prepare(sql).setString(sno).select();
 		
 		while(dbm.next()) {
 			Map<String, Object> gradeMap = new HashMap<>();
@@ -58,7 +43,7 @@ public class AtdGradeDAO {
 		return gradeList;
 	}
 	
-	public List<Map<String, Object>>  selectCourseAll(int sno){
+	public List<Map<String, Object>>  selectCourseAll(String sno){
 		List<Map<String, Object>> courseList = new ArrayList<>();
 		
 		String sql = "SELECT c.cno, l.lname, p.pname, l.ltime, l.lroom, l.lno "
@@ -70,7 +55,7 @@ public class AtdGradeDAO {
 				+" ORDER BY c.cno ";
 				
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setInt(sno).select();
+		dbm.prepare(sql).setString(sno).select();
 		
 		while(dbm.next()) {
 			Map<String, Object> courseMap = new HashMap<>();
@@ -90,7 +75,7 @@ public class AtdGradeDAO {
 		return courseList;
 	}
 	
-	public List<Map<String, Object>>  selectAttendAll(int sno){
+	public List<Map<String, Object>>  selectAttendAll(String sno){
 		List<Map<String, Object>> attendList = new ArrayList<>();
 		
 		String sql = " select l.*, at.* from lecture l "
@@ -100,7 +85,7 @@ public class AtdGradeDAO {
 				+ "	where s.sno = ?";
 				
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setInt(sno).select();
+		dbm.prepare(sql).setString(sno).select();
 		
 		while(dbm.next()) {
 			Map<String, Object> attendMap = new HashMap<>();

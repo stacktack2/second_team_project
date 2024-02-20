@@ -15,17 +15,6 @@ import vo.StudentVO;
 public class NoticeController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		String threeUri = threeUriParam.split("\\.")[0];
-		String snoParam = request.getParameter("sno");
-		int sno = 0;
-		if(snoParam != null && !snoParam.equals("")) {
-			sno = Integer.parseInt(snoParam);
-		}
-		sno=5;
-		NoticeDAO noticeDAO = new NoticeDAO();
-		StudentVO student = noticeDAO.selectSnameByOne(sno);
-		request.setAttribute("student", student);
-		
 		switch(threeUriParam) {
 			case "noticeList":
 				noticeList(request, response);
@@ -35,14 +24,6 @@ public class NoticeController {
 				break;
 				
 		}
-		
-//		if(threeUri.equals("noticeList")) {
-//			noticeList(request,response);
-//		}else if(threeUri.equals("noticeView")) {
-//			noticeView(request,response);			
-//		}
-
-		
 	}
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -53,7 +34,6 @@ public class NoticeController {
 		}else if(threeUri.equals("noticeView")) {
 			noticeView(request,response);			
 		}
-		
 	}
 	
 	public void noticeList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

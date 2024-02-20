@@ -112,6 +112,7 @@ CREATE TABLE lecture
 	lintro text NOT NULL,
 	lfocus text NOT NULL,
 	lstatus tinyint unsigned DEFAULT 0 NOT NULL,
+	lschedule json,
 	pno int unsigned NOT NULL,
 	PRIMARY KEY (lno)
 );
