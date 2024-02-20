@@ -81,28 +81,24 @@
 										<tbody>
 											<tr>
 												<th>제목</th>
-												<td colspan="5">공지사항 제목</td>
+												<td colspan="5">${boardVO.btitle }</td>
 											</tr>
 											<tr>
 												<th>작성자</th>
 												<td>관리자</td>
 												<th>작성일</th>
-												<td>2024.02.04</td>
+												<td>${boardVO.brdate }</td>
 												<th>조회수</th>
-												<td>0</td>
+												<td>${boardVO.bhit }</td>
 											</tr>
 											<tr>
-												<td colspan="6" style="height: 500px;">본문내용입니다</td>
-											</tr>
-											<tr>
-												<th>첨부파일</th>
-												<td colspan="5"></td>
+												<td colspan="6" style="height: 500px;">${boardVO.bcontent }</td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
 								<div class="datatable-bottom">
-									<a href="noticeList" class="btn btn-primary grey right mright">목록</a>
+									<a href="noticeList?nowPage=1&searchAlign=late&searchType=title" class="btn btn-primary grey right mright">목록</a>
 								</div>
 							</div>
 						</div>

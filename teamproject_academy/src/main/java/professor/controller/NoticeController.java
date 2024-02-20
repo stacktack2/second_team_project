@@ -90,6 +90,20 @@ public class NoticeController {
 		
 	}
 	public void noticeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String bnoParam = request.getParameter("bno");
+		int bno = 0;
+		try {
+			bno = Integer.parseInt(bnoParam);
+		} catch (NumberFormatException e) {
+		}
+		
+		NoticeDAO noticeDAO = new NoticeDAO();
+		BoardVO boardVO = noticeDAO.bnoFindBoard(bno);
+		
+		request.setAttribute("boardVO", boardVO);
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/notice/noticeView.jsp");
 		rd.forward(request, response);
 		
