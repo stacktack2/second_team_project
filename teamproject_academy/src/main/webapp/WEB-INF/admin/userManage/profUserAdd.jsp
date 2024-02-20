@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +26,7 @@
 					<li class="breadcrumb-item">사용자 관리</li>
 					<li class="breadcrumb-item active">교수 관리</li>
 				</ol>
-				<form name="profUserAddForm" action="profUserMgView" method="post" id="profUserAddForm" onsubmit="return false;">
+				<form name="profUserAddForm" action="profUserMgView" method="post" id="profUserAddForm" onsubmit="return false;" enctype="multipart/form-data">
 				<div class="card mb-4 white">
 					<div class="card-header disNone">교수 사용자 추가</div>
 					<!-- 사진 첨부파일 -->
@@ -32,7 +34,7 @@
 						<div class="card mb-4" style="width: 247px; height: 292px;" id="photoPreview">
 							<!-- <img > -->
 					</div>
-						<input type="file" id="photoInput" onchange="displayPhotoPreview(event)" ><!-- style="display: none;" -->
+						<input type="file" name="profPhoto" id="photoInput" onchange="displayPhotoPreview(event)" ><!-- style="display: none;" -->
 						<label class="btn btn-primary inline grey mb-4" for="photoInput">사진 추가</label>
 						<!-- <button class="btn btn-primary inline grey mb-4" type="button" onclick="uploadPhoto()">사진 추가</button> -->
 					
@@ -46,7 +48,7 @@
 								<tbody>
 									<tr>
 										<th>교번</th>
-										<td style="width: 20rem;" id="pidTd">
+										<td style="width: 20rem;">
 											<input type="text" name="pid" id="pid" oninput="checkId(this)" 
 													oninvalid="this.setCustomValidity('교수번호를 입력해주세요.');" 
 													class="datatable-input" required>
