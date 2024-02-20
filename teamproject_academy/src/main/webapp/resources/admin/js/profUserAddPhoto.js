@@ -1,6 +1,6 @@
 /* 사진 미리보기 */
 function displayPhotoPreview(event) {
-        let input = event.target;
+        let input = document.getElementById("photoInput");
         let previewElement = document.getElementById('photoPreview');
 
         if (input.files && input.files[0]) {
@@ -11,6 +11,8 @@ function displayPhotoPreview(event) {
 				if(file.size <= 10 * 1024 * 1024){ // 파일 크기 유효성 검사 크기 = 10MB
                 	reader.onload = function (e) {
                     previewElement.innerHTML = '<img src="' + e.target.result + '" style="width:100%; height:100%;" />';
+					
+					console.log("파일이름 : ", file.name);                    
                 	}
              	}
                 reader.readAsDataURL(file);
@@ -23,3 +25,8 @@ function displayPhotoPreview(event) {
             previewElement.innerHTML = ''; // 이미지 미리보기를 초기화합니다.
         }
 }
+
+document.getElementById("photoInput").addEventListener("input", function() {
+    		let resultPhoto = displayPhotoPreview(this);
+    		console.log(resultPhoto);
+		});

@@ -10,21 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import student.dao.CorRegDAO;
+import vo.CourseVO;
 import vo.StudentVO;
 
 public class CorRegController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-//		String threeUri = threeUriParam.split("\\.")[0];
-		String snoParam = request.getParameter("sno");
-		int sno = 0;
-		if(snoParam != null && !snoParam.equals("")) {
-			sno = Integer.parseInt(snoParam);
-		}
-		sno=5;
-		CorRegDAO corRegDAO = new CorRegDAO();
-		StudentVO student = corRegDAO.selectSnameByOne(sno);
-		request.setAttribute("student", student);
 		
 		switch (threeUriParam) {
 			case "cAppCheck":
@@ -34,14 +24,7 @@ public class CorRegController {
 				corReg(request,response);
 				break;
 		}
-		
-//		if(threeUri.equals("cAppCheck")) {
-//			cAppCheck(request,response);
-//		}else if(threeUri.equals("corReg")) {
-//			corReg(request,response);			
-//		}
 
-		
 	}
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -54,26 +37,66 @@ public class CorRegController {
 		}
 		
 	}
+	//수강신청 현황조회
 	public void cAppCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//[ajax에서 가져온 lno]
+
+		String sno = (String)request.getSession().getAttribute("no");
+		if(sno == null || (sno != null && sno.equals(""))) {
+			response.sendRedirect(request.getContextPath());
+			return;
+		}
+		CorRegDAO corRegDAO = new CorRegDAO();
+
+		List<Map<String, Object>> regList = corRegDAO.selectRegAll( sno);
+		request.setAttribute("regList", regList);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/corReg/cAppCheck.jsp");
 		rd.forward(request, response);
-		
 		
 	}
 	public void PostcAppCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/corReg/cAppCheck.jsp");
-		rd.forward(request, response);
-		
+		//[ajax에서 가져온 lno]
+		String lnoParam = request.getParameter("lno");
+		int lno=0;
+		if(lnoParam != null && !lnoParam.equals("")) {
+			lno = Integer.parseInt(lnoParam);
+		}
+		String sno = (String)request.getSession().getAttribute("no");
+		if(sno == null || (sno != null && sno.equals(""))) {
+			response.sendRedirect(request.getContextPath());
+			return;
+		}
+		CorRegDAO corRegDAO = new CorRegDAO();
+		int courseRs = corRegDAO.updateReg(lno, sno);
+		request.setAttribute("courseRs", courseRs);
+
+		//[ajax에 data보내기]
+		if(courseRs >0) {
+			response.setContentType("text/html; charset=utf-8");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().append("SUCCESS");
+			response.getWriter().flush();
+		}else {
+			response.setContentType("text/html; charset=utf-8");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().append("FAIL");
+			response.getWriter().flush();
+		}
 		
 	}
+	//수강신청조회
 	public void corReg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CorRegDAO corRegDAO = new CorRegDAO();
-		List<Map<String, Object>> corRegList = corRegDAO.selectCorRegAll();
-		request.setAttribute("corRegList",corRegList);
+		//[검색]
+		String searchType = request.getParameter("searchType");
+		String searchValue = request.getParameter("searchValue");
 		
+		CorRegDAO corRegDAO = new CorRegDAO();
+		List<Map<String, Object>> corRegList = corRegDAO.selectCorRegAll(searchType,searchValue);
+		request.setAttribute("corRegList",corRegList);
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/corReg/corReg.jsp");
 		rd.forward(request, response);
-		
 		
 	}
 	public void PostcorReg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
