@@ -8,6 +8,8 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<script src="<%=request.getContextPath()%>/resources/share/js/jquery-3.7.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/student/js/common.js"></script>
 </head>
 <body class="sb-nav-fixed">
 	<%@ include file="/resources/student/include/navHead.jsp" %>
@@ -52,7 +54,7 @@
 												<td>${reg.pname }</td>
 												<td>
 													<button class="btn btn-primary inline grey"
-													onclick="canFn()">취소</button>
+													onclick="canFn(this,${reg.cno })">취소</button>
 												</td>
 											</tr>
 										</c:forEach>

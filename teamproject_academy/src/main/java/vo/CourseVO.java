@@ -5,7 +5,14 @@ public class CourseVO {
 	private int cno;
 	private int cyn;
 	private String cgrade;
+	private String delyn;
 	
+	public String getDelyn() {
+		return delyn;
+	}
+	public void setDelyn(String delyn) {
+		this.delyn = delyn;
+	}
 	public int getCno() {
 		return cno;
 	}

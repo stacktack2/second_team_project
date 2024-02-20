@@ -50,29 +50,30 @@ public class CorRegDAO {
 		return corRegList;
 	}
 
-	//내가 수강신청한 강의 course에 담기
-	public int updateReg(int lno, String sno) {
-		int courseRs = 0;
+	//[ajax:INSERT]
+	public int insertReg(int lno, String sno) {
+		int insertRs = 0;
 		
-		String sql = "Insert into course(cyn, cgrade, lno,sno) "
-					+" values ('0','N',?,?)";
+		String sql = "INSERT INTO course(cyn, cgrade, lno,sno) "
+					+" VALUES ('0','N',?,?)";
 		DBM dbm = DBM.getInstance();
-		courseRs = dbm.prepare(sql).setInt(lno).setString(sno).update();
+		insertRs = dbm.prepare(sql).setInt(lno).setString(sno).update();
 		dbm.close();
 		
-		return courseRs;
+		return insertRs;
 	}
+	
+	//---------------------------------------------------------------
 	//내가 수강신청한 강의 조회
 	public List<Map<String, Object>> selectRegAll( String sno) {
 		List<Map<String, Object>> regList = new ArrayList<>();
 		
-		
-
 		String sql ="SELECT l.*,p.pname,c.cno from lecture l "
 				+ " INNER JOIN course c on c.lno = l.lno "
 				+ " INNER JOIN professor p on p.pno = l.pno "
 				+ " INNER JOIN student s on c.sno = s.sno "
-				+ " WHERE l.lstatus=2  and s.sno =?";
+				+ " WHERE l.lstatus=2  and s.sno =? "
+				+ " ORDER BY cno ";
 		
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setString(sno).select();
@@ -91,6 +92,17 @@ public class CorRegDAO {
 		}
 		dbm.close();
 		return regList;
+	}
+	//[ajax: DELETE]
+	public int deleteReg(int cno, String sno) {
+		int delRs =0;
+		String sql = "Update FROM course WHERE cno=? and sno =? ";
+		DBM dbm = DBM.getInstance();
+		delRs = dbm.prepare(sql).setInt(cno).setString(sno).update();
+		dbm.close();
+		System.out.println(cno);
+		System.out.println(delRs);
+		return delRs;
 	}	
 	
 	
