@@ -16,28 +16,24 @@ import vo.StudentVO;
 
 public class MainController {
 	public void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		MainDAO mainDAO = new MainDAO();
-		
-		String snoParam = request.getParameter("sno");
-		int sno = 0;
-		if(snoParam != null && !snoParam.equals("")) {
-			sno = Integer.parseInt(snoParam);
+		//sno
+		String sno = (String)request.getSession().getAttribute("no");
+		//세션이 없을경우 화면 초기화
+		if(sno == null || (sno != null && sno.equals(""))) {
+			response.sendRedirect(request.getContextPath());
+		} else {
+			MainDAO mainDAO = new MainDAO();
+	
+			//수강과목 목록
+			List<Map<String, Object>> courseList = mainDAO.selectCourseAll();
+			request.setAttribute("courseList", courseList);
+			//공지사항 목록
+			List<BoardVO> noticeList = mainDAO.selectNoticeAll();
+			request.setAttribute("noticeList", noticeList);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/stuMain.jsp");
+			rd.forward(request, response);
 		}
-		sno=5;
-		//헤더네비
-		StudentVO student = mainDAO.selectSnameByOne(sno);
-		request.setAttribute("student", student);
-
-		//수강과목 목록
-		List<Map<String, Object>> courseList = mainDAO.selectCourseAll();
-		request.setAttribute("courseList", courseList);
-		//공지사항 목록
-		List<BoardVO> noticeList = mainDAO.selectNoticeAll();
-		request.setAttribute("noticeList", noticeList);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/stuMain.jsp");
-		rd.forward(request, response);
 	}
 	public void doPostAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

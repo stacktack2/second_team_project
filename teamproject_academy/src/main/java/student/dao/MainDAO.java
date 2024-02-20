@@ -10,22 +10,7 @@ import vo.BoardVO;
 import vo.StudentVO;
 
 public class MainDAO {
-	public StudentVO selectSnameByOne(int sno) {
-		StudentVO student = new StudentVO();
-		
-		String sql = "select sname from student "
-				+"where sno = ?";
-		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setInt(sno).select();
-		
-		while(dbm.next()) {
-			student.setSname(dbm.getString("sname"));
-		}
-
-		dbm.close();
-		return student;
-	}
-
+	//수강과목
 	public List<Map<String, Object>>  selectCourseAll(){
 
 		List<Map<String, Object>> courseList = new ArrayList<>();
@@ -59,7 +44,7 @@ public class MainDAO {
 		dbm.close();
 		return courseList;
 	}
-	
+	//공지사항
 	public List<BoardVO> selectNoticeAll(){
 		List<BoardVO> noticeList = new ArrayList<>();
 		

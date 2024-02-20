@@ -15,16 +15,6 @@ import vo.StudentVO;
 public class AtdGradeController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String snoParam = request.getParameter("sno");
-		int sno = 0;
-		if(snoParam != null && !snoParam.equals("")) {
-			sno = Integer.parseInt(snoParam);
-		}
-		sno=5;
-		AtdGradeDAO atdGradeDAO = new AtdGradeDAO();
-		StudentVO student = atdGradeDAO.selectSnameByOne(sno);
-		request.setAttribute("student", student);
-		
 		switch(threeUriParam) {
 		case "attendcheckList":
 			attendcheckList(request,response);
@@ -50,13 +40,11 @@ public class AtdGradeController {
 		
 	}
 	public void attendcheckList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String snoParam = request.getParameter("sno");
-		int sno = 0;
-		if(snoParam != null && !snoParam.equals("")) {
-			sno = Integer.parseInt(snoParam);
+		String sno = (String)request.getSession().getAttribute("no");
+		if(sno == null || (sno != null && sno.equals(""))) {
+			response.sendRedirect(request.getContextPath());
+			return;
 		}
-		sno=5;
-		
 		AtdGradeDAO atdGradeDAO = new AtdGradeDAO();
 		List<Map<String, Object>> courseList = atdGradeDAO.selectCourseAll(sno);
 		request.setAttribute("courseList", courseList);
@@ -73,12 +61,11 @@ public class AtdGradeController {
 		
 	}
 	public void attendcheckView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String snoParam = request.getParameter("sno");
-		int sno = 0;
-		if(snoParam != null && !snoParam.equals("")) {
-			sno = Integer.parseInt(snoParam);
+		String sno = (String)request.getSession().getAttribute("no");
+		if(sno == null || (sno != null && sno.equals(""))) {
+			response.sendRedirect(request.getContextPath());
+			return;
 		}
-		sno=5;
 		AtdGradeDAO atdGradeDAO = new AtdGradeDAO();
 		List<Map<String, Object>> attendList = atdGradeDAO.selectAttendAll(sno);
 		request.setAttribute("attendList", attendList);
@@ -95,15 +82,14 @@ public class AtdGradeController {
 		
 	}
 	public void cgradeCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String snoParam = request.getParameter("sno");
-		int sno = 0;
-		if(snoParam != null && !snoParam.equals("")) {
-			sno = Integer.parseInt(snoParam);
+		String sno = (String)request.getSession().getAttribute("no");
+		if(sno == null || (sno != null && sno.equals(""))) {
+			response.sendRedirect(request.getContextPath());
+			return;
 		}
-		sno=5;
 		AtdGradeDAO atdGradeDAO = new AtdGradeDAO();
 		List<Map<String, Object>> gradeList = atdGradeDAO.selectgradeAll(sno);
-		//System.out.println("cgradeCheck : " + gradeList.size());
+
 		request.setAttribute("gradeList", gradeList);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/atdGrade/cgradeCheck.jsp");

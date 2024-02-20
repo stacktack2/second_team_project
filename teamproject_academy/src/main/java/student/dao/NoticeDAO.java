@@ -9,21 +9,6 @@ import vo.StudentVO;
 
 
 public class NoticeDAO {
-	public StudentVO selectSnameByOne(int sno) {
-		StudentVO student = new StudentVO();
-		
-		String sql = "select sname from student "
-				+"where sno = ?";
-		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setInt(sno).select();
-		
-		while(dbm.next()) {
-			student.setSname(dbm.getString("sname"));
-		}
-
-		dbm.close();
-		return student;
-	}
 	
 	public List<BoardVO> selectBoardAll(){
 		List<BoardVO> noticeList = new ArrayList<>();
@@ -60,7 +45,6 @@ public class NoticeDAO {
 		dbm.prepare(sql).setInt(bno).select();
 		
 		if(dbm.next()) {
-			//board.setBno(dbm.getInt("bno"));
 			board.setBhit(dbm.getInt("bhit"));
 			board.setBtitle(dbm.getString("btitle"));
 			board.setBcontent(dbm.getString("bcontent"));

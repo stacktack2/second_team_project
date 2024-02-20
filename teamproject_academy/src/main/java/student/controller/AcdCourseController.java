@@ -15,17 +15,7 @@ import vo.StudentVO;
 
 public class AcdCourseController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//네비헤더에 sname 출력
-		String snoParam = request.getParameter("sno");
-		int sno = 0;
-		if(snoParam != null && !snoParam.equals("")) {
-			sno = Integer.parseInt(snoParam);
-		}	
-		sno=5;
-		AcdCourseDAO acdCourseDAO = new AcdCourseDAO();
-		StudentVO student = acdCourseDAO.selectSnameByOne(sno);
-		request.setAttribute("student", student);
-		
+	
 		switch(threeUriParam) {
 			case "absenseApp":
 				absenseApp(request,response);
@@ -66,12 +56,11 @@ public class AcdCourseController {
 	//휴복학신청
 	public void absenseApp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		 String snoParam = request.getParameter("sno"); 
-		 int sno = 0; 
-		 if(snoParam != null && !snoParam.equals("")) {
-			 sno = Integer.parseInt(snoParam); 
+		String sno = (String)request.getSession().getAttribute("no");
+		if(sno == null || (sno != null && sno.equals(""))) {
+			response.sendRedirect(request.getContextPath());
+			return;
 		}
-		 sno=5;
 		AcdCourseDAO acdCourseDAO = new AcdCourseDAO();
 		List<Map<String, Object>> absenseList = acdCourseDAO.selectAbsenseAll(sno);
 		request.setAttribute("absenseList", absenseList);
@@ -105,12 +94,11 @@ public class AcdCourseController {
 	}
 	//수업시간표 조회
 	public void scheduleCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String snoParam = request.getParameter("sno");
-		int sno = 0;
-		if(snoParam != null && !snoParam.equals("")) {
-			sno = Integer.parseInt(snoParam);
+		String sno = (String)request.getSession().getAttribute("no");
+		if(sno == null || (sno != null && sno.equals(""))) {
+			response.sendRedirect(request.getContextPath());
+			return;
 		}
-		sno=5;
 		AcdCourseDAO acdCourseDAO = new AcdCourseDAO();
 		
 		List<Map<String, Object>> scheduleList = acdCourseDAO.selectScheduleAll(sno);
@@ -126,13 +114,11 @@ public class AcdCourseController {
 	//학적사항 조회
 	public void sscheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		 String snoParam = request.getParameter("sno"); 
-		 int sno = 0; 
-		 if(snoParam !=
-		 null && !snoParam.equals("")) {
-			 sno = Integer.parseInt(snoParam); 
+		String sno = (String)request.getSession().getAttribute("no");
+		if(sno == null || (sno != null && sno.equals(""))) {
+			response.sendRedirect(request.getContextPath());
+			return;
 		}
-		 sno=5;
 		AcdCourseDAO acdCourseDAO = new AcdCourseDAO();
 		Map<String, Object> sscheckMap = acdCourseDAO.selectsscheckByOne(sno);
 		request.setAttribute("sscheckMap", sscheckMap);
@@ -151,8 +137,7 @@ public class AcdCourseController {
 		request.setAttribute("courseList", courseList);
 		//[검색]
 		String searchValue = request.getParameter("searchValue");
-		
-		//검색 결과가 있을 경우 검색 결과를 전달
+
 		if (searchValue != null && !searchValue.isEmpty()) {
 	        List<Map<String, Object>> searchResults = acdCourseDAO.searchCourse(searchValue);
 	        request.setAttribute("courseList", searchResults);

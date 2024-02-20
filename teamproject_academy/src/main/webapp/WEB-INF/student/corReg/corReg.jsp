@@ -75,7 +75,7 @@
 												<td>${corReg.pname }</td>
 												<td>
 													<button class="btn btn-primary inline grey" 
-													onclick="regFn(this,${corReg.lno })">신청</button>
+													onclick="corRegFn(this,${corReg.lno })">신청</button>
 												</td>
 											</tr>
 										</c:forEach>

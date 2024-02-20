@@ -11,22 +11,7 @@ import vo.StudentVO;
 
 
 public class AcdCourseDAO {
-	//네비헤더에 sname 출력
-	public StudentVO selectSnameByOne(int sno) {
-		StudentVO student = new StudentVO();
-		
-		String sql = "select sname from student "
-				+"where sno = ?";
-		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setInt(sno).select();
-		
-		while(dbm.next()) {
-			student.setSname(dbm.getString("sname"));
-		}
 
-		dbm.close();
-		return student;
-	}
 	//강의계획서 조회
 	public Map<String, Object> selectCurriByOne(int lno){
 		Map<String, Object> curriMap = new HashMap<>();
@@ -120,7 +105,7 @@ public class AcdCourseDAO {
 	}
 	
 	//학적사항조회
-	public Map<String, Object> selectsscheckByOne(int sno){
+	public Map<String, Object> selectsscheckByOne(String sno){
 		Map<String, Object> sscheckMap = new HashMap<>();
 		
 		String sql = "SELECT s.* , f.* from student s "
@@ -129,7 +114,7 @@ public class AcdCourseDAO {
 				+ "where s.sno = ?";
 		
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setInt(sno).select();
+		dbm.prepare(sql).setString(sno).select();
 		
 		while(dbm.next()) {
 			sscheckMap.put("sid", dbm.getString("sid"));
@@ -163,7 +148,7 @@ public class AcdCourseDAO {
 		return sscheckMap;
 	}
 	//휴복학신청 조회
-	public List<Map<String, Object>>  selectAbsenseAll(int sno){
+	public List<Map<String, Object>>  selectAbsenseAll(String sno){
 
 		List<Map<String, Object>> absenseList = new ArrayList<>();
 		
@@ -172,7 +157,7 @@ public class AcdCourseDAO {
 				+ "where s.sno = ?;";
 		
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setInt(sno).select();
+		dbm.prepare(sql).setString(sno).select();
 		
 		while(dbm.next()) {
 			Map<String, Object> absenseMap = new HashMap<>();
@@ -198,7 +183,7 @@ public class AcdCourseDAO {
 		return null;
 	}
 	//수강시간표 조회
-	public List<Map<String, Object>> selectScheduleAll(int sno){
+	public List<Map<String, Object>> selectScheduleAll(String sno){
 		List<Map<String, Object>> scheduleList = new ArrayList<>();
 		
 		String sql = "select l.lname, l.json_data, p.pname, l.lroom from lecture l "
@@ -208,7 +193,7 @@ public class AcdCourseDAO {
 				+" where s.sno = ?";
 		
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setInt(sno).select();
+		dbm.prepare(sql).setString(sno).select();
 		
 		while(dbm.next()) {
 			Map<String, Object> scheduleMap = new HashMap<>();

@@ -19,7 +19,7 @@
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">수강신청 현황조회</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href="corReg.do">수강신청</a></li>
+						<li class="breadcrumb-item">수강신청</li>
 						<li class="breadcrumb-item active">수강신청 현황조회</li>
 					</ol>
 
@@ -40,19 +40,19 @@
 												<th>요일 및 교시(강의실)</th>
 												<th>교강사</th>
 												<th>신청</th>
-
 											</tr>
 										</thead>
 										<tbody>
-										<c:forEach var="corReg" items="${corRegList}">
+										<c:forEach var="reg" items="${regList}">
 											<tr>
-												<td>${corReg.cno }</td>
-												<td>${corReg.lname }</td>
-												<td>${corReg.lcredit }</td>
-												<td>${corReg.ltime } ( ${corReg.lroom } )</td>
-												<td>${corReg.pname }</td>
+												<td>${reg.cno }</td>
+												<td>${reg.lname }</td>
+												<td>${reg.lcredit }</td>
+												<td>${reg.ltime } ( ${reg.lroom } )</td>
+												<td>${reg.pname }</td>
 												<td>
-													<button class="btn btn-primary inline grey">취소</button>
+													<button class="btn btn-primary inline grey"
+													onclick="canFn()">취소</button>
 												</td>
 											</tr>
 										</c:forEach>
