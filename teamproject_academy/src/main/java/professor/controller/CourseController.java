@@ -48,8 +48,8 @@ public class CourseController {
 		String lyear = request.getParameter("lyear");
 		String lsemesterParam = request.getParameter("lsemester");
 		int lsemester = 0;
-		//세션 인증 및 널체크
-		if(pno == null || lyear == null || lsemesterParam == null) {
+		
+		if(lyear == null) {
 			response.sendRedirect(request.getContextPath());
 			return;
 		}
@@ -80,14 +80,7 @@ public class CourseController {
 	}
 	public void curriculum(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String pno = (String)request.getSession().getAttribute("no");
 		String lno = request.getParameter("lno");
-		//세션 인증 및 널체크
-		if(pno == null || lno ==null) {
-			response.sendRedirect(request.getContextPath());
-			return;
-		}
-		
 		CourseDAO courseDAO = new CourseDAO();
 		
 		LectureVO lecture = courseDAO.lnoFindLecture(lno);
