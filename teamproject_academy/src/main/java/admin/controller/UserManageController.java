@@ -126,7 +126,8 @@ public class UserManageController {
 		professorVO.setPpw(BCrypt.hashpw(ppwParam, BCrypt.gensalt()));
 		professorVO.setPname(request.getParameter("pname"));
 		professorVO.setPregNo1(request.getParameter("pregNo1"));
-		professorVO.setPregNo2(request.getParameter("pregNo2"));
+		String pregNo2Param = request.getParameter("pregNo2");
+		professorVO.setPregNo2(BCrypt.hashpw(pregNo2Param, BCrypt.gensalt()));
 		professorVO.setPbirth(request.getParameter("pbirth"));
 		professorVO.setPgender(request.getParameter("pgender"));
 		professorVO.setPposition(request.getParameter("pposition"));
