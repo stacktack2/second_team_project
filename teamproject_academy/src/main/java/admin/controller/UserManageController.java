@@ -2,6 +2,7 @@ package admin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.List;
 
@@ -116,40 +117,9 @@ public class UserManageController {
 	}
 	
 	public void PostprofUserAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserAdd.jsp");
 		rd.forward(request, response);
-		
-		ProfessorVO professorVO = new ProfessorVO();
-		
-		professorVO.setPid(request.getParameter("pid")); 
-		String ppwParam = request.getParameter("pid");
-		professorVO.setPpw(BCrypt.hashpw(ppwParam, BCrypt.gensalt()));
-		professorVO.setPname(request.getParameter("pname"));
-		professorVO.setPregNo1(request.getParameter("pregNo1"));
-		String pregNo2Param = request.getParameter("pregNo2");
-		professorVO.setPregNo2(BCrypt.hashpw(pregNo2Param, BCrypt.gensalt()));
-		professorVO.setPbirth(request.getParameter("pbirth"));
-		professorVO.setPgender(request.getParameter("pgender"));
-		professorVO.setPposition(request.getParameter("pposition"));
-		professorVO.setPuniv(request.getParameter("puniv"));
-		professorVO.setPfaculty(request.getParameter("pfaculty"));
-		professorVO.setPmajor(request.getParameter("pmajor"));
-		professorVO.setPdegree(request.getParameter("pdegree"));
-		professorVO.setPlab(request.getParameter("plab"));
-		professorVO.setPappointDate(request.getParameter("pappointDate"));
-		professorVO.setPemail(request.getParameter("pemail"));
-		professorVO.setPphone(request.getParameter("pphone"));
-		professorVO.setPcall(request.getParameter("pcall"));
-		professorVO.setPaddr(request.getParameter("paddr"));
-		professorVO.setPzipCode(request.getParameter("pzipCode"));
-		
-		UserManageDAO userManageDAO = new UserManageDAO();
-		List<ProfessorVO> profAdd = userManageDAO.insertProf(professorVO);
-		
-		request.setAttribute("profAdd", profAdd);
-		
-		
-		
 		
 		
 	}
@@ -257,6 +227,36 @@ public class UserManageController {
 	}
 	
 	public void PostprofUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		ProfessorVO professorVO = new ProfessorVO();
+		
+		professorVO.setPid(request.getParameter("pid")); 
+		String ppwParam = request.getParameter("pid");
+		professorVO.setPpw(BCrypt.hashpw(ppwParam, BCrypt.gensalt()));
+		professorVO.setPname(request.getParameter("pname"));
+		professorVO.setPregNo1(request.getParameter("pregNo1"));
+		String pregNo2Param = request.getParameter("pregNo2");
+		professorVO.setPregNo2(BCrypt.hashpw(pregNo2Param, BCrypt.gensalt()));
+		professorVO.setPbirth(request.getParameter("pbirth"));
+		professorVO.setPgender(request.getParameter("pgender"));
+		professorVO.setPposition(request.getParameter("pposition"));
+		professorVO.setPuniv(request.getParameter("puniv"));
+		professorVO.setPfaculty(request.getParameter("pfaculty"));
+		professorVO.setPmajor(request.getParameter("pmajor"));
+		professorVO.setPdegree(request.getParameter("pdegree"));
+		professorVO.setPlab(request.getParameter("plab"));
+		professorVO.setPappointDate(request.getParameter("pappointDate"));
+		professorVO.setPemail(request.getParameter("pemail"));
+		professorVO.setPphone(request.getParameter("pphone"));
+		professorVO.setPcall(request.getParameter("pcall"));
+		professorVO.setPaddr(request.getParameter("paddr"));
+		professorVO.setPzipCode(request.getParameter("pzipCode"));
+		
+		UserManageDAO userManageDAO = new UserManageDAO();
+		List<ProfessorVO> profAdd = userManageDAO.insertProf(professorVO);
+		
+		request.setAttribute("profAdd", profAdd);
+		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
 		rd.forward(request, response);

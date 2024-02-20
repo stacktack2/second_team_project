@@ -1,4 +1,4 @@
--- 샘플데이터 생성쿼리 1 -> lecture 1일때
+-- 샘플데이터 생성쿼리 2 -> lecture 2일때
 DELIMITER $$
 DROP PROCEDURE IF EXISTS loopInsert$$
  
@@ -33,7 +33,7 @@ BEGIN
              );
              
 		-- 수강정보 브릿지
-          INSERT INTO course(cyn,cgrade,lno,sno) VALUES( '1', 'A', i, i);
+          INSERT INTO course(cyn,cgrade,lno,sno,delyn) VALUES( '1', 'A', i, i,'N');
           
 		-- 출석정보
         INSERT INTO attendment(attendrdate,attendyn,cno) 
