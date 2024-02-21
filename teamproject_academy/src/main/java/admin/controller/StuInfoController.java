@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import admin.dao.StuInfoDAO;
 import professor.dao.AttendDAO;
+import professor.dao.GradeDAO;
 import vo.AttendmentVO;
+import vo.CourseVO;
 import vo.LectureVO;
 
 public class StuInfoController {
@@ -118,7 +120,7 @@ public class StuInfoController {
 		
 		request.setAttribute("lectureList", lectureList);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/professor/attend/attendMgList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/stuInfo/attendMgList.jsp");
 		rd.forward(request, response);
 		
 	}
@@ -197,26 +199,80 @@ public class StuInfoController {
 		
 	}
 	public void gradeMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pno = (String)request.getSession().getAttribute("no");
+		String lstatus = request.getParameter("lstatus");
+		//유효성 검사
+		if(lstatus == null) {
+			lstatus = "6";
+		}
+		if(!(lstatus.equals("6")||lstatus.equals("4")||lstatus.equals("5"))) {
+			lstatus = "6";
+		}
+		
+		request.setAttribute("lstatus", lstatus);
+		StuInfoDAO stuInfoDAO = new StuInfoDAO();
+		List<LectureVO> lectureList = stuInfoDAO.lstatusFindLecture(lstatus);
+		
+		request.setAttribute("lectureList", lectureList);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/stuInfo/gradeMgList.jsp");
 		rd.forward(request, response);
 		
 		
 	}
 	public void PostgradeMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/stuInfo/gradeMgList.jsp");
 		rd.forward(request, response);
 		
 		
 	}
 	public void gradeMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+
+		String lno = request.getParameter("lno");
+		if(lno == null) {
+			response.sendRedirect(request.getContextPath());
+			return;
+		}
+		StuInfoDAO stuInfoDAO = new StuInfoDAO();
+		List<CourseVO> courseList = stuInfoDAO.lnoFindCourse(lno);
+		
+		request.setAttribute("courseList", courseList);
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/stuInfo/gradeMgView.jsp");
 		rd.forward(request, response);
 		
 		
 	}
 	public void PostgradeMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/stuInfo/gradeMgView.jsp");
-		rd.forward(request, response);
+		
+		String ano = (String)request.getSession().getAttribute("no");
+		String cno = request.getParameter("cno");
+		String cgrade = request.getParameter("cgrade");
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+//		cgarde cno 정확한 값만 들어가도록 유효성 검사 미흡 시간관계상 보류
+		if(cno == null || cgrade == null) {
+			response.getWriter().append("null");
+			response.getWriter().flush();
+			return;
+		}
+		
+		StuInfoDAO stuInfoDAO = new StuInfoDAO();
+		String aid = stuInfoDAO.anoFindPname(ano);
+		int result = stuInfoDAO.anoCnoCgradeInsert(aid, cno, cgrade);
+
+		if(result <= 0) {
+			response.getWriter().append("null");
+			response.getWriter().flush();
+			return;
+		}
+		
+		
+		response.getWriter().append(cgrade);
+		response.getWriter().flush();
 		
 		
 	}
