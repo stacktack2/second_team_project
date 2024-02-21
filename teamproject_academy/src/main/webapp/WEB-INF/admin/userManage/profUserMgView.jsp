@@ -76,7 +76,7 @@
 												<td>${professorVO.pemail }</td>
 												<th>휴대전화번호</th>
 												<td>${professorVO.pphone }</td>
-												<th>집전화번호</th>
+												<th>연구실 전화번호</th>
 												<td>${professorVO.pcall }</td>
 											</tr>
 											<tr>
