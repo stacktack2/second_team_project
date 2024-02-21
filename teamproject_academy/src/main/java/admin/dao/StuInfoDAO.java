@@ -5,9 +5,69 @@ import java.util.List;
 
 import util.DBM;
 import vo.AttendmentVO;
+import vo.CourseVO;
 import vo.LectureVO;
 
 public class StuInfoDAO {
+	public String anoFindPname(String ano) {
+		String sql = "select * from administer where ano = ?";
+		
+		DBM dbm = DBM.getInstance();
+		
+		dbm.prepare(sql).setString(ano).select();
+		
+		String aid = "";
+		
+		while(dbm.next()) {
+			aid = dbm.getString("aid");
+		}
+		
+		dbm.close();
+		
+		return aid;
+	}
+	
+	public int anoCnoCgradeInsert(String aid, String cno, String cgrade) {
+		String sql ="update course set cgradeupdater = ?, cgrade = ? where cno = ? ";
+		
+		DBM dbm = DBM.getInstance();
+		
+		int result = dbm.prepare(sql).setString(aid).setString(cgrade).setString(cno).update();
+		
+		dbm.close();
+		
+		return result;
+	}
+	
+	
+	
+	public List<CourseVO> lnoFindCourse(String lno){
+		String sql = "select * from lecture l inner join course c inner join student s on c.sno = s.sno && l.lno = c.lno where l.lno = ?";
+		
+		DBM dbm = DBM.getInstance();
+		
+		dbm.prepare(sql).setString(lno).select();
+		
+		List<CourseVO> courseList = new ArrayList<>();
+		CourseVO courseVO = null;
+		while(dbm.next()) {
+			courseVO = new CourseVO();
+			courseVO.setSname(dbm.getString("sname"));
+			courseVO.setSid(dbm.getString("sid"));
+			courseVO.setSphone(dbm.getString("sphone"));
+			courseVO.setCgrade(dbm.getString("cgrade"));
+			courseVO.setCgradeupdater(dbm.getString("cgradeupdater"));
+			courseVO.setCno(dbm.getInt("cno"));
+			courseList.add(courseVO);
+		}
+		
+		dbm.close();
+		
+		
+		return courseList;
+	}
+	
+	
 	public int sidYnInsert(String attendno, String attendyn) {
 		
 		String sql ="update attendment set attendyn = ? where attendno = ? ";
