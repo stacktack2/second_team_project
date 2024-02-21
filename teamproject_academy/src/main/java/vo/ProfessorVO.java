@@ -25,20 +25,21 @@ public class ProfessorVO {
 	private String pappointDate;
 	private int pdelyn;
 	
-	private String pfrealnm;
-	private String pforiginnm;
+	private String frealnm;
+	private String foriginnm;
 	
-	public String getPfrealnm() {
-		return pfrealnm;
+	
+	public String getFrealnm() {
+		return frealnm;
 	}
-	public void setPfrealnm(String pfrealnm) {
-		this.pfrealnm = pfrealnm;
+	public void setFrealnm(String frealnm) {
+		this.frealnm = frealnm;
 	}
-	public String getPforiginnm() {
-		return pforiginnm;
+	public String getForiginnm() {
+		return foriginnm;
 	}
-	public void setPforiginnm(String pforiginnm) {
-		this.pforiginnm = pforiginnm;
+	public void setForiginnm(String foriginnm) {
+		this.foriginnm = foriginnm;
 	}
 	public int getPno() {
 		return pno;
