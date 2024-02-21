@@ -75,7 +75,9 @@
 						<div class="card-header disNone">교수정보 조회</div>
 						<div class="card-body">
 							<div class="card mb-4">
-								<div class="card-body">사진</div>
+								<div class="card-body">
+								<img src="<%=request.getContextPath()%>/resources/share/assets/img/${professorVO.poriginnm}.png" alt="사진">
+								</div>
 							</div>
 							<div
 								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
@@ -85,50 +87,49 @@
 										<tbody>
 											<tr>
 												<th>교번</th>
-												<td></td>
+												<td>${professorVO.pid }</td>
 												<th>성명</th>
-												<td></td>
+												<td>${professorVO.pname }</td>
 												<th>주민번호</th>
-												<td></td>
+												<td>${professorVO.pregNo1 }-${professorVO.pregNo2 }</td>
 											</tr>
 											<tr>
 												<th>생년월일</th>
-												<td></td>
+												<td>${professorVO.pbirth }</td>
 												<th>성별</th>
-												<td></td>
+												<td>${professorVO.pgender }</td>
 												<th>직급</th>
-												<td></td>
+												<td>${professorVO.pposition }</td>
 											</tr>
 											<tr>
 												<th>대학</th>
-												<td></td>
+												<td>${professorVO.puniv }</td>
 												<th>학부</th>
-												<td></td>
+												<td>${professorVO.pfaculty }</td>
 												<th>전공</th>
-												<td></td>
+												<td>${professorVO.pmajor }</td>
 											</tr>
 											<tr>
 												<th>학위</th>
-												<td></td>
+												<td>${professorVO.pdegree }</td>
 												<th>연구실</th>
-												<td></td>
+												<td>${professorVO.plab }</td>
 												<th>임용일자</th>
-												<td></td>
+												<td>${professorVO.pappointDate }</td>
 											</tr>
 											<tr>
 												<th>E-mail</th>
-												<td></td>
+												<td>${professorVO.pemail }</td>
 												<th>휴대전화번호</th>
-												<td></td>
+												<td>${professorVO.pphone }</td>
 												<th>집전화번호</th>
-												<td></td>
+												<td>${professorVO.pcall }</td>
 											</tr>
 											<tr>
 												<th>주소</th>
-												<td colspan="3"></td>
+												<td colspan="3">${professorVO.paddr }</td>
 												<th>우편번호</th>
-												<td></td>
-
+												<td>${professorVO.pzipCode }</td>
 											</tr>
 
 										</tbody>
