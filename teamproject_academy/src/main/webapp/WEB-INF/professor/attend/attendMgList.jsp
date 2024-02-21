@@ -85,14 +85,11 @@
 
 										<form action="attendMgList" method="get"
 											class="datatable-search inline">
-											<select class="datatable-selector">
-												<option value="1" selected>모든 강의</option>
-												<option value="2">진행중인 강의</option>
-												<option value="3">지난 강의</option>
-											</select> 
-											<input class="datatable-input inline wauto" placeholder="검색어를 입력하세요" type="search"
-												title="Search within table" aria-controls="datatablesSimple">
-											<button class="btn btn-primary inline grey">검색</button>
+											<select class="datatable-selector" name="lstatus" onchange="this.form.submit()">
+												<option value="6" <c:if test="${lstatus eq '6' }">selected</c:if>>모든 강의</option>
+												<option value="4" <c:if test="${lstatus eq '4' }">selected</c:if>>진행중인 강의</option>
+												<option value="5" <c:if test="${lstatus eq '5' }">selected</c:if>>지난 강의</option>
+											</select>
 										</form>
 									</div>
 								</div>
