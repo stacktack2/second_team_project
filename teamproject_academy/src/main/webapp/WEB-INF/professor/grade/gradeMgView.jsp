@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,10 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 </head>
 <body class="sb-nav-fixed">
 	<!-- 상단 nav 바 -->
@@ -91,44 +96,30 @@
 													<th>성명</th>
 													<th>학번</th>
 													<th>전화번호</th>
-													<th>성적</th>
+													<th>성적/최근변경인</th>
 													<th>관리</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>홍길동</td>
-													<td>202029322</td>
-													<td>010-2452-2424</td>
-													<td>A</td>
-													<td>
-														<select class="datatable-selector right">
-															<option value="1" selected>A</option>
-															<option value="2">B</option>
-															<option value="2">C</option>
-															<option value="2">D</option>
-															<option value="2">F</option>
-														</select>	
-													</td>
-												</tr>
-												<tr>
-													<td>김길동</td>
-													<td>202029322</td>
-													<td>010-2452-2424</td>
-													<td>B</td>
-													<td>
-														<select class="datatable-selector right">
-															<option value="1" selected>A</option>
-															<option value="2">B</option>
-															<option value="2">C</option>
-															<option value="2">D</option>
-															<option value="2">F</option>
-														</select>	
-													</td>
-												</tr>
+												<c:forEach items="${courseList }" var="courseVO" varStatus="loop">
+													<tr>
+														<td>${courseVO.sname }</td>
+														<td>${courseVO.sid }</td>
+														<td>${courseVO.sphone }</td>
+														<td>${courseVO.cgrade}/${courseVO.cgradeupdater}</td>
+														<td>
+															<select class="datatable-selector right" onchange="gradeChange(${courseVO.cno },this);">
+																<option <c:if test="${courseVO.cgrade eq 'A' }">selected</c:if>>A</option>
+																<option <c:if test="${courseVO.cgrade eq 'B' }">selected</c:if>>B</option>
+																<option <c:if test="${courseVO.cgrade eq 'C' }">selected</c:if>>C</option>
+																<option <c:if test="${courseVO.cgrade eq 'D' }">selected</c:if>>D</option>
+																<option <c:if test="${courseVO.cgrade eq 'F' }">selected</c:if>>F</option>
+															</select>	
+														</td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
-										<button class="btn btn-primary inline grey right">저장</button>
 									</form>
 								</div>
 							</div>
@@ -150,6 +141,7 @@
 		
 	</div>
 	<!-- 좌측 nav 바~푸터까지 END -->
+	<script src="<%=request.getContextPath()%>/resources/professor/js/professor.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/resources/share/js/scripts.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
