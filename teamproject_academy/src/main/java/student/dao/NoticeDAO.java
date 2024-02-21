@@ -9,50 +9,101 @@ import vo.StudentVO;
 
 
 public class NoticeDAO {
-	
-	public List<BoardVO> selectBoardAll(){
-		List<BoardVO> noticeList = new ArrayList<>();
-		
-		String sql = "SELECT * FROM board "
-				+ "ORDER BY bno desc ";
-		
-		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).select();
-		
-		while(dbm.next()) {
-			BoardVO board = new BoardVO();
-			
-			board.setBno(dbm.getInt("bno"));
-			board.setBhit(dbm.getInt("bhit"));
-			board.setBtitle(dbm.getString("btitle"));
-			board.setBrdate(dbm.getString("brdate"));
-			
-			noticeList.add(board);
-			
-		}
-		dbm.close();
-		
-		return noticeList;
-	}
-	
-	public BoardVO selectBoardByOne(int bno) {
-		BoardVO board = new BoardVO();
-		
-		String sql = "select * from board "
-				+ " WHERE bno = ?";
-		
+	//view
+	public BoardVO bnoFindBoard(int bno) {
+		String sql = "select * from board where bno = ? ";
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setInt(bno).select();
 		
-		if(dbm.next()) {
-			board.setBhit(dbm.getInt("bhit"));
-			board.setBtitle(dbm.getString("btitle"));
-			board.setBcontent(dbm.getString("bcontent"));
-			board.setBrdate(dbm.getString("brdate"));
+		BoardVO boardVO = null;
+		while(dbm.next()) {
+			boardVO = new BoardVO();
+			boardVO.setBtitle(dbm.getString("btitle"));
+			boardVO.setBcontent(dbm.getString("bcontent"));
+			boardVO.setBrdate(dbm.getString("brdate"));
+			boardVO.setBhit(dbm.getInt("bhit"));
 		}
 		
 		dbm.close();
-		return board;
+		
+		return boardVO;
+	}
+	//totalCnt
+	public int FindTotalCnt(String searchAlign, String searchType, String searchValue){
+		String sql = "select count(*) as cnt from board b ";
+		if(searchType.equals("title")) {
+			sql += " where btitle like concat('%',?,'%') ";
+		}else if(searchType.equals("content")) {
+			sql += " where bcontent like concat('%',?,'%') ";
+		}
+		
+		if(searchAlign.equals("late")) {
+			sql += " order by bno desc ";
+		}else if(searchAlign.equals("hit")) {
+			sql += " order by bhit desc ";
+		}
+		
+		
+		
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql);
+		
+		if(searchType.equals("title") || searchType.equals("content")) {
+			dbm.setString(searchValue);
+		}
+		
+		dbm.select();
+		int totalCnt = 0;
+		
+		if(dbm.next()) {			
+			totalCnt = dbm.getInt("cnt");
+		}
+		
+		dbm.close();
+		
+		return totalCnt;
+	}
+	//검색포함 조회
+	public List<BoardVO> FindBoard(String searchAlign, String searchType, String searchValue, int start, int perPage){
+		String sql = "select b.* from board b ";
+		if(searchType.equals("title")) {
+			sql += " where btitle like concat('%',?,'%') ";
+		}else if(searchType.equals("content")) {
+			sql += " where bcontent like concat('%',?,'%') ";
+		}
+		
+		if(searchAlign.equals("late")) {
+			sql += " order by bno desc ";
+		}else if(searchAlign.equals("hit")) {
+			sql += " order by bhit desc ";
+		}
+		sql += " limit ?, ?";
+		
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql);
+		
+		if(searchType.equals("title") || searchType.equals("content")) {
+			dbm.setString(searchValue);
+		}
+		dbm.setInt(start-1);
+		dbm.setInt(perPage);
+		
+		dbm.select();
+		
+		List<BoardVO> BoardList = new ArrayList<>();
+		BoardVO boardVO = null;
+		while(dbm.next()) {
+			boardVO = new BoardVO();
+			boardVO.setBno(dbm.getInt("bno"));
+			boardVO.setBtitle(dbm.getString("btitle"));
+			boardVO.setBrdate(dbm.getString("brdate"));
+			boardVO.setBhit(dbm.getInt("bhit"));
+			BoardList.add(boardVO);
+			
+		}
+		dbm.close();
+		
+		return BoardList;
 	}
 	
 

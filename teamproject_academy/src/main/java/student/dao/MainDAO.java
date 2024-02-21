@@ -20,7 +20,7 @@ public class MainDAO {
 				+" INNER JOIN lecture l ON c.lno = l.lno "
 				+" INNER JOIN professor p ON l.pno = p.pno "
 				+" INNER JOIN student s ON c.sno = s.sno "
-				+" WHERE s.sno = c.sno "
+				+" WHERE s.sno = c.sno and c.cdelyn=0"
 				+" ORDER BY c.cno " 
 				+" LIMIT 5";
 		
@@ -45,28 +45,27 @@ public class MainDAO {
 		return courseList;
 	}
 	//공지사항
-	public List<BoardVO> selectNoticeAll(){
-		List<BoardVO> noticeList = new ArrayList<>();
+	public List<BoardVO> FindBoard(){
 		
-		String sql = "SELECT * FROM board "
-				+ "ORDER BY bno desc "
-				+ "LIMIT 5";
+		String sql = "select * from board";
+		
+		List<BoardVO> BoardList = new ArrayList<>();
 		
 		DBM dbm = DBM.getInstance();
+		
 		dbm.prepare(sql).select();
 		
+		BoardVO boardVO = null;
 		while(dbm.next()) {
-			BoardVO board = new BoardVO();
-			
-			board.setBno(dbm.getInt("bno"));
-			board.setBtitle(dbm.getString("btitle"));
-			board.setBhit(dbm.getInt("bhit"));
-			board.setBrdate(dbm.getString("brdate"));
-			
-			noticeList.add(board);
+			boardVO = new BoardVO();
+			boardVO.setBno(dbm.getInt("bno"));
+			boardVO.setBtitle(dbm.getString("btitle"));
+			boardVO.setBrdate(dbm.getString("brdate"));
+			boardVO.setBhit(dbm.getInt("bhit"));
+			BoardList.add(boardVO);
 		}
 		dbm.close();
 		
-		return noticeList;
+		return BoardList;
 	}
 }

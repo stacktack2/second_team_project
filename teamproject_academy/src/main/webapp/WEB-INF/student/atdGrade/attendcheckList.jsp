@@ -42,26 +42,7 @@
 
 								</div>
 							</div>
-							<div
-								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-
-								<div class="datatable-top">
-
-									<div class="right">
-
-										<form action="noticeList.do" method="get"
-											class="datatable-search inline">
-											<select class="datatable-selector">
-												<option value="1" selected>2024</option>
-												<option value="2">2023</option>
-											</select> <select class="datatable-selector">
-												<option value="1" selected>1학기</option>
-												<option value="2">2학기</option>
-											</select>
-											<button class="btn btn-primary inline grey">조회</button>
-										</form>
-									</div>
-								</div>
+							<div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 
 								<div class="datatable-container">
 
@@ -76,10 +57,10 @@
 											</tr>
 										</thead>
 										<tbody>
-										<c:forEach var="course" items="${courseList}">
+										<c:forEach var="course" items="${courseList}" varStatus="loop">
 											<tr>
-												<td>${course.cno}</td>
-												<td><a href="attendcheckView?lno=${course.lno }">${course.lname }</a></td>
+												<td>${loop.count}</td>
+												<td><a href="attendcheckView?cno=${course.cno }">${course.lname }</a></td>
 												<td>${course.pname }</td>
 												<td>${course.lname }</td>
 												<td>${course.lroom }</td>

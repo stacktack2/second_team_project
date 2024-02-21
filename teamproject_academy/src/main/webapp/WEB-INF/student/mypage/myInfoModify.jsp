@@ -29,32 +29,33 @@
 							<div
 								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 								<div class="datatable-container">
-
-									<table class="datatable-table viewtable sschecktable">
-										<tbody>
-											<tr>
-												<th>* 현재 비밀번호</th>
-												<td colspan="5"><input type="text" name=""></td>
-											</tr>
-											<tr>
-												<th>* 새 비밀번호</th>
-												<td colspan="5"><input type="text" name=""></td>
-											</tr>
-											<tr>
-												<th>* 비밀번호 확인</th>
-												<td colspan="5"><input type="text" name=""></td>
-											</tr>
-										</tbody>
-									</table>
-									<div class="card mb-4">
-										<div class="card-body">
-											<h6 class="bold">*교육부 정보보안기본지침 제31조(비밀번호 관리)에 의거</h6>
-											<p>- 사용자 계정(ID)과 동일하지 않은 값으로 지정</p>
-											<p>- 숫자, 문자, 특수문자를 혼합하여 9자리 이상 지정</p>
-											<p>- 동일단어 또는 숫자를 반복하여 사용금지</p>
+									<form method="post" action="myInfoModify">
+										<table class="datatable-table viewtable sschecktable">
+											<tbody>
+												<tr>
+													<th>* 현재 비밀번호</th>
+													<td colspan="5"><input type="password" name="oldpw"></td>
+												</tr>
+												<tr>
+													<th>* 새 비밀번호</th>
+													<td colspan="5"><input type="password" name="newpw"></td>
+												</tr>
+												<tr>
+													<th>* 비밀번호 확인</th>
+													<td colspan="5"><input type="password" name="checknewpw"></td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="card mb-4">
+											<div class="card-body">
+												<h6 class="bold">*교육부 정보보안기본지침 제31조(비밀번호 관리)에 의거</h6>
+												<p>- 사용자 계정(ID)과 동일하지 않은 값으로 지정</p>
+												<p>- 숫자, 문자, 특수문자를 혼합하여 9자리 이상 지정</p>
+												<p>- 동일단어 또는 숫자를 반복하여 사용금지</p>
+											</div>
 										</div>
-									</div>
-									<button class="btn btn-primary inline grey">저장</button>
+										<button class="btn btn-primary inline grey">저장</button>
+									</form>
 								</div>
 							</div>
 						</div>

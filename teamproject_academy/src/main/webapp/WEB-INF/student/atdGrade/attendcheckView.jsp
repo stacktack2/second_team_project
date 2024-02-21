@@ -35,34 +35,25 @@
 										<tbody>
 											<tr>
 												<th>교과목명</th>
-												<td colspan="3">${attendList[0].lname}</td>
+												<td colspan="3">${courseInfo.lname}</td>
 												<th>년도/학기</th>
-												<td>${attendList[0].lyear}/${attendList[0].lsemester}</td>
+												<td>${courseInfo.lyear}/${courseInfo.lsemester}</td>
 											</tr>
 											<tr>
 												<th>강의시간</th>
-												<td colspan="3">${attendList[0].ltime} </td>
+												<td colspan="3">${courseInfo.ltime} </td>
 												<th>강의실</th>
-												<td>${attendList[0].lroom}</td>
+												<td>$courseInfo.lroom}</td>
 											</tr>
 											<tr>
 												<th>학점</th>
-												<td colspan="3">${attendList[0].lcredit }</td>
+												<td colspan="3">${courseInfo.lcredit }</td>
 												<th>수강인원</th>
-												<td>${attendList[0].lmaxpeople }</td>
+												<td>${courseInfo.lmaxpeople }</td>
 											</tr>
 										</tbody>
 									</table>
-									<table class="datatable-table viewtable">
-										<tbody>
-											<tr>
-												<td class="center">O:출석</td>
-												<td class="center">X:결석</td>
-												<td class="center">L:지각</td>
-												<td class="center">A:공결</td>
-											</tr>
-										</tbody>
-									</table>
+
 									<div class="card mb-4">
 										<div class="card-body">
 											<h6 class="bold blue">&#10003; 온라인과목 출결기준</h6>
@@ -75,129 +66,19 @@
 										class="datatable-table viewtable sschecktable checktable">
 										<thead>
 											<tr>
-												<th rowspan="2" style="width: 10%;">주차</th>
-												<th colspan="4">회차</th>
-											</tr>
-											<tr>
-												<th>1</th>
-												<th>2</th>
-												<th>3</th>
-												<th>4</th>
+												<th style="width: 10%;">날짜</th>
+												<th>출결</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>2주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>3주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>4주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>5주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>6주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>7주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>8주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>9주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>10주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>11주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>12주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>13주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>14주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>15주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>16주차</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
+										<c:forEach var="attend" items="${attendList}">
+											<td>${attend.attendrdate }</td>
+											<td>
+												<c:if test="${attend.attendyn eq 1 }">출석</c:if>
+												<c:if test="${attend.attendyn eq 2 }">결석</c:if>
+												<c:if test="${attend.attendyn eq 3 }">지각</c:if>
+											</td>
+										</c:forEach>
 										</tbody>
 									</table>
 								</div>

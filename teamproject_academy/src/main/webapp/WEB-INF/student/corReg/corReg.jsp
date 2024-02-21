@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	String searchType = request.getParameter("searchType");
-	String searchValue = request.getParameter("searchValue");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,16 +34,14 @@
 										<form action="corReg" method="get" class="datatable-search inline">
 											<select class="datatable-selector" name="searchType">
 												<option value="1" 
-												<%if(searchType != null && searchType.equals("title")) out.print("selected"); %>>
+													<c:if test="${param.searchType eq 'lname'}">selected</c:if>>
 												강의명</option>
 												<option value="2" 
-												<%if(searchType != null	&& searchType.equals("title")) out.print("selected"); %>>
+												<c:if test="${param.searchType eq 'pname'}">selected</c:if>>
 												교수명</option>
 											</select>
-											<input class="datatable-input inline wauto"
-												placeholder="검색어를 입력하세요" type="text"
-												title="Search within table" aria-controls="datatablesSimple"
-												value=<%if(searchValue!=null) out.print(searchValue); %>>
+												<input class="datatable-input inline wauto" name="searchValue" placeholder="검색어를 입력하세요" type="search"
+												title="Search within table" aria-controls="datatablesSimple">
 											<button class="btn btn-primary inline grey">검색</button>
 										</form>
 									</div>
@@ -75,7 +69,12 @@
 												<td>${corReg.pname }</td>
 												<td>
 													<button class="btn btn-primary inline grey" 
-													onclick="corRegFn(this,${corReg.lno })">신청</button>
+													onclick="corRegFn(this,${corReg.lno })"
+													<c:forEach var="course" items="${courseList}">
+														<c:if test="${course.lno == corReg.lno && course.cdelyn==0}">disabled</c:if>
+														
+													</c:forEach>
+													>신청</button>
 												</td>
 											</tr>
 										</c:forEach>
@@ -84,23 +83,32 @@
 								</div>
 							</div>
 
+							<!-- 테이블 바텀 -->
 							<div class="datatable-bottom">
 								<!-- 페이징 -->
-								<nav class="datatable-pagination">
-									<ul class="datatable-pagination-list">
-										<li class="datatable-pagination-list-item datatable-hidden datatable-disabled">
-											<a data-page="1" class="datatable-pagination-list-item-link">‹</a>
-										</li>
-										<li class="datatable-pagination-list-item datatable-active">
-											<a data-page="1" class="datatable-pagination-list-item-link">1</a>
-										</li>
-										<li class="datatable-pagination-list-item">
-											<a data-page="2" class="datatable-pagination-list-item-link">2</a>
-										</li>
-										<li class="datatable-pagination-list-item">
-											<a data-page="2" class="datatable-pagination-list-item-link">›</a>
-										</li>
-									</ul>
+								<nav class="datatable-pagination" style="display: inline-block; margin-top: 0.75rem; margin-left: 32rem;">
+								    <ul class="datatable-pagination-list">
+								        <c:if test="${pagingVO.getStartPage() > pagingVO.getCntPage()}">
+								            <li class="datatable-pagination-list-item">
+								                <a class="datatable-pagination-list-item-link"
+								                   href="noticeList?nowPage=${pagingVO.startPage - 1}&searchAlign=${param.searchAlign}&searchType=${param.searchType}&searchValue=${param.searchValue}">‹</a>
+								            </li>
+								        </c:if>
+								
+								        <c:forEach var="page"  begin="${pagingVO.startPage}" end="${pagingVO.endPage}" step="1" >
+						                    <li class="datatable-pagination-list-item">
+						                        <a href="noticeList?nowPage=${page}&searchAlign=${param.searchAlign}&searchType=${param.searchType}&searchValue=${param.searchValue}"
+						                           class="datatable-pagination-list-item-link">${page}</a>
+						                    </li>
+								        </c:forEach>
+								
+								        <c:if test="${pagingVO.endPage < pagingVO.lastPage}">
+								            <li class="datatable-pagination-list-item">
+								                <a class="datatable-pagination-list-item-link"
+								                href="noticeList?nowPage=${pagingVO.endPage + 1}&searchAlign=${param.searchAlign}&searchType=${param.searchType}&searchValue=${param.searchValue}">›</a>
+								            </li>
+								        </c:if>
+								    </ul>
 								</nav>
 							</div>
 						</div>
