@@ -220,15 +220,15 @@ public class UserManageController {
 	}
 	
 	public void profUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pnoParam = request.getParameter("pno");
-
-        if (pnoParam != null && !pnoParam.isEmpty()) {
-            int pno = Integer.parseInt(pnoParam);
-            
-            UserManageDAO userManageDAO = new UserManageDAO();
-            List<ProfessorVO> professorVO = userManageDAO.viewProf(pno);
-            
-        }
+//		String pnoParam = request.getParameter("pno");
+//
+//        if (pnoParam != null && !pnoParam.isEmpty()) {
+//            int pno = Integer.parseInt(pnoParam);
+//            
+//            UserManageDAO userManageDAO = new UserManageDAO();
+//            List<ProfessorVO> professorVO = userManageDAO.viewProf(pno);
+//            
+//        }
         
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
 		rd.forward(request, response);

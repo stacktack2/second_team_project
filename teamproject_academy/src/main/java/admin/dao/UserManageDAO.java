@@ -11,28 +11,25 @@ public class UserManageDAO {
 //	교수 사용자 리스트 메서드
 	public List<ProfessorVO> selectProf() {
 		
+		List<ProfessorVO> professorList = new ArrayList<>();
 		
 		String sql = "SELECT pno, pid, pname, pposition, plab, pphone, pemail "
 				   + "  FROM professor p " ;
 		
-		List<ProfessorVO> professorList = new ArrayList<>();
-		
 		DBM dbm = DBM.getInstance();
-		
 		dbm.prepare(sql).select();
 		
-		ProfessorVO professorVO = null;
 		while(dbm.next()) {
-			professorVO = new ProfessorVO();
-			professorVO.setPno(dbm.getInt("pno"));
-			professorVO.setPid(dbm.getString("pid"));
-			professorVO.setPname(dbm.getString("pname"));
-			professorVO.setPposition(dbm.getString("pposition"));
-			professorVO.setPlab(dbm.getString("plab"));
-			professorVO.setPphone(dbm.getString("pphone"));
-			professorVO.setPemail(dbm.getString("pemail"));
+			ProfessorVO profUser = new ProfessorVO();
+			profUser.setPno(dbm.getInt("pno"));
+			profUser.setPid(dbm.getString("pid"));
+			profUser.setPname(dbm.getString("pname"));
+			profUser.setPposition(dbm.getString("pposition"));
+			profUser.setPlab(dbm.getString("plab"));
+			profUser.setPphone(dbm.getString("pphone"));
+			profUser.setPemail(dbm.getString("pemail"));
 			
-			professorList.add(professorVO);
+			professorList.add(profUser);
 		}
 		
 		dbm.close();
