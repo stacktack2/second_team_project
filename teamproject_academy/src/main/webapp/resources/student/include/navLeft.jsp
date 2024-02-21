@@ -11,9 +11,9 @@
 				<div class="nav">
 					<div class="sb-sidenav-menu-heading">학적/수강관리</div>
 						<a class="nav-link" href="<%=request.getContextPath()%>/student/acdCourse/sscheck">학적사항 조회</a> 
-						<a class="nav-link"	href="<%=request.getContextPath()%>/student/acdCourse/absenseApp">휴복학 신청</a> 
+<%-- 						<a class="nav-link"	href="< % =request.getContextPath() % >/student/acdCourse/absenseApp">휴복학 신청</a>  --%>
 						<a class="nav-link" href="<%=request.getContextPath()%>/student/acdCourse/subcheck">교과목 조회</a> 
-						<a class="nav-link" href="<%=request.getContextPath()%>/student/acdCourse/scheduleCheck">수강시간표 조회</a>
+<%-- 						<a class="nav-link" href="< % =request.getContextPath() % >/student/acdCourse/scheduleCheck">수강시간표 조회</a> --%>
 
 					<div class="sb-sidenav-menu-heading">출석/성적관리</div>
 						<a class="nav-link" href="<%=request.getContextPath()%>/student/atdGrade/attendcheckList">출결확인</a>

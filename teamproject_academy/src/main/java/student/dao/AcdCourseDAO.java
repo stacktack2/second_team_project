@@ -50,7 +50,7 @@ public class AcdCourseDAO {
 				+" INNER JOIN lecture l ON c.lno = l.lno "
 				+" INNER JOIN professor p ON l.pno = p.pno "
 				+" INNER JOIN student s ON c.sno = s.sno "
-				+" WHERE s.sno = c.sno "
+				+" WHERE s.sno = c.sno and cdelyn = 0 "
 				+" ORDER BY c.cno ";
 		
 		DBM dbm = DBM.getInstance();

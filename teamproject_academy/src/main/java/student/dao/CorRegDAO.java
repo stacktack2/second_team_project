@@ -51,29 +51,20 @@ public class CorRegDAO {
 		return corRegList;
 	}
 	// 수강신청 중복배제를 위한 courseList 조회
-	public List<CourseVO> selectCourseAll(String searchType, String searchValue) {
+	public List<CourseVO> selectCourseAll(String sno) {
 		List<CourseVO> courseList = new ArrayList<>();
 		
-		String sql = "SELECT * from course ";
+		String sql = "SELECT * from course where sno = ?";
 		//[검색]
-		if(searchType != null && searchType.equals("")){
-			if(searchType.equals("1")){
-				sql += " AND l.lname LIKE CONCAT('%',?,'%')";
-			}else if(searchType.equals("2")){
-				sql += " AND p.pname LIKE CONCAT('%',?,'%')";
-			}
-		}
-		DBM dbm = DBM.getInstance();
 		
-		if(searchType != null  && !searchType.equals("")) {
-			dbm.prepare(sql).setString(searchValue).select();
-		}else {
-			dbm.prepare(sql).select();
-		}
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql).setString(sno).select();
+		
 		while(dbm.next()) {
 			CourseVO course = new CourseVO();
-			
+			course.setCdelyn(dbm.getInt("cdelyn"));
 			course.setLno(dbm.getInt("lno"));
+			course.setCno(dbm.getInt("cno"));
 			
 			courseList.add(course);
 			
@@ -126,11 +117,18 @@ public class CorRegDAO {
 	//[ajax: DELETE 취소버튼 클릭시-> cdelyn=1]
 	public int deleteReg(int cno) {
 		int delRs =0;
-		String sql = "UPDATE course SET cdelyn=? WHERE cno=?";
+		String sql = "UPDATE course SET cdelyn= 1 WHERE cno=?";
 		DBM dbm = DBM.getInstance();
-		delRs = dbm.prepare(sql).setInt(1).setInt(cno).update();
+		delRs = dbm.prepare(sql).setInt(cno).update();
 		dbm.close();
 
 		return delRs;
 	}
+	//재신청시 변경
+	/*
+	 * public int updateReg(int cno) { int updateRs =0; String sql =
+	 * "UPDATE course SET cdelyn = 0 WHERE cno = ?"; DBM dbm = DBM.getInstance();
+	 * updateRs = dbm.prepare(sql).setInt(cno).update(); dbm.close(); return
+	 * updateRs; }
+	 */
 }

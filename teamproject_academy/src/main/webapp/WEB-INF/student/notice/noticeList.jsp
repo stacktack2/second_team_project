@@ -31,28 +31,26 @@
 								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 								<!-- 테이블 탑 -->
 								<div class="datatable-top">
-									<!-- 셀렉트 -->
-									<div class="datatable-dropdown">
-										<label> <select class="datatable-selector">
-												<option value="1" selected>최신순</option>
-												<option value="2">인기순</option>
-										</select>
-										</label>
-									</div>
-									<!-- 검색 -->
-									<div class="right">
-										<select class="datatable-selector">
-											<option value="1" selected>제목</option>
-											<option value="2">내용</option>
-										</select>
-										<form action="noticeList.do" method="get"
-											class="datatable-search inline">
-											<input class="datatable-input inline wauto"
-												placeholder="검색어를 입력하세요" type="search"
+									<form action="noticeList" method="get" class="datatable-search right">
+										<!-- 셀렉트 -->
+										<div class="datatable-dropdown ">
+											<label> <select class="datatable-selector" name="searchAlign">
+													<option value="late" <c:if test="${param.searchAlign eq 'late' }"> selected </c:if> >최신순</option>
+													<option value="hit" <c:if test="${param.searchAlign eq 'hit' }"> selected </c:if>>인기순</option>
+											</select>
+											</label>
+										
+										<!-- 검색 -->
+										
+											<select class="datatable-selector" name="searchType">
+												<option value="title" <c:if test="${param.searchType eq 'title' }"> selected </c:if>>제목</option>
+												<option value="content" <c:if test="${param.searchType eq 'content' }"> selected </c:if>>내용</option>
+											</select>
+											<input class="datatable-input inline wauto" name="searchValue" placeholder="검색어를 입력하세요" type="search"
 												title="Search within table" aria-controls="datatablesSimple">
 											<button class="btn btn-primary inline grey">검색</button>
-										</form>
-									</div>
+										</div>
+									</form>
 								</div>
 								<!-- 테이블 컨테이너 -->
 								<div class="datatable-container">
@@ -67,14 +65,14 @@
 											</tr>
 										</thead>
 										<tbody>
-										<c:forEach var="board" items="${noticeList}">
-											<tr>
-												<td>${board.bno }</td>
-												<td><a href="noticeView?bno=${board.bno }">${board.btitle }</a></td>
-												<td>${board.brdate }</td>
-												<td>${board.bhit }</td>
-											</tr>
-										</c:forEach>
+											<c:forEach items="${board }" var="board" varStatus="loop">
+												<tr>
+													<td>${loop.count+pagingVO.start-1}</td>
+													<td><a href="noticeView?bno=${board.getBno() }">${board.getBtitle() }</a></td>
+													<td>${board.getBrdate() }</td>
+													<td>${board.getBhit() }</td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -82,21 +80,29 @@
 							<!-- 테이블 바텀 -->
 							<div class="datatable-bottom">
 								<!-- 페이징 -->
-								<nav class="datatable-pagination">
-									<ul class="datatable-pagination-list">
-										<li class="datatable-pagination-list-item datatable-hidden datatable-disabled">
-											<a data-page="1" class="datatable-pagination-list-item-link">‹</a>
-										</li>
-										<li class="datatable-pagination-list-item datatable-active">
-											<a data-page="1" class="datatable-pagination-list-item-link">1</a>
-										</li>
-										<li class="datatable-pagination-list-item">
-											<a data-page="2" class="datatable-pagination-list-item-link">2</a>
-										</li>
-										<li class="datatable-pagination-list-item">
-											<a data-page="2" class="datatable-pagination-list-item-link">›</a>
-										</li>
-									</ul>
+								<nav class="datatable-pagination" style="display: inline-block; margin-top: 0.75rem; margin-left: 32rem;">
+								    <ul class="datatable-pagination-list">
+								        <c:if test="${pagingVO.getStartPage() > pagingVO.getCntPage()}">
+								            <li class="datatable-pagination-list-item">
+								                <a class="datatable-pagination-list-item-link"
+								                   href="noticeList?nowPage=${pagingVO.startPage - 1}&searchAlign=${param.searchAlign}&searchType=${param.searchType}&searchValue=${param.searchValue}">‹</a>
+								            </li>
+								        </c:if>
+								
+								        <c:forEach var="page"  begin="${pagingVO.startPage}" end="${pagingVO.endPage}" step="1" >
+						                    <li class="datatable-pagination-list-item">
+						                        <a href="noticeList?nowPage=${page}&searchAlign=${param.searchAlign}&searchType=${param.searchType}&searchValue=${param.searchValue}"
+						                           class="datatable-pagination-list-item-link">${page}</a>
+						                    </li>
+								        </c:forEach>
+								
+								        <c:if test="${pagingVO.endPage < pagingVO.lastPage}">
+								            <li class="datatable-pagination-list-item">
+								                <a class="datatable-pagination-list-item-link"
+								                href="noticeList?nowPage=${pagingVO.endPage + 1}&searchAlign=${param.searchAlign}&searchType=${param.searchType}&searchValue=${param.searchValue}">›</a>
+								            </li>
+								        </c:if>
+								    </ul>
 								</nav>
 							</div>
 						</div>

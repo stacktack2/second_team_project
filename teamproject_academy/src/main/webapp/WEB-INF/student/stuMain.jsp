@@ -43,23 +43,22 @@
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach var="course" items="${courseList}">
-									<tr>
-										<td>${course.cno}</td>
-										<td><a href="acdCourse/curriculum?lno=${course.lno }">${course.lname }</a></td>
-										<td>${course.pname }</td>
-										<td>${course.lname }</td>
-										<td>${course.lroom }</td>
-									</tr>
-								</c:forEach>
+									<c:forEach var="course" items="${courseList}">
+										<tr>
+											<td>${course.cno}</td>
+											<td><a href="acdCourse/curriculum?lno=${course.lno }">${course.lname }</a></td>
+											<td>${course.pname }</td>
+											<td>${course.ltime }</td>
+											<td>${course.lroom }</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
 					</div>
 					<div class="card mb-4">
 						<div class="card-header">
-							공지사항 <a href="notice/noticeList" class="nav-link right bold">&#43;
-							</a>
+							공지사항<a href="notice/noticeList?nowPage=1&searchAlign=late&searchType=title" class="nav-link right bold">&#43;</a>
 						</div>
 						<div class="card-body">
 							<table class="datatable-table checktable">
@@ -73,15 +72,15 @@
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach var="board" items="${noticeList}">
-									<tr>
-										<td>${board.bno}</td>
-										<td><a href="notice/noticeView?bno=${board.bno}">${board.btitle}</a></td>
-										<td>관리자</td>
-										<td>${board.brdate}</td>
-										<td>${board.bhit}</td>
-									</tr>
-								</c:forEach>
+									<c:forEach var="cntVar" begin="0" end="4" step="1">
+										<tr>
+											<td>${cntVar+1}</td>
+											<td><a href="notice/noticeView?bno=${board[cntVar].getBno() }">${board[cntVar].getBtitle() }</a></td>
+											<td>관리자</td>
+											<td>${board[cntVar].getBrdate() }</td>
+											<td>${board[cntVar].getBhit() }</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
