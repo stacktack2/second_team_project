@@ -1,5 +1,9 @@
 package professor.dao;
 
-public class ProfInfoDAO {
+import org.mindrot.jbcrypt.BCrypt;
 
+import util.DBM;
+
+public class ProfInfoDAO {
+	
 }
