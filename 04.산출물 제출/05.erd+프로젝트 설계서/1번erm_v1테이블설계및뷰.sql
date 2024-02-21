@@ -83,6 +83,7 @@ CREATE TABLE course
 	cno int unsigned NOT NULL AUTO_INCREMENT,
 	cyn tinyint unsigned DEFAULT 0 NOT NULL,
 	cgrade varchar(4),
+	cgradeupdater varchar(20),
 	cdelyn tinyint unsigned DEFAULT 0 NOT NULL,
 	lno int unsigned NOT NULL,
 	sno int unsigned NOT NULL,
