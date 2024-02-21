@@ -34,7 +34,7 @@
 						<div class="card mb-4" style="width: 247px; height: 292px;" id="photoPreview">
 							<!-- <img > -->
 						</div>
-						<input type="file" name="profPhoto" id="photoInput" onchange="displayPhotoPreview(event)" ><!-- style="display: none;" -->
+						<input type="file" name="profPhoto" id="photoInput" onchange="displayPhotoPreview(event)" style="display: none;">
 						<label class="btn btn-primary inline grey mb-4" for="photoInput">사진 추가</label>
 						<!-- <button class="btn btn-primary inline grey mb-4" type="button" onclick="uploadPhoto()">사진 추가</button> -->
 					
@@ -79,10 +79,10 @@
 										</td>
 										<th>성별</th>
 										<td>
-											<input type="radio" name="pgender" value="M" onclick="checkGender(this)"
+											<input type="radio" name="pgender" value="M" onclick="checkGender()"
 												   class="form-check-input d-inline-block mx-3 me-xxl-2" >
 											<span class="inputSpan">남</span>
-											<input type="radio" name="pgender" value="F" onclick="checkGender(this)"
+											<input type="radio" name="pgender" value="F" onclick="checkGender()"
 												   class="form-check-input d-inline-block mx-3 me-xxl-2" >
 										    <span class="inputSpan">여</span>
 										</td>
@@ -185,6 +185,9 @@
 	</div>
     </div>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/admin/js/profUserAdd.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/admin/js/profUserAddAddr.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/admin/js/profUserAddPhoto.js"></script>
     <!-- 첨부파일 js -->
     <!-- <script src="/resources/admin/js/profUserAddPhoto.js"></script> -->
     </body>

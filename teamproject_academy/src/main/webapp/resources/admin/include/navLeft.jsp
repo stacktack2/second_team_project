@@ -18,11 +18,6 @@
 	                   <div class="sb-sidenav-menu-heading">학생 정보</div>
 	                   <a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/gradeMgList">학생 성적 관리</a>
 	                   <a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/attendMgList">학생 출결 관리</a>
-	                   <a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/absenseMgList">학생 휴복학 관리</a>
-	                   
-	                   <div class="sb-sidenav-menu-heading">강의 관리</div>
-	                   <a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courMgList">강의 관리</a>
-	                   <a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courseRegList">수강신청 열기/닫기</a>
                </div>
 			</div>
 		</nav>

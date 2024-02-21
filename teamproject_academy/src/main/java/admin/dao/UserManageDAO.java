@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import util.DBM;
+import vo.FileVO;
 import vo.ProfessorVO;
-import vo.ProfessorfileVO;
 
 public class UserManageDAO {
 	
@@ -143,14 +143,29 @@ public class UserManageDAO {
 		return profAdd;
 	}
 
-
-	public List<ProfessorfileVO> insertProfPhoto(ProfessorfileVO professorfileVO) {
-		List<ProfessorfileVO> profPhoto = new ArrayList<>();
+	public List<FileVO> insertProfPhoto(FileVO fileVO) {
+		List<FileVO> profPhoto = new ArrayList<>();
 		
-		String sql = " SELECT max(pno) as pno FROM professor";
+		String sql = " INSERT INTO file "
+					+ " (frealnm, foriginnm, frdate)"
+					+ " VALUES(?, ?, now())";
 		
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).select();
+		dbm.prepare(sql);
+		
+		dbm.setString(fileVO.getFrealnm());
+		dbm.setString(fileVO.getForiginnm());
+		dbm.update();
+		dbm.close();
+		
+		return profPhoto;
+	}
+
+	public ProfessorVO viewProfPhoto() {
+		String profSql = " SELECT max(pno) as pno FROM professor";
+		
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(profSql).select();
 		
 		int pno = 0;
 		if(dbm.next()) {
@@ -159,34 +174,64 @@ public class UserManageDAO {
 		
 		dbm.close();
 		
-		sql = " INSERT INTO professorfile "
-			+ " (pfrealnm, pforiginnm, pno, pfrdate)"
-			+ " VALUES(?, ?, ?, now())";
+		String fileSql = " SELECT max(fno) as fno FROM file";
 		
-		dbm.prepare(sql);
+		dbm.prepare(fileSql).select();
 		
-		dbm.setString(professorfileVO.getPfrealnm());
-		dbm.setString(professorfileVO.getPforiginnm());
-		dbm.setInt(pno);
-		
-		dbm.update();
+		int fno = 0;
+		if(dbm.next()) {
+			fno = dbm.getInt("fno");
+		}
 		
 		dbm.close();
 		
-		return profPhoto;
-	}
-
-	public List<ProfessorVO> viewProf() {
-		List<ProfessorVO> viewProf = new ArrayList<>();
+		String totalSql = " INSERT INTO profbridgefile(pno, fno)"
+						+ " VALUES(pno, fno)";
 		
+		dbm.prepare(totalSql);
 		
-		return viewProf;
-	}
-
-	public List<ProfessorfileVO> viewProfPhoto() {
-		List<ProfessorfileVO> viewProfPhoto = new ArrayList<>();
+		dbm.setInt(pno);
+		dbm.setInt(fno);
+		dbm.update();
+		dbm.close();
 		
+		String sql = " SELECT professor.*, file.* " 
+					+ "  FROM professor " 
+					+ "  JOIN profbridgefile ON professor.pno = profbridgefile.pbfno " 
+					+ "  JOIN file ON profbridgefile.fno = file.fno " 
+					+ " WHERE professor.pno = ?";
 		
-		return viewProfPhoto;
+		dbm.prepare(sql).setInt(pno).select();
+		
+		ProfessorVO professorVO = new ProfessorVO();
+		if(dbm.next()) {
+		professorVO.setPid(dbm.getString("pid"));
+		professorVO.setPpw(dbm.getString("ppw"));
+		professorVO.setPname(dbm.getString("pname"));
+		professorVO.setPregNo1(dbm.getString("pregNo1"));
+		professorVO.setPregNo2(dbm.getString("pregNo2"));
+		professorVO.setPbirth(dbm.getString("pbirth"));
+		professorVO.setPgender(dbm.getString("pgender"));
+		professorVO.setPemail(dbm.getString("pemail"));
+		professorVO.setPphone(dbm.getString("pphone"));
+		professorVO.setPcall(dbm.getString("pcall"));
+		professorVO.setPaddr(dbm.getString("paddr"));
+		professorVO.setPzipCode(dbm.getString("pzipCode"));
+		professorVO.setPrdate(dbm.getString("prdate"));
+		professorVO.setPposition(dbm.getString("pposition"));
+		professorVO.setPuniv(dbm.getString("puniv"));
+		professorVO.setPfaculty(dbm.getString("pfaculty"));
+		professorVO.setPmajor(dbm.getString("pmajor"));
+		professorVO.setPdegree(dbm.getString("pdegree"));
+		professorVO.setPlab(dbm.getString("plab"));
+		professorVO.setPappointDate(dbm.getString("pappointDate"));
+		professorVO.setPdelyn(dbm.getInt("pdelyn"));
+		professorVO.setFrealnm(dbm.getString("frealnm"));
+		professorVO.setForiginnm(dbm.getString("foriginnm"));
+		}
+		
+		dbm.close();
+		
+		return professorVO;
 	}
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,51 +12,10 @@
 </head>
 <body class="sb-nav-fixed">
 	<!-- 상단 nav 바 -->
-	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!--로고자리-->
-            <a class="navbar-brand ps-3"
-			href="<%=request.getContextPath()%>/admin/admMain">이젠대학교</a>
-            <!--좌측 nav바 토글(클릭시 없어졌다 있어졌다) -->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- 우측상단 사용자 메뉴-->
-	 		<div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            	<span class="hello">홍길동 관리자님 안녕하세요  </span>
-            </div>
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">로그아웃</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-
-
-	<!-- 좌측 nav 바~푸터까지 Start -->
-	<div id="layoutSidenav">
-		<div id="layoutSidenav_nav">
-			<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-				<div class="sb-sidenav-menu">
-					<div class="nav">
-						<div class="sb-sidenav-menu-heading">공지사항</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/notice/noticeList">공지사항 관리</a>
-						<div class="sb-sidenav-menu-heading">사용자 관리</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/stuUserMgList">학생 관리</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/userManage/profUserMgList">교수 관리</a>
-						
-						<div class="sb-sidenav-menu-heading">학생 정보</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/gradeMgList">학생 성적 관리</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/attendMgList">학생 출결 관리</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/stuInfo/absenseMgList">학생 휴복학 관리</a>
-						
-						<div class="sb-sidenav-menu-heading">강의 관리</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courMgList">강의 관리</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/admin/course/courseRegList">수강신청 열기/닫기</a>
-						</div>
-				</div>
-			</nav>
-		</div>
+    <%@ include file="/resources/admin/include/navHead.jsp" %>
+    <div id="layoutSidenav">
+    <!-- 좌측 nav 바 -->
+    <%@ include file="/resources/admin/include/navLeft.jsp" %>
 		
 		<!-- 메인페이지 -->
 		<div id="layoutSidenav_content">
@@ -74,16 +34,13 @@
 									<!-- 검색 -->
 									<div class="right">
 
-										<form action="noticeList" method="get"
+										<<form action="gradeMgList" method="get"
 											class="datatable-search inline">
-											<select class="datatable-selector">
-												<option value="1" selected>모든 강의</option>
-												<option value="2">진행중인 강의</option>
-												<option value="3">지난 강의</option>
-											</select> 
-											<input class="datatable-input inline wauto" placeholder="검색어를 입력하세요" type="search"
-												title="Search within table" aria-controls="datatablesSimple">
-											<button class="btn btn-primary inline grey">검색</button>
+											<select class="datatable-selector" name="lstatus" onchange="this.form.submit()">
+												<option value="6" <c:if test="${lstatus eq '6' }">selected</c:if>>모든 강의</option>
+												<option value="4" <c:if test="${lstatus eq '4' }">selected</c:if>>진행중인 강의</option>
+												<option value="5" <c:if test="${lstatus eq '5' }">selected</c:if>>지난 강의</option>
+											</select>
 										</form>
 									</div>
 								</div>
@@ -101,41 +58,15 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td><a href="gradeMgView">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td><a href="gradeMgView">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td><a href="gradeMgView">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td><a href="gradeMgView">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
-											<tr>
-												<td>5</td>
-												<td><a href="gradeMgView">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
+											<c:forEach items="${lectureList }" var="lectureVO" varStatus="loop">
+												<tr>
+													<td>${loop.count }</td>
+													<td><a href="gradeMgView?lno=${lectureVO.lno }">${lectureVO.lname }</a></td>
+													<td>${lectureVO.lyear }</td>
+													<td>${lectureVO.lsemester }</td>
+													<td>${lectureVO.lroom }</td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -145,25 +76,9 @@
 					</div>
 				</div>
 			</main>
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid px-4">
-					<div
-						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; 이젠대학교 2023</div>
-					</div>
-				</div>
-			</footer>
+			<%@ include file="/resources/admin/include/footer.jsp" %>
 		</div>
-		
-		
 	</div>
-	<!-- 좌측 nav 바~푸터까지 END -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/js/scripts.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/assets/demo/chart-area-demo.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/assets/demo/chart-bar-demo.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/resources/share/js/datatables-simple-demo.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>
