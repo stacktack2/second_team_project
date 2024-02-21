@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import student.dao.MypageDAO;
-import vo.StudentVO;
 
 public class MypageController {
 	public void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -44,14 +44,10 @@ public class NoticeController {
 		String searchValue = request.getParameter("searchValue");
 		
 		String nowPageParam = request.getParameter("nowPage");
-		
 		int nowPage = 1;
-		try {
+		if(nowPageParam != null && !nowPageParam.isEmpty()) {
 			nowPage = Integer.parseInt(nowPageParam);
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
 		}
-		
 		
 		if(searchAlign == null || searchType == null) {
 			response.sendRedirect(request.getContextPath());
@@ -87,9 +83,8 @@ public class NoticeController {
 	public void noticeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String bnoParam = request.getParameter("bno");
 		int bno = 0;
-		try {
+		if(bnoParam != null && !bnoParam.isEmpty()) {
 			bno = Integer.parseInt(bnoParam);
-		} catch (NumberFormatException e) {
 		}
 		
 		NoticeDAO noticeDAO = new NoticeDAO();

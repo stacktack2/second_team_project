@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +43,7 @@
 												<th>강의시간</th>
 												<td colspan="3">${courseInfo.ltime} </td>
 												<th>강의실</th>
-												<td>$courseInfo.lroom}</td>
+												<td>${courseInfo.lroom}</td>
 											</tr>
 											<tr>
 												<th>학점</th>
@@ -72,12 +72,16 @@
 										</thead>
 										<tbody>
 										<c:forEach var="attend" items="${attendList}">
-											<td>${attend.attendrdate }</td>
-											<td>
-												<c:if test="${attend.attendyn eq 1 }">출석</c:if>
-												<c:if test="${attend.attendyn eq 2 }">결석</c:if>
-												<c:if test="${attend.attendyn eq 3 }">지각</c:if>
-											</td>
+											<tr>
+												<td>${attend.attendrdate }</td>
+												<td>
+												    <c:choose>
+												        <c:when test="${attend.attendyn eq 1}">출석</c:when>
+												        <c:when test="${attend.attendyn eq 2}">결석</c:when>
+												        <c:when test="${attend.attendyn eq 3}">지각</c:when>
+												    </c:choose>
+												</td>
+											</tr>
 										</c:forEach>
 										</tbody>
 									</table>

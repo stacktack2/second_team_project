@@ -138,13 +138,10 @@ public class AcdCourseController {
 		
 		String nowPageParam = request.getParameter("nowPage");
 		int nowPage = 1;
-		
-		try {
-			nowPage = Integer.parseInt(nowPageParam);
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
+		if(nowPageParam != null && !nowPageParam.isEmpty()) {
+			nowPage = Integer.parseInt(nowPageParam);	
 		}
-		
+			
 		if(searchType == null) {
 			searchType = "";
 		}
