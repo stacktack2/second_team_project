@@ -11,7 +11,7 @@
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
-     <!-- 상단 nav 바 -->
+    <!-- 상단 nav 바 -->
     <%@ include file="/resources/admin/include/navHead.jsp" %>
     <div id="layoutSidenav">
     <!-- 좌측 nav 바 -->

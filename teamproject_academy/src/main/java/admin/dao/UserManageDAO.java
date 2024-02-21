@@ -205,7 +205,6 @@ public class UserManageDAO {
 		
 		ProfessorVO professorVO = new ProfessorVO();
 		if(dbm.next()) {
-			professorVO =  new ProfessorVO();
 		professorVO.setPid(dbm.getString("pid"));
 		professorVO.setPpw(dbm.getString("ppw"));
 		professorVO.setPname(dbm.getString("pname"));
