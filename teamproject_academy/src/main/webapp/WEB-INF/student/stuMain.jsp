@@ -43,9 +43,9 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="course" items="${courseList}">
+									<c:forEach var="course" items="${courseList}" varStatus="loop">
 										<tr>
-											<td>${course.cno}</td>
+											<td>${loop.count}</td>
 											<td><a href="acdCourse/curriculum?lno=${course.lno }">${course.lname }</a></td>
 											<td>${course.pname }</td>
 											<td>${course.ltime }</td>

@@ -7,13 +7,40 @@ import java.util.Map;
 
 import util.DBM;
 import vo.CourseVO;
-import vo.StudentVO;
+import vo.LectureVO;
 
 public class CorRegDAO {
-
+	//totalCnt
+	//totalCnt
+		public int FindTotalCnt(String searchType, String searchValue){
+			String sql = "select count(*) as cnt from course ";
+			if(searchType.equals("lname")) {
+				sql += " where lname like concat('%',?,'%') ";
+			}else if(searchType.equals("pname")) {
+				sql += " where pname like concat('%',?,'%') ";
+			}	
+			
+			DBM dbm = DBM.getInstance();
+			dbm.prepare(sql);
+			
+			if(searchType.equals("title") || searchType.equals("content")) {
+				dbm.setString(searchValue);
+			}
+			
+			dbm.select();
+			int totalCnt = 0;
+			
+			if(dbm.next()) {			
+				totalCnt = dbm.getInt("cnt");
+			}
+			
+			dbm.close();
+			
+			return totalCnt;
+		}
 	//수강신청 강의 전체 조회
-	public List<Map<String, Object>> selectCorRegAll( String searchType, String searchValue){
-		List<Map<String, Object>> corRegList = new ArrayList<>();
+	public List<LectureVO> selectCorRegAll( String searchType, String searchValue){
+		List<LectureVO> corRegList = new ArrayList<>();
 		
 		String sql = " SELECT l.*, p.pname from lecture l "
 				+ " INNER JOIN professor p ON p.pno = l.pno "
@@ -36,16 +63,15 @@ public class CorRegDAO {
 		}
 		
 		while(dbm.next()){
-			Map<String, Object> corRegMap = new HashMap<>();
-
-			corRegMap.put("lno",dbm.getInt("lno"));
-			corRegMap.put("ltime",dbm.getInt("ltime"));
-			corRegMap.put("lname",dbm.getString("lname"));
-			corRegMap.put("lcredit",dbm.getString("lcredit"));
-			corRegMap.put("lroom",dbm.getString("lroom"));
-			corRegMap.put("pname",dbm.getString("pname"));
-		
-			corRegList.add(corRegMap);
+			LectureVO corReg = new LectureVO();
+			corReg.setLno(dbm.getInt("lno"));
+			corReg.setLtime(dbm.getInt("lno"));
+			corReg.setLname(dbm.getString("lname"));
+			corReg.setLcredit(dbm.getInt("lcredit"));
+			corReg.setLroom(dbm.getString("lroom"));
+			corReg.setPname(dbm.getString("pname"));
+			
+			corRegList.add(corReg);
 		}
 		dbm.close();
 		return corRegList;

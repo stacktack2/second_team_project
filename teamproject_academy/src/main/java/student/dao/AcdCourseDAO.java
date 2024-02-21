@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import util.DBM;
-import vo.CourseVO;
+import vo.LectureVO;
 import vo.StudentVO;
 
 
@@ -17,7 +17,7 @@ public class AcdCourseDAO {
 		Map<String, Object> curriMap = new HashMap<>();
 		String sql = "SELECT l.* , p.pname, p.pphone, p.pemail from lecture l "
 				+ "INNER JOIN professor p  ON p.pno = l.pno "
-				+ "WHERE l.lno = ?";
+				+ "WHERE l.lno = ? ";
 		
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setInt(lno).select();
@@ -40,113 +40,121 @@ public class AcdCourseDAO {
 		
 		return curriMap;
 	}
-	
-	//교과목 조회
-	public List<Map<String, Object>>  selectCourseAll(){
-		List<Map<String, Object>> courseList = new ArrayList<>();
+	//totalCnt
+	public int FindTotalCnt(String searchType, String searchValue){
+		String sql = "select count(*) as cnt from board b ";
+		if(searchType.equals("lname")) {
+			sql += " where lname like concat('%',?,'%') ";
+		}else if(searchType.equals("pname")) {
+			sql += " where pname like concat('%',?,'%') ";
+		}
+
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql);
+		
+		if(searchType.equals("title") || searchType.equals("content")) {
+			dbm.setString(searchValue);
+		}
+		
+		dbm.select();
+		int totalCnt = 0;
+		
+		if(dbm.next()) {			
+			totalCnt = dbm.getInt("cnt");
+		}
+		
+		dbm.close();
+		
+		return totalCnt;
+	}
+	//교과목 조회(검색포함)
+	public List<LectureVO>  selectCourseAll(String searchType, String searchValue, int start, int perPage){
+		List<LectureVO> courseList = new ArrayList<>();
 		
 		String sql = "SELECT c.cno, l.lname, p.pname, l.ltime, l.lroom, l.lno "
 				+"FROM course c "
 				+" INNER JOIN lecture l ON c.lno = l.lno "
 				+" INNER JOIN professor p ON l.pno = p.pno "
 				+" INNER JOIN student s ON c.sno = s.sno "
-				+" WHERE s.sno = c.sno and cdelyn = 0 "
-				+" ORDER BY c.cno ";
+				+" WHERE s.sno = c.sno and cdelyn = 0 ";
+		
+		if(searchType.equals("lname")) {
+			sql += " where lname like concat('%',?,'%') ";
+		}else if(searchType.equals("pname")) {
+			sql += " where pname like concat('%',?,'%') ";
+		}
+			sql	+=" ORDER BY c.cno limit ?, ? ";
 		
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).select();
+		dbm.prepare(sql);
+		if(searchType.equals("lname") || searchType.equals("panme")) {
+			dbm.setString(searchValue);
+		}
+		dbm.setInt(start-1);
+		dbm.setInt(perPage);
+		
+		dbm.select();
 		
 		while(dbm.next()) {
-			Map<String, Object> courseMap = new HashMap<>();
+			LectureVO course= new LectureVO();
 
-			courseMap.put("cno", dbm.getInt("cno"));
-			courseMap.put("lno", dbm.getInt("lno"));
-			courseMap.put("lname", dbm.getString("lname"));
-			courseMap.put("ltime", dbm.getString("ltime"));
-			courseMap.put("lroom", dbm.getString("lroom"));
-			courseMap.put("pname", dbm.getString("pname"));
+			course.setCno(dbm.getInt("cno"));
+			course.setLno(dbm.getInt("lno"));
+			course.setLname(dbm.getString("lname"));
+			course.setLtime( dbm.getInt("ltime"));
+			course.setLroom(dbm.getString("lroom"));
+			course.setPname(dbm.getString("pname"));
 
-			courseList.add(courseMap);
+			courseList.add(course);
 		}
 
 		dbm.close();
 		return courseList;
 	}
-	//교과목 조회 [검색]
-	public List<Map<String, Object>> searchCourse(String searchValue) {
-		List<Map<String, Object>> searchCourse = new ArrayList<>();
-		
-		String sql = "SELECT c.cno, l.lname, p.pname, l.ltime, l.lroom, l.lno "
-				+"FROM course c "
-				+" INNER JOIN lecture l ON c.lno = l.lno "
-				+" INNER JOIN professor p ON l.pno = p.pno "
-				+" INNER JOIN student s ON c.sno = s.sno "
-				+" WHERE s.sno = c.sno "
-				+" ORDER BY c.cno ";
-		
-		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).select();
-		
-		while(dbm.next()) {
-			Map<String, Object> courseMap = new HashMap<>();
-
-			courseMap.put("cno", dbm.getInt("cno"));
-			courseMap.put("lno", dbm.getInt("lno"));
-			courseMap.put("lname", dbm.getString("lname"));
-			courseMap.put("ltime", dbm.getString("ltime"));
-			courseMap.put("lroom", dbm.getString("lroom"));
-			courseMap.put("pname", dbm.getString("pname"));
-
-			searchCourse.add(courseMap);
-		}
-
-		dbm.close();
-		return searchCourse;
-	}
 	
 	//학적사항조회
-	public Map<String, Object> selectsscheckByOne(String sno){
-		Map<String, Object> sscheckMap = new HashMap<>();
-		
-		String sql = "SELECT s.* , f.* from student s "
-				+ "inner join studentBridgeFile sb on s.sno=sb.sno "
-				+ "inner join file f on f.fno=sb.fno "
-				+ "where s.sno = ?";
-		
+	public StudentVO selectsscheckByOne(String sno){
+		StudentVO student = new StudentVO();
+		String sql = "SELECT * from student s "
+					+ "INNER JOIN studentBridgeFile sb "
+					+ "INNER JOIN File f "
+					+ "ON s.sno = sb.sno && f.fno = sb.fno "
+					+ "WHERE s.sno = ? ";
+
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setString(sno).select();
 		
 		while(dbm.next()) {
-			sscheckMap.put("sid", dbm.getString("sid"));
-			sscheckMap.put("sname", dbm.getString("sname"));
-			sscheckMap.put("sregNo1", dbm.getString("sregNo1"));
-			sscheckMap.put("sregNo2", dbm.getString("sregNo2"));
-			sscheckMap.put("sbirth",dbm.getString("sbirth") );
-			sscheckMap.put("sgender", dbm.getString("sgender"));
-			sscheckMap.put("sstatus", dbm.getString("sstatus"));
-			sscheckMap.put("suniv", dbm.getString("suniv") );
-			sscheckMap.put("sfaculty", dbm.getString("sfaculty"));
-			sscheckMap.put("smajor", dbm.getString("smajor"));
-			sscheckMap.put("sgrade", dbm.getInt("sgrade"));			
-			sscheckMap.put("srank", dbm.getInt("srank") );
-			sscheckMap.put("scomeDate", dbm.getString("scomeDate"));
-			sscheckMap.put("soutDate", dbm.getString("soutDate"));
-			sscheckMap.put("scompletionDate", dbm.getString("scompletionDate"));
-			sscheckMap.put("sgradDate", dbm.getString("sgradDate"));
-			sscheckMap.put("semail",dbm.getString("semail") );
-			sscheckMap.put("sphone",dbm.getString("sphone") );
-			sscheckMap.put("scall",dbm.getString("scall") );
-			sscheckMap.put("saddr",dbm.getString("saddr") );
-			sscheckMap.put("szipCode", dbm.getString("szipCode"));
 			
-			sscheckMap.put("fno", dbm.getInt("fno"));	
-			sscheckMap.put("foriginnm", dbm.getString("foriginnm"));
-			sscheckMap.put("frealnm", dbm.getString("frealnm"));
-			sscheckMap.put("", dbm.getString("szipCode"));			
+			student.setSid(dbm.getString("sid"));
+			student.setSname(dbm.getString("sname"));
+			student.setSregNo1(dbm.getString("sregNo1"));
+			student.setSregNo2(dbm.getString("sregNo2"));
+			student.setSbirth(dbm.getString("sbirth"));
+			student.setSgender(dbm.getString("sgender"));
+			student.setSuniv(dbm.getString("suniv"));
+			student.setSfaculty(dbm.getString("sfaculty"));
+			student.setSmajor(dbm.getString("smajor"));
+			student.setScomeDate(dbm.getString("scomeDate"));
+			student.setSoutDate(dbm.getString("soutDate"));
+			student.setScompletionDate(dbm.getString("scompletionDate"));
+			student.setSgradDate(dbm.getString("sgradDate"));
+			student.setSemail(dbm.getString("semail"));
+			student.setSphone(dbm.getString("sphone"));
+			student.setScall(dbm.getString("scall"));
+			student.setSaddr(dbm.getString("saddr"));
+			student.setSzipCode(dbm.getString("szipCode"));
+			student.setForiginnm(dbm.getString("foriginnm"));
+			student.setFrealnm(dbm.getString("frealnm"));
+
+			student.setSrank(dbm.getInt("srank"));
+			student.setSstatus(dbm.getInt("sstatus"));
+		
 		}
 		dbm.close();
-		return sscheckMap;
+		return student;
 	}
+	//-------------------------------------------------------
 	//휴복학신청 조회
 	public List<Map<String, Object>>  selectAbsenseAll(String sno){
 
@@ -177,11 +185,6 @@ public class AcdCourseDAO {
 		return absenseList;
 	}
 	
-
-	public List<Map<String, Object>> selectAttendAll() {
-		
-		return null;
-	}
 	//수강시간표 조회
 	public List<Map<String, Object>> selectScheduleAll(String sno){
 		List<Map<String, Object>> scheduleList = new ArrayList<>();

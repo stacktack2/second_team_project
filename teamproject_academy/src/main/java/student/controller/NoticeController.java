@@ -36,7 +36,7 @@ public class NoticeController {
 			noticeView(request,response);			
 		}
 	}
-	
+	//공지사항 목록
 	public void noticeList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String searchAlign = request.getParameter("searchAlign");
@@ -44,6 +44,7 @@ public class NoticeController {
 		String searchValue = request.getParameter("searchValue");
 		
 		String nowPageParam = request.getParameter("nowPage");
+		
 		int nowPage = 1;
 		try {
 			nowPage = Integer.parseInt(nowPageParam);

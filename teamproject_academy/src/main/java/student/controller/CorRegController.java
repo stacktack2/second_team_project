@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import student.dao.CorRegDAO;
 import vo.CourseVO;
-import vo.StudentVO;
+import vo.LectureVO;
+import vo.PagingVO;
 
 public class CorRegController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -131,32 +132,43 @@ public class CorRegController {
 		
 	//수강신청조회
 	public void corReg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		//[검색]
-		String searchType = request.getParameter("searchType");
-		String searchValue = request.getParameter("searchValue");
 		String sno = (String)request.getSession().getAttribute("no");
 		if(sno == null || (sno != null && sno.equals(""))) {
 			response.sendRedirect(request.getContextPath());
 			return;
 		}
+		//[검색]
+		String searchType = request.getParameter("searchType");
+		String searchValue = request.getParameter("searchValue");
+		String nowPageParam = request.getParameter("nowPage");
 		
+		int nowPage = 1;
+		try {
+			nowPage = Integer.parseInt(nowPageParam);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		if(searchType == null) {
+			response.sendRedirect(request.getContextPath());
+			return;
+		}
+		if(searchValue == null) {
+			searchValue = "";
+		}
 		CorRegDAO corRegDAO = new CorRegDAO();
+		int totalCnt = corRegDAO.FindTotalCnt(searchType, searchValue);
+		
+		PagingVO pagingVO = new PagingVO(nowPage,totalCnt,5);
+		int start = pagingVO.getStart();
+		int perPage = pagingVO.getPerPage();
+		
+		request.setAttribute("pagingVO", pagingVO);
 		//수강신청 lecture list 조회
-		List<Map<String, Object>> corRegList = corRegDAO.selectCorRegAll(searchType,searchValue);
+		List<LectureVO> corRegList = corRegDAO.selectCorRegAll(searchType,searchValue);
 		request.setAttribute("corRegList",corRegList);
 		//수강신청 course list 조회
 		List<CourseVO> courseList = corRegDAO.selectCourseAll(sno);
 		request.setAttribute("courseList",courseList);
-	    // lecture의 lno와 course의 lno가 같다면 즉 한번 신청을 했으면 break를 하고 반복문을 빠져나옴
-//	    for (Map<String, Object> corReg : corRegList) {//lectureList
-//	        for (CourseVO course : courseList) {//courseList
-//	            if (course.getLno() == (int) corReg.get("lno")) {
-//	                corReg.put("applied", true);
-//	                break;
-//	            }
-//	        }
-//	    }
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/corReg/corReg.jsp");
 		rd.forward(request, response);

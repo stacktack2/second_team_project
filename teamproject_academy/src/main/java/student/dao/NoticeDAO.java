@@ -9,7 +9,7 @@ import vo.StudentVO;
 
 
 public class NoticeDAO {
-	
+	//view
 	public BoardVO bnoFindBoard(int bno) {
 		String sql = "select * from board where bno = ? ";
 		DBM dbm = DBM.getInstance();
@@ -28,7 +28,7 @@ public class NoticeDAO {
 		
 		return boardVO;
 	}
-
+	//totalCnt
 	public int FindTotalCnt(String searchAlign, String searchType, String searchValue){
 		String sql = "select count(*) as cnt from board b ";
 		if(searchType.equals("title")) {
@@ -63,7 +63,7 @@ public class NoticeDAO {
 		
 		return totalCnt;
 	}
-	
+	//검색포함 조회
 	public List<BoardVO> FindBoard(String searchAlign, String searchType, String searchValue, int start, int perPage){
 		String sql = "select b.* from board b ";
 		if(searchType.equals("title")) {

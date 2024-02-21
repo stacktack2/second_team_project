@@ -14,6 +14,21 @@ public class CourseVO {
 	
 	private String attendavg;
 	
+	private int sno;
+	private int lno;
+	
+	public int getSno() {
+		return sno;
+	}
+	public void setSno(int sno) {
+		this.sno = sno;
+	}
+	public int getLno() {
+		return lno;
+	}
+	public void setLno(int lno) {
+		this.lno = lno;
+	}
 	public String getAttendavg() {
 		return attendavg;
 	}

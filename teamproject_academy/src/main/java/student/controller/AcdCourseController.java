@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import student.dao.AcdCourseDAO;
 import vo.CourseVO;
+import vo.LectureVO;
+import vo.PagingVO;
 import vo.StudentVO;
 
 public class AcdCourseController {
@@ -33,7 +35,6 @@ public class AcdCourseController {
 				subcheck(request,response);
 				break;
 		}
-	
 	}
 	public void doPostAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -49,8 +50,7 @@ public class AcdCourseController {
 			Postsscheck(request,response);			
 		}else if(threeUri.equals("subcheck")) {
 			Postsubcheck(request,response);			
-		}
-		
+		}	
 	}
 	
 	//휴복학신청
@@ -120,8 +120,8 @@ public class AcdCourseController {
 			return;
 		}
 		AcdCourseDAO acdCourseDAO = new AcdCourseDAO();
-		Map<String, Object> sscheckMap = acdCourseDAO.selectsscheckByOne(sno);
-		request.setAttribute("sscheckMap", sscheckMap);
+		StudentVO student = acdCourseDAO.selectsscheckByOne(sno);
+		request.setAttribute("student", student);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/acdCourse/sscheck.jsp");
 		rd.forward(request, response);
@@ -132,17 +132,38 @@ public class AcdCourseController {
 	}
 	//교과목 조회
 	public void subcheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AcdCourseDAO acdCourseDAO = new AcdCourseDAO();
-		List<Map<String, Object>> courseList = acdCourseDAO.selectCourseAll();
-		request.setAttribute("courseList", courseList);
-		//[검색]
+		
+		String searchType = request.getParameter("searchType");
 		String searchValue = request.getParameter("searchValue");
-
-		if (searchValue != null && !searchValue.isEmpty()) {
-	        List<Map<String, Object>> searchResults = acdCourseDAO.searchCourse(searchValue);
-	        request.setAttribute("courseList", searchResults);
-	        
-	    }
+		
+		String nowPageParam = request.getParameter("nowPage");
+		int nowPage = 1;
+		
+		try {
+			nowPage = Integer.parseInt(nowPageParam);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		
+		if(searchType == null) {
+			searchType = "";
+		}
+		if(searchValue == null) {
+			searchValue = "";
+		}
+		
+		AcdCourseDAO acdCourseDAO = new AcdCourseDAO();
+		int totalCnt = acdCourseDAO.FindTotalCnt( searchType, searchValue);
+		
+		PagingVO pagingVO = new PagingVO(nowPage,totalCnt,5);
+		int start = pagingVO.getStart();
+		int perPage = pagingVO.getPerPage();
+		
+		request.setAttribute("pagingVO", pagingVO);
+		
+		List<LectureVO> courseList = acdCourseDAO.selectCourseAll(searchType, searchValue, start, perPage);
+		request.setAttribute("courseList", courseList);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/acdCourse/subcheck.jsp");
 		rd.forward(request, response);
 	}

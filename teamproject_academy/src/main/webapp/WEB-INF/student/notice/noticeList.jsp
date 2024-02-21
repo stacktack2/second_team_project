@@ -34,10 +34,11 @@
 									<form action="noticeList" method="get" class="datatable-search right">
 										<!-- 셀렉트 -->
 										<div class="datatable-dropdown ">
-											<label> <select class="datatable-selector" name="searchAlign">
-													<option value="late" <c:if test="${param.searchAlign eq 'late' }"> selected </c:if> >최신순</option>
-													<option value="hit" <c:if test="${param.searchAlign eq 'hit' }"> selected </c:if>>인기순</option>
-											</select>
+											<label> 
+												<select class="datatable-selector" name="searchAlign">
+														<option value="late" <c:if test="${param.searchAlign eq 'late' }"> selected </c:if> >최신순</option>
+														<option value="hit" <c:if test="${param.searchAlign eq 'hit' }"> selected </c:if>>인기순</option>
+												</select>
 											</label>
 										
 										<!-- 검색 -->
