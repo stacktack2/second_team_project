@@ -26,11 +26,6 @@
 			}
 		}
 		
-		document.getElementById("pid").addEventListener("input", function() {
-    		let resultpid = checkId(this);
-    		console.log(resultpid);
-		});
-		
 	/* 이름 유효성 검사 */
 	function checkName(obj){
 			let regId = /^[가-힣a-zA-Z]{2,20}$/;
@@ -56,11 +51,6 @@
 				return true;
 			}
 		}
-		
-		document.getElementById("pname").addEventListener("input", function() {
-    		let resultpname = checkName(this);
-    		console.log(resultpname);
-		});
 		
 	/* 주민번호 유효성 검사 */
 	function checkRegNo1(obj){
@@ -88,11 +78,6 @@
 			}
 		}
 		
-		document.getElementById("pregNo1").addEventListener("input", function() {
-    		let resultpregNo1 = checkRegNo1(this);
-    		console.log(resultpregNo1);
-		});
-		
 	function checkRegNo2(obj){
 			let regId = /^[1-4]\d{6}$/;
 			let regRs = regId.test(obj.value); 
@@ -117,11 +102,6 @@
 				return true;
 			}
 		}
-		
-		document.getElementById("pregNo2").addEventListener("input", function() {
-    		let resultpregNo2 = checkRegNo2(this);
-    		console.log(resultpregNo2);
-		});
 		
 	/* 생년월일 유효성 검사 */
 	function checkBirth(obj){
@@ -149,31 +129,21 @@
 			}
 		}
 		
-		document.getElementById("pbirth").addEventListener("input", function() {
-    		let resultpbirth = checkBirth(this);
-    		console.log(resultpbirth);
+	/* 성별 유효성 검사 */
+	function checkGender(){
+		let genderRadios = document.querySelectorAll('input[name="pgender"]');
+		
+		let isChecked = Array.from(genderRadios).some(function(radio){
+			return radio.checked;
 		});
 		
-	/* 성별 유효성 검사 */
-	function checkGender(pgender){
-		if(pgender.value == "" || pgender.value === null || pgender.value === undefined){
-			check = false;
+		if(!isChecked){
+			alert("성별을 선택해주세요.");
 			return false;
-		}else{
-			check = true;
+		}
 			return true;
 		}
-	}
-	
-		let elements = document.getElementsByName("pgender");
-
-		for (let i = 0; i < elements.length; i++) {
-		    elements[i].addEventListener("input", function() {
-		        let resultpgender = checkGender(this);
-		        console.log(resultpgender);
-		    });
-		}
-	
+		
 	/* 직급 유효성 검사 */
 	function checkPosition(obj){
 			let regId = /^교수$|^[가-힣]+(교수)$/;
@@ -200,11 +170,6 @@
 			}
 		}
 		
-		document.getElementById("pposition").addEventListener("input", function() {
-    		let resultpposition = checkPosition(this);
-    		console.log(resultpposition);
-		});
-		
 	/* 대학 유효성 검사 */
 	function checkUniv(obj){
 			let regId = /^[가-힣A-Za-z]+(대학교|Univ)$/;
@@ -230,12 +195,7 @@
 				return true;
 			}
 		}
-		
-		document.getElementById("puniv").addEventListener("input", function() {
-    		let resultpuniv = checkUniv(this);
-    		console.log(resultpuniv);
-		});
-		
+				
 	/* 단과대학 유효성 검사 */
 	function checkFaculty(obj){
 			let regId = /^[가-힣]+대학$/;
@@ -292,12 +252,7 @@
 				return true;
 			}
 		}
-		
-		document.getElementById("pmajor").addEventListener("input", function() {
-    		let resultpmajor = checkMajor(this);
-    		console.log(resultpmajor);
-		});
-		
+				
 	/* 학위 유효성 검사 */
 	function checkDegree(obj){
 			let regId = /^(석사|박사)$/;
@@ -323,11 +278,6 @@
 				return true;
 			}
 		}
-		
-		document.getElementById("pdegree").addEventListener("input", function() {
-    		let resultpdegree = checkDegree(this);
-    		console.log(resultpdegree);
-		});
 		
 	/* 연구실 유효성 검사 */
 	function checkLab(obj){
@@ -355,11 +305,6 @@
 			}
 		}
 		
-		document.getElementById("plab").addEventListener("input", function() {
-    		let resultplab = checkLab(this);
-    		console.log(resultplab);
-		});
-		
 	/* 임용일자 유효성 검사 */
 	function checkAppointDate(obj){
 			let regId = /^(19|20)\d\d(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/; 
@@ -385,11 +330,6 @@
 				return true;
 			}
 		}
-		
-		document.getElementById("pappointDate").addEventListener("input", function() {
-    		let resultpappointDate = checkAppointDate(this);
-    		console.log(resultpappointDate);
-		});
 		
 	/* 이메일 유효성 검사 */
 	function checkEmail(obj){
@@ -417,11 +357,6 @@
 			}
 		}
 		
-		document.getElementById("pemail").addEventListener("input", function() {
-    		let resultpemail = checkEmail(this);
-    		console.log(resultpemail);
-		});
-		
 	/* 휴대전화번호 유효성 검사 */
 	function checkPhone(obj){
 			let regId = /^(010|011)\d{3,4}\d{4}$/; 
@@ -447,11 +382,6 @@
 				return true;
 			}
 		}
-		
-		document.getElementById("pphone").addEventListener("input", function() {
-    		let resultpphone = checkPhone(this);
-    		console.log(resultpphone);
-		});
 		
 	/* 연구실 전화번호 유효성 검사 */
 	function checkCall(obj){
@@ -479,11 +409,6 @@
 			}
 		}
 		
-		document.getElementById("pcall").addEventListener("input", function() {
-    		let resultpcall = checkCall(this);
-    		console.log(resultpcall);
-		});
-		
 	/* 주소 유효성 검사 */
 	function checkAddr(obj){
 			let regId = /^[가-힣0-9\s\(\)\-]+$/u;
@@ -510,11 +435,6 @@
 			}
 		}
 		
-		document.getElementById("paddr").addEventListener("input", function() {
-    		let resultpaddr = checkAddr(this);
-    		console.log(resultpaddr);
-		});
-		
 	/* 우편번호 유효성 검사 */
 	function checkZipCode(obj){
 			let regId = /^\d{5}$/;
@@ -540,33 +460,16 @@
 				return true;
 			}
 		}
-		
-		document.getElementById("pzipCode").addEventListener("input", function() {
-    		let resultpzipCode = checkZipCode(this);
-    		console.log(resultpzipCode);
-		});
 
 function register() {
     // 모든 유효성 검사를 수행합니다.
     if (
-        checkId(document.getElementById("pid").value) &&
-        checkName(document.getElementById("pname").value) &&
-        checkRegNo1(document.getElementById("pregNo1").value) &&
-        checkRegNo2(document.getElementById("pregNo2").value) &&
-        checkBirth(document.getElementById("pbirth").value) &&
-        checkGender(document.querySelector('input[name="pgender"]:checked').value) &&
-        checkPosition(document.getElementById("pposition").value) &&
-        checkUniv(document.getElementById("puniv").value) &&
-        checkFaculty(document.getElementById("pfaculty").value) &&
-        checkMajor(document.getElementById("pmajor").value) &&
-        checkDegree(document.getElementById("pdegree").value) &&
-        checkLab(document.getElementById("plab").value) &&
-        checkAppointDate(document.getElementById("pappointDate").value) &&
-        checkEmail(document.getElementById("pemail").value) &&
-        checkPhone(document.getElementById("pphone").value) &&
-        checkCall(document.getElementById("pcall").value) &&
-        checkAddr(document.getElementById("paddr").value) &&
-        checkZipCode(document.getElementById("pzipCode").value)
+        checkId(pid) && checkName(pname) && checkRegNo1(pregNo1) &&
+        checkRegNo2(pregNo2) && checkBirth(pbirth) && checkGender() &&
+        checkPosition(pposition) && checkUniv(puniv) && checkFaculty(pfaculty) &&
+        checkMajor(pmajor) && checkDegree(pdegree) && checkLab(plab) &&
+        checkAppointDate(pappointDate) && checkEmail(pemail) && checkPhone(pphone) &&
+        checkCall(pcall) && checkAddr(paddr) && checkZipCode(pzipCode)
     ) {
         // 파일 업로드 유효성 검사 및 FormData에 추가
         let photoInput = document.getElementById("photoInput");
@@ -584,7 +487,5 @@ function register() {
         } else {
             alert("사진을 선택해주세요.");
         }
-    } else {
-        alert("사용자 정보를 다시 입력해주세요.");
     }
 }
