@@ -54,6 +54,7 @@ BEGIN
           
 		-- 수강정보 브릿지
           INSERT INTO course(cyn,cgrade,lno,sno,cdelyn) VALUES( '1', 'A', 1, i,0);
+
           
 		-- 출석정보
         INSERT INTO attendment(attendrdate,attendyn,cno) 
