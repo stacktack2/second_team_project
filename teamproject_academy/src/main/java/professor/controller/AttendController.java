@@ -52,9 +52,18 @@ public class AttendController {
 	}
 	public void attendMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pno = (String)request.getSession().getAttribute("no");
+		String lstatus = request.getParameter("lstatus");
+		//유효성 검사
+		if(lstatus == null) {
+			lstatus = "6";
+		}
+		if(!(lstatus.equals("6")||lstatus.equals("4")||lstatus.equals("5"))) {
+			lstatus = "6";
+		}
 		
+		request.setAttribute("lstatus", lstatus);
 		AttendDAO attendDAO = new AttendDAO();
-		List<LectureVO> lectureList = attendDAO.pnoFindLecture(pno);
+		List<LectureVO> lectureList = attendDAO.pnoLstatusFindLecture(pno,lstatus);
 		
 		request.setAttribute("lectureList", lectureList);
 		
