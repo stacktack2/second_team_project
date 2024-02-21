@@ -79,9 +79,9 @@ public class AcdCourseDAO {
 				+" WHERE s.sno = c.sno and cdelyn = 0 ";
 		
 		if(searchType.equals("lname")) {
-			sql += " where lname like concat('%',?,'%') ";
+			sql += " where l.lname like concat('%',?,'%') ";
 		}else if(searchType.equals("pname")) {
-			sql += " where pname like concat('%',?,'%') ";
+			sql += " where p.pname like concat('%',?,'%') ";
 		}
 			sql	+=" ORDER BY c.cno limit ?, ? ";
 		
