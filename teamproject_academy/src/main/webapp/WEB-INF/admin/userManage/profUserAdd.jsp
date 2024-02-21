@@ -29,8 +29,8 @@
 				<form name="profUserAddForm" action="profUserMgView" method="post" id="profUserAddForm" onsubmit="return false;" enctype="multipart/form-data">
 				<div class="card mb-4 white">
 					<div class="card-header disNone">교수 사용자 추가</div>
-					<!-- 사진 첨부파일 -->
 					<div class="card-body">
+						<!-- 사진 첨부파일 -->
 						<div class="card mb-4" style="width: 247px; height: 292px;" id="photoPreview">
 							<!-- <img > -->
 						</div>

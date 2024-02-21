@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import util.DBM;
-import vo.FileVO;
 import vo.ProfessorVO;
 
 public class UserManageDAO {
@@ -12,25 +11,28 @@ public class UserManageDAO {
 //	교수 사용자 리스트 메서드
 	public List<ProfessorVO> selectProf() {
 		
-		List<ProfessorVO> professorList = new ArrayList<>();
 		
 		String sql = "SELECT pno, pid, pname, pposition, plab, pphone, pemail "
 				   + "  FROM professor p " ;
 		
+		List<ProfessorVO> professorList = new ArrayList<>();
+		
 		DBM dbm = DBM.getInstance();
+		
 		dbm.prepare(sql).select();
 		
+		ProfessorVO professorVO = null;
 		while(dbm.next()) {
-			ProfessorVO profUser = new ProfessorVO();
-			profUser.setPno(dbm.getInt("pno"));
-			profUser.setPid(dbm.getString("pid"));
-			profUser.setPname(dbm.getString("pname"));
-			profUser.setPposition(dbm.getString("pposition"));
-			profUser.setPlab(dbm.getString("plab"));
-			profUser.setPphone(dbm.getString("pphone"));
-			profUser.setPemail(dbm.getString("pemail"));
+			professorVO = new ProfessorVO();
+			professorVO.setPno(dbm.getInt("pno"));
+			professorVO.setPid(dbm.getString("pid"));
+			professorVO.setPname(dbm.getString("pname"));
+			professorVO.setPposition(dbm.getString("pposition"));
+			professorVO.setPlab(dbm.getString("plab"));
+			professorVO.setPphone(dbm.getString("pphone"));
+			professorVO.setPemail(dbm.getString("pemail"));
 			
-			professorList.add(profUser);
+			professorList.add(professorVO);
 		}
 		
 		dbm.close();
@@ -142,10 +144,9 @@ public class UserManageDAO {
 		
 		return profAdd;
 	}
-
-	public List<FileVO> insertProfPhoto(FileVO fileVO) {
-		List<FileVO> profPhoto = new ArrayList<>();
-		
+	
+	public ProfessorVO insertProfPhoto(ProfessorVO professorVO) {
+		ProfessorVO profPhoto = null;
 		String sql = " INSERT INTO file "
 					+ " (frealnm, foriginnm, frdate)"
 					+ " VALUES(?, ?, now())";
@@ -153,8 +154,8 @@ public class UserManageDAO {
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql);
 		
-		dbm.setString(fileVO.getFrealnm());
-		dbm.setString(fileVO.getForiginnm());
+		dbm.setString(professorVO.getFrealnm());
+		dbm.setString(professorVO.getForiginnm());
 		dbm.update();
 		dbm.close();
 		
@@ -162,76 +163,76 @@ public class UserManageDAO {
 	}
 
 	public ProfessorVO viewProfPhoto() {
-		String profSql = " SELECT max(pno) as pno FROM professor";
 		
+		String profSql = " SELECT max(pno) as pno FROM professor";
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(profSql).select();
-		
 		int pno = 0;
 		if(dbm.next()) {
 			pno = dbm.getInt("pno");
 		}
-		
 		dbm.close();
 		
 		String fileSql = " SELECT max(fno) as fno FROM file";
-		
 		dbm.prepare(fileSql).select();
-		
 		int fno = 0;
 		if(dbm.next()) {
 			fno = dbm.getInt("fno");
 		}
-		
 		dbm.close();
 		
 		String totalSql = " INSERT INTO profbridgefile(pno, fno)"
-						+ " VALUES(pno, fno)";
-		
+						+ " VALUES(?, ?)";
 		dbm.prepare(totalSql);
-		
 		dbm.setInt(pno);
 		dbm.setInt(fno);
 		dbm.update();
 		dbm.close();
 		
-		String sql = " SELECT professor.*, file.* " 
-					+ "  FROM professor " 
-					+ "  JOIN profbridgefile ON professor.pno = profbridgefile.pbfno " 
-					+ "  JOIN file ON profbridgefile.fno = file.fno " 
-					+ " WHERE professor.pno = ?";
+		String sql = " SELECT professor.*, file.* FROM professor  "
+				   + " 	INNER JOIN profbridgefile INNER JOIN file ON professor.pno = profbridgefile.pno  "
+				   + " 	&& profbridgefile.fno = file.fno  "
+				   + "  WHERE professor.pno = ?";
 		
 		dbm.prepare(sql).setInt(pno).select();
 		
-		ProfessorVO professorVO = new ProfessorVO();
+		ProfessorVO professorVO = null;
 		if(dbm.next()) {
-		professorVO.setPid(dbm.getString("pid"));
-		professorVO.setPpw(dbm.getString("ppw"));
-		professorVO.setPname(dbm.getString("pname"));
-		professorVO.setPregNo1(dbm.getString("pregNo1"));
-		professorVO.setPregNo2(dbm.getString("pregNo2"));
-		professorVO.setPbirth(dbm.getString("pbirth"));
-		professorVO.setPgender(dbm.getString("pgender"));
-		professorVO.setPemail(dbm.getString("pemail"));
-		professorVO.setPphone(dbm.getString("pphone"));
-		professorVO.setPcall(dbm.getString("pcall"));
-		professorVO.setPaddr(dbm.getString("paddr"));
-		professorVO.setPzipCode(dbm.getString("pzipCode"));
-		professorVO.setPrdate(dbm.getString("prdate"));
-		professorVO.setPposition(dbm.getString("pposition"));
-		professorVO.setPuniv(dbm.getString("puniv"));
-		professorVO.setPfaculty(dbm.getString("pfaculty"));
-		professorVO.setPmajor(dbm.getString("pmajor"));
-		professorVO.setPdegree(dbm.getString("pdegree"));
-		professorVO.setPlab(dbm.getString("plab"));
-		professorVO.setPappointDate(dbm.getString("pappointDate"));
-		professorVO.setPdelyn(dbm.getInt("pdelyn"));
-		professorVO.setFrealnm(dbm.getString("frealnm"));
-		professorVO.setForiginnm(dbm.getString("foriginnm"));
+			professorVO =  new ProfessorVO();
+			professorVO.setPno(pno);
+			professorVO.setPid(dbm.getString("pid"));
+			professorVO.setPpw(dbm.getString("ppw"));
+			professorVO.setPname(dbm.getString("pname"));
+			professorVO.setPregNo1(dbm.getString("pregNo1"));
+			professorVO.setPregNo2(dbm.getString("pregNo2"));
+			professorVO.setPbirth(dbm.getString("pbirth"));
+			professorVO.setPgender(dbm.getString("pgender"));
+			professorVO.setPemail(dbm.getString("pemail"));
+			professorVO.setPphone(dbm.getString("pphone"));
+			professorVO.setPcall(dbm.getString("pcall"));
+			professorVO.setPaddr(dbm.getString("paddr"));
+			professorVO.setPzipCode(dbm.getString("pzipCode"));
+			professorVO.setPrdate(dbm.getString("prdate"));
+			professorVO.setPposition(dbm.getString("pposition"));
+			professorVO.setPuniv(dbm.getString("puniv"));
+			professorVO.setPfaculty(dbm.getString("pfaculty"));
+			professorVO.setPmajor(dbm.getString("pmajor"));
+			professorVO.setPdegree(dbm.getString("pdegree"));
+			professorVO.setPlab(dbm.getString("plab"));
+			professorVO.setPappointDate(dbm.getString("pappointDate"));
+			professorVO.setPdelyn(dbm.getInt("pdelyn"));
+			professorVO.setFrealnm(dbm.getString("frealnm"));
+			professorVO.setForiginnm(dbm.getString("foriginnm"));
 		}
 		
 		dbm.close();
 		
 		return professorVO;
 	}
+
+	public List<ProfessorVO> viewProf(int pno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

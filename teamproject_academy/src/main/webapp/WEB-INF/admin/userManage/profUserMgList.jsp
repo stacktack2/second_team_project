@@ -70,7 +70,8 @@
 												</td>
 												<td>${professor.pid }</td>
 												<td>
-													<a href="profUserMgView?pno=${professor.pno }">${professor.pname }</a>
+													<a href="profUserMgView?pno=${professor.pno }" onsubmit="">${professor.pname }</a>
+													<input type="hidden" name="pno" value="${professor.pno }">
 												</td>
 												<td>${professor.pposition }</td>
 												<td>${professor.plab }</td>

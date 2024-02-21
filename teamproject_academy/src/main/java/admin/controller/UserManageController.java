@@ -15,7 +15,6 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import admin.dao.UserManageDAO;
-import vo.FileVO;
 import vo.PagingVO;
 import vo.ProfessorVO;
 
@@ -221,6 +220,16 @@ public class UserManageController {
 	}
 	
 	public void profUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pnoParam = request.getParameter("pno");
+
+        if (pnoParam != null && !pnoParam.isEmpty()) {
+            int pno = Integer.parseInt(pnoParam);
+            
+            UserManageDAO userManageDAO = new UserManageDAO();
+            List<ProfessorVO> professorVO = userManageDAO.viewProf(pno);
+            
+        }
+        
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
 		rd.forward(request, response);
 		
@@ -282,11 +291,10 @@ public class UserManageController {
 	                }
 	            }
 
-	            FileVO fileVO = new FileVO();
-	            fileVO.setFrealnm(multi.getFilesystemName("profPhoto")); // 넘어온 파일명
-	            fileVO.setForiginnm(originalFileName); // 원본 파일명
+	            professorVO.setFrealnm(multi.getFilesystemName("profPhoto")); // 넘어온 파일명
+	            professorVO.setForiginnm(originalFileName); // 원본 파일명
 
-	            List<FileVO> profPhoto = userManageDAO.insertProfPhoto(fileVO);
+	            ProfessorVO profPhoto = userManageDAO.insertProfPhoto(professorVO);
 	            
 	            response.setContentType("text/html; charset=utf-8");
 	    		response.setCharacterEncoding("UTF-8");
@@ -300,9 +308,9 @@ public class UserManageController {
 	    }
 		
 		UserManageDAO userManageDAO = new UserManageDAO();
-		ProfessorVO viewProfPhoto = userManageDAO.viewProfPhoto();
+		ProfessorVO professorVO = userManageDAO.viewProfPhoto();
 		
-		request.setAttribute("viewProfPhoto", viewProfPhoto);
+		request.setAttribute("professorVO", professorVO);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
 		rd.forward(request, response);

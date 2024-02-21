@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>학생관리 페이지</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-<link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/resources/admin/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
@@ -25,64 +24,66 @@
 						<li class="breadcrumb-item">사용자 관리</li>
 						<li class="breadcrumb-item active">교수 관리</li>
 					</ol>
+					<form name="profUserMgModifyForm" action="profUserInfoModify" method="post">
 					<div class="card mb-4 white">
 						<div class="card-header disNone">교수 정보 조회</div>
 						<!-- 사진 첨부파일 -->
 						<div class="card-body">
 							<div class="card mb-4" style="width: 247px; height: 292px;" id="photoPreview">
-								<img src="<%=request.getContextPath()%>/upload/profUpload/${viewProfPhoto.foriginnm}">
+								<img src="<%=request.getContextPath()%>/upload/profUpload/${professorVO.foriginnm}">
 							</div>
 							<div
 								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 								<div class="datatable-container">
+								<input type="hidden" name="pno" value="${professorVO.pno}">
 									<!-- 테이블 -->
 									<table class="datatable-table viewtable sschecktable">
 										<tbody>
 											<tr>
 												<th>교번</th>
-												<td>${viewProfPhoto.pid }</td>
+												<td>${professorVO.pid }</td>
 												<th>성명</th>
-												<td>${viewProfPhoto.pname }</td>
+												<td>${professorVO.pname }</td>
 												<th>주민번호</th>
-												<td>${viewProfPhoto.pregNo1 } + *******</td>
+												<td>${professorVO.pregNo1 } + *******</td>
 											</tr>
 											<tr>
 												<th>생년월일</th>
-												<td>${viewProfPhoto.pbirth }</td>
+												<td>${professorVO.pbirth }</td>
 												<th>성별</th>
-												<td>${viewProfPhoto.pgender }</td>
+												<td>${professorVO.pgender }</td>
 												<th>직급</th>
-												<td>${viewProfPhoto.pposition }</td>
+												<td>${professorVO.pposition }</td>
 											</tr>
 											<tr>
 												<th>대학</th>
-												<td>${viewProfPhoto.puniv }</td>
+												<td>${professorVO.puniv }</td>
 												<th>학부</th>
-												<td>${viewProfPhoto.pfaculty }</td>
+												<td>${professorVO.pfaculty }</td>
 												<th>전공</th>
-												<td>${viewProfPhoto.pmajor }</td>
+												<td>${professorVO.pmajor }</td>
 											</tr>
 											<tr>
 												<th>학위</th>
-												<td>${viewProfPhoto.pdegree }</td>
+												<td>${professorVO.pdegree }</td>
 												<th>연구실</th>
-												<td>${viewProfPhoto.plab }</td>
+												<td>${professorVO.plab }</td>
 												<th>임용일자</th>
-												<td>${viewProfPhoto.pappointDate }</td>
+												<td>${professorVO.pappointDate }</td>
 											</tr>
 											<tr>
 												<th>E-mail</th>
-												<td>${viewProfPhoto.pemail }</td>
+												<td>${professorVO.pemail }</td>
 												<th>휴대전화번호</th>
-												<td>${viewProfPhoto.pphone }</td>
+												<td>${professorVO.pphone }</td>
 												<th>집전화번호</th>
-												<td>${viewProfPhoto.pcall }</td>
+												<td>${professorVO.pcall }</td>
 											</tr>
 											<tr>
 												<th>주소</th>
-												<td colspan="3">${viewProfPhoto.paddr }</td>
+												<td colspan="3">${professorVO.paddr }</td>
 												<th>우편번호</th>
-												<td>${viewProfPhoto.pzipCode }</td>
+												<td>${professorVO.pzipCode }</td>
 											</tr>
 										</tbody>
 									</table>
@@ -90,13 +91,14 @@
 							</div>
 							<!-- 테이블 바텀 -->
 							<div class="datatable-bottom ms-auto d-inline-block">
-								<a href="profUserInfoModify" class="btn btn-primary grey right mright">수정</a>
+								<button class="btn btn-primary grey right mright">수정</button>
 							</div>
 							<div class="datatable-bottom ms-auto d-inline-block">
 								<a href="profUserMgList" class="btn btn-primary grey right mright">목록</a>
 							</div>
 						</div>
 					</div>
+					</form>
 				</div>
 			</main>
 			<%@ include file="/resources/admin/include/footer.jsp" %>
