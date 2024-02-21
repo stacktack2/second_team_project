@@ -25,16 +25,13 @@
 						<li class="breadcrumb-item">사용자 관리</li>
 						<li class="breadcrumb-item active">교수 관리</li>
 					</ol>
-
 					<div class="card mb-4 white">
 						<div class="card-header disNone">교수 정보 조회</div>
 						<!-- 사진 첨부파일 -->
 						<div class="card-body">
-							<c:forEach var="professorfile" items="${profPhoto }">
 							<div class="card mb-4" style="width: 247px; height: 292px;" id="photoPreview">
-								<img >
+								<img src="/upload/profUpload/${viewProfPhoto.foriginnm }">
 							</div>
-							</c:forEach>
 							<div
 								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 								<div class="datatable-container">
@@ -43,52 +40,50 @@
 										<tbody>
 											<tr>
 												<th>교번</th>
-												<td></td>
+												<td>${viewProfPhoto.pid }</td>
 												<th>성명</th>
-												<td></td>
+												<td>${viewProfPhoto.pname }</td>
 												<th>주민번호</th>
-												<td></td>
+												<td>${viewProfPhoto.pregNo1 }+${viewProfPhoto.pregNo2 }</td>
 											</tr>
 											<tr>
 												<th>생년월일</th>
-												<td></td>
+												<td>${viewProfPhoto.pbirth }</td>
 												<th>성별</th>
-												<td></td>
+												<td>${viewProfPhoto.pgender }</td>
 												<th>직급</th>
 												<td></td>
 											</tr>
 											<tr>
 												<th>대학</th>
-												<td></td>
+												<td>${viewProf.puniv }</td>
 												<th>학부</th>
-												<td></td>
+												<td>${viewProf.pfaculty }</td>
 												<th>전공</th>
-												<td></td>
+												<td>${viewProf.pmajor }</td>
 											</tr>
 											<tr>
 												<th>학위</th>
-												<td></td>
+												<td>${viewProf.pdegree }</td>
 												<th>연구실</th>
-												<td></td>
+												<td>${viewProf.plab }</td>
 												<th>임용일자</th>
-												<td></td>
+												<td>${viewProf.pappointDate }</td>
 											</tr>
 											<tr>
 												<th>E-mail</th>
-												<td></td>
+												<td>${viewProf.pemail }</td>
 												<th>휴대전화번호</th>
-												<td></td>
+												<td>${viewProf.pphone }</td>
 												<th>집전화번호</th>
-												<td></td>
+												<td>${viewProf.pcall }</td>
 											</tr>
 											<tr>
 												<th>주소</th>
-												<td colspan="3"></td>
+												<td colspan="3">${viewProf.paddr }</td>
 												<th>우편번호</th>
-												<td></td>
-
+												<td>${viewProf.pzipCode }</td>
 											</tr>
-
 										</tbody>
 									</table>
 								</div>

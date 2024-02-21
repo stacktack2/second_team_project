@@ -3,7 +3,6 @@ package admin.controller;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +15,9 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import admin.dao.UserManageDAO;
+import vo.FileVO;
 import vo.PagingVO;
 import vo.ProfessorVO;
-import vo.ProfessorfileVO;
 
 public class UserManageController {
 	
@@ -283,11 +282,11 @@ public class UserManageController {
 	                }
 	            }
 
-	            ProfessorfileVO professorfileVO = new ProfessorfileVO();
-	            professorfileVO.setPfrealnm(multi.getFilesystemName("profPhoto")); // 넘어온 파일명
-	            professorfileVO.setPforiginnm(originalFileName); // 원본 파일명
+	            FileVO fileVO = new FileVO();
+	            fileVO.setFrealnm(multi.getFilesystemName("profPhoto")); // 넘어온 파일명
+	            fileVO.setForiginnm(originalFileName); // 원본 파일명
 
-	            List<ProfessorfileVO> profPhoto = userManageDAO.insertProfPhoto(professorfileVO);
+	            List<FileVO> profPhoto = userManageDAO.insertProfPhoto(fileVO);
 	            
 	            response.setContentType("text/html; charset=utf-8");
 	    		response.setCharacterEncoding("UTF-8");
@@ -301,10 +300,8 @@ public class UserManageController {
 	    }
 		
 		UserManageDAO userManageDAO = new UserManageDAO();
-		List<ProfessorVO> viewProf = userManageDAO.viewProf();
-		List<ProfessorfileVO> viewProfPhoto = userManageDAO.viewProfPhoto();
+		List<ProfessorVO> viewProfPhoto = userManageDAO.viewProfPhoto();
 		
-		request.setAttribute("viewProf", viewProf);
 		request.setAttribute("viewProfPhoto", viewProfPhoto);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
