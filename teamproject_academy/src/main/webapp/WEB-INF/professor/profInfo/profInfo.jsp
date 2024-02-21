@@ -91,7 +91,7 @@
 												<th>성명</th>
 												<td>${professorVO.pname }</td>
 												<th>주민번호</th>
-												<td>${professorVO.pregNo1 }-${professorVO.pregNo2 }</td>
+												<td>${professorVO.pregNo1 }-*******</td>
 											</tr>
 											<tr>
 												<th>생년월일</th>
