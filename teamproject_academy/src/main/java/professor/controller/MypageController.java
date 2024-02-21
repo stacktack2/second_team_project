@@ -37,9 +37,9 @@ public class MypageController {
 		response.setContentType("text/html; charset=utf-8");
 		response.setCharacterEncoding("UTF-8");
 		if(result <= 0) {
-			response.getWriter().append("<script>alert('비밀번호가 변경에 실패했습니다.'); location.href='"+request.getContextPath()+"/professor/profMain';</script>");
+			response.getWriter().append("<script>alert('비밀번호가 변경에 실패했습니다.'); location.href='"+request.getContextPath()+"';</script>");
 		}else{			
-			response.getWriter().append("<script>alert('비밀번호가 변경되었습니다.'); location.href='"+request.getContextPath()+"/professor/profMain';</script>");
+			response.getWriter().append("<script>alert('비밀번호가 변경되었습니다.'); location.href='"+request.getContextPath()+"';</script>");
 		}
 		response.getWriter().flush();
 
