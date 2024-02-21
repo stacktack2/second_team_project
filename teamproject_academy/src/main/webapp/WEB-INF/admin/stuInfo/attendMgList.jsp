@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,16 +34,13 @@
 									<!-- 검색 -->
 									<div class="right">
 
-										<form action="noticeList" method="get"
+										<form action="attendMgList" method="get"
 											class="datatable-search inline">
-											<select class="datatable-selector">
-												<option value="1" selected>모든 강의</option>
-												<option value="2">진행중인 강의</option>
-												<option value="3">지난 강의</option>
-											</select> 
-											<input class="datatable-input inline wauto" placeholder="검색어를 입력하세요" type="search"
-												title="Search within table" aria-controls="datatablesSimple">
-											<button class="btn btn-primary inline grey">검색</button>
+											<select class="datatable-selector" name="lstatus" onchange="this.form.submit()">
+												<option value="6" <c:if test="${lstatus eq '6' }">selected</c:if>>모든 강의</option>
+												<option value="4" <c:if test="${lstatus eq '4' }">selected</c:if>>진행중인 강의</option>
+												<option value="5" <c:if test="${lstatus eq '5' }">selected</c:if>>지난 강의</option>
+											</select>
 										</form>
 									</div>
 								</div>
@@ -60,41 +58,15 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td><a href="attendMgView">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td><a href="attendMgView">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td><a href="attendMgView">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td><a href="attendMgView">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
-											<tr>
-												<td>5</td>
-												<td><a href="attendMgView">물리화학</a></td>
-												<td>2022년</td>
-												<td>1학기</td>
-												<td>상 101</td>
-											</tr>
+											<c:forEach items="${lectureList }" var="lectureVO" varStatus="loop">
+												<tr>
+													<td>${loop.count }</td>
+													<td><a href="attendMgView?lno=${lectureVO.lno }">${lectureVO.lname }</a></td>
+													<td>${lectureVO.lyear }</td>
+													<td>${lectureVO.lsemester }</td>
+													<td>${lectureVO.lroom }</td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
