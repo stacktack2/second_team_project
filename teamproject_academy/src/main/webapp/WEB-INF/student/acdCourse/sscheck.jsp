@@ -29,7 +29,7 @@
 						<div class="card-body">
 							<div class="card mb-4">
 								<div class="card-body">
-									<img src="<%=request.getContextPath()%>/resources/share/assets/img/${sscheckMap.soriginnm}.png" alt="${sscheckMap.sno}">
+									<img src="<%=request.getContextPath()%>/upload/stuUpload/${student.foriginnm}.JPG" alt="picture" height="200px">
 								</div>
 							</div>
 							<div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
@@ -38,57 +38,57 @@
 										<tbody>
 											<tr>
 												<th>학번</th>
-												<td>${sscheckMap.sid}</td>
+												<td>${student.sid}</td>
 												<th>성명</th>
-												<td>${sscheckMap.sname }</td>
+												<td>${student.sname }</td>
 												<th>주민번호</th>
-												<td>${sscheckMap.sregNo1 }-${sscheckMap.sregNo2 }</td>
+												<td>${student.sregNo1 }-${student.sregNo2 }</td>
 											</tr>
 											<tr>
 												<th>생년월일</th>
-												<td>${sscheckMap.sbirth }</td>
+												<td>${student.sbirth }</td>
 												<th>성별</th>
-												<td>${sscheckMap.sgender }</td>
+												<td>${student.sgender }</td>
 												<th>학적상태</th>
-												<td>${sscheckMap.sstatus }</td>
+												<td>${student.sstatus }</td>
 											</tr>
 											<tr>
 												<th>대학</th>
-												<td>${sscheckMap.suniv }</td>
+												<td>${student.suniv }</td>
 												<th>학부</th>
-												<td>${sscheckMap.sfaculty }</td>
+												<td>${student.sfaculty }</td>
 												<th>전공</th>
-												<td>${sscheckMap.smajor }</td>
+												<td>${student.smajor }</td>
 											</tr>
 											<tr>
 												<th>학년</th>
-												<td>${sscheckMap.sgrade }</td>
+												<td>${student.sgrade }</td>
 												<th>학과석차</th>
-												<td>${sscheckMap.srank}</td>
+												<td>${student.srank}</td>
 												<th>입학일자</th>
-												<td>${sscheckMap.scomeDate }</td>
+												<td>${student.scomeDate }</td>
 											</tr>
 											<tr>
 												<th>제적일자</th>
-												<td>${sscheckMap.soutDate }</td>
+												<td>${student.soutDate }</td>
 												<th>수료일자</th>
-												<td>${sscheckMap.scompletionDate }</td>
+												<td>${student.scompletionDate }</td>
 												<th>졸업일자</th>
-												<td>${sscheckMap.sgradDate }</td>
+												<td>${student.sgradDate }</td>
 											</tr>
 											<tr>
 												<th>E-mail</th>
-												<td>${sscheckMap.semail }</td>
+												<td>${student.semail }</td>
 												<th>휴대전화번호</th>
-												<td>${sscheckMap.sphone }</td>
+												<td>${student.sphone }</td>
 												<th>집전화번호</th>
-												<td>${sscheckMap.scall }</td>
+												<td>${student.scall }</td>
 											</tr>
 											<tr>
 												<th>주소</th>
-												<td colspan="3">${sscheckMap.saddr }</td>
+												<td colspan="3">${student.saddr }</td>
 												<th>우편번호</th>
-												<td>${sscheckMap.szipCode }</td>
+												<td>${student.szipCode }</td>
 											</tr>
 										</tbody>
 									</table>

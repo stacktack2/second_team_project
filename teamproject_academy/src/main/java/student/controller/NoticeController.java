@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import student.dao.NoticeDAO;
 import vo.BoardVO;
+import vo.PagingVO;
 import vo.StudentVO;
 
 public class NoticeController {
@@ -35,14 +36,43 @@ public class NoticeController {
 			noticeView(request,response);			
 		}
 	}
-	
+	//공지사항 목록
 	public void noticeList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String searchAlign = request.getParameter("searchAlign");
+		String searchType = request.getParameter("searchType");
+		String searchValue = request.getParameter("searchValue");
+		
+		String nowPageParam = request.getParameter("nowPage");
+		
+		int nowPage = 1;
+		try {
+			nowPage = Integer.parseInt(nowPageParam);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		
+		
+		if(searchAlign == null || searchType == null) {
+			response.sendRedirect(request.getContextPath());
+			return;
+		}
+		if(searchValue == null) {
+			searchValue = "";
+		}
+		
 		NoticeDAO noticeDAO = new NoticeDAO();
-		List<BoardVO> noticeList = noticeDAO.selectBoardAll();
+		int totalCnt = noticeDAO.FindTotalCnt(searchAlign, searchType, searchValue);
 		
-		request.setAttribute("noticeList", noticeList);
+		PagingVO pagingVO = new PagingVO(nowPage,totalCnt,5);
+		int start = pagingVO.getStart();
+		int perPage = pagingVO.getPerPage();
 		
+		request.setAttribute("pagingVO", pagingVO);
+		
+		List<BoardVO> board = noticeDAO.FindBoard(searchAlign, searchType, searchValue, start, perPage);
+		
+		request.setAttribute("board",board);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/notice/noticeList.jsp");
 		rd.forward(request, response);
 		
@@ -57,14 +87,15 @@ public class NoticeController {
 	public void noticeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String bnoParam = request.getParameter("bno");
 		int bno = 0;
-		if(bnoParam != null && !bnoParam.equals("")) {
+		try {
 			bno = Integer.parseInt(bnoParam);
+		} catch (NumberFormatException e) {
 		}
 		
 		NoticeDAO noticeDAO = new NoticeDAO();
-		BoardVO board = noticeDAO.selectBoardByOne(bno);
+		BoardVO boardVO = noticeDAO.bnoFindBoard(bno);
 		
-		request.setAttribute("board", board);
+		request.setAttribute("boardVO", boardVO);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/notice/noticeView.jsp");
 		rd.forward(request, response);

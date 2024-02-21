@@ -28,8 +28,8 @@ public class MainController {
 			List<Map<String, Object>> courseList = mainDAO.selectCourseAll();
 			request.setAttribute("courseList", courseList);
 			//공지사항 목록
-			List<BoardVO> noticeList = mainDAO.selectNoticeAll();
-			request.setAttribute("noticeList", noticeList);
+			List<BoardVO> board = mainDAO.FindBoard();
+			request.setAttribute("board",board);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/stuMain.jsp");
 			rd.forward(request, response);
