@@ -165,6 +165,7 @@ public class UserManageDAO {
 	public List<ProfessorVO> viewProfPhoto() {
 		List<ProfessorVO> viewProfPhoto = new ArrayList<>();
 		
+		
 		String sql = " SELECT max(pno) as pno FROM professor";
 		
 		DBM dbm = DBM.getInstance();
@@ -184,6 +185,33 @@ public class UserManageDAO {
 			+ " WHERE professor.pno = ?";
 		
 		dbm.prepare(sql).setInt(pno).select();
+		
+		ProfessorVO professorVO = new ProfessorVO();
+		if(dbm.next()) {
+		professorVO.setPid(dbm.getString("pid"));
+		professorVO.setPpw(dbm.getString("ppw"));
+		professorVO.setPname(dbm.getString("pname"));
+		professorVO.setPregNo1(dbm.getString("pregNo1"));
+		professorVO.setPregNo2(dbm.getString("pregNo2"));
+		professorVO.setPbirth(dbm.getString("pbirth"));
+		professorVO.setPgender(dbm.getString("pgender"));
+		professorVO.setPemail(dbm.getString("pemail"));
+		professorVO.setPphone(dbm.getString("pphone"));
+		professorVO.setPcall(dbm.getString("pcall"));
+		professorVO.setPaddr(dbm.getString("paddr"));
+		professorVO.setPzipCode(dbm.getString("pzipCode"));
+		professorVO.setPrdate(dbm.getString("prdate"));
+		professorVO.setPposition(dbm.getString("pposition"));
+		professorVO.setPuniv(dbm.getString("puniv"));
+		professorVO.setPfaculty(dbm.getString("pfaculty"));
+		professorVO.setPmajor(dbm.getString("pmajor"));
+		professorVO.setPdegree(dbm.getString("pdegree"));
+		professorVO.setPlab(dbm.getString("plab"));
+		professorVO.setPappointDate(dbm.getString("pappointDate"));
+		professorVO.setPdelyn(dbm.getInt("pdelyn"));
+		professorVO.setFrealnm(dbm.getString("frealnm"));
+		professorVO.setForiginnm(dbm.getString("foriginnm"));
+		}
 		
 		dbm.close();
 		
