@@ -44,3 +44,28 @@ function attendChange(attendno,obj){
 				}
 			});
 }
+
+function gradeChange(cno,obj){
+	$.ajax({
+				url: "gradeMgView",
+				type: "post",
+				data: {cno:cno, cgrade:obj.value},
+				success:function(data){
+					if(data.trim() == "null"){
+						alert("변경이 되지 않았습니다.");
+					}else if(data.trim() == "A"){
+						history.go(0);
+					}else if(data.trim() == "B"){
+						history.go(0);
+					}else if(data.trim() == "C"){
+						history.go(0);
+					}else if(data.trim() == "D"){
+						history.go(0);
+					}else if(data.trim() == "F"){
+						history.go(0);
+					}
+				},error:function(){
+					alert("변경이 되지 않았습니다.!");
+				}
+			});
+}

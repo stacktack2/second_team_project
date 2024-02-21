@@ -125,9 +125,9 @@
 														<c:if test="${attendVO.attendyn eq 3 }">지각</c:if></td>
 														<td>
 															<select class="datatable-selector right" onchange="attendChange(${attendVO.attendno },this);">
-																<option value="1" selected>출석</option>
-																<option value="2">결석</option>
-																<option value="3">지각</option>
+																<option value="1" <c:if test="${attendVO.attendyn eq 1 }">selected</c:if>>출석</option>
+																<option value="2" <c:if test="${attendVO.attendyn eq 2 }">selected</c:if>>결석</option>
+																<option value="3" <c:if test="${attendVO.attendyn eq 3 }">selected</c:if>>지각</option>
 															</select>	
 														</td>
 													</tr>

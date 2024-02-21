@@ -26,7 +26,7 @@ public class AttendDAO {
 	
 	public List<AttendmentVO> dayLnoFindAttend(String day, String lno){
 		
-		String sql = "select * from course c inner join attendment a inner join student s on c.cno = a.cno && c.sno = s.sno where c.lno = ? && attendrdate = ? ";
+		String sql = "select * from lecture l inner join course c inner join attendment a inner join student s on c.cno = a.cno && c.sno = s.sno && l.lno = c.lno where l.lno = ? && attendrdate = ?";
 		
 		DBM dbm = DBM.getInstance();
 		
@@ -50,13 +50,26 @@ public class AttendDAO {
 	}
 	
 	
-	public List<LectureVO> pnoFindLecture(String pno) {
+	public List<LectureVO> pnoLstatusFindLecture(String pno, String lstatus) {
 		
 		String sql = "select * from lecture where pno = ? ";
+		if(lstatus.equals("4") || lstatus.equals("5") || lstatus.equals("6")) {
+			sql += " && (lstatus = ? || lstatus = ? )";
+		}
 		
 		DBM dbm = DBM.getInstance();
 		
-		dbm.prepare(sql).setString(pno).select();
+		dbm.prepare(sql);
+		dbm.setString(pno);
+		if(lstatus.equals("4") || lstatus.equals("5")) {
+			dbm.setString(lstatus);
+			dbm.setString(lstatus);
+		}
+		if(lstatus.equals("6")) {
+			dbm.setString("4");
+			dbm.setString("5");
+		}
+		dbm.select();
 		
 		List<LectureVO> lectureList = new ArrayList<>();
 		LectureVO lectureVO = null;
