@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>교수 관리 페이지</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-<link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/resources/admin/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
@@ -36,12 +36,9 @@
 								<div class="datatable-top">
 									<!-- 검색 -->
 									<div class="right">
-										<form name="frm" action="profUserMgList" method="get" class="datatable-search inline">
-											<input 
-												class="datatable-input inline wauto"
-												placeholder="이름을 입력하세요" type="text"
-												aria-controls="datatablesSimple" 
-												name="searchValue" id="title">
+										<form name="ProfUserList" action="profUserMgList" method="get">
+											<input class="datatable-input inline wauto" placeholder="이름을 입력하세요" type="search"
+												aria-controls="datatablesSimple" name="searchValue">
 											<button class="btn btn-primary inline grey">검색</button>
 										</form>
 									</div>
@@ -70,7 +67,7 @@
 												</td>
 												<td>${professor.pid }</td>
 												<td>
-													<a href="profUserMgView?pno=${professor.pno }">${professor.pname }</a>
+													<input type="submit" name="${professor.pno }" value="${professor.pname }" id="profView">
 												</td>
 												<td>${professor.pposition }</td>
 												<td>${professor.plab }</td>
@@ -91,33 +88,24 @@
 								<!-- 페이징 -->
 								<nav class="datatable-pagination" style="display: inline-block; margin-top: 0.75rem; margin-left: 32rem;">
 								    <ul class="datatable-pagination-list">
-								        <c:if test="${pagingVO.startPage > 1 }">
+								        <c:if test="">
 								            <li class="datatable-pagination-list-item">
 								                <a class="datatable-pagination-list-item-link"
-								                   href="<%=request.getContextPath()%>/admin/userManage/profUserMgList?nowPage=${pagingVO.startPage - 1}">‹</a>
+								                   href="profUserMgList?nowPage=${pagingVO.startPage - 1}">‹</a>
 								            </li>
 								        </c:if>
 								
-								        <c:forEach begin="${pagingVO.startPage}" end="${pagingVO.endPage}" var="page">
-								            <c:choose>
-								                <c:when test="${page eq pagingVO.nowPage}">
-								                    <li class="datatable-pagination-list-item datatable-active">
-								                        <a data-page="${page}" class="datatable-pagination-list-item-link">${page}</a>
-								                    </li>
-								                </c:when>
-								                <c:otherwise>
-								                    <li class="datatable-pagination-list-item">
-								                        <a href="<%=request.getContextPath()%>/admin/userManage/profUserMgList?nowPage=${page}"
-								                           class="datatable-pagination-list-item-link">${page}</a>
-								                    </li>
-								                </c:otherwise>
-								            </c:choose>
+								        <c:forEach begin="" end="" var="page">
+						                    <li class="datatable-pagination-list-item datatable-active">
+						                        <a class="datatable-pagination-list-item-link"
+								                   href="profUserMgList?nowPage=">1</a>
+						                    </li>
 								        </c:forEach>
 								
-								        <c:if test="${pagingVO.endPage < pagingVO.lastPage}">
+								        <c:if test="">
 								            <li class="datatable-pagination-list-item">
-								                <a href="<%=request.getContextPath()%>/admin/userManage/profUserMgList?nowPage=${pagingVO.endPage + 1}"
-								                   class="datatable-pagination-list-item-link">›</a>
+								                <a class="datatable-pagination-list-item-link"
+								                   href="profUserMgList?nowPage=${pagingVO.startPage + 1}">›</a>
 								            </li>
 								        </c:if>
 								    </ul>
@@ -135,5 +123,6 @@
 		</div>
         </div>
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/admin/js/perofUserMgList.js"></script>
     </body>
 </html>
