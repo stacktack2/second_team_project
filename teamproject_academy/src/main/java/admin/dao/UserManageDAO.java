@@ -143,7 +143,6 @@ public class UserManageDAO {
 		return profAdd;
 	}
 
-
 	public List<FileVO> insertProfPhoto(FileVO fileVO) {
 		List<FileVO> profPhoto = new ArrayList<>();
 		
@@ -162,14 +161,11 @@ public class UserManageDAO {
 		return profPhoto;
 	}
 
-	public List<ProfessorVO> viewProfPhoto() {
-		List<ProfessorVO> viewProfPhoto = new ArrayList<>();
-		
-		
-		String sql = " SELECT max(pno) as pno FROM professor";
+	public ProfessorVO viewProfPhoto() {
+		String profSql = " SELECT max(pno) as pno FROM professor";
 		
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).select();
+		dbm.prepare(profSql).select();
 		
 		int pno = 0;
 		if(dbm.next()) {
@@ -178,16 +174,38 @@ public class UserManageDAO {
 		
 		dbm.close();
 		
-		sql = "SELECT professor.*, file.* " 
-			+ "  FROM professor " 
-			+ "  JOIN profbridgefile ON professor.pno = profbridgefile.pbfno " 
-			+ "  JOIN file ON profbridgefile.fno = file.fno " 
-			+ " WHERE professor.pno = ?";
+		String fileSql = " SELECT max(fno) as fno FROM file";
+		
+		dbm.prepare(fileSql).select();
+		
+		int fno = 0;
+		if(dbm.next()) {
+			fno = dbm.getInt("fno");
+		}
+		
+		dbm.close();
+		
+		String totalSql = " INSERT INTO profbridgefile(pno, fno)"
+						+ " VALUES(pno, fno)";
+		
+		dbm.prepare(totalSql);
+		
+		dbm.setInt(pno);
+		dbm.setInt(fno);
+		dbm.update();
+		dbm.close();
+		
+		String sql = " SELECT professor.*, file.* " 
+					+ "  FROM professor " 
+					+ "  JOIN profbridgefile ON professor.pno = profbridgefile.pbfno " 
+					+ "  JOIN file ON profbridgefile.fno = file.fno " 
+					+ " WHERE professor.pno = ?";
 		
 		dbm.prepare(sql).setInt(pno).select();
 		
 		ProfessorVO professorVO = new ProfessorVO();
 		if(dbm.next()) {
+			professorVO =  new ProfessorVO();
 		professorVO.setPid(dbm.getString("pid"));
 		professorVO.setPpw(dbm.getString("ppw"));
 		professorVO.setPname(dbm.getString("pname"));
@@ -215,6 +233,6 @@ public class UserManageDAO {
 		
 		dbm.close();
 		
-		return viewProfPhoto;
+		return professorVO;
 	}
 }

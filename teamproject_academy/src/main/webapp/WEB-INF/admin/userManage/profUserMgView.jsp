@@ -44,7 +44,7 @@
 												<th>성명</th>
 												<td>${viewProfPhoto.pname }</td>
 												<th>주민번호</th>
-												<td>${viewProfPhoto.pregNo1 }+${viewProfPhoto.pregNo2 }</td>
+												<td>${viewProfPhoto.pregNo1 } + *******</td>
 											</tr>
 											<tr>
 												<th>생년월일</th>
@@ -52,37 +52,37 @@
 												<th>성별</th>
 												<td>${viewProfPhoto.pgender }</td>
 												<th>직급</th>
-												<td></td>
+												<td>${viewProfPhoto.pposition }</td>
 											</tr>
 											<tr>
 												<th>대학</th>
-												<td>${viewProf.puniv }</td>
+												<td>${viewProfPhoto.puniv }</td>
 												<th>학부</th>
-												<td>${viewProf.pfaculty }</td>
+												<td>${viewProfPhoto.pfaculty }</td>
 												<th>전공</th>
-												<td>${viewProf.pmajor }</td>
+												<td>${viewProfPhoto.pmajor }</td>
 											</tr>
 											<tr>
 												<th>학위</th>
-												<td>${viewProf.pdegree }</td>
+												<td>${viewProfPhoto.pdegree }</td>
 												<th>연구실</th>
-												<td>${viewProf.plab }</td>
+												<td>${viewProfPhoto.plab }</td>
 												<th>임용일자</th>
-												<td>${viewProf.pappointDate }</td>
+												<td>${viewProfPhoto.pappointDate }</td>
 											</tr>
 											<tr>
 												<th>E-mail</th>
-												<td>${viewProf.pemail }</td>
+												<td>${viewProfPhoto.pemail }</td>
 												<th>휴대전화번호</th>
-												<td>${viewProf.pphone }</td>
+												<td>${viewProfPhoto.pphone }</td>
 												<th>집전화번호</th>
-												<td>${viewProf.pcall }</td>
+												<td>${viewProfPhoto.pcall }</td>
 											</tr>
 											<tr>
 												<th>주소</th>
-												<td colspan="3">${viewProf.paddr }</td>
+												<td colspan="3">${viewProfPhoto.paddr }</td>
 												<th>우편번호</th>
-												<td>${viewProf.pzipCode }</td>
+												<td>${viewProfPhoto.pzipCode }</td>
 											</tr>
 										</tbody>
 									</table>

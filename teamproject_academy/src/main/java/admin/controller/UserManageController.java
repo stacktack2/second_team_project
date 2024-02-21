@@ -300,7 +300,7 @@ public class UserManageController {
 	    }
 		
 		UserManageDAO userManageDAO = new UserManageDAO();
-		List<ProfessorVO> viewProfPhoto = userManageDAO.viewProfPhoto();
+		ProfessorVO viewProfPhoto = userManageDAO.viewProfPhoto();
 		
 		request.setAttribute("viewProfPhoto", viewProfPhoto);
 		
