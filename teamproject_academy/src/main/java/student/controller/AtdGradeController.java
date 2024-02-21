@@ -74,9 +74,11 @@ public class AtdGradeController {
 		if(cnoParam != null && !cnoParam.equals("")) {
 			cno = Integer.parseInt(cnoParam);
 		}
+		
+		//System.out.println("cno(view컨트롤러):"+cno);
 		AtdGradeDAO atdGradeDAO = new AtdGradeDAO();
 		//강의정보 조회
-		LectureVO courseInfo = atdGradeDAO.selectCourseInfo(sno);
+		LectureVO courseInfo = atdGradeDAO.selectCourseInfo(cno);
 		request.setAttribute("courseInfo", courseInfo);
 		//출석정보 조회
 		List<AttendmentVO> attendList=atdGradeDAO.selectAttendAll(cno, sno);

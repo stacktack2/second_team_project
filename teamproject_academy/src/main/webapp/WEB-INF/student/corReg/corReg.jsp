@@ -33,10 +33,10 @@
 									<!-- 검색 -->
 										<form action="corReg" method="get" class="datatable-search inline">
 											<select class="datatable-selector" name="searchType">
-												<option value="1" 
+												<option value="lname" 
 													<c:if test="${param.searchType eq 'lname'}">selected</c:if>>
 												강의명</option>
-												<option value="2" 
+												<option value="pname" 
 												<c:if test="${param.searchType eq 'pname'}">selected</c:if>>
 												교수명</option>
 											</select>
@@ -91,13 +91,13 @@
 								        <c:if test="${pagingVO.getStartPage() > pagingVO.getCntPage()}">
 								            <li class="datatable-pagination-list-item">
 								                <a class="datatable-pagination-list-item-link"
-								                   href="noticeList?nowPage=${pagingVO.startPage - 1}&searchAlign=${param.searchAlign}&searchType=${param.searchType}&searchValue=${param.searchValue}">‹</a>
+								                   href="corReg?nowPage=${pagingVO.startPage - 1}&searchType=${param.searchType}&searchValue=${param.searchValue}">‹</a>
 								            </li>
 								        </c:if>
 								
 								        <c:forEach var="page"  begin="${pagingVO.startPage}" end="${pagingVO.endPage}" step="1" >
 						                    <li class="datatable-pagination-list-item">
-						                        <a href="noticeList?nowPage=${page}&searchAlign=${param.searchAlign}&searchType=${param.searchType}&searchValue=${param.searchValue}"
+						                        <a href="corReg?nowPage=${page}&searchType=${param.searchType}&searchValue=${param.searchValue}"
 						                           class="datatable-pagination-list-item-link">${page}</a>
 						                    </li>
 								        </c:forEach>
@@ -105,7 +105,7 @@
 								        <c:if test="${pagingVO.endPage < pagingVO.lastPage}">
 								            <li class="datatable-pagination-list-item">
 								                <a class="datatable-pagination-list-item-link"
-								                href="noticeList?nowPage=${pagingVO.endPage + 1}&searchAlign=${param.searchAlign}&searchType=${param.searchType}&searchValue=${param.searchValue}">›</a>
+								                href="corReg?nowPage=${pagingVO.endPage + 1}&searchType=${param.searchType}&searchValue=${param.searchValue}">›</a>
 								            </li>
 								        </c:if>
 								    </ul>

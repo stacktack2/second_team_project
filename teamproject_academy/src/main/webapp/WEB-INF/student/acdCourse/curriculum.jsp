@@ -34,7 +34,7 @@
 								<div class="datatable-container">
 									<div class="datatable-top">
 										<a class="btn btn-primary grey right mright" 
-											href="subcheck">뒤로가기</a>
+											href="javascript:history.back();">뒤로가기</a>
 									</div>
 									<table class="datatable-table viewtable sschecktable">
 										<tbody>

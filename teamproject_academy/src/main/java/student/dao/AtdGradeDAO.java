@@ -43,6 +43,7 @@ public class AtdGradeDAO {
 		dbm.close();
 		return gradeList;
 	}
+	//----------------------------------------------------------------
 	//course목록 조회 -> 출석list
 	public List<LectureVO>  selectCourseAll(String sno){
 		List<LectureVO> courseList = new ArrayList<>();
@@ -73,19 +74,18 @@ public class AtdGradeDAO {
 
 		return courseList;
 	}
+	//-------------------------------------------------------------------
 	//출석view -> 강의 정보 조회
-	public LectureVO  selectCourseInfo(String sno){
+	public LectureVO  selectCourseInfo(int cno){
 		LectureVO courseinfo = new LectureVO();
 		
-		String sql = " select l.*, at.* from lecture l "
-				+ " inner join course c on l.lno = c.cno  "
-				+ " inner join attendment at on c.cno = at.cno "
-				+ " inner join student s on s.sno = c.sno "
-				+ "	where s.sno = ?";
+		String sql = " select l.*,c.cno from lecture l "
+				+ " inner join course c on l.lno = c.lno  "
+				+ "	where c.cno = ?";
 				
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).setString(sno).select();
-		
+		dbm.prepare(sql).setInt(cno).select();
+		//System.out.println("cno(info):"+cno);
 		while(dbm.next()) {
 			
 			courseinfo.setLname(dbm.getString("lname"));
@@ -95,6 +95,8 @@ public class AtdGradeDAO {
 			courseinfo.setLcredit(dbm.getInt("lcredit"));
 			courseinfo.setLmaxpeople(dbm.getString("lmaxpeople"));
 			courseinfo.setLroom(dbm.getString("lroom"));
+			//courseinfo.setCno(dbm.getInt("cno"));
+			
 		}
 		
 		dbm.close();
@@ -105,14 +107,15 @@ public class AtdGradeDAO {
 		 List<AttendmentVO> attendList = new ArrayList<>();
 		 String sql = "select a.* from course c inner join attendment a inner join student s "
 				 +" on c.cno = a.cno && c.sno = s.sno "
-				 +" where cno = ? and sno = ?";
+				 +" where c.cno = ? and s.sno = ?";
 		
 		 DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setInt(cno).setString(sno).select();
+		//System.out.println("cno(attend뷰):"+cno);
 		while(dbm.next()) {
 			AttendmentVO attend = new AttendmentVO();
 			attend.setAttendyn(dbm.getInt("attendyn"));
-			attend.setAttendno(dbm.getInt("attendno"));
+			//attend.setAttendno(dbm.getInt("attendno"));
 			attend.setAttendrdate(dbm.getString("attendrdate"));
 			attendList.add(attend);
 		}

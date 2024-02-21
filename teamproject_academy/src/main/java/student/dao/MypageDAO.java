@@ -1,6 +1,5 @@
 package student.dao;
 
-
 import org.mindrot.jbcrypt.BCrypt;
 
 import util.DBM;
@@ -12,7 +11,7 @@ public class MypageDAO {
 			return 0;
 		}
 			
-		String sql ="select * from professor where sno = ?";
+		String sql ="select * from student where sno = ?";
 			
 		DBM dbm = DBM.getInstance();
 			
@@ -32,7 +31,7 @@ public class MypageDAO {
 			return 0;
 		}
 			
-		sql = "update professor set spw = ? where sno = ?";
+		sql = "update student set spw = ? where sno = ?";
 			
 		String hashNewpw = BCrypt.hashpw(newpw, BCrypt.gensalt());
 			

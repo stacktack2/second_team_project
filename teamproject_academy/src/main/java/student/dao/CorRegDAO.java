@@ -11,61 +11,64 @@ import vo.LectureVO;
 
 public class CorRegDAO {
 	//totalCnt
-	//totalCnt
-		public int FindTotalCnt(String searchType, String searchValue){
-			String sql = "select count(*) as cnt from course ";
-			if(searchType.equals("lname")) {
-				sql += " where lname like concat('%',?,'%') ";
-			}else if(searchType.equals("pname")) {
-				sql += " where pname like concat('%',?,'%') ";
-			}	
-			
-			DBM dbm = DBM.getInstance();
-			dbm.prepare(sql);
-			
-			if(searchType.equals("title") || searchType.equals("content")) {
-				dbm.setString(searchValue);
-			}
-			
-			dbm.select();
-			int totalCnt = 0;
-			
-			if(dbm.next()) {			
-				totalCnt = dbm.getInt("cnt");
-			}
-			
-			dbm.close();
-			
-			return totalCnt;
-		}
+	public int FindTotalCnt(String searchType, String searchValue) {
+	    String sql = "SELECT COUNT(*) AS cnt FROM course c " +
+	                 "INNER JOIN lecture l ON c.lno = l.lno " +
+	                 "INNER JOIN professor p ON p.pno = l.pno ";
+	    if (searchType.equals("lname")) {
+	        sql += "WHERE l.lname LIKE CONCAT('%', ?, '%') ";
+	    } else if (searchType.equals("pname")) {
+	        sql += "WHERE p.pname LIKE CONCAT('%', ?, '%') ";
+	    }
+
+	    DBM dbm = DBM.getInstance();
+	    dbm.prepare(sql);
+
+	    if (searchType.equals("lname") || searchType.equals("pname")) {
+	        dbm.setString(searchValue);
+	    }
+	    dbm.select();
+	    int totalCnt = 0;
+	    if (dbm.next()) {
+	        totalCnt = dbm.getInt("cnt");
+	    }
+	    dbm.close();
+
+	    return totalCnt;
+	}
 	//수강신청 강의 전체 조회
-	public List<LectureVO> selectCorRegAll( String searchType, String searchValue){
+	public List<LectureVO> selectCorRegAll( String searchType, String searchValue, int start, int perPage){
 		List<LectureVO> corRegList = new ArrayList<>();
 		
-		String sql = " SELECT l.*, p.pname from lecture l "
+		String sql = " SELECT l.*, p.pname from lecture l"
 				+ " INNER JOIN professor p ON p.pno = l.pno "
 				+ " WHERE l.lstatus=2 ";
 
 		//[검색]
 		if(searchType != null && searchType.equals("")){
-			if(searchType.equals("1")){
+			if(searchType.equals("lname")){
 				sql += " AND l.lname LIKE CONCAT('%',?,'%')";
-			}else if(searchType.equals("2")){
+			}else if(searchType.equals("pname")){
 				sql += " AND p.pname LIKE CONCAT('%',?,'%')";
 			}
 		}
+		sql += " limit ?, ?";
+		
 		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql);
 		
 		if(searchType != null  && !searchType.equals("")) {
-			dbm.prepare(sql).setString(searchValue).select();
-		}else {
-			dbm.prepare(sql).select();
+			dbm.setString(searchValue);
 		}
+		dbm.setInt(start-1);
+		dbm.setInt(perPage);
+		
+		dbm.select();
 		
 		while(dbm.next()){
 			LectureVO corReg = new LectureVO();
 			corReg.setLno(dbm.getInt("lno"));
-			corReg.setLtime(dbm.getInt("lno"));
+			corReg.setLtime(dbm.getInt("ltime"));
 			corReg.setLname(dbm.getString("lname"));
 			corReg.setLcredit(dbm.getInt("lcredit"));
 			corReg.setLroom(dbm.getString("lroom"));
@@ -82,7 +85,6 @@ public class CorRegDAO {
 		
 		String sql = "SELECT * from course where sno = ?";
 		//[검색]
-		
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setString(sno).select();
 		
@@ -113,33 +115,34 @@ public class CorRegDAO {
 	}
 	
 	//내가 수강신청한 강의 조회
-	public List<Map<String, Object>> selectRegAll() {
-		List<Map<String, Object>> regList = new ArrayList<>();
+	public List<LectureVO> selectRegAll(String sno) {
+		List<LectureVO> regList = new ArrayList<>();
 		
-		String sql ="SELECT l.*,p.pname,c.cno from lecture l "
+		String sql ="SELECT l.*,c.cno, p.pname from lecture l "
 				+ " INNER JOIN course c on c.lno = l.lno "
-				+ " INNER JOIN professor p on p.pno = l.pno "
-				+ " WHERE l.lstatus=2 and c.cdelyn=0"
-				+ " ORDER BY cno ";
+				+ " INNER JOIN student s on c.sno = s.sno "
+				+ " INNER JOIN professor p on l.pno = p.pno "
+				+ " WHERE l.lstatus=2 and c.cdelyn=0 and s.sno = ?"
+				+ " ORDER BY c.cno ";
 		
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).select();
+		dbm.prepare(sql).setString(sno).select();
 		
 		while(dbm.next()) {
-			Map<String, Object> regMap = new HashMap<>();
+			LectureVO course = new LectureVO();
+			course.setCno(dbm.getInt("cno"));
+			course.setLtime(dbm.getInt("ltime"));
+			course.setLname(dbm.getString("lname"));
+			course.setLcredit(dbm.getInt("lcredit"));
+			course.setLroom(dbm.getString("lroom"));
+			course.setPname(dbm.getString("pname"));
 			
-			regMap.put("cno",dbm.getInt("cno"));
-			regMap.put("ltime",dbm.getInt("ltime"));
-			regMap.put("lname",dbm.getString("lname"));
-			regMap.put("lcredit",dbm.getInt("lcredit"));
-			regMap.put("lroom", dbm.getString("lroom"));
-			regMap.put("pname", dbm.getString("pname"));
-			
-			regList.add(regMap);
+			regList.add(course);
 		}
 		dbm.close();
 		return regList;
 	}
+	//--------------------------------------------------------------------
 	//[ajax: DELETE 취소버튼 클릭시-> cdelyn=1]
 	public int deleteReg(int cno) {
 		int delRs =0;

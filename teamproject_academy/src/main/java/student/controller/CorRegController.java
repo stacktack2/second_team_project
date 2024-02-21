@@ -39,9 +39,15 @@ public class CorRegController {
 	//수강신청 현황조회
 	public void cAppCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		String sno = (String)request.getSession().getAttribute("no");
+		if(sno == null || (sno != null && sno.equals(""))) {
+			response.sendRedirect(request.getContextPath());
+			return;
+		}
+		System.out.println("sno"+sno);
 		CorRegDAO corRegDAO = new CorRegDAO();
 
-		List<Map<String, Object>> regList = corRegDAO.selectRegAll();
+		List<LectureVO> regList = corRegDAO.selectRegAll(sno);
 		request.setAttribute("regList", regList);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/corReg/cAppCheck.jsp");
@@ -50,7 +56,7 @@ public class CorRegController {
 	}
 	//수강신청 ajax
 	public void PostcAppCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//[ajax에서 가져온 lno]
+
 		String sno = (String)request.getSession().getAttribute("no");
 		if(sno == null || (sno != null && sno.equals(""))) {
 			response.sendRedirect(request.getContextPath());
@@ -73,7 +79,7 @@ public class CorRegController {
 			String lnoParam = request.getParameter("lno");
 			if(lnoParam != null && !lnoParam.equals("")) {
 				int lno = Integer.parseInt(lnoParam);
-				
+				System.out.println("lno"+lno);
 				//[ajax: 신청]
 				int insertRs = corRegDAO.insertReg(lno, sno);
 				request.setAttribute("insertRs", insertRs);
@@ -94,7 +100,7 @@ public class CorRegController {
 			String cnoParam = request.getParameter("cno");
 			if(cnoParam != null && !cnoParam.equals("")) {
 				int cno = Integer.parseInt(cnoParam);
-					
+				System.out.println("cno"+cno);
 				//[ajax: 삭제]
 				int delRs = corRegDAO.deleteReg(cno);
 				request.setAttribute("delRs", delRs);
@@ -143,28 +149,25 @@ public class CorRegController {
 		String nowPageParam = request.getParameter("nowPage");
 		
 		int nowPage = 1;
-		try {
+		if(nowPageParam != null && !nowPageParam.isEmpty()) {
 			nowPage = Integer.parseInt(nowPageParam);
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
 		}
-		if(searchType == null) {
-			response.sendRedirect(request.getContextPath());
-			return;
-		}
+		//System.out.println("nowPage"+nowPage);
+		if(searchType == null) { 
+			 searchType = "";
+		 }
 		if(searchValue == null) {
 			searchValue = "";
 		}
 		CorRegDAO corRegDAO = new CorRegDAO();
 		int totalCnt = corRegDAO.FindTotalCnt(searchType, searchValue);
-		
+		//System.out.println("totalCnt"+totalCnt);
 		PagingVO pagingVO = new PagingVO(nowPage,totalCnt,5);
 		int start = pagingVO.getStart();
 		int perPage = pagingVO.getPerPage();
-		
 		request.setAttribute("pagingVO", pagingVO);
 		//수강신청 lecture list 조회
-		List<LectureVO> corRegList = corRegDAO.selectCorRegAll(searchType,searchValue);
+		List<LectureVO> corRegList = corRegDAO.selectCorRegAll(searchType,searchValue, start, perPage);
 		request.setAttribute("corRegList",corRegList);
 		//수강신청 course list 조회
 		List<CourseVO> courseList = corRegDAO.selectCourseAll(sno);
