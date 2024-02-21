@@ -25,6 +25,21 @@ public class ProfessorVO {
 	private String pappointDate;
 	private int pdelyn;
 	
+	private String pfrealnm;
+	private String pforiginnm;
+	
+	public String getPfrealnm() {
+		return pfrealnm;
+	}
+	public void setPfrealnm(String pfrealnm) {
+		this.pfrealnm = pfrealnm;
+	}
+	public String getPforiginnm() {
+		return pforiginnm;
+	}
+	public void setPforiginnm(String pforiginnm) {
+		this.pforiginnm = pforiginnm;
+	}
 	public int getPno() {
 		return pno;
 	}

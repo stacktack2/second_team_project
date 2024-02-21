@@ -83,15 +83,15 @@
 											<tbody>
 												<tr>
 													<th>* 현재 비밀번호</th>
-													<td colspan="5"><input type="text" name="oldpw"></td>
+													<td colspan="5"><input type="password" name="oldpw"></td>
 												</tr>
 												<tr>
 													<th>* 새 비밀번호</th>
-													<td colspan="5"><input type="text" name="newpw"></td>
+													<td colspan="5"><input type="password" name="newpw"></td>
 												</tr>
 												<tr>
 													<th>* 비밀번호 확인</th>
-													<td colspan="5"><input type="text" name="checknewpw"></td>
+													<td colspan="5"><input type="password" name="checknewpw"></td>
 												</tr>
 											</tbody>
 										</table>
