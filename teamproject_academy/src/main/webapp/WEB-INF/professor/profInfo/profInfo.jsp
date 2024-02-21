@@ -76,7 +76,7 @@
 						<div class="card-body">
 							<div class="card mb-4">
 								<div class="card-body">
-								<img src="<%=request.getContextPath()%>/resources/share/assets/img/${professorVO.poriginnm}.png" alt="사진">
+								<img src="<%=request.getContextPath()%>/resources/share/assets/img/${professorVO.foriginnm}.png" alt="사진">
 								</div>
 							</div>
 							<div

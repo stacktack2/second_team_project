@@ -7,7 +7,7 @@ import vo.ProfessorVO;
 public class ProfInfoDAO {
 	public ProfessorVO pnoFindProfessor(String pno) {
 		
-		String sql = "select * from professor p inner join profBridgeFile b inner join File f on p.pno = b.pno && f.fno = b.fno where pno = ? ";
+		String sql = "select * from professor p inner join profBridgeFile b inner join File f on p.pno = b.pno && f.fno = b.fno where p.pno = ? ";
 		
 		DBM dbm = DBM.getInstance();
 		
@@ -37,8 +37,8 @@ public class ProfInfoDAO {
 			professorVO.setPlab(dbm.getString("plab"));
 			professorVO.setPappointDate(dbm.getString("pappointDate"));
 			professorVO.setPdelyn(dbm.getInt("pdelyn"));
-			professorVO.setPfrealnm(dbm.getString("pfrealnm"));
-			professorVO.setPforiginnm(dbm.getString("pforiginnm"));
+			professorVO.setFrealnm(dbm.getString("frealnm"));
+			professorVO.setForiginnm(dbm.getString("foriginnm"));
 			
 		}
 		
