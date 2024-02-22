@@ -26,7 +26,7 @@
 						<li class="breadcrumb-item active">교수 관리</li>
 					</ol>
 
-					<form name="profUserInfoModifyfrm" action="profUserInfoModify" method="post" id="profUserInfoModifyfrm" onsubmit="return false;" enctype="multipart/form-data">
+					<form name="profUserInfoModifyfrm" action="profUserInfoModify" method="post" id="profUserInfoModifyfrm">
 					<div class="card mb-4 white">
 						<div class="card-header disNone">교수 정보 조회</div>
 						<div class="card-body">
@@ -131,7 +131,7 @@
 								<a href="profUserMgList" class="btn btn-primary grey right mright">목록</a>
 						</div>
 						<div class="datatable-bottom offset-12 d-inline-block">
-							<button onclick="register()" class="btn btn-primary grey right mright">등록</button>
+							<button class="btn btn-primary grey right mright">등록</button>
 						</div>
 					</div>
 					</div>

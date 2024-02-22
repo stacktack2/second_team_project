@@ -1,6 +1,7 @@
 package admin.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -118,129 +119,6 @@ public class UserManageController {
 	
 	public void PostprofUserAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserAdd.jsp");
-		rd.forward(request, response);
-		
-		
-	}
-	
-	public void stuUserInfoModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserInfoModify.jsp");
-		rd.forward(request, response);
-		
-		
-	}
-	public void PoststuUserInfoModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserInfoModify.jsp");
-		rd.forward(request, response);
-		
-		
-	}
-	public void profUserInfoModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserInfoModify.jsp");
-		rd.forward(request, response);
-		
-		
-	}
-	public void PostprofUserInfoModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int pno = (Integer.parseInt(request.getParameter("pno")));
-		UserManageDAO userManageDAO = new UserManageDAO();
-		ProfessorVO professorVO = userManageDAO.viewProf(pno);
-		
-		request.setAttribute("professorVO", professorVO);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserInfoModify.jsp");
-		rd.forward(request, response);
-		
-		
-	}
-	public void stuUserMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserMgList.jsp");
-		rd.forward(request, response);
-		
-		
-	}
-	public void PoststuUserMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserMgList.jsp");
-		rd.forward(request, response);
-		
-		
-	}
-
-//	교수 사용자 관리 페이지 
-//	GET	
-	public void profUserMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-//		교수 목록		
-		UserManageDAO userManageDAO = new UserManageDAO();
-		List<ProfessorVO> professorList = userManageDAO.selectProf();
-		
-		request.setAttribute("professorList", professorList);
-		
-		int totalCnt = professorList.size();
-		
-//		검색
-		String searchValue = request.getParameter("searchValue");
-		
-// 		검색 결과가 있을 경우 검색 결과를 전달
-		if (searchValue != null && !searchValue.isEmpty()) {
-	        List<ProfessorVO> searchResults = userManageDAO.searchProf(searchValue);
-	        request.setAttribute("professorList", searchResults);
-	        
-	        totalCnt = searchResults.size();
-	    }
-		
-//		페이징
-		int nowPage = 1;
-	    int perPage = 5;
-
-	    PagingVO pagingVO = new PagingVO(nowPage, totalCnt, perPage);
-
-	    List<ProfessorVO> pagingList = userManageDAO.selectProfPaging(pagingVO.getStart(), perPage);
-
-	    request.setAttribute("pagingVO", pagingVO);
-	    request.setAttribute("pagingList", pagingList);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgList.jsp");
-		rd.forward(request, response);
-	}
-	
-//	POST
-	public void PostprofUserMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgList.jsp");
-		rd.forward(request, response);
-		
-		
-	}
-	public void stuUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserMgView.jsp");
-		rd.forward(request, response);
-		
-		
-	}
-	public void PoststuUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserMgView.jsp");
-		rd.forward(request, response);
-		
-		
-	}
-	
-	public void profUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int pno = (Integer.parseInt(request.getParameter("pno")));
-            
-        UserManageDAO userManageDAO = new UserManageDAO();
-        ProfessorVO profUserMgGetView = userManageDAO.viewProf(pno);
-            
-        request.setAttribute("profUserMgGetView", profUserMgGetView);
-
-        
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
-		rd.forward(request, response);
-		
-		
-	}
-	
-	public void PostprofUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
 		String directory = "E:\\98.팀프로젝트\\02. 2차프로젝트\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\teamproject_academy\\upload\\profUpload";
@@ -317,6 +195,171 @@ public class UserManageController {
 		ProfessorVO professorVO = userManageDAO.viewProfPhoto();
 		
 		request.setAttribute("professorVO", professorVO);
+		
+		response.sendRedirect(request.getContextPath()+"/admin/userManage/profUserMgList");
+		
+		
+	}
+	
+	public void stuUserInfoModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserInfoModify.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	public void PoststuUserInfoModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserInfoModify.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	public void profUserInfoModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String pnoParam = request.getParameter("pno");
+		int pno = 0;
+		try {
+			pno = Integer.parseInt(pnoParam);
+		}catch(NumberFormatException e) {}
+		
+		UserManageDAO userManageDAO = new UserManageDAO();
+		
+		ProfessorVO professorVO = userManageDAO.viewProf(pno);
+		
+		request.setAttribute("professorVO", professorVO);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserInfoModify.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	public void PostprofUserInfoModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String pnoParam = request.getParameter("pno");
+		int pno = 0;
+		try {
+			pno = Integer.parseInt(pnoParam);
+		}catch(NumberFormatException e) {}
+		
+		UserManageDAO userManageDAO = new UserManageDAO();
+				
+		String ppositionParam = request.getParameter("pposition");
+		String plabParam = request.getParameter("plab");
+		String pemailParam = request.getParameter("pemail");
+		String pphoneParam = request.getParameter("pphone");
+		String pcallParam = request.getParameter("pcall");
+		String paddrParam = request.getParameter("paddr");
+		String pzipCodeParam = request.getParameter("pzipCode");
+		
+		
+		ProfessorVO updateprof = userManageDAO.updateprof(pno, ppositionParam, plabParam, pemailParam, 
+														pphoneParam, pcallParam, paddrParam, pzipCodeParam);
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		String encodedPno = URLEncoder.encode(String.valueOf(pno), "UTF-8");
+	    response.sendRedirect(request.getContextPath() + "/admin/userManage/profUserMgView?pno=" + encodedPno);
+		
+		
+	}
+	public void stuUserMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserMgList.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	public void PoststuUserMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserMgList.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+
+//	교수 사용자 관리 페이지 
+//	GET	
+	public void profUserMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+//		교수 목록		
+		UserManageDAO userManageDAO = new UserManageDAO();
+		List<ProfessorVO> professorList = userManageDAO.selectProf();
+		
+		request.setAttribute("professorList", professorList);
+		
+		int totalCnt = professorList.size();
+		
+//		검색
+		String searchValue = request.getParameter("searchValue");
+		
+// 		검색 결과가 있을 경우 검색 결과를 전달
+		if (searchValue != null && !searchValue.isEmpty()) {
+	        List<ProfessorVO> searchResults = userManageDAO.searchProf(searchValue);
+	        request.setAttribute("professorList", searchResults);
+	        
+	        totalCnt = searchResults.size();
+	    }
+		
+//		페이징
+		int nowPage = 1;
+	    int perPage = 5;
+
+	    PagingVO pagingVO = new PagingVO(nowPage, totalCnt, perPage);
+
+	    List<ProfessorVO> pagingList = userManageDAO.selectProfPaging(pagingVO.getStart(), perPage);
+
+	    request.setAttribute("pagingVO", pagingVO);
+	    request.setAttribute("pagingList", pagingList);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgList.jsp");
+		rd.forward(request, response);
+	}
+	
+//	POST
+	public void PostprofUserMgList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgList.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	public void stuUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserMgView.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	public void PoststuUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/stuUserMgView.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	
+	public void profUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
+		String pnoParam = request.getParameter("pno");
+		int pno = 0;
+		try {
+			pno = Integer.parseInt(pnoParam);
+		}catch(NumberFormatException e) {
+			
+		}
+            
+        UserManageDAO userManageDAO = new UserManageDAO();
+        ProfessorVO professorVO = userManageDAO.viewProf(pno);
+        
+        request.setAttribute("professorVO", professorVO);
+        
+        response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+        
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+	
+	public void PostprofUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
 		rd.forward(request, response);

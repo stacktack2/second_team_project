@@ -67,8 +67,8 @@
 												</td>
 												<td>${professor.pid }</td>
 												<td>
-													<%-- <a href="profUserMgView?pno=${professor.pno }">${professor.pname }</a> --%>
-													<input type="submit" name="${professor.pno }" value="${professor.pname }" id="profView">
+													<a href="profUserMgView?pno=${professor.pno }">${professor.pname }</a>
+													<%-- <input type="submit" name="${professor.pno }" value="${professor.pname }" id="profView"> --%>
 												</td>
 												<td>${professor.pposition }</td>
 												<td>${professor.plab }</td>

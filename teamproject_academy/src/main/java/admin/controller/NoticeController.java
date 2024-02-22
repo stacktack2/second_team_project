@@ -1,6 +1,7 @@
 package admin.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -135,6 +136,8 @@ public class NoticeController {
 		
 	}
 	public void PostnoticeModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
 		String bnoParam = request.getParameter("bno");
 		int bno = 0;
 		try {
@@ -149,10 +152,11 @@ public class NoticeController {
 		
 		BoardVO updateBoard = noticeDAO.updateBoard(bno, titleParam, contentParam);
 		
-		response.setContentType("text/html; charset=utf-8");
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=utf-8");
 		
-		response.sendRedirect(request.getContextPath()+"/admin/notice/noticeView?bno="+bno);
+		String encodedBno = URLEncoder.encode(String.valueOf(bno), "UTF-8");
+	    response.sendRedirect(request.getContextPath() + "/admin/notice/noticeView?bno=" + encodedBno);
 	}
 	
 	public void noticeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
