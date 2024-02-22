@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import admin.dao.NoticeDAO;
 import vo.BoardVO;
+import vo.PagingVO;
 
 public class NoticeController {
 	
@@ -63,18 +64,49 @@ public class NoticeController {
 	
 	public void noticeList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		NoticeDAO noticeDAO = new NoticeDAO();
-		List<BoardVO> noticeList = noticeDAO.selectAll();
+		String searchAlign = request.getParameter("searchAlign");
+		String searchType = request.getParameter("searchType");
+		String searchValue = request.getParameter("searchValue");
+		String nowPageParam = request.getParameter("nowPage");
+		if(nowPageParam == null) {
+			nowPageParam =  "1";
+		}
 		
-		request.setAttribute("noticeList", noticeList);
+		int nowPage = 1;
+		try {
+			nowPage = Integer.parseInt(nowPageParam);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		
+		
+		if(searchAlign == null || searchType == null) {
+			searchAlign = "";
+			searchType = "";
+		}
+		if(searchValue == null) {
+			searchValue = "";
+		}
+		
+		NoticeDAO noticeDAO = new NoticeDAO();
+		int totalCnt = noticeDAO.FindTotalCnt(searchAlign, searchType, searchValue);
+		
+		PagingVO pagingVO = new PagingVO(nowPage,totalCnt,5);
+		int start = pagingVO.getStart();
+		int perPage = pagingVO.getPerPage();
+		
+		request.setAttribute("pagingVO", pagingVO);
+		
+		List<BoardVO> board = noticeDAO.FindBoard(searchAlign, searchType, searchValue, start, perPage);
+		
+		request.setAttribute("board",board);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeList.jsp");
 		rd.forward(request, response);
-		
-		
 	}
 	
 	public void PostnoticeList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeList.jsp");
 		rd.forward(request, response);
 		
@@ -82,6 +114,9 @@ public class NoticeController {
 	}
 	
 	public void noticeModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeModify.jsp");
 		rd.forward(request, response);
 		
@@ -95,6 +130,17 @@ public class NoticeController {
 	}
 	public void noticeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String bnoParam = request.getParameter("bno");
+		int bno = 0;
+		try {
+			bno = Integer.parseInt(bnoParam);
+		} catch (NumberFormatException e) {
+		}
+		
+		NoticeDAO noticeDAO = new NoticeDAO();
+		BoardVO boardVO = noticeDAO.bnoFindBoard(bno);
+		
+		request.setAttribute("boardVO", boardVO);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeView.jsp");
 		rd.forward(request, response);
@@ -102,6 +148,9 @@ public class NoticeController {
 		
 	}
 	public void PostnoticeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeView.jsp");
 		rd.forward(request, response);
 		
@@ -109,16 +158,26 @@ public class NoticeController {
 	}
 	
 	public void noticeWrite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeWrite.jsp");
 		rd.forward(request, response);
 		
 		
 	}
 	public void PostnoticeWrite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeWrite.jsp");
-		rd.forward(request, response);
 		
+		String titleParam = request.getParameter("title");
+		String contentParam = request.getParameter("content");
 		
+		String ano = (String)request.getSession().getAttribute("no");
+		
+		NoticeDAO noticeDAO = new NoticeDAO();
+		int boardVO = noticeDAO.insertNotice(titleParam, contentParam, ano);
+		
+		response.sendRedirect(request.getContextPath()+"/admin/notice/noticeList");
 	}
 
 	public void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

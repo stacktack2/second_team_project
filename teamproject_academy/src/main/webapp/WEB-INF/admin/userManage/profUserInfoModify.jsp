@@ -34,8 +34,8 @@
 						<div class="card mb-4" style="width: 247px; height: 292px;" id="photoPreview">
 							<img src="<%=request.getContextPath()%>/upload/profUpload/${professorVO.foriginnm}">
 						</div>
-						<input type="file" name="profPhoto" id="photoInput" onchange="displayPhotoPreview(event)" style="display: none;">
-						<label class="btn btn-primary inline grey mb-4" for="photoInput">사진 추가</label>
+						<!-- <input type="file" name="profPhoto" id="photoInput" onchange="displayPhotoPreview(event)" style="display: none;">
+						<label class="btn btn-primary inline grey mb-4" for="photoInput">사진 추가</label> -->
 						<!-- <button class="btn btn-primary inline grey mb-4" type="button" onclick="uploadPhoto()">사진 추가</button> -->
 					
 					<!-- 인적사항 -->

@@ -143,9 +143,9 @@ public class UserManageController {
 		
 	}
 	public void PostprofUserInfoModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pno = request.getParameter("pno");
+		int pno = (Integer.parseInt(request.getParameter("pno")));
 		UserManageDAO userManageDAO = new UserManageDAO();
-		List<ProfessorVO> professorVO = userManageDAO.modifyInfo(pno);
+		ProfessorVO professorVO = userManageDAO.viewProf(pno);
 		
 		request.setAttribute("professorVO", professorVO);
 		
@@ -226,7 +226,7 @@ public class UserManageController {
 	}
 	
 	public void profUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pno = (String)request.getSession().getAttribute("no");
+		int pno = (Integer.parseInt(request.getParameter("pno")));
             
         UserManageDAO userManageDAO = new UserManageDAO();
         ProfessorVO profUserMgGetView = userManageDAO.viewProf(pno);
@@ -295,8 +295,8 @@ public class UserManageController {
 	                }
 	            }
 
-	            professorVO.setFrealnm(multi.getFilesystemName("profPhoto")); // 넘어온 파일명
-	            professorVO.setForiginnm(originalFileName); // 원본 파일명
+	            professorVO.setFrealnm(originalFileName); // 넘어온 파일명
+	            professorVO.setForiginnm(multi.getFilesystemName("profPhoto")); // 원본 파일명
 
 	            ProfessorVO profPhoto = userManageDAO.insertProfPhoto(professorVO);
 	            

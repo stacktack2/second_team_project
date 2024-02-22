@@ -1,5 +1,148 @@
 
 // 유효성 검사
+	/* 교수번호 유효성 검사 */
+	function checkId(obj){
+			let regId = /^\d{7}$/;
+			let regRs = regId.test(obj.value); 
+			let pidInput = document.getElementById("pid");
+			
+			if(obj.value == "" || obj.value === null || obj.value === undefined){
+				pidInput.setCustomValidity("교수번호를 입력해주세요.");
+				pidInput.focus();
+				pidInput.maxLength = 7;
+				pidInput.style.color = 'red';
+				return false;
+			}else if(!regRs){
+				pidInput.setCustomValidity("숫자 7자리를 입력해주세요.");
+				pidInput.focus();
+				pidInput.maxLength = 7;
+				pidInput.style.color = 'red';
+				return false;
+			}else{
+				pidInput.setCustomValidity("");
+				pidInput.maxLength = 7;
+				pidInput.style.color = 'green';
+				return true;
+			}
+		}
+		
+	/* 이름 유효성 검사 */
+	function checkName(obj){
+			let regId = /^[가-힣a-zA-Z]{2,20}$/;
+			let regRs = regId.test(obj.value); 
+			let pnameInput = document.getElementById("pname");
+			
+			if(obj.value == "" || obj.value === null || obj.value === undefined){
+				pnameInput.setCustomValidity("성명를 입력해주세요.");
+				pnameInput.focus();
+				pnameInput.maxLength = 20;
+				pnameInput.style.color = 'red';
+				return false;
+			}else if(!regRs){
+				pnameInput.setCustomValidity("한글 또는 영문을 2자리 이상 입력해주세요.");
+				pnameInput.focus();
+				pnameInput.maxLength = 20;
+				pnameInput.style.color = 'red';
+				return false;
+			}else{
+				pnameInput.setCustomValidity("");
+				pnameInput.maxLength = 20;
+				pnameInput.style.color = 'green';
+				return true;
+			}
+		}
+		
+	/* 주민번호 유효성 검사 */
+	function checkRegNo1(obj){
+			let regId = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))$/;
+			let regRs = regId.test(obj.value); 
+			let pregNo1Input = document.getElementById("pregNo1");
+			
+			if(obj.value == "" || obj.value === null || obj.value === undefined){
+				pregNo1Input.setCustomValidity("주민번호 앞자리를 입력해주세요.");
+				pregNo1Input.focus();
+				pregNo1Input.maxLength = 6;
+				pregNo1Input.style.color = 'red';
+				return false;
+			}else if(!regRs){
+				pregNo1Input.setCustomValidity("주민번호 앞 6자리를 입력해주세요.");
+				pregNo1Input.focus();
+				pregNo1Input.maxLength = 6;
+				pregNo1Input.style.color = 'red';
+				return false;
+			}else{
+				pregNo1Input.setCustomValidity("");
+				pregNo1Input.maxLength = 6;
+				pregNo1Input.style.color = 'green';
+				return true;
+			}
+		}
+		
+	function checkRegNo2(obj){
+			let regId = /^[1-4]\d{6}$/;
+			let regRs = regId.test(obj.value); 
+			let pregNo2Input = document.getElementById("pregNo2");
+			
+			if(obj.value == "" || obj.value === null || obj.value === undefined){
+				pregNo2Input.setCustomValidity("주민번호 뒷자리를 입력해주세요.");
+				pregNo2Input.focus();
+				pregNo2Input.maxLength = 7;
+				pregNo2Input.style.color = 'red';
+				return false;
+			}else if(!regRs){
+				pregNo2Input.setCustomValidity("주민번호 뒤 7자리를 입력해주세요.");
+				pregNo2Input.focus();
+				pregNo2Input.maxLength = 7;
+				pregNo2Input.style.color = 'red';
+				return false;
+			}else{
+				pregNo2Input.setCustomValidity("");
+				pregNo2Input.maxLength = 7;
+				pregNo2Input.style.color = 'green';
+				return true;
+			}
+		}
+		
+	/* 생년월일 유효성 검사 */
+	function checkBirth(obj){
+			let regId = /^(19|20)\d\d(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/; 
+			let regRs = regId.test(obj.value); 
+			let pbirthInput = document.getElementById("pbirth");
+			
+			if(obj.value == "" || obj.value === null || obj.value === undefined){
+				pbirthInput.setCustomValidity("생년월일을 입력해주세요.");
+				pbirthInput.focus();
+				pbirthInput.maxLength = 8;
+				pbirthInput.style.color = 'red';
+				return false;
+			}else if(!regRs){
+				pbirthInput.setCustomValidity("숫자 8자리로 입력해주세요.");
+				pbirthInput.focus();
+				pbirthInput.maxLength = 8;
+				pbirthInput.style.color = 'red';
+				return false;
+			}else{
+				pbirthInput.setCustomValidity("");
+				pbirthInput.maxLength = 8;
+				pbirthInput.style.color = 'green';
+				return true;
+			}
+		}
+		
+	/* 성별 유효성 검사 */
+	function checkGender(){
+		let genderRadios = document.querySelectorAll('input[name="pgender"]');
+		
+		let isChecked = Array.from(genderRadios).some(function(radio){
+			return radio.checked;
+		});
+		
+		if(!isChecked){
+			alert("성별을 선택해주세요.");
+			return false;
+		}
+			return true;
+		}
 		
 	/* 직급 유효성 검사 */
 	function checkPosition(obj){
@@ -27,6 +170,115 @@
 			}
 		}
 		
+	/* 대학 유효성 검사 */
+	function checkUniv(obj){
+			let regId = /^[가-힣A-Za-z]+(대학교|Univ)$/;
+			let regRs = regId.test(obj.value); 
+			let punivInput = document.getElementById("puniv");
+			
+			if(obj.value == "" || obj.value === null || obj.value === undefined){
+				punivInput.setCustomValidity("대학교를 입력해주세요.");
+				punivInput.focus();
+				punivInput.maxLength = 40;
+				punivInput.style.color = 'red';
+				return false;
+			}else if(!regRs){
+				punivInput.setCustomValidity("OOO대학교 또는 oooUniv로 입력해주세요.");
+				punivInput.focus();
+				punivInput.maxLength = 40;
+				punivInput.style.color = 'red';
+				return false;
+			}else{
+				punivInput.setCustomValidity("");
+				punivInput.maxLength = 40;
+				punivInput.style.color = 'green';
+				return true;
+			}
+		}
+				
+	/* 단과대학 유효성 검사 */
+	function checkFaculty(obj){
+			let regId = /^[가-힣]+대학$/;
+			let regRs = regId.test(obj.value); 
+			let pfacultyInput = document.getElementById("pfaculty");
+			
+			if(obj.value == "" || obj.value === null || obj.value === undefined){
+				pfacultyInput.setCustomValidity("단과대학을 입력해주세요.");
+				pfacultyInput.focus();
+				pfacultyInput.maxLength = 40;
+				pfacultyInput.style.color = 'red';
+				return false;
+			}else if(!regRs){
+				pfacultyInput.setCustomValidity("OOO대학으로 입력해주세요.");
+				pfacultyInput.focus();
+				pfacultyInput.maxLength = 40;
+				pfacultyInput.style.color = 'red';
+				return false;
+			}else{
+				pfacultyInput.setCustomValidity("");
+				pfacultyInput.maxLength = 40;
+				pfacultyInput.style.color = 'green';
+				return true;
+			}
+		}
+		
+		document.getElementById("pfaculty").addEventListener("input", function() {
+    		let resultpfaculty = checkFaculty(this);
+    		console.log(resultpfaculty);
+		});
+		
+	/* 전공 유효성 검사 */
+	function checkMajor(obj){
+			let regId = /^[가-힣]+학$/;
+			let regRs = regId.test(obj.value); 
+			let pmajorInput = document.getElementById("pmajor");
+			
+			if(obj.value == "" || obj.value === null || obj.value === undefined){
+				pmajorInput.setCustomValidity("전공을 입력해주세요.");
+				pmajorInput.focus();
+				pmajorInput.maxLength = 40;
+				pmajorInput.style.color = 'red';
+				return false;
+			}else if(!regRs){
+				pmajorInput.setCustomValidity("OOO학으로 입력해주세요.");
+				pmajorInput.focus();
+				pmajorInput.maxLength = 40;
+				pmajorInput.style.color = 'red';
+				return false;
+			}else{
+				pmajorInput.setCustomValidity("");
+				pmajorInput.maxLength = 40;
+				pmajorInput.style.color = 'green';
+				return true;
+			}
+		}
+				
+	/* 학위 유효성 검사 */
+	function checkDegree(obj){
+			let regId = /^(석사|박사)$/;
+			let regRs = regId.test(obj.value); 
+			let pdegreeInput = document.getElementById("pdegree");
+			
+			if(obj.value == "" || obj.value === null || obj.value === undefined){
+				pdegreeInput.setCustomValidity("학위를 입력해주세요.");
+				pdegreeInput.focus();
+				pdegreeInput.maxLength = 40;
+				pdegreeInput.style.color = 'red';
+				return false;
+			}else if(!regRs){
+				pdegreeInput.setCustomValidity("석사 또는 박사를 입력해주세요.");
+				pdegreeInput.focus();
+				pdegreeInput.maxLength = 40;
+				pdegreeInput.style.color = 'red';
+				return false;
+			}else{
+				pdegreeInput.setCustomValidity("");
+				pdegreeInput.maxLength = 40;
+				pdegreeInput.style.color = 'green';
+				return true;
+			}
+		}
+		
 	/* 연구실 유효성 검사 */
 	function checkLab(obj){
 			let regId = /^[0-9a-zA-Z]+호$/;
@@ -49,6 +301,32 @@
 				plabInput.setCustomValidity("");
 				plabInput.maxLength = 40;
 				plabInput.style.color = 'green';
+				return true;
+			}
+		}
+		
+	/* 임용일자 유효성 검사 */
+	function checkAppointDate(obj){
+			let regId = /^(19|20)\d\d(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/; 
+			let regRs = regId.test(obj.value); 
+			let pappointDateInput = document.getElementById("pappointDate");
+			
+			if(obj.value == "" || obj.value === null || obj.value === undefined){
+				pappointDateInput.setCustomValidity("임용일자를 입력해주세요.");
+				pappointDateInput.focus();
+				pappointDateInput.maxLength = 10;
+				pappointDateInput.style.color = 'red';
+				return false;
+			}else if(!regRs){
+				pappointDateInput.setCustomValidity("숫자 8자리로 입력해주세요.");
+				pappointDateInput.focus();
+				pappointDateInput.maxLength = 10;
+				pappointDateInput.style.color = 'red';
+				return false;
+			}else{
+				pappointDateInput.setCustomValidity("");
+				pappointDateInput.maxLength = 10;
+				pappointDateInput.style.color = 'green';
 				return true;
 			}
 		}
@@ -186,8 +464,12 @@
 function register() {
     // 모든 유효성 검사를 수행합니다.
     if (
-        checkPosition(pposition) && checkLab(plab) && checkEmail(pemail) && 
-        checkPhone(pphone) && checkCall(pcall) && checkAddr(paddr) && checkZipCode(pzipCode)
+        checkId(pid) && checkName(pname) && checkRegNo1(pregNo1) &&
+        checkRegNo2(pregNo2) && checkBirth(pbirth) && checkGender() &&
+        checkPosition(pposition) && checkUniv(puniv) && checkFaculty(pfaculty) &&
+        checkMajor(pmajor) && checkDegree(pdegree) && checkLab(plab) &&
+        checkAppointDate(pappointDate) && checkEmail(pemail) && checkPhone(pphone) &&
+        checkCall(pcall) && checkAddr(paddr) && checkZipCode(pzipCode)
     ) {
         // 파일 업로드 유효성 검사 및 FormData에 추가
         let photoInput = document.getElementById("photoInput");

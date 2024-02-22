@@ -264,7 +264,7 @@ public class FrontController extends HttpServlet {
 				if(uriTwo.equals("course")) {
 					CourseController acc = new CourseController();
 					acc.doPostAction(uriThree, request, response);
-				}else if(uriTwo.equals("noitce")) {
+				}else if(uriTwo.equals("notice")) {
 					NoticeController anc = new NoticeController();
 					anc.doPostAction(uriThree, request, response);
 				}else if(uriTwo.equals("stuInfo")) {

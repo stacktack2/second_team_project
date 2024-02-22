@@ -227,12 +227,12 @@ public class UserManageDAO {
 		return professorVO;
 	}
 
-	public ProfessorVO viewProf(String pno) {
+	public ProfessorVO viewProf(int pno) {
 		String sql = "select * from professor p inner join profBridgeFile b inner join File f on p.pno = b.pno && f.fno = b.fno where p.pno = ? ";
 		
 		DBM dbm = DBM.getInstance();
 		
-		dbm.prepare(sql).setString(pno).select();
+		dbm.prepare(sql).setInt(pno).select();
 		
 		ProfessorVO professorVO = null;
 		while(dbm.next()) {
@@ -265,24 +265,51 @@ public class UserManageDAO {
 		
 		dbm.close();
 		
-		return professorVO;
-	}
-
-	public List<ProfessorVO> modifyInfo(String pno) {
-		List<ProfessorVO> professorVO = new ArrayList<>();
+		sql = " UPDATE professor "
+			+ "    SET pposition = ?, plab=?, pemail = ?, "
+			+ "		  pphone = ?, pcall = ?, paddr = ?, pzipCode = ?"
+			+ "  WHERE pno = ?";
 		
-		String sql = " UPDATE professor "
-				   + "    SET pposition = ?, plab=?, pemail = ?, "
-				   + "		  pphone = ?, pcall = ?, paddr = ?, pzipCode = ?"
-				   + "  WHERE pno = ?";
+		dbm.prepare(sql)
+	    .setString(professorVO.getPposition())
+	    .setString(professorVO.getPlab())
+	    .setString(professorVO.getPemail())
+	    .setString(professorVO.getPphone())
+	    .setString(professorVO.getPcall())
+	    .setString(professorVO.getPaddr())
+	    .setString(professorVO.getPzipCode()).setInt(pno).update();
 		
-		DBM dbm = DBM.getInstance();
+		dbm.close();
 		
-		dbm.prepare(sql).setString(pno).update();
+		sql = " UPDATE file f " 
+			+ " JOIN profbridgefile b ON f.fno = b.fno "
+			+ " JOIN professor p On p.pno = b.pno"
+			+ " SET f.frealnm = ?, f.foriginnm = ? "
+			+ " WHERE p.pno = ?";
 		
+		dbm.prepare(sql)
+	    .setString(professorVO.getFrealnm())
+	    .setString(professorVO.getForiginnm()).setInt(pno).update();
 		dbm.close();
 		
 		return professorVO;
 	}
+
+//	public ProfessorVO modifyInfo(String pno) {
+//		ProfessorVO professorVO = new ProfessorVO();
+//		
+//		String sql = " UPDATE professor "
+//				   + "    SET pposition = ?, plab=?, pemail = ?, "
+//				   + "		  pphone = ?, pcall = ?, paddr = ?, pzipCode = ?"
+//				   + "  WHERE pno = ?";
+//		
+//		DBM dbm = DBM.getInstance();
+//		
+//		dbm.prepare(sql).setString(pno).update();
+//		
+//		dbm.close();
+//		
+//		return professorVO;
+//	}
 
 }

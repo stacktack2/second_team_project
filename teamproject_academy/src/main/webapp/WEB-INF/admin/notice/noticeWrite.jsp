@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>공지사항 작성페이지</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-<link href="<%=request.getContextPath()%>/resources/share/css/styles.css" rel="stylesheet" />
-<link href="<%=request.getContextPath() %>/resources/student/css/summernote/summernote-lite.css" rel="stylesheet" >
+<link href="<%=request.getContextPath()%>/resources/admin/css/styles.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <script src="<%=request.getContextPath() %>/resources/student/js/jquery-3.7.1.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 						<li class="breadcrumb-item"><a href="noticeList">공지사항</a></li>
 						<li class="breadcrumb-item active">공지사항 작성페이지</li>
 					</ol>
-
+					<form name="noticeWritefrm" action="noticeWrite" method="post" onsubmit="return false;">
 					<div class="card mb-4 white">
 						<div class="card-header disNone">공지사항</div>
 						<div class="card-body">
@@ -42,7 +42,7 @@
 											<tr>
 												<th>제목</th>
 												<td colspan="5">
-													<input type="text" class="datatable-input" 
+													<input type="text" name="title" class="datatable-input" id="title"
 														   placeholder="제목을 입력해주세요.">
 												</td>
 											</tr>
@@ -50,7 +50,7 @@
 												<th>작성자</th>
 												<td>관리자</td>
 												<th>작성일</th>
-												<td>2024.02.04</td>
+												<td>2024.02.22</td>
 												<th>조회수</th>
 												<td>0</td>
 											</tr>
@@ -63,16 +63,19 @@
 											</tr> -->
 										</tbody>
 									</table>
-								<form method="post">
+								
 									<textarea id="summernote" name="content"></textarea>
-								</form>
 								</div>
-								<div class="datatable-bottom">
-									<a href="noticeList" class="btn btn-primary grey right mright">저장</a>
+								<div class="datatable-bottom d-inline-block">
+									<button onclick="register()" class="btn btn-primary grey right mright">저장</button>
+								</div>
+								<div class="datatable-bottom d-inline-block">
+									<a href="noticeList" class="btn btn-primary grey right mright">목록</a>
 								</div>
 							</div>
 						</div>
 					</div>
+					</form>
 				</div>
 			</main>
 			<%@ include file="/resources/admin/include/footer.jsp" %>
@@ -85,6 +88,7 @@
 		});
 	</script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/admin/js/notice.js"></script>
 </body>
 </body>
 </html>

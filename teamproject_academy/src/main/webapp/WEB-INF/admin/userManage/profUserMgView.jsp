@@ -30,7 +30,7 @@
 						<!-- 사진 첨부파일 -->
 						<div class="card-body">
 							<div class="card mb-4" style="width: 247px; height: 292px;" id="photoPreview">
-								<img src="<%=request.getContextPath()%>/upload/profUpload/${professorVO.foriginnm}">
+								<img src="<%=request.getContextPath()%>/upload/profUpload/${professorVO.foriginnm}.png">
 							</div>
 							<div
 								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
