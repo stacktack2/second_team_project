@@ -11,7 +11,7 @@ import vo.StudentVO;
 
 public class MainDAO {
 	//수강과목
-	public List<Map<String, Object>>  selectCourseAll(){
+	public List<Map<String, Object>>  selectCourseAll(String sno){
 
 		List<Map<String, Object>> courseList = new ArrayList<>();
 		
@@ -20,12 +20,12 @@ public class MainDAO {
 				+" INNER JOIN lecture l ON c.lno = l.lno "
 				+" INNER JOIN professor p ON l.pno = p.pno "
 				+" INNER JOIN student s ON c.sno = s.sno "
-				+" WHERE s.sno = c.sno and c.cdelyn=0"
+				+" WHERE s.sno = ? and c.cdelyn=0"
 				+" ORDER BY c.cno " 
 				+" LIMIT 5";
 		
 		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql).select();
+		dbm.prepare(sql).setString(sno).select();
 		
 		while(dbm.next()) {
 			Map<String, Object> courseMap = new HashMap<>();

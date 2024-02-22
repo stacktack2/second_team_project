@@ -23,14 +23,14 @@ public class MainController {
 			response.sendRedirect(request.getContextPath());
 		} else {
 			MainDAO mainDAO = new MainDAO();
-	
+		
 			//수강과목 목록
-			List<Map<String, Object>> courseList = mainDAO.selectCourseAll();
+			List<Map<String, Object>> courseList = mainDAO.selectCourseAll(sno);
 			request.setAttribute("courseList", courseList);
 			//공지사항 목록
 			List<BoardVO> board = mainDAO.FindBoard();
 			request.setAttribute("board",board);
-			
+				
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/stuMain.jsp");
 			rd.forward(request, response);
 		}

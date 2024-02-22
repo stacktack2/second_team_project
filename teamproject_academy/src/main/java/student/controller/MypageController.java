@@ -37,13 +37,14 @@ public class MypageController {
 		response.setContentType("text/html; charset=utf-8");
 		response.setCharacterEncoding("UTF-8");
 		if(result <= 0) {
-			response.getWriter().append("<script>alert('비밀번호가 변경에 실패했습니다.'); location.href='"+request.getContextPath()+"';</script>");
+			response.getWriter().append("<script>alert('비밀번호가 변경에 실패했습니다.'); location.href='"+request.getContextPath()+"/student/stuMain';</script>");
 		}else{			
 			response.getWriter().append("<script>alert('비밀번호가 변경되었습니다.'); location.href='"+request.getContextPath()+"';</script>");
 		}
 		response.getWriter().flush();
-
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/mypage/myInfoModify.jsp");
-		rd.forward(request, response);
+//위랑 아래 모두 보내는 거이기 때문에 하나는 지워야 함
+//
+//		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/mypage/myInfoModify.jsp");
+//		rd.forward(request, response);
 	}
 }
