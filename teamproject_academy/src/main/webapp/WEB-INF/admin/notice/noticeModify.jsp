@@ -30,12 +30,14 @@
 						<li class="breadcrumb-item"><a href="noticeList">공지사항</a></li>
 						<li class="breadcrumb-item active">공지사항 수정페이지</li>
 					</ol>
+					<form name="noticeModifyfrm" action="noticeModify" method="post">
+					<input type="hidden" name="bno" value="${boardVO.bno }">
 					<div class="card mb-4 white">
 						<div class="card-header disNone">공지사항</div>
 						<div class="card-body">
 							<div
 								class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-								<form name="noticeModifyfrm" action="noticeModify" method="post" onsubmit="return false;">
+								
 								<div class="datatable-container">
 									<table class="datatable-table viewtable">
 										<tbody>
@@ -66,7 +68,7 @@
 								
 									<textarea id="summernote" name="content">${boardVO.bcontent }</textarea>
 								</div>
-								</form>
+								
 								<div class="datatable-bottom d-inline-block">
 									<button class="btn btn-primary grey right mright">저장</button>
 								</div>
@@ -76,7 +78,7 @@
 							</div>
 						</div>
 					</div>
-					
+					</form>
 				</div>
 			</main>
 			<%@ include file="/resources/admin/include/footer.jsp" %>

@@ -114,6 +114,7 @@ public class NoticeController {
 	}
 	
 	public void noticeModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String bnoParam = request.getParameter("bno");
 		int bno = 0;
 		try {
@@ -125,6 +126,8 @@ public class NoticeController {
 		BoardVO boardVO = noticeDAO.bnoFindBoard(bno);
 		
 		request.setAttribute("boardVO", boardVO);
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeModify.jsp");
 		rd.forward(request, response);
@@ -144,13 +147,16 @@ public class NoticeController {
 		String titleParam = request.getParameter("title");
 		String contentParam = request.getParameter("content");
 		
-		int updateBoard = noticeDAO.updateBoard(bno, titleParam, contentParam);
+		BoardVO updateBoard = noticeDAO.updateBoard(bno, titleParam, contentParam);
 		
-		response.sendRedirect(request.getContextPath()+"/admin/notice/noticeList");
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		response.sendRedirect(request.getContextPath()+"/admin/notice/noticeView?bno="+bno);
 	}
 	
 	public void noticeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
 		String bnoParam = request.getParameter("bno");
 		int bno = 0;
 		try {
@@ -160,8 +166,11 @@ public class NoticeController {
 		
 		NoticeDAO noticeDAO = new NoticeDAO();
 		BoardVO boardVO = noticeDAO.bnoFindBoard(bno);
-		
+				
 		request.setAttribute("boardVO", boardVO);
+		
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeView.jsp");
 		rd.forward(request, response);
@@ -189,7 +198,7 @@ public class NoticeController {
 		
 	}
 	public void PostnoticeWrite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
 		String titleParam = request.getParameter("title");
 		String contentParam = request.getParameter("content");
 		
@@ -199,6 +208,9 @@ public class NoticeController {
 		int boardVO = noticeDAO.insertNotice(titleParam, contentParam, ano);
 		
 		response.sendRedirect(request.getContextPath()+"/admin/notice/noticeList");
+		
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
 	}
 
 	public void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

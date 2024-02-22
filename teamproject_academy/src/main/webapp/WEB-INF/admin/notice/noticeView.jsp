@@ -49,10 +49,6 @@
 											<tr>
 												<td colspan="6" style="height: 500px;">${boardVO.bcontent}</td>
 											</tr>
-											<tr>
-												<th>첨부파일</th>
-												<td colspan="5"></td>
-											</tr>
 										</tbody>
 									</table>
 								</div>

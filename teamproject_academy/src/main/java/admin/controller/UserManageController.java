@@ -243,9 +243,9 @@ public class UserManageController {
 	public void PostprofUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-//		String directory = "E:\\98.팀프로젝트\\02. 2차프로젝트\\second_team_project\\teamproject_academy\\src\\main\\webapp\\upload\\profUpload";
+		String directory = "E:\\98.팀프로젝트\\02. 2차프로젝트\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\teamproject_academy\\upload\\profUpload";
 //		String directory = "C:\\Users\\MYCOM\\git\\second_team_project\\teamproject_academy\\src\\main\\webapp\\upload\\profUpload";
-		String directory = "D:\\JYH\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\teamproject_academy\\upload\\profUpload";
+//		String directory = "D:\\JYH\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\teamproject_academy\\upload\\profUpload";
 		
 		int sizeLimit = 100 * 1024 * 1024;
 		if (request.getContentType() != null && request.getContentType().startsWith("multipart/form-data")) {

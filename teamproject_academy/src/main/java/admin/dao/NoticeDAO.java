@@ -155,7 +155,7 @@ public class NoticeDAO {
 		return BoardList;
 	}
 
-	public int updateBoard(int bno, String titleParam, String contentParam) {
+	public BoardVO updateBoard(int bno, String titleParam, String contentParam) {
 		String sql = "UPDATE board "
 	               + "SET btitle = ?, bcontent = ? "
 	               + "WHERE bno = ?";
@@ -170,9 +170,9 @@ public class NoticeDAO {
 	        .setString(boardVO.getBcontent())
 	        .setInt(bno);
 	    
-	    int result = dbm.update();
+	    dbm.update();
 	    dbm.close();
 	    
-	    return result;
+	    return boardVO;
 	}
 }

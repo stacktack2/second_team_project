@@ -5,7 +5,7 @@ CREATE PROCEDURE loopInsert()
 BEGIN
     DECLARE i INT DEFAULT 1;
         
-    WHILE i <= 50 DO
+    WHILE i <= 10 DO
           
 		-- 파일
         INSERT INTO File(frealnm,foriginnm)
