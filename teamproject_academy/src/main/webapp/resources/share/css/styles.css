@@ -93,8 +93,8 @@
 /*학생*/
 	.disNone{display:none;}
 	.white{border-color: white !important;}
-	.grey{border-color: grey !important; background-color:grey !important;}
-	button.grey:hover{border-color: grey !important; background-color:lightgrey !important; color:grey !important;}
+	.grey{border-color: #400080 !important; background-color:#400080 !important;}
+	button.grey:hover{border-color:#8080c0 !important; background-color:#8080c0 !important; }
 	.inline{display:inline-block !important;}
 	.right{float:right !important; margin-right:10px;}
 	.wauto{width:auto !important;}
@@ -105,7 +105,10 @@
 	.blue{color:blue !important;}
 	.center, .checktable td{text-align:center !important;}
 	.timetable tr>td{height:8vh !important;}
-	
+	table th{background-color:#b3b3d9!important;}
+	table a{text-decoration: none !important; font-weight:bold !important; color: #400080 !important;}
+	table a:hover{color: #8080c0 !important;}
+
 #photoPreview {
 	border: 1px solid #ccc;
 	border-radius: 5px;
