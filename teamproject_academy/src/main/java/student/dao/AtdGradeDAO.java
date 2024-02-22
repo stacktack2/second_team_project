@@ -11,14 +11,45 @@ import vo.LectureVO;
 import vo.StudentVO;
 
 public class AtdGradeDAO {
+	//성적->학생정보 조회
+	public StudentVO selectStuInfo(String sno){
+		StudentVO student = new StudentVO();
+		String sql = "select * from student where sno = ?";
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql).setString(sno).select();
+		while(dbm.next()) {
+			student.setSid(dbm.getString("sid"));
+			student.setSmajor(dbm.getString("smajor"));
+			student.setSname(dbm.getString("sname"));
+			student.setSgrade( dbm.getInt("sgrade"));
+			student.setSstatus( dbm.getInt("sstatus"));
+		}
+		dbm.close();
+		return student;
+	}
 	//성적조회 목록
-	public List<Map<String, Object>>  selectgradeAll(String sno){
+	public List<Map<String, Object>>  selectgradeAll(String sno,String lyearType,String lsemesterType){
 		List<Map<String, Object>> gradeList = new ArrayList<>();
 		
-		String sql = "select s.smajor, s.sid, s.sname, s.sgrade, s.sstatus, c.cno, c.cgrade, l.lname, l.lcredit from student s "
-				+ "inner join course c on c.sno = s.sno "
+		String sql = "select c.cno, c.cgrade, l.lname, l.lcredit from course c "
 				+ "inner join lecture l on l.lno = c.lno "
-				+ "where s.sno = ?";
+				+ "where sno = ?";
+		
+		if(lyearType != null && !lyearType.equals("")) {
+			if(lyearType.equals("2023")) {
+				sql += " AND l.lyear like 2023 ";
+			}else if(lyearType.equals("2024")) {
+				sql += " AND l.lyear like 2024 ";
+			}
+		}
+		
+		if(lsemesterType != null && !lsemesterType.equals("")) {
+			if(lsemesterType.equals("1")) {
+				sql +=" and l.lsemester like 1 ";
+			}else if(lsemesterType.equals("2")) {
+				sql +=" and l.lsemester like 2 ";
+			}
+		}
 		
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setString(sno).select();
@@ -26,12 +57,7 @@ public class AtdGradeDAO {
 		while(dbm.next()) {
 			Map<String, Object> gradeMap = new HashMap<>();
 			
-			gradeMap.put("sid", dbm.getString("sid"));
-			gradeMap.put("smajor", dbm.getString("smajor"));
-			gradeMap.put("sname", dbm.getString("sname"));
-			gradeMap.put("sgrade", dbm.getInt("sgrade"));
-			gradeMap.put("sstatus", dbm.getInt("sstatus"));
-			
+
 			gradeMap.put("cno", dbm.getInt("cno"));
 			gradeMap.put("lname", dbm.getString("lname"));
 			gradeMap.put("lcredit", dbm.getInt("lcredit"));
@@ -85,7 +111,7 @@ public class AtdGradeDAO {
 				
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setInt(cno).select();
-		//System.out.println("cno(info):"+cno);
+
 		while(dbm.next()) {
 			
 			courseinfo.setLname(dbm.getString("lname"));
@@ -95,7 +121,6 @@ public class AtdGradeDAO {
 			courseinfo.setLcredit(dbm.getInt("lcredit"));
 			courseinfo.setLmaxpeople(dbm.getString("lmaxpeople"));
 			courseinfo.setLroom(dbm.getString("lroom"));
-			//courseinfo.setCno(dbm.getInt("cno"));
 			
 		}
 		
@@ -111,11 +136,10 @@ public class AtdGradeDAO {
 		
 		 DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setInt(cno).setString(sno).select();
-		//System.out.println("cno(attend뷰):"+cno);
+
 		while(dbm.next()) {
 			AttendmentVO attend = new AttendmentVO();
 			attend.setAttendyn(dbm.getInt("attendyn"));
-			//attend.setAttendno(dbm.getInt("attendno"));
 			attend.setAttendrdate(dbm.getString("attendrdate"));
 			attendList.add(attend);
 		}

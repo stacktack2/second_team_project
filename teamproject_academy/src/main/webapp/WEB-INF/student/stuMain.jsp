@@ -28,8 +28,8 @@
 
 					<div class="card mb-4">
 						<div class="card-header">
-							수강과목 
-							<a href="acdCourse/subcheck" class="nav-link right bold">&#43;</a>
+							<b>수강과목</b> 
+							<a href="acdCourse/subcheck" class="nav-link right bold"><b>&#43;</b></a>
 						</div>
 						<div class="card-body">
 							<table class="datatable-table checktable">
@@ -43,9 +43,9 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="course" items="${courseList}" varStatus="loop">
+									<c:forEach var="course" items="${courseList}">
 										<tr>
-											<td>${loop.count}</td>
+											<td>${course.cno}</td>
 											<td><a href="acdCourse/curriculum?lno=${course.lno }">${course.lname }</a></td>
 											<td>${course.pname }</td>
 											<td>${course.ltime }</td>
@@ -58,7 +58,8 @@
 					</div>
 					<div class="card mb-4">
 						<div class="card-header">
-							공지사항<a href="notice/noticeList?nowPage=1&searchAlign=late&searchType=title" class="nav-link right bold">&#43;</a>
+							<b>공지사항</b>
+							<a href="notice/noticeList?nowPage=1&searchAlign=late&searchType=title" class="nav-link right bold"><b>&#43;</b></a>
 						</div>
 						<div class="card-body">
 							<table class="datatable-table checktable">

@@ -72,7 +72,6 @@
 													onclick="corRegFn(this,${corReg.lno })"
 													<c:forEach var="course" items="${courseList}">
 														<c:if test="${course.lno == corReg.lno && course.cdelyn==0}">disabled</c:if>
-														
 													</c:forEach>
 													>신청</button>
 												</td>

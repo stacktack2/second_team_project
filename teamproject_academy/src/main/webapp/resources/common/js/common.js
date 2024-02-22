@@ -100,8 +100,15 @@ function TIMER(){
 }
 
 
-;
+let istimer = false;
+
 function sendEmail() {
+	if(istimer){
+		clearInterval(PlAYTIME);
+	    time= 180000;
+		min=3;
+		sec=60;
+	}
 	let email = document.searchPwForm.email.value;
 	alert("이메일이 발송되었습니다.");
 	$.ajax({
@@ -114,7 +121,13 @@ function sendEmail() {
 				TIMER();
 				setTimeout(function(){
 				    clearInterval(PlAYTIME);
+				    time= 180000;
+					min=3;
+					sec=60;
+					istimer = false;
+					document.getElementById('Timer').value="timeout"
 				},180000);//3분이 되면 타이머를 삭제한다.
+				istimer = true;
 			}else{
 				alert("오류가 발생했습니다. 다시 시도해 주세요.");
 			}
@@ -138,6 +151,10 @@ function codeCheck(){
 			if (data.trim() == "ok") {
 				alert("인증이 완료되었습니다.");
 				clearInterval(PlAYTIME);
+				istimer = false;
+				time= 180000;
+				min=3;
+				sec=60;
 				document.getElementById('Timer').value="";
 				checkOk = true;
 			}else{

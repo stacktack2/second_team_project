@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import student.dao.AtdGradeDAO;
 import vo.AttendmentVO;
 import vo.LectureVO;
+import vo.StudentVO;
 
 public class AtdGradeController {
 	public void doAction(String threeUriParam, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -100,9 +101,18 @@ public class AtdGradeController {
 			response.sendRedirect(request.getContextPath());
 			return;
 		}
+		String lyearType = request.getParameter("lyearType");
+		String lsemesterType = request.getParameter("lsemesterType");
+		if(lyearType == null) {
+			lyearType = "";
+		}
+		if(lsemesterType == null) {
+			lsemesterType = "";
+		}
 		AtdGradeDAO atdGradeDAO = new AtdGradeDAO();
-		List<Map<String, Object>> gradeList = atdGradeDAO.selectgradeAll(sno);
-
+		StudentVO student = atdGradeDAO.selectStuInfo(sno);
+		request.setAttribute("student", student);
+		List<Map<String, Object>> gradeList = atdGradeDAO.selectgradeAll(sno,lyearType, lsemesterType);
 		request.setAttribute("gradeList", gradeList);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/atdGrade/cgradeCheck.jsp");
