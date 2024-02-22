@@ -68,7 +68,7 @@
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">공지사항</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href="noticeList">공지사항</a></li>
+						<li class="breadcrumb-item">공지사항</li>
 						<li class="breadcrumb-item active">공지사항 목록페이지</li>
 					</ol>
 
