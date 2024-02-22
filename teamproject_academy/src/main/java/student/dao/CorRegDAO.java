@@ -45,7 +45,7 @@ public class CorRegDAO {
 				+ " WHERE l.lstatus=2 ";
 
 		//[검색]
-		if(searchType != null && searchType.equals("")){
+		if(searchType != null && !searchType.equals("")){
 			if(searchType.equals("lname")){
 				sql += " AND l.lname LIKE CONCAT('%',?,'%')";
 			}else if(searchType.equals("pname")){
@@ -60,9 +60,10 @@ public class CorRegDAO {
 		if(searchType != null  && !searchType.equals("")) {
 			dbm.setString(searchValue);
 		}
+
 		dbm.setInt(start-1);
 		dbm.setInt(perPage);
-		
+
 		dbm.select();
 		
 		while(dbm.next()){
@@ -84,7 +85,7 @@ public class CorRegDAO {
 		List<CourseVO> courseList = new ArrayList<>();
 		
 		String sql = "SELECT * from course where sno = ?";
-		//[검색]
+
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setString(sno).select();
 		
