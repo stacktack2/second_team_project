@@ -60,7 +60,7 @@
 								</div>
 
 								<div class="datatable-container">
-									<table class="datatable-table">
+									<table class="datatable-table checktable">
 										<thead>
 											<tr>
 												<th>번호</th>

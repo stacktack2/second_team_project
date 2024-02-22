@@ -28,8 +28,8 @@
 
 					<div class="card mb-4">
 						<div class="card-header">
-							수강과목 
-							<a href="acdCourse/subcheck" class="nav-link right bold">&#43;</a>
+							<b>수강과목</b> 
+							<a href="acdCourse/subcheck" class="nav-link right bold"><b>&#43;</b></a>
 						</div>
 						<div class="card-body">
 							<table class="datatable-table checktable">
@@ -58,7 +58,8 @@
 					</div>
 					<div class="card mb-4">
 						<div class="card-header">
-							공지사항<a href="notice/noticeList?nowPage=1&searchAlign=late&searchType=title" class="nav-link right bold">&#43;</a>
+							<b>공지사항</b>
+							<a href="notice/noticeList?nowPage=1&searchAlign=late&searchType=title" class="nav-link right bold"><b>&#43;</b></a>
 						</div>
 						<div class="card-body">
 							<table class="datatable-table checktable">
