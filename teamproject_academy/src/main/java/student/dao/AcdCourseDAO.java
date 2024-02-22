@@ -41,18 +41,35 @@ public class AcdCourseDAO {
 		return curriMap;
 	}
 	//totalCnt
-	public int FindTotalCnt(String searchType, String searchValue){
-		String sql = "select count(*) as cnt from board b ";
-		if(searchType.equals("lname")) {
-			sql += " where lname like concat('%',?,'%') ";
-		}else if(searchType.equals("pname")) {
-			sql += " where pname like concat('%',?,'%') ";
+	public int FindTotalCnt(String lyearType, String lsemesterType,String searchValue){
+		String sql = "select count(*) as cnt from course c "
+				+ " inner join lecture l on c.lno=l.lno ";
+		
+		if((lyearType!= null && !lyearType.equals("")) 
+				|| (lsemesterType != null && !lsemesterType.equals(""))) {
+			if(lyearType != null && !lyearType.equals("")) {
+				if(lyearType.equals("2023")) {
+					sql += " where l.lyear like 2023 ";
+				}else if(lyearType.equals("2024")) {
+					sql += " where l.lyear like 2024 ";
+				}
+			}
+			
+			if(lsemesterType != null && !lsemesterType.equals("")) {
+				if(lsemesterType.equals("1")) {
+					sql +=" and l.lsemester like 1 ";
+				}else if(lsemesterType.equals("2")) {
+					sql +=" and l.lsemester like 2 ";
+				}
+			}
+			sql +=" AND l.lname LIKE CONCAT('%',?,'%')";
 		}
-
+		
 		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql);
 		
-		if(searchType.equals("title") || searchType.equals("content")) {
+		if((lyearType!= null && !lyearType.equals("")) 
+				|| (lsemesterType != null && !lsemesterType.equals(""))) {
 			dbm.setString(searchValue);
 		}
 		
@@ -68,7 +85,8 @@ public class AcdCourseDAO {
 		return totalCnt;
 	}
 	//교과목 조회(검색포함)
-	public List<LectureVO>  selectCourseAll(String searchType, String searchValue, int start, int perPage){
+	public List<LectureVO>  selectCourseAll
+		(String sno,String lyearType,String lsemesterType,String searchValue, int start, int perPage){
 		List<LectureVO> courseList = new ArrayList<>();
 		
 		String sql = "SELECT c.cno, l.lname, p.pname, l.ltime, l.lroom, l.lno "
@@ -76,20 +94,37 @@ public class AcdCourseDAO {
 				+" INNER JOIN lecture l ON c.lno = l.lno "
 				+" INNER JOIN professor p ON l.pno = p.pno "
 				+" INNER JOIN student s ON c.sno = s.sno "
-				+" WHERE s.sno = c.sno and cdelyn = 0 ";
+				+" WHERE s.sno = ? and cdelyn = 0 ";
 		
-		if(searchType.equals("lname")) {
-			sql += " where l.lname like concat('%',?,'%') ";
-		}else if(searchType.equals("pname")) {
-			sql += " where p.pname like concat('%',?,'%') ";
+
+		if((lyearType!= null && !lyearType.equals("")) 
+				|| (lsemesterType != null && !lsemesterType.equals(""))) {
+			if(lyearType != null && !lyearType.equals("")) {
+				if(lyearType.equals("2023")) {
+					sql += " AND l.lyear like 2023 ";
+				}else if(lyearType.equals("2024")) {
+					sql += " AND l.lyear like 2024 ";
+				}
+			}
+			
+			if(lsemesterType != null && !lsemesterType.equals("")) {
+				if(lsemesterType.equals("1")) {
+					sql +=" and l.lsemester like 1 ";
+				}else if(lsemesterType.equals("2")) {
+					sql +=" and l.lsemester like 2 ";
+				}
+			}
+			sql +=" AND l.lname LIKE CONCAT('%',?,'%')";
 		}
-			sql	+=" ORDER BY c.cno limit ?, ? ";
 		
-		DBM dbm = DBM.getInstance();
-		dbm.prepare(sql);
-		if(searchType.equals("lname") || searchType.equals("panme")) {
+		sql	+=" ORDER BY c.cno limit ?, ? ";
+		
+		DBM dbm = DBM.getInstance().prepare(sql).setString(sno);
+		if((lyearType!= null && !lyearType.equals("")) 
+				|| (lsemesterType != null && !lsemesterType.equals(""))) {
 			dbm.setString(searchValue);
 		}
+		
 		dbm.setInt(start-1);
 		dbm.setInt(perPage);
 		

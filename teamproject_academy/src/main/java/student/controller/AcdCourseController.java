@@ -132,8 +132,13 @@ public class AcdCourseController {
 	}
 	//교과목 조회
 	public void subcheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String searchType = request.getParameter("searchType");
+		String sno = (String)request.getSession().getAttribute("no");
+		if(sno == null || (sno != null && sno.equals(""))) {
+			response.sendRedirect(request.getContextPath());
+			return;
+		}
+		String lyearType = request.getParameter("lyearType");
+		String lsemesterType = request.getParameter("lsemesterType");
 		String searchValue = request.getParameter("searchValue");
 		
 		String nowPageParam = request.getParameter("nowPage");
@@ -142,23 +147,26 @@ public class AcdCourseController {
 			nowPage = Integer.parseInt(nowPageParam);	
 		}
 			
-		if(searchType == null) {
-			searchType = "";
+		if(lyearType == null) {
+			lyearType = "";
+		}
+		if(lsemesterType == null) {
+			lsemesterType = "";
 		}
 		if(searchValue == null) {
 			searchValue = "";
 		}
 		
 		AcdCourseDAO acdCourseDAO = new AcdCourseDAO();
-		int totalCnt = acdCourseDAO.FindTotalCnt( searchType, searchValue);
-		
+		int totalCnt = acdCourseDAO.FindTotalCnt( lyearType, lsemesterType, searchValue);
+
 		PagingVO pagingVO = new PagingVO(nowPage,totalCnt,5);
 		int start = pagingVO.getStart();
 		int perPage = pagingVO.getPerPage();
-		
+
 		request.setAttribute("pagingVO", pagingVO);
 		
-		List<LectureVO> courseList = acdCourseDAO.selectCourseAll(searchType, searchValue, start, perPage);
+		List<LectureVO> courseList = acdCourseDAO.selectCourseAll(sno, lyearType, lsemesterType, searchValue, start, perPage);
 		request.setAttribute("courseList", courseList);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/student/acdCourse/subcheck.jsp");

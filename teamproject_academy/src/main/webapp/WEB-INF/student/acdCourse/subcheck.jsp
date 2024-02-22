@@ -33,17 +33,26 @@
 								<div class="datatable-top">
 									<!-- 검색 -->
 									<div class="right">
-										<select class="datatable-selector">
-											<option value="1" selected>2024</option>
-											<option value="2">2023</option>
-										</select>
-										<select class="datatable-selector">
-												<option value="1" selected>1학기</option>
-												<option value="2">2학기</option>
-										</select>
+
 										<form action="subcheck" method="get" class="datatable-search inline">
+											<select class="datatable-selector"  name="lyearType">
+												<option value="2024" 
+													<c:if test="${param.lyear eq '2024'}">selected</c:if>>
+												2024</option>
+												<option value="2023" 
+													<c:if test="${param.lyear eq '2023'}">selected</c:if>>
+												2023</option>
+											</select>
+											<select class="datatable-selector"  name="lsemesterType">
+													<option value="1" 
+														<c:if test="${param.lsemester eq '1'}">selected</c:if>>
+													1학기</option>
+													<option value="2" 
+														<c:if test="${param.lsemester eq '2'}">selected</c:if>>
+													2학기</option>
+											</select>
 											<input class="datatable-input inline wauto"
-												placeholder="검색어를 입력하세요" type="search"
+												placeholder="검색어를 입력하세요" type="search" name="searchValue"
 												title="Search within table" aria-controls="datatablesSimple">
 											<button class="btn btn-primary inline grey">검색</button>
 										</form>

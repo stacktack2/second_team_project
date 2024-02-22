@@ -44,11 +44,11 @@
 										<tbody>
 											<tr>
 												<td>학부</td>
-												<td>${gradeList[0].smajor }</td>
-												<td>${gradeList[0].sid }</td>
-												<td>${gradeList[0].sname }</td>
-												<td>${gradeList[0].sgrade }</td>
-												<td>${gradeList[0].sstatus }</td>
+												<td>${student.smajor }</td>
+												<td>${student.sid }</td>
+												<td>${student.sname }</td>
+												<td>${student.sgrade }</td>
+												<td>${student.sstatus }</td>
 											</tr>
 										</tbody>
 									</table>
@@ -56,15 +56,24 @@
 								</div>
 								<div class="datatable-top">
 									<div class="right">
-										<form action="noticeList.do" method="get" class="datatable-search inline">
-											<select class="datatable-selector">
-												<option value="1" selected>2024</option>
-												<option value="2">2023</option>
-											</select> <select class="datatable-selector">
-												<option value="1" selected>1학기</option>
-												<option value="2">2학기</option>
+										<form action="cgradeCheck" method="get" class="datatable-search inline">
+											<select class="datatable-selector"  name="lyearType">
+												<option value="2024" 
+													<c:if test="${param.lyear eq '2024'}">selected</c:if>>
+												2024</option>
+												<option value="2023" 
+													<c:if test="${param.lyear eq '2023'}">selected</c:if>>
+												2023</option>
 											</select>
-											<button class="btn btn-primary inline grey">조회</button>
+											<select class="datatable-selector"  name="lsemesterType">
+													<option value="1" 
+														<c:if test="${param.lsemester eq '1'}">selected</c:if>>
+													1학기</option>
+													<option value="2" 
+														<c:if test="${param.lsemester eq '2'}">selected</c:if>>
+													2학기</option>
+											</select>
+												<button class="btn btn-primary inline grey">조회</button>
 										</form>
 									</div>
 								</div>
@@ -73,9 +82,6 @@
 
 									<table class="datatable-table viewtable checktable">
 										<thead>
-											<tr>
-												<th colspan="5">00학년도 00학기</th>
-											</tr>
 											<tr>
 												<th>번호</th>
 												<th>과목명</th>

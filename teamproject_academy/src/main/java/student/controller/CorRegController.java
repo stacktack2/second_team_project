@@ -44,7 +44,6 @@ public class CorRegController {
 			response.sendRedirect(request.getContextPath());
 			return;
 		}
-		System.out.println("sno"+sno);
 		CorRegDAO corRegDAO = new CorRegDAO();
 
 		List<LectureVO> regList = corRegDAO.selectRegAll(sno);
@@ -79,7 +78,6 @@ public class CorRegController {
 			String lnoParam = request.getParameter("lno");
 			if(lnoParam != null && !lnoParam.equals("")) {
 				int lno = Integer.parseInt(lnoParam);
-				System.out.println("lno"+lno);
 				//[ajax: 신청]
 				int insertRs = corRegDAO.insertReg(lno, sno);
 				request.setAttribute("insertRs", insertRs);
@@ -100,7 +98,6 @@ public class CorRegController {
 			String cnoParam = request.getParameter("cno");
 			if(cnoParam != null && !cnoParam.equals("")) {
 				int cno = Integer.parseInt(cnoParam);
-				System.out.println("cno"+cno);
 				//[ajax: 삭제]
 				int delRs = corRegDAO.deleteReg(cno);
 				request.setAttribute("delRs", delRs);
@@ -152,7 +149,6 @@ public class CorRegController {
 		if(nowPageParam != null && !nowPageParam.isEmpty()) {
 			nowPage = Integer.parseInt(nowPageParam);
 		}
-		//System.out.println("nowPage"+nowPage);
 		if(searchType == null) { 
 			 searchType = "";
 		 }
@@ -161,7 +157,6 @@ public class CorRegController {
 		}
 		CorRegDAO corRegDAO = new CorRegDAO();
 		int totalCnt = corRegDAO.FindTotalCnt(searchType, searchValue);
-		//System.out.println("totalCnt"+totalCnt);
 		PagingVO pagingVO = new PagingVO(nowPage,totalCnt,5);
 		int start = pagingVO.getStart();
 		int perPage = pagingVO.getPerPage();
