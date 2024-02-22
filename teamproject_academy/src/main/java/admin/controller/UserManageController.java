@@ -143,6 +143,12 @@ public class UserManageController {
 		
 	}
 	public void PostprofUserInfoModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pno = request.getParameter("pno");
+		UserManageDAO userManageDAO = new UserManageDAO();
+		List<ProfessorVO> professorVO = userManageDAO.modifyInfo(pno);
+		
+		request.setAttribute("professorVO", professorVO);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserInfoModify.jsp");
 		rd.forward(request, response);
 		
@@ -220,15 +226,13 @@ public class UserManageController {
 	}
 	
 	public void profUserMgView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String pnoParam = request.getParameter("pno");
-//
-//        if (pnoParam != null && !pnoParam.isEmpty()) {
-//            int pno = Integer.parseInt(pnoParam);
-//            
-//            UserManageDAO userManageDAO = new UserManageDAO();
-//            List<ProfessorVO> professorVO = userManageDAO.viewProf(pno);
-//            
-//        }
+		String pno = (String)request.getSession().getAttribute("no");
+            
+        UserManageDAO userManageDAO = new UserManageDAO();
+        ProfessorVO profUserMgGetView = userManageDAO.viewProf(pno);
+            
+        request.setAttribute("profUserMgGetView", profUserMgGetView);
+
         
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/userManage/profUserMgView.jsp");
 		rd.forward(request, response);
