@@ -114,8 +114,17 @@ public class NoticeController {
 	}
 	
 	public void noticeModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String bnoParam = request.getParameter("bno");
+		int bno = 0;
+		try {
+			bno = Integer.parseInt(bnoParam);
+		} catch (NumberFormatException e) {
+		}
 		
+		NoticeDAO noticeDAO = new NoticeDAO();
+		BoardVO boardVO = noticeDAO.bnoFindBoard(bno);
 		
+		request.setAttribute("boardVO", boardVO);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeModify.jsp");
 		rd.forward(request, response);
@@ -123,11 +132,23 @@ public class NoticeController {
 		
 	}
 	public void PostnoticeModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeModify.jsp");
-		rd.forward(request, response);
+		String bnoParam = request.getParameter("bno");
+		int bno = 0;
+		try {
+			bno = Integer.parseInt(bnoParam);
+		} catch (NumberFormatException e) {
+		}
 		
+		NoticeDAO noticeDAO = new NoticeDAO();
 		
+		String titleParam = request.getParameter("title");
+		String contentParam = request.getParameter("content");
+		
+		int updateBoard = noticeDAO.updateBoard(bno, titleParam, contentParam);
+		
+		response.sendRedirect(request.getContextPath()+"/admin/notice/noticeList");
 	}
+	
 	public void noticeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String bnoParam = request.getParameter("bno");

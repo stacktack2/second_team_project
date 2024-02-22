@@ -16,6 +16,7 @@ public class NoticeDAO {
 		BoardVO boardVO = null;
 		while(dbm.next()) {
 			boardVO = new BoardVO();
+			boardVO.setBno(bno);
 			boardVO.setBtitle(dbm.getString("btitle"));
 			boardVO.setBcontent(dbm.getString("bcontent"));
 			boardVO.setBrdate(dbm.getString("brdate"));
@@ -154,4 +155,24 @@ public class NoticeDAO {
 		return BoardList;
 	}
 
+	public int updateBoard(int bno, String titleParam, String contentParam) {
+		String sql = "UPDATE board "
+	               + "SET btitle = ?, bcontent = ? "
+	               + "WHERE bno = ?";
+
+	    BoardVO boardVO = new BoardVO();
+	    boardVO.setBtitle(titleParam);
+	    boardVO.setBcontent(contentParam);
+
+	    DBM dbm = DBM.getInstance();
+	    dbm.prepare(sql)
+	        .setString(boardVO.getBtitle())
+	        .setString(boardVO.getBcontent())
+	        .setInt(bno);
+	    
+	    int result = dbm.update();
+	    dbm.close();
+	    
+	    return result;
+	}
 }
