@@ -9,7 +9,7 @@ BEGIN
           
 		-- 파일
         INSERT INTO File(frealnm,foriginnm)
-          VALUES(concat('첨부파일실제이름',i),concat('첨부파일원래이름',i));
+          VALUES(concat('첨부파일실제이름',i),concat('IMG_5050',i));
          
 		-- 학생 사진파일 브릿지
         INSERT INTO studentbridgefile(sno,fno) VALUES(i,i);
