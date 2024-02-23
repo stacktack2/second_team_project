@@ -24,7 +24,6 @@
 						<li class="breadcrumb-item">사용자 관리</li>
 						<li class="breadcrumb-item active">교수 관리</li>
 					</ol>
-					<form name="profUserMgModifyForm" action="profUserInfoModify" method="post">
 					<div class="card mb-4 white">
 						<div class="card-header disNone">교수 정보 조회</div>
 						<!-- 사진 첨부파일 -->
@@ -91,14 +90,13 @@
 							</div>
 							<!-- 테이블 바텀 -->
 							<div class="datatable-bottom ms-auto d-inline-block">
-								<button class="btn btn-primary grey right mright">수정</button>
+								<a href="profUserInfoModify?pno=${professorVO.pno }" class="btn btn-primary grey right mright">수정</a>
 							</div>
 							<div class="datatable-bottom ms-auto d-inline-block">
 								<a href="profUserMgList" class="btn btn-primary grey right mright">목록</a>
 							</div>
 						</div>
 					</div>
-					</form>
 				</div>
 			</main>
 			<%@ include file="/resources/admin/include/footer.jsp" %>

@@ -160,6 +160,7 @@ public class UserManageDAO {
 	}
 
 	public ProfessorVO viewProfPhoto() {
+		ProfessorVO professorVO = new ProfessorVO();
 		
 		String profSql = " SELECT max(pno) as pno FROM professor";
 		DBM dbm = DBM.getInstance();
@@ -186,11 +187,16 @@ public class UserManageDAO {
 		dbm.update();
 		dbm.close();
 		
+		return professorVO;
+	}
+
+	public ProfessorVO viewProf(int pno) {
 		String sql = " SELECT professor.*, file.* FROM professor  "
 				   + " 	INNER JOIN profbridgefile INNER JOIN file ON professor.pno = profbridgefile.pno  "
 				   + " 	&& profbridgefile.fno = file.fno  "
 				   + "  WHERE professor.pno = ?";
 		
+		DBM dbm = DBM.getInstance();
 		dbm.prepare(sql).setInt(pno).select();
 		
 		ProfessorVO professorVO = null;
@@ -224,92 +230,34 @@ public class UserManageDAO {
 		
 		dbm.close();
 		
+		
 		return professorVO;
 	}
 
-	public ProfessorVO viewProf(int pno) {
-		String sql = "select * from professor p inner join profBridgeFile b inner join File f on p.pno = b.pno && f.fno = b.fno where p.pno = ? ";
+	public ProfessorVO updateprof(int pno, String ppositionParam, String plabParam, String pemailParam, String pphoneParam, String pcallParam, String paddrParam, String pzipCodeParam) {
 		
-		DBM dbm = DBM.getInstance();
+		String sql = " UPDATE professor "
+				+ "    SET pposition = ?, plab=?, pemail = ?, "
+				+ "		  pphone = ?, pcall = ?, paddr = ?, pzipCode = ?"
+				+ "  WHERE pno = ?";
 		
-		dbm.prepare(sql).setInt(pno).select();
+		ProfessorVO professorVO = new ProfessorVO();
 		
-		ProfessorVO professorVO = null;
-		while(dbm.next()) {
-			professorVO = new ProfessorVO();
-			professorVO.setPid(dbm.getString("pid"));
-			professorVO.setPpw(dbm.getString("ppw"));
-			professorVO.setPname(dbm.getString("pname"));
-			professorVO.setPregNo1(dbm.getString("pregNo1"));
-			professorVO.setPregNo2(dbm.getString("pregNo2"));
-			professorVO.setPbirth(dbm.getString("pbirth"));
-			professorVO.setPgender(dbm.getString("pgender"));
-			professorVO.setPemail(dbm.getString("pemail"));
-			professorVO.setPphone(dbm.getString("pphone"));
-			professorVO.setPcall(dbm.getString("pcall"));
-			professorVO.setPaddr(dbm.getString("paddr"));
-			professorVO.setPzipCode(dbm.getString("pzipCode"));
-			professorVO.setPrdate(dbm.getString("prdate"));
-			professorVO.setPposition(dbm.getString("pposition"));
-			professorVO.setPuniv(dbm.getString("puniv"));
-			professorVO.setPfaculty(dbm.getString("pfaculty"));
-			professorVO.setPmajor(dbm.getString("pmajor"));
-			professorVO.setPdegree(dbm.getString("pdegree"));
-			professorVO.setPlab(dbm.getString("plab"));
-			professorVO.setPappointDate(dbm.getString("pappointDate"));
-			professorVO.setPdelyn(dbm.getInt("pdelyn"));
-			professorVO.setFrealnm(dbm.getString("frealnm"));
-			professorVO.setForiginnm(dbm.getString("foriginnm"));
 			
-		}
-		
-		dbm.close();
-		
-		sql = " UPDATE professor "
-			+ "    SET pposition = ?, plab=?, pemail = ?, "
-			+ "		  pphone = ?, pcall = ?, paddr = ?, pzipCode = ?"
-			+ "  WHERE pno = ?";
-		
-		dbm.prepare(sql)
-	    .setString(professorVO.getPposition())
-	    .setString(professorVO.getPlab())
-	    .setString(professorVO.getPemail())
-	    .setString(professorVO.getPphone())
-	    .setString(professorVO.getPcall())
-	    .setString(professorVO.getPaddr())
-	    .setString(professorVO.getPzipCode()).setInt(pno).update();
-		
-		dbm.close();
-		
-		sql = " UPDATE file f " 
-			+ " JOIN profbridgefile b ON f.fno = b.fno "
-			+ " JOIN professor p On p.pno = b.pno"
-			+ " SET f.frealnm = ?, f.foriginnm = ? "
-			+ " WHERE p.pno = ?";
-		
-		dbm.prepare(sql)
-	    .setString(professorVO.getFrealnm())
-	    .setString(professorVO.getForiginnm()).setInt(pno).update();
+		DBM dbm = DBM.getInstance();
+		dbm.prepare(sql);
+	    dbm.setString(ppositionParam);
+		dbm.setString(plabParam);
+	    dbm.setString(pemailParam);
+	    dbm.setString(pphoneParam);
+	    dbm.setString(pcallParam);
+	    dbm.setString(paddrParam);
+	    dbm.setString(pzipCodeParam);
+	    dbm.setInt(pno).update();
+			
 		dbm.close();
 		
 		return professorVO;
 	}
-
-//	public ProfessorVO modifyInfo(String pno) {
-//		ProfessorVO professorVO = new ProfessorVO();
-//		
-//		String sql = " UPDATE professor "
-//				   + "    SET pposition = ?, plab=?, pemail = ?, "
-//				   + "		  pphone = ?, pcall = ?, paddr = ?, pzipCode = ?"
-//				   + "  WHERE pno = ?";
-//		
-//		DBM dbm = DBM.getInstance();
-//		
-//		dbm.prepare(sql).setString(pno).update();
-//		
-//		dbm.close();
-//		
-//		return professorVO;
-//	}
 
 }

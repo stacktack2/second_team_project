@@ -24,7 +24,7 @@
 					<li class="breadcrumb-item">사용자 관리</li>
 					<li class="breadcrumb-item active">교수 관리</li>
 				</ol>
-				<form name="profUserAddForm" action="profUserMgView" method="post" id="profUserAddForm" onsubmit="return false;" enctype="multipart/form-data">
+				<form name="profUserAddForm" action="profUserAdd" method="post" id="profUserAddForm" onsubmit="return false;" enctype="multipart/form-data">
 				<div class="card mb-4 white">
 					<div class="card-header disNone">교수 사용자 추가</div>
 					<div class="card-body">
