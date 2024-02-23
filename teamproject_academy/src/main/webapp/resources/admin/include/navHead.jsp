@@ -7,7 +7,7 @@
 <body>
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!--로고자리-->
-		<a class="navbar-brand ps-3" href="<%=request.getContextPath()%>/professor/profMain">이젠대학교</a>
+		<a class="navbar-brand ps-3" href="<%=request.getContextPath()%>/admin/admMain">이젠대학교</a>
 		<!--좌측 nav바 토글(클릭시 없어졌다 있어졌다) -->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
 			<i class="fas fa-bars"></i>

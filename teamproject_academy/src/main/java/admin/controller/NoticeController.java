@@ -64,7 +64,7 @@ public class NoticeController {
 	}
 	
 	public void noticeList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
 		String searchAlign = request.getParameter("searchAlign");
 		String searchType = request.getParameter("searchType");
 		String searchValue = request.getParameter("searchValue");
@@ -101,6 +101,8 @@ public class NoticeController {
 		List<BoardVO> board = noticeDAO.FindBoard(searchAlign, searchType, searchValue, start, perPage);
 		
 		request.setAttribute("board",board);
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin/notice/noticeList.jsp");
 		rd.forward(request, response);
