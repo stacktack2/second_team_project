@@ -49,7 +49,7 @@
 								<c:forEach var="board" items="${mainList}">
 								    <tr>
 								        <td>${board.bno}</td>
-								        <td><a href="noticeView?bno=${board.bno}">${board.btitle}</a></td>
+								        <td><a href="notice/noticeView?bno=${board.bno}">${board.btitle}</a></td>
 								        <td>${board.brdate}</td>
 								        <td>${board.bhit}</td>
 								    </tr>
