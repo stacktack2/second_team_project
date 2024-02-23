@@ -48,7 +48,10 @@
 												<td>${student.sid }</td>
 												<td>${student.sname }</td>
 												<td>${student.sgrade }</td>
-												<td>${student.sstatus }</td>
+												<td>
+													<c:if test="${ student.sstatus == '0'}">재학</c:if>
+													<c:if test="${ student.sstatus == '1'}">휴학</c:if>
+												</td>
 											</tr>
 										</tbody>
 									</table>
