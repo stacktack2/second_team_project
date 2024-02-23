@@ -94,7 +94,7 @@ public class AcdCourseDAO {
 				+" INNER JOIN lecture l ON c.lno = l.lno "
 				+" INNER JOIN professor p ON l.pno = p.pno "
 				+" INNER JOIN student s ON c.sno = s.sno "
-				+" WHERE s.sno = ? and cdelyn = 0 ";
+				+" WHERE s.sno = ? and cdelyn = 0 and l.lstatus=4";
 		
 
 		if((lyearType!= null && !lyearType.equals("")) 
