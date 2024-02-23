@@ -48,9 +48,15 @@
 												<th>생년월일</th>
 												<td>${student.sbirth }</td>
 												<th>성별</th>
-												<td>${student.sgender }</td>
+												<td>
+													<c:if test="${ student.sgender eq 'M'}">남</c:if>
+													<c:if test="${ student.sgender eq 'F'}">여</c:if>
+												</td>
 												<th>학적상태</th>
-												<td>${student.sstatus }</td>
+												<td>
+													<c:if test="${ student.sstatus == '0'}">재학</c:if>
+													<c:if test="${ student.sstatus == '1'}">휴학</c:if>
+												</td>
 											</tr>
 											<tr>
 												<th>대학</th>
@@ -62,7 +68,7 @@
 											</tr>
 											<tr>
 												<th>학년</th>
-												<td>${student.sgrade }</td>
+												<td>${student.sgrade +1}</td>
 												<th>학과석차</th>
 												<td>${student.srank}</td>
 												<th>입학일자</th>
