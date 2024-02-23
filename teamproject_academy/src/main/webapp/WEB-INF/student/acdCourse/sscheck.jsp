@@ -29,7 +29,7 @@
 						<div class="card-body">
 							<div class="card mb-4">
 								<div class="card-body">
-									<img src="<%=request.getContextPath()%>/upload/stuUpload/${student.foriginnm}.JPG" alt="picture" height="200px">
+									<img src="<%=request.getContextPath()%>/upload/stuUpload/${student.foriginnm}" alt="picture" height="200px">
 								</div>
 							</div>
 							<div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">

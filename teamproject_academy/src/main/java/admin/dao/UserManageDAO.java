@@ -238,7 +238,7 @@ public class UserManageDAO {
 		
 		String sql = " UPDATE professor "
 				+ "    SET pposition = ?, plab=?, pemail = ?, "
-				+ "		  pphone = ?, pcall = ?, paddr = ?, pzipCode = ?"
+				+ "		   pphone = ?, pcall = ?, paddr = ?, pzipCode = ?"
 				+ "  WHERE pno = ?";
 		
 		ProfessorVO professorVO = new ProfessorVO();

@@ -50,7 +50,7 @@
 												<th>작성자</th>
 												<td>관리자</td>
 												<th>작성일</th>
-												<td>2024.02.22</td>
+												<td></td>
 												<th>조회수</th>
 												<td>0</td>
 											</tr>
@@ -63,7 +63,6 @@
 											</tr> -->
 										</tbody>
 									</table>
-								
 									<textarea id="summernote" name="content"></textarea>
 								</div>
 								<div class="datatable-bottom d-inline-block">
