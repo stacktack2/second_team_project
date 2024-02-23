@@ -66,7 +66,7 @@
 												<th>번호</th>
 												<th>과목명</th>
 												<th>교수명</th>
-												<th>시간표</th>
+												<th>강의시간</th>
 												<th>강의실</th>
 											</tr>
 										</thead>
@@ -76,7 +76,7 @@
 												<td>${course.cno}</td>
 												<td><a href="curriculum?lno=${course.lno }">${course.lname }</a></td>
 												<td>${course.pname }</td>
-												<td>${course.lname }</td>
+												<td>${course.ltime }</td>
 												<td>${course.lroom }</td>
 											</tr>
 										</c:forEach>

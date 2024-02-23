@@ -50,7 +50,11 @@
 												<th>학점/시간</th>
 												<td>${curriMap.lcredit }&#47;${curriMap.ltime }</td>
 												<th>강의상태</th>
-												<td>${curriMap.lstatus }</td>
+												<td>
+													<c:if test="${ curriMap.lstatus == '2'}">수강신청 강의</c:if>
+													<c:if test="${ curriMap.lstatus == '4'}">진행중인 강의</c:if>
+													<c:if test="${ curriMap.lstatus == '5'}">지난 강의</c:if>
+												</td>
 											</tr>
 											<tr>
 												<th>담당교수</th>
