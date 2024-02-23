@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS professor;
 DROP TABLE IF EXISTS student;
 
 
+drop view if exists Member;
 
 
 /* Create Tables */
@@ -297,7 +298,6 @@ ALTER TABLE studentBridgeFile
 ;
 
 
-drop view Member;
 
 CREATE or REPLACE view Member AS 
  ((SELECT s.sno as no, s.sname as name, s.sid as id, s.spw as pw, 'student' as type FROM student s)
