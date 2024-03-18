@@ -20,7 +20,7 @@ https://www.canva.com/design/DAF9eQkK28Q/dQ3eTfLGYHlYETJ9mqbNwQ/edit?utm_content
 <br>
 <b>팀원 전용휘 기여 내용</b><br>
 <br>
-<b>문서작성-</b><br>
+<b>설계 및 DB-</b><br>
 화면설계서 작성, DB설계서 작성 및 ermaster, mysql을 활용한 DB구현<br>
 <br>
 
