@@ -22,6 +22,7 @@ https://www.canva.com/design/DAF9eQkK28Q/dQ3eTfLGYHlYETJ9mqbNwQ/edit?utm_content
 <br>
 <b>문서작성-</b><br>
 화면설계서 작성, DB설계서 작성 및 ermaster, mysql을 활용한 DB구현<br>
+<br>
 
 <b>MVC 패턴 설계-</b><br>
 WEB-INF 하위 view 위치로 직접 접근 차단, 프론트 컨트롤러 설계 및 구현<br>
