@@ -1,6 +1,6 @@
-# second_team_project
-학사 출결 관리 시스템
-## 2차 TEAM_PROJECT
+# 학사 출결 관리 시스템
+
+## 2차 second_team_project
 #### 프로젝트 주최 : 이젠IT아카데미
 <hr>
 <b>기간</b> : 2024.01.22 ~ 2024.2.23<br>
