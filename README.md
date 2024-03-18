@@ -20,10 +20,10 @@ https://www.canva.com/design/DAF9eQkK28Q/dQ3eTfLGYHlYETJ9mqbNwQ/edit?utm_content
 <br>
 <b>팀원 전용휘 기여 내용</b><br>
 <br>
+<b>화면설계서 작성, DB설계서 작성 및 ermaster, mysql을 활용한 DB구현</b><br>
+
 <b>MVC 패턴 설계-</b><br>
 WEB-INF 하위 view 위치로 직접 접근 차단, 프론트 컨트롤러 설계 및 구현<br>
-
-화면설계, DB설계 및 ermaster 및 mysql을 활용한 DB구현<br>
 
 <b>util-</b><br>
 Thread-safe 를 고려한 싱글톤을 이용한 DB매니저 구현<br>
